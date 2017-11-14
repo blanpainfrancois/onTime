@@ -1,5 +1,15 @@
 # onTime
+
 ontimeapi.azurewebsites.net
+
+
+
+
+UML Diagram: 
+
+
+![alt text](https://github.com/blanpainfrancois/onTime/blob/master/CA-Uber4/Administratie/UML%20Appvalley.png )
+
 
 # Project Title
 
@@ -88,3 +98,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 * Hat tip to anyone who's code was used
 * Inspiration
 * etc
+
