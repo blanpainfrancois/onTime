@@ -34,7 +34,7 @@ namespace Uber4CreamBackend
         {
             services.AddDbContext<ApplicationDbContext>(options =>
 
-            options.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=test123;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
+            options.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ontimedatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
             );
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -64,7 +64,7 @@ namespace Uber4CreamBackend
                 // Policy for dashboard: only administrator role.
                 options.AddPolicy("Manage Accounts", policy => policy.RequireRole("administrator"));
                 // Policy for resources: user or administrator roles. 
-                options.AddPolicy("Access Resources", policy => policy.RequireRole("administrator", "user", "IceMaker"));
+                options.AddPolicy("Access Resources", policy => policy.RequireRole("administrator", "employer", "employee"));
             });
 
             
@@ -126,8 +126,6 @@ namespace Uber4CreamBackend
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-
-                
             }
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));

@@ -20,3 +20,14 @@ C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Cloud Applications\Project\CA-Uber4\Ba
 C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Cloud Applications\Project\CA-Uber4\Backend\Uber4CreamBackend\obj\Debug\netcoreapp2.0\Uber4Cream.AssemblyInfo.cs
 C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Cloud Applications\Project\CA-Uber4\Backend\Uber4CreamBackend\obj\Debug\netcoreapp2.0\Uber4Cream.dll
 C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Cloud Applications\Project\CA-Uber4\Backend\Uber4CreamBackend\obj\Debug\netcoreapp2.0\Uber4Cream.pdb
+C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Backend\Uber4CreamBackend\obj\Debug\netcoreapp2.0\Uber4Cream.csprojResolveAssemblyReference.cache
+C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Backend\Uber4CreamBackend\obj\Debug\netcoreapp2.0\Uber4Cream.csproj.CoreCompileInputs.cache
+C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Backend\Uber4CreamBackend\obj\Debug\netcoreapp2.0\Uber4Cream.AssemblyInfoInputs.cache
+C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Backend\Uber4CreamBackend\obj\Debug\netcoreapp2.0\Uber4Cream.AssemblyInfo.cs
+C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Backend\Uber4CreamBackend\obj\Debug\netcoreapp2.0\Uber4Cream.dll
+C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Backend\Uber4CreamBackend\obj\Debug\netcoreapp2.0\Uber4Cream.pdb
+C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Backend\Uber4CreamBackend\bin\Debug\netcoreapp2.0\Uber4Cream.deps.json
+C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Backend\Uber4CreamBackend\bin\Debug\netcoreapp2.0\Uber4Cream.runtimeconfig.json
+C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Backend\Uber4CreamBackend\bin\Debug\netcoreapp2.0\Uber4Cream.runtimeconfig.dev.json
+C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Backend\Uber4CreamBackend\bin\Debug\netcoreapp2.0\Uber4Cream.dll
+C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Backend\Uber4CreamBackend\bin\Debug\netcoreapp2.0\Uber4Cream.pdb

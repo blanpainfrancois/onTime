@@ -12,31 +12,16 @@ namespace Uber4CreamBackend.Data
         {
         }
 
-        public DbSet<ProductCategory> productcategories { get; set; }
         public DbSet<Address> addresses { get; set; }
-
-        public DbSet<Customer> customers { get; set; }
-        public DbSet<Order> order { get; set; }
-        public DbSet<Product> products { get; set; }
-        public DbSet<ProductOrder> productorders { get; set; }
+        public DbSet<Employee> employees { get; set; }
+        public DbSet<Employer> employers { get; set; }
+        public DbSet<Issue> issues { get; set; }
+        public DbSet<Location> locations { get; set; }
+        public DbSet<Reason> reasons { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-
-            builder.Entity<ProductOrder>()
-              .HasKey(po => new { po.ProductID, po.OrderID });
-
-            builder.Entity<ProductOrder>()
-                .HasOne(bc => bc.order)
-                .WithMany(b => b.productorders)
-                .HasForeignKey(bc => bc.ProductID);
-
-            builder.Entity<ProductOrder>()
-                .HasOne(bc => bc.product)
-                .WithMany(c => c.productorders)
-                .HasForeignKey(bc => bc.OrderID);
-
         }
     }
 }

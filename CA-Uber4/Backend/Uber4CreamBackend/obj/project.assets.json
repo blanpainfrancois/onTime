@@ -13406,11 +13406,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\Mo\\OneDrive\\Schooljaar 2017-2018\\Cloud Applications\\Project\\CA-Uber4\\Backend\\Uber4CreamBackend\\Uber4Cream.csproj",
+      "projectUniqueName": "C:\\Users\\Mo\\OneDrive\\Schooljaar 2017-2018\\Ap Valley\\onTime\\CA-Uber4\\Backend\\Uber4CreamBackend\\Uber4Cream.csproj",
       "projectName": "Uber4Cream",
-      "projectPath": "C:\\Users\\Mo\\OneDrive\\Schooljaar 2017-2018\\Cloud Applications\\Project\\CA-Uber4\\Backend\\Uber4CreamBackend\\Uber4Cream.csproj",
+      "projectPath": "C:\\Users\\Mo\\OneDrive\\Schooljaar 2017-2018\\Ap Valley\\onTime\\CA-Uber4\\Backend\\Uber4CreamBackend\\Uber4Cream.csproj",
       "packagesPath": "C:\\Users\\Mo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Mo\\OneDrive\\Schooljaar 2017-2018\\Cloud Applications\\Project\\CA-Uber4\\Backend\\Uber4CreamBackend\\obj\\",
+      "outputPath": "C:\\Users\\Mo\\OneDrive\\Schooljaar 2017-2018\\Ap Valley\\onTime\\CA-Uber4\\Backend\\Uber4CreamBackend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

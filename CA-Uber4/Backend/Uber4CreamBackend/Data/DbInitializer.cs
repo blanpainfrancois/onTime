@@ -42,7 +42,8 @@ namespace Uber4CreamBackend.Services
             
             // Creates Roles.
             await _roleManager.CreateAsync(new IdentityRole("administrator"));
-            await _roleManager.CreateAsync(new IdentityRole("user"));
+            await _roleManager.CreateAsync(new IdentityRole("employer"));
+            await _roleManager.CreateAsync(new IdentityRole("employee"));
 
             // Seeds an admin user.
             var user = new ApplicationUser
@@ -58,13 +59,7 @@ namespace Uber4CreamBackend.Services
                 TwoFactorEnabled = false,
                 UserName = "admin@gmail.com"
             };
-
-
-
             
-
-         
-
             var result = await _userManager.CreateAsync(user, "Admin01*");
 
             if (result.Succeeded)

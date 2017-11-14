@@ -133,13 +133,11 @@ namespace Uber4Cream.Migrations
                     b.Property<int>("AddressID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Country");
+
                     b.Property<string>("city");
 
-                    b.Property<string>("country");
-
                     b.Property<string>("housenumber");
-
-                    b.Property<string>("province");
 
                     b.Property<string>("streetname");
 
@@ -150,99 +148,94 @@ namespace Uber4Cream.Migrations
                     b.ToTable("addresses");
                 });
 
-            modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.Customer", b =>
+            modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.Employee", b =>
                 {
-                    b.Property<int>("CustomerID")
+                    b.Property<int>("EmployeeID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int?>("AddressID");
 
-                    b.Property<string>("IdentityUserID");
+                    b.Property<int?>("EmployerID");
 
-                    b.Property<DateTime>("birthdate");
+                    b.Property<string>("Familyname");
 
-                    b.Property<DateTime>("createdate");
+                    b.Property<string>("Givenname");
 
-                    b.Property<string>("customerdetails");
-
-                    b.Property<string>("email");
-
-                    b.Property<string>("familyname");
-
-                    b.Property<string>("givenname");
-
-                    b.Property<string>("phone");
-
-                    b.Property<string>("username");
-
-                    b.HasKey("CustomerID");
+                    b.HasKey("EmployeeID");
 
                     b.HasIndex("AddressID");
 
-                    b.ToTable("customers");
+                    b.HasIndex("EmployerID");
+
+                    b.ToTable("employees");
                 });
 
-            modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.Order", b =>
+            modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.Employer", b =>
                 {
-                    b.Property<int>("OrderID")
+                    b.Property<int>("EmployerID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("CustomerID");
+                    b.Property<DateTime>("CreatedAt");
 
-                    b.Property<DateTime>("orderdate");
+                    b.Property<string>("Name");
 
-                    b.HasKey("OrderID");
+                    b.HasKey("EmployerID");
 
-                    b.HasIndex("CustomerID");
-
-                    b.ToTable("order");
+                    b.ToTable("employers");
                 });
 
-            modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.Product", b =>
+            modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.Issue", b =>
                 {
-                    b.Property<int>("ProductID")
+                    b.Property<int>("IssueID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("ProductCategoryID");
+                    b.Property<int?>("EmployeeID");
 
-                    b.Property<DateTime>("creationdate");
+                    b.Property<int?>("LocationID");
 
-                    b.Property<string>("details");
+                    b.Property<int?>("ReasonID");
 
-                    b.Property<float>("price");
+                    b.Property<DateTime>("timestamp");
 
-                    b.Property<string>("productname");
+                    b.HasKey("IssueID");
 
-                    b.HasKey("ProductID");
+                    b.HasIndex("EmployeeID");
 
-                    b.HasIndex("ProductCategoryID");
+                    b.HasIndex("LocationID")
+                        .IsUnique()
+                        .HasFilter("[LocationID] IS NOT NULL");
 
-                    b.ToTable("products");
+                    b.HasIndex("ReasonID")
+                        .IsUnique()
+                        .HasFilter("[ReasonID] IS NOT NULL");
+
+                    b.ToTable("issues");
                 });
 
-            modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.ProductCategory", b =>
+            modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.Location", b =>
                 {
-                    b.Property<int>("ProductCategoryID")
+                    b.Property<int>("LocationID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("name");
+                    b.Property<double>("latitude");
 
-                    b.HasKey("ProductCategoryID");
+                    b.Property<double>("longtitude");
 
-                    b.ToTable("productcategories");
+                    b.HasKey("LocationID");
+
+                    b.ToTable("locations");
                 });
 
-            modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.ProductOrder", b =>
+            modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.Reason", b =>
                 {
-                    b.Property<int>("ProductID");
+                    b.Property<int>("ReasonID")
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<int>("OrderID");
+                    b.Property<string>("reason");
 
-                    b.HasKey("ProductID", "OrderID");
+                    b.HasKey("ReasonID");
 
-                    b.HasIndex("OrderID");
-
-                    b.ToTable("productorders");
+                    b.ToTable("reasons");
                 });
 
             modelBuilder.Entity("Uber4CreamBackend.Models.ApplicationUser", b =>
@@ -345,38 +338,30 @@ namespace Uber4Cream.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.Customer", b =>
+            modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.Employee", b =>
                 {
                     b.HasOne("Uber4Cream.Data.DatabaseModels.Address", "address")
-                        .WithMany("customers")
+                        .WithMany()
                         .HasForeignKey("AddressID");
+
+                    b.HasOne("Uber4Cream.Data.DatabaseModels.Employer", "employer")
+                        .WithMany("employers")
+                        .HasForeignKey("EmployerID");
                 });
 
-            modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.Order", b =>
+            modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.Issue", b =>
                 {
-                    b.HasOne("Uber4Cream.Data.DatabaseModels.Customer", "customer")
-                        .WithMany("orders")
-                        .HasForeignKey("CustomerID");
-                });
+                    b.HasOne("Uber4Cream.Data.DatabaseModels.Employee", "employee")
+                        .WithMany("issues")
+                        .HasForeignKey("EmployeeID");
 
-            modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.Product", b =>
-                {
-                    b.HasOne("Uber4Cream.Data.DatabaseModels.ProductCategory", "productcategory")
-                        .WithMany("products")
-                        .HasForeignKey("ProductCategoryID");
-                });
+                    b.HasOne("Uber4Cream.Data.DatabaseModels.Location", "location")
+                        .WithOne("issue")
+                        .HasForeignKey("Uber4Cream.Data.DatabaseModels.Issue", "LocationID");
 
-            modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.ProductOrder", b =>
-                {
-                    b.HasOne("Uber4Cream.Data.DatabaseModels.Product", "product")
-                        .WithMany("productorders")
-                        .HasForeignKey("OrderID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Uber4Cream.Data.DatabaseModels.Order", "order")
-                        .WithMany("productorders")
-                        .HasForeignKey("ProductID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("Uber4Cream.Data.DatabaseModels.Reason", "reason")
+                        .WithOne("issue")
+                        .HasForeignKey("Uber4Cream.Data.DatabaseModels.Issue", "ReasonID");
                 });
 #pragma warning restore 612, 618
         }

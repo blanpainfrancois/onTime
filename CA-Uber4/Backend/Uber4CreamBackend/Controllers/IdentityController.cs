@@ -26,7 +26,7 @@ namespace Uber4CreamBackend.Controllers
     [Route("api/[controller]")]
     // Authorization policy for this API.
     [Authorize(AuthenticationSchemes = IdentityServerAuthenticationDefaults.AuthenticationScheme, Policy = "Manage Accounts")]
-    
+
     public class IdentityController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -50,7 +50,7 @@ namespace Uber4CreamBackend.Controllers
             _emailSender = emailSender;
             _logger = logger;
             this.context = context;
-            
+
 
         }
 
@@ -59,15 +59,15 @@ namespace Uber4CreamBackend.Controllers
         /// </summary>
         /// <returns>Returns all the users</returns>
         // GET identity/GetAll
-        [HttpPost("GetAll")]
+        [HttpGet("GetAll")]
         [AllowAnonymous]
-        public async Task<IActionResult> GetAllUsersFromRole( [FromBody] CreateRoleModel model )
+        public async Task<IActionResult> GetAllUsersFromRole(string role)
         {
 
-            var role = await _roleManager.FindByNameAsync(model.Role);
-            var users = await _userManager.GetUsersInRoleAsync(role.Name);
+            var rolefound = await _roleManager.FindByNameAsync(role);
+            var users = await _userManager.GetUsersInRoleAsync(rolefound.Name);
 
-            foreach(var user in users)
+            foreach (var user in users)
             {
                 user.PasswordHash = "";
             }
@@ -84,7 +84,7 @@ namespace Uber4CreamBackend.Controllers
         {
 
             var result = await _roleManager.CreateAsync(new IdentityRole(model.Role));
- 
+
             return new JsonResult(result);
 
         }
@@ -98,82 +98,72 @@ namespace Uber4CreamBackend.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Create([FromBody]CreateViewModel model)
         {
-            try
+
+            var user = new ApplicationUser
             {
+                GivenName = model.givenName,
+                FamilyName = model.familyName,
+                AccessFailedCount = 0,
+                Email = model.email,
+                EmailConfirmed = false,
+                LockoutEnabled = true,
+                NormalizedEmail = model.username.ToUpper(),
+                NormalizedUserName = model.username.ToUpper(),
+                TwoFactorEnabled = false,
+                UserName = model.username
+            };
 
 
-                var user = new ApplicationUser
-                {
-                    GivenName = model.givenName,
-                    FamilyName = model.familyName,
-                    AccessFailedCount = 0,
-                    Email = model.email,
-                    EmailConfirmed = false,
-                    LockoutEnabled = true,
-                    NormalizedEmail = model.username.ToUpper(),
-                    NormalizedUserName = model.username.ToUpper(),
-                    TwoFactorEnabled = false,
-                    UserName = model.username
-                };
-
-
-                if (!model.password.Equals(model.passwordvalidate))
-                {
-                    return new JsonResult("Passwords don't match");
-                }
-
-                var result = await _userManager.CreateAsync(user, model.password);
-                
-
-
-
-                if (result.Succeeded && model.role == "Ice Maker")
-                {
-
-                    var newUser = await _userManager.FindByNameAsync(user.UserName);
-                    // Assigns the administrator role.
-                    await _userManager.AddToRoleAsync(newUser, "IceMaker");
-                    // Assigns claims.
-                    var claims = new List<Claim> {
-                    new Claim(type: JwtClaimTypes.GivenName, value: user.GivenName),
-                    new Claim(type: JwtClaimTypes.FamilyName, value: user.FamilyName),
-                     };
-                    await _userManager.AddClaimsAsync(newUser, claims);
-                    
-                }
-                else if (result.Succeeded && model.role == "user")
-                {
-                    var newUser = await _userManager.FindByNameAsync(user.UserName);
-                    // Assigns the administrator role.
-                    await _userManager.AddToRoleAsync(newUser, "user");
-                    // Assigns claims.
-                    var claims = new List<Claim> {
-                    new Claim(type: JwtClaimTypes.GivenName, value: user.GivenName),
-                    new Claim(type: JwtClaimTypes.FamilyName, value: user.FamilyName) };
-                    await _userManager.AddClaimsAsync(newUser, claims);
-
-                }
-
-                else
-                {
-                    return new BadRequestObjectResult("User niet aangemaakt");
-                }
-
-
-                if (!result.Succeeded)
-                {
-                    return new JsonResult("User niet aangemaakt") { StatusCode = (int)HttpStatusCode.BadRequest };
-                }
-
-                return new JsonResult(result);
+            if (!model.password.Equals(model.passwordvalidate))
+            {
+                return BadRequest("Passwords don't match");
             }
 
+            var result = await _userManager.CreateAsync(user, model.password);
 
-            catch (ArgumentNullException e)
+            if (result.Succeeded)
             {
-                return new BadRequestObjectResult("User niet aangemaakt") { StatusCode = (int)HttpStatusCode.BadRequest };
+                if (model.role == "employer")
+                {
+                    var roleresult = await _userManager.AddToRoleAsync(user, "employer");
+
+                    context.employers.Add(new Employer
+                    {
+                        CreatedAt = DateTime.Now,
+                        Name = model.givenName + " " + model.familyName,
+                        IdentityID = user.Id,
+                    });
+                    if (roleresult.Succeeded)
+                    {
+                        return Ok("user created");
+                    }
+                }
+                else if (model.role == "employee")
+                {
+                    var roleresult = await _userManager.AddToRoleAsync(user, "employee");
+
+                    context.employees.Add(new Employee
+                    {
+                        Givenname = model.givenName,
+                        Familyname = model.familyName,
+                        IdentityID = user.Id
+                    });
+
+                    if (roleresult.Succeeded)
+                    {
+                        return Ok("user created");
+                    }
+                }
             }
+            
+            return new BadRequestResult();
+
+
         }
+
+
+
+
 
         /// <summary>
         /// Deletes a user.

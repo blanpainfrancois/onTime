@@ -11,10 +11,7 @@ namespace Uber4Cream.Data.DatabaseModels
         public string streetname { get; set; }
         public string housenumber { get; set; }
         public string city { get; set; }
-        public string province { get; set; }
         public string zipcode { get; set; }
-        public string country { get; set; }
-
-        public ICollection<Customer> customers { get; set; }
+        public string Country { get; set; }
     }
 }

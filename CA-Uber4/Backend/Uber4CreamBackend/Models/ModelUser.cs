@@ -16,7 +16,7 @@ namespace Uber4Cream.Models
 
         public string email { get; set; }
 
-        public IList<string> role { get; set; }
+        public string role { get; set; }
 
     }
 }
