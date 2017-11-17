@@ -67,7 +67,14 @@ Give an example
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+### Deploying backend
+
+1. Right click project in Visual Studio
+2. Select "Publish"
+3. Select "Select Existing" IMPORTANT
+4. Add your account that was invited to deploy to Azure by Tuur (Only on first deploy)
+5. Select the appropriate target (ontimeapi or uber4cream)
+6. Deploy
 
 ## Built With
 
