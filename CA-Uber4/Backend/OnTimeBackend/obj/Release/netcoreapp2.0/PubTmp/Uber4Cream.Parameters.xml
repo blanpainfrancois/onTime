@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters>
-  <parameter name="IIS Web Application Name" description="" value="ontimeapi" tags="IisApp">
-    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Mo\\OneDrive\\Schooljaar\ 2017-2018\\Ap\ Valley\\onTime\\CA-Uber4\\Backend\\Uber4CreamBackend\\obj\\Release\\netcoreapp2\.0\\PubTmp\\Out\\$" />
-  </parameter>
-</parameters>
