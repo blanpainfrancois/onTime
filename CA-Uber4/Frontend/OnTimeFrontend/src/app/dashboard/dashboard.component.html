@@ -1,0 +1,28 @@
+<div class="container-fluid text-center">    
+    <div class="row content">
+      <div class="col-sm-2 sidenav">
+          <mat-toolbar class="IceMaker">
+              <span routerLink="/dashboard">Dashboard</span>
+            
+              <mat-toolbar-row>
+                <span routerLink="/dashboard/profile">Profile</span>
+                <span class="example-spacer"></span>
+              </mat-toolbar-row>
+            
+          
+            </mat-toolbar>
+      </div>
+      <div class="col-sm-8 text-left"> 
+        <router-outlet class="dashboardrouter"></router-outlet>    
+        
+      </div>
+      <div class="col-sm-2 sidenav">
+        <p>MESSAGEBAR</p>
+      </div>
+    </div>
+  </div>
+  
+                           
+
+
+

@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row">
+
+      <h1>Profile</h1>
+
+    </div>
+
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6  toppad" >
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title"> {{user?.givenName | tocapital}} {{user?.familyName | tocapital}} </h3>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class=" col-md-9 col-lg-9 "> 
+                <table class="table table-user-information">
+                  <tbody>
+                    <tr>
+                      <td>username</td>
+                      <td>{{user?.username}}</td>
+                    </tr>
+                    <tr>
+                      <td>Name</td>
+                      <td>{{user?.givenName | tocapital}} {{user?.familyName | tocapital}}</td>
+                    </tr>
+                    <tr>
+                      <td>Email</td>
+                      <td><a href="mailto:{{user?.email}}">{{user?.email}}</a></td>
+                    </tr>
+                    <tr>
+                      <td>Role</td>
+                      <td> {{user?.role}} </td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+          
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
