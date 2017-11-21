@@ -11,6 +11,15 @@ OnTime heeft als voordeel dat het systeem alle gegevens van de werknemers in een
 ![Uml schema](https://github.com/blanpainfrancois/onTime/blob/master/CA-Uber4/Administratie/UML%20Appvalley.png)
 
 
+| Key         | Value                       |
+| ------------| ----------------------------|
+| client_id	  | Uber4Cream                  |
+| grant_type  | password                    |
+| username    | JOUW_ADMIN_USER             |
+| password    | JOUW_ADMIN_PASSWORD         |
+| scope       | WebAPI openid profile roles |
+
+
 onTime wordt gehost op:
 ontimeapi.azurewebsites.net
 
