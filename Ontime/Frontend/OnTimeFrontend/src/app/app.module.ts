@@ -29,6 +29,7 @@ import {MatToolbarModule, MatButtonModule,MatInputModule, MatRadioModule , MatIc
 import { MainmetricComponent } from './dashboard/mainmetric/mainmetric.component';
 import { ProfileComponent } from './dashboard/profile/profile.component';
 import { TocapitalPipe } from './pipes/tocapital.pipe';
+import { FilterlistComponent } from './filterlist/filterlist.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { TocapitalPipe } from './pipes/tocapital.pipe';
     MainmetricComponent,
     ProfileComponent,
     TocapitalPipe,
+    FilterlistComponent,
 
   ],
   imports: [
