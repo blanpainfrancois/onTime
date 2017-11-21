@@ -8,7 +8,7 @@ Het platform bestaat uit twee delen. Enerzijds is er de applicatie die elke werk
 OnTime heeft als voordeel dat het systeem alle gegevens van de werknemers in een overzichtelijke structuur bijhoudt. De werkgever wordt niet op de hoogte gesteld van laattijdigheden door bijvoorbeeld een melding, maar moet dit uit zijn eigen nakijken op het platform. We hebben hierbij gedacht aan het feit dat hooggeplaatste mensen vaak in meetings zitten en dan liever niet gestoord worden. Alle data wordt immers toch opgeslagen, dan kan dit geraadpleegd worden wanneer gewenst. Indien er opgemerkt wordt dat iemand vaak te laat komt, kan er actie ondernomen worden om dit in de toekomst te vermijden.
 
 ## UML Schema 
-[Uml schema](!https://github.com/blanpainfrancois/onTime/blob/master/CA-Uber4/Administratie/UML%20Appvalley.png)
+![Uml schema](https://github.com/blanpainfrancois/onTime/blob/master/CA-Uber4/Administratie/UML%20Appvalley.png)
 onTime wordt gehost op:
 ontimeapi.azurewebsites.net
 
