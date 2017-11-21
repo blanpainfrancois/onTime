@@ -91,9 +91,16 @@ namespace OnTimeBackend
                     options.Authority = "http://localhost:5000/";
                     options.RequireHttpsMetadata = false;
                     options.ApiName = "WebAPI";
+                }).AddIdentityServerAuthentication(options =>
+                {
+                    options.Authority = "http://ontimeapi.azurewebsite.net/";
+                    options.RequireHttpsMetadata = false;
+                    options.ApiName = "WebAPI";
                 });
 
-          
+
+
+
 
 
 

@@ -1,0 +1,30 @@
+
+<div class="container" [@routerTransition]>
+    <div class="card card-container">
+        <div class="title"><h4>Register  </h4></div>
+        
+        <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+        <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+        <form  [formGroup]="registerForm" class="form-signin" novalidate>
+            
+
+            <div *ngIf="error" class="alert alert-danger">
+        <strong>Danger!</strong> {{error}}
+      </div>
+            <input matInput formControlName="username" placeholder="Username" id="username" type="text">
+            <input matInput formControlName="email" placeholder="E-mail" id="email" type="email">
+            <input matInput formControlName="givenname" placeholder="Firstname" id="givenname" type="text">
+            <input matInput formControlName="familyname" placeholder="Familyname" id="familyname" type="text">
+            <input matInput formControlName="password" placeholder="Password" id="password" type="password" class="validate">
+            <input matInput formControlName="passwordvalidate" placeholder="Reenter password" id="password-again" type="password">
+            <input formControlName="role" type="radio" name="role" value="user" id="User" ><label for="User">User</label>
+            <input formControlName="role" type="radio" name="role" value="Ice Maker" id="Ice Maker"><label for="Ice Maker">Ice Maker</label>
+            
+              
+            <button (click)="register()"  class="btn btn-lg btn-primary btn-block btn-signin" [disabled]="!registerForm.valid" mat-button>Register</button>
+        </form><!-- /form -->
+        <a href="#" class="forgot-password">
+            Forgot the password?
+        </a>
+    </div><!-- /card-container -->
+</div><!-- /container -->

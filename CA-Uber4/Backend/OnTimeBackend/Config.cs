@@ -43,7 +43,8 @@ namespace OnTimeBackend
                 // http://docs.identityserver.io/en/release/reference/client.html.
                 new Client
                 {
-                    ClientId = "Uber4Cream",
+                    ClientId = "Angular",
+                    ClientName = "angular client",
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword, // Resource Owner Password Credential grant.
                     AllowAccessTokensViaBrowser = true,
                     RequireClientSecret = false, // This client does not need a secret to request tokens from the token endpoint.
@@ -64,8 +65,8 @@ namespace OnTimeBackend
                 },
                 new Client
                 {
-                    ClientId = "ng",
-                    ClientName = "Angular Client",
+                    ClientId = "Android",
+                    ClientName = "Android client",
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
                     AllowAccessTokensViaBrowser = true,
                     ClientSecrets = new List<Secret> { (new Secret("secret".Sha256())) },
