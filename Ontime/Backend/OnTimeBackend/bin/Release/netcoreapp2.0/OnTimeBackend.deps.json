@@ -6314,11 +6314,7 @@
     "System.Runtime.Serialization.Formatters/4.3.0": {
       "type": "package",
       "serviceable": true,
-<<<<<<< HEAD
-      "sha512": "sha512-KT591AkTNFOTbhZlaeMVvfax3RqhH1EJlcwF50Wm7sfnBLuHiOeZRRKrr1ns3NESkM20KPZ5Ol/ueMq5vg4QoQ==",
-=======
       "sha512": "sha512-d050Cph9x/AwEED6Wh0avz6+648hlrMgdCCnYg2n0GcLObpT3gH+psJDw079RAo538O0L0IVgwukwnWLSWG56g==",
->>>>>>> a9a4c28e8f20669d7d72eb73a0246670e8d1871c
       "path": "system.runtime.serialization.formatters/4.3.0",
       "hashPath": "system.runtime.serialization.formatters.4.3.0.nupkg.sha512"
     },
@@ -6535,11 +6531,7 @@
     "System.Xml.XmlDocument/4.3.0": {
       "type": "package",
       "serviceable": true,
-<<<<<<< HEAD
-      "sha512": "sha512-lJ8AxvkX7GQxpC6GFCeBj8ThYVyQczx2+f/cWHJU8tjS7YfI6Cv6bon70jVEgs2CiFbmmM8b9j1oZVx0dSI2Ww==",
-=======
       "sha512": "sha512-59zcz50JHxigJKrlJJsFs/+Qp+b7nXeS6gZvKy0i5iJ09YpAEQQBdJMorTPMNx5QeRZva06I3hEIgUJ6LSKhbA==",
->>>>>>> a9a4c28e8f20669d7d72eb73a0246670e8d1871c
       "path": "system.xml.xmldocument/4.3.0",
       "hashPath": "system.xml.xmldocument.4.3.0.nupkg.sha512"
     },

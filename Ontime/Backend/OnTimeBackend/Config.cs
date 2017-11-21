@@ -72,12 +72,12 @@ namespace OnTimeBackend
                     ClientSecrets = new List<Secret> { (new Secret("secret".Sha256())) },
 
                     RequireConsent = true,
-                    AllowedCorsOrigins = { "http://localhost:4200" },
                     AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        "WebAPI"
+                        "WebAPI",
+                        "roles"
                     },
                    RequireClientSecret = false
                     

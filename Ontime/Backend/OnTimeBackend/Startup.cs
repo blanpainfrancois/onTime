@@ -94,7 +94,7 @@ namespace OnTimeBackend
             services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
                 .AddIdentityServerAuthentication(options =>
                 {
-                    options.Authority = "http://ontimeapi.azurewebsite.net/";
+                    options.Authority = "http://ontimeapi.azurewebsites.net/";
                     options.RequireHttpsMetadata = false;
                     options.ApiName = "WebAPI";
                 });
