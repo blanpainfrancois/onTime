@@ -2,7 +2,7 @@
 
   <button mat-button routerLink="/">Home</button>
   <button mat-button>Concept</button>
-  <button class="swaggerbutton" mat-button><a href="http://localhost:5000/swagger/">Swagger API</a></button>
+  <button class="swaggerbutton" mat-button><a href="http://ontimeapi.azurewebsites.net/swagger">Swagger API</a></button>
   <button *ngIf="!user" routerLink="/register" mat-button>Register</button>
   <span class="fill-space"></span>
   <button *ngIf="!user" routerLink="/login" mat-button>Login</button>
@@ -10,7 +10,7 @@
       <button  mat-icon-button routerLink="/dashboard">
           <mat-icon>contacts</mat-icon>
         </button>
-      
+
    <span>Hi,  {{user?.givenName | tocapital}} {{user?.familyName | tocapital}} </span>
   <button  mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>more_vert</mat-icon>
@@ -24,9 +24,9 @@
         <mat-icon>delete</mat-icon>
         <span>Delete your account</span>
       </button>
-      
+
     </mat-menu>
-  
+
   </div>
 </mat-toolbar>
 
