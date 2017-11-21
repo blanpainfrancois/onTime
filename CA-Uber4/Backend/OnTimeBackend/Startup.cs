@@ -22,6 +22,9 @@ namespace OnTimeBackend
 {
     public class Startup
     {
+
+        private string conString;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -32,9 +35,12 @@ namespace OnTimeBackend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            conString = Environment.GetEnvironmentVariable("CUSTOMCONNSTR_OnTimeAdminString");
+
             services.AddDbContext<ApplicationDbContext>(options =>
 
-            options.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ontimedatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
+            options.UseSqlServer(conString)
             );
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
