@@ -46,15 +46,16 @@
             android:layout_marginBottom="@dimen/space20"/>
 
     </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/iv_logo"
         android:layout_above="@id/ll_bottom"
+        android:layout_below="@id/iv_logo"
         android:layout_margin="@dimen/space40"
-        android:text="Uber 4 Cream driver"
-        android:textSize="30sp"
+        android:text="On Time"
         android:textAlignment="center"
-        android:textStyle="bold"
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 </RelativeLayout>

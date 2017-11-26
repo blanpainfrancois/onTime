@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by Mo on 24/11/2017.
  */
 
-public class CreateIceMakerUser {
+public class PostEmployer {
 
 
 
@@ -29,16 +29,20 @@ public class CreateIceMakerUser {
     @SerializedName("familyName")
     @Expose
     private String familyName;
+    @SerializedName("role")
+    @Expose
+    private String role;
 
 
 
-    public CreateIceMakerUser(String username, String email, String password, String passwordvalidate, String givenName, String familyName) {
+    public PostEmployer(String username, String email, String password, String passwordvalidate, String givenName, String familyName, String role) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.passwordvalidate = passwordvalidate;
         this.givenName = givenName;
         this.familyName = familyName;
+        this.role = role;
     }
 
 

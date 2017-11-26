@@ -133,6 +133,9 @@ namespace OnTimeBackend.Controllers
                         Name = model.givenName + " " + model.familyName,
                         IdentityID = user.Id,
                     });
+
+                    await context.SaveChangesAsync();
+
                     if (roleresult.Succeeded)
                     {
                         return Ok("user created");
@@ -148,6 +151,8 @@ namespace OnTimeBackend.Controllers
                         Familyname = model.familyName,
                         IdentityID = user.Id
                     });
+
+                    await context.SaveChangesAsync();
 
                     if (roleresult.Succeeded)
                     {
