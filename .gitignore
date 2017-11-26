@@ -7,3 +7,5 @@ Ontime/Frontend/App/local.properties
 Ontime/Backend/OnTimeBackend/bin
 Ontime/Backend/.vs/OnTimeBackend/v15/.suo
 Ontime/Backend/OnTimeBackend/node_modules/
+Ontime/Backend/.vs/
+Ontime/Frontend/App/build/

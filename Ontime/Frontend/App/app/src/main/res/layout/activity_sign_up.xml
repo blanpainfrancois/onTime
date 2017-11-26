@@ -10,6 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/bg" />
+
+
+
     <ImageView
         android:id="@+id/iv_back"
         android:layout_width="wrap_content"
@@ -44,129 +47,236 @@
             android:textColor="@android:color/white"
             android:gravity="center_horizontal"/>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/iv_back"
-        android:layout_above="@id/ll_bottom"
-        android:layout_marginTop="@dimen/space40"
-        android:paddingLeft="@dimen/space20"
-        android:paddingRight="@dimen/space20"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/tv_sign_up"
-            android:layout_width="wrap_content"
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_above="@id/ll_bottom"
             android:layout_below="@id/iv_back"
-            android:layout_marginBottom="@dimen/space40"
-            android:layout_gravity="center_horizontal"
-            android:text="Sign Up"
-            android:textSize="@dimen/txt22"
-            android:textColor="@android:color/white" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space40"
+            android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:paddingBottom="@dimen/space5"
-            android:background="@drawable/bg_ediitext"
-            android:layout_marginBottom="@dimen/space20">
+            android:paddingLeft="@dimen/space20"
+            android:paddingRight="@dimen/space20">
+
             <TextView
+                android:id="@+id/tv_sign_up"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="USERNAME"
-                android:textSize="@dimen/txt10"
-                android:textColor="@android:color/white"
-                android:layout_marginBottom="@dimen/space5"/>
-            <EditText
-                android:id="@+id/et_username"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="@dimen/txt16"
-                android:hint="Username"
-                android:textColor="@android:color/white"
-                android:textColorHint="@color/txt_hint"
-                android:background="@android:color/transparent"
-                android:lines="1"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="@dimen/space5"
-            android:background="@drawable/bg_ediitext"
-            android:layout_marginBottom="@dimen/space20">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="EMAIL"
-                android:textSize="@dimen/txt10"
-                android:textColor="@android:color/white"
-                android:layout_marginBottom="@dimen/space5"/>
-            <EditText
-                android:id="@+id/et_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="@dimen/txt16"
-                android:hint="Email"
-                android:textColor="@android:color/white"
-                android:textColorHint="@color/txt_hint"
-                android:lines="1"
-                android:inputType="textEmailAddress"
-                android:background="@android:color/transparent"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="@dimen/space5"
-            android:background="@drawable/bg_ediitext"
-            android:layout_marginBottom="@dimen/space40">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="PASSWORD"
-                android:textSize="@dimen/txt10"
-                android:textColor="@android:color/white"
-                android:layout_marginBottom="@dimen/space5"/>
-            <EditText
-                android:id="@+id/et_password"
-                android:layout_width="@dimen/btn_width"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="@dimen/txt16"
-                android:hint="Password"
-                android:textColor="@android:color/white"
-                android:textColorHint="@color/txt_hint"
-                android:inputType="textPassword"
-                android:lines="1"
-                android:background="@android:color/transparent"/>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/ll_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <Button
-                android:id="@+id/btn_sign_up"
-                android:layout_width="@dimen/btn_width"
-                android:layout_height="@dimen/btn_height"
+                android:layout_below="@id/iv_back"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/space10"
                 android:text="Sign Up"
-                android:textAllCaps="false"
-                android:textSize="@dimen/txt16"
-                android:textColor="@color/colorPrimary"
-                android:background="@drawable/btn_white_selector"
-                android:layout_marginBottom="@dimen/space20"/>
-            <TextView
-                android:layout_width="@dimen/btn_width"
-                android:layout_height="wrap_content"
-                android:text="By creating an account you agree to our Terms &amp; Conditions and Privacy Policy"
-                android:textSize="@dimen/txt14"
-                android:textStyle="normal"
                 android:textColor="@android:color/white"
-                android:gravity="center_horizontal"/>
+                android:textSize="@dimen/txt22" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/space20"
+                android:background="@drawable/bg_ediitext"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/space5">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/space5"
+                    android:text="USERNAME"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/txt10" />
+
+                <EditText
+                    android:id="@+id/et_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:hint="Username"
+                    android:inputType="textVisiblePassword|textNoSuggestions"
+                    android:lines="1"
+                    android:text=""
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@color/txt_hint"
+                    android:textSize="@dimen/txt16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/space20"
+                android:background="@drawable/bg_ediitext"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/space5">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/space5"
+                    android:text="EMAIL"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/txt10" />
+
+                <EditText
+                    android:id="@+id/et_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:lines="1"
+                    android:text=""
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@color/txt_hint"
+                    android:textSize="@dimen/txt16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/space20"
+                android:background="@drawable/bg_ediitext"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/space5">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/space5"
+                    android:text="GIVENNAME"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/txt10" />
+
+                <EditText
+                    android:id="@+id/et_givenname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:hint="Givenname"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:text=""
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@color/txt_hint"
+                    android:textSize="@dimen/txt16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/space20"
+                android:background="@drawable/bg_ediitext"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/space5">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/space5"
+                    android:text="FAMILYNAME"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/txt10" />
+
+                <EditText
+                    android:id="@+id/et_familyname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:hint="Familyname"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:text=""
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@color/txt_hint"
+                    android:textSize="@dimen/txt16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/space20"
+                android:background="@drawable/bg_ediitext"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/space5">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/space5"
+                    android:text="PASSWORD"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/txt10" />
+
+                <EditText
+                    android:id="@+id/et_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:lines="1"
+                    android:text=""
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@color/txt_hint"
+                    android:textSize="@dimen/txt16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/space40"
+                android:background="@drawable/bg_ediitext"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/space5">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/space5"
+                    android:text="VALIDATE PASSWORD"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/txt10" />
+
+                <EditText
+                    android:id="@+id/et_password_validate"
+                    android:layout_width="@dimen/btn_width"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:hint="Validate password"
+                    android:inputType="textPassword"
+                    android:lines="1"
+                    android:text=""
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@color/txt_hint"
+                    android:textSize="@dimen/txt16" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btn_sign_up"
+                    android:layout_width="@dimen/btn_width"
+                    android:layout_height="@dimen/btn_height"
+                    android:layout_marginBottom="@dimen/space20"
+                    android:background="@drawable/btn_white_selector"
+                    android:text="Sign Up"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/txt16" />
+
+                <TextView
+                    android:layout_width="@dimen/btn_width"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="By creating an account you agree to our Terms &amp; Conditions and Privacy Policy"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/txt14"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
         </LinearLayout>
-    </LinearLayout>
 </RelativeLayout>

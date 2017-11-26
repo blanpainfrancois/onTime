@@ -34,6 +34,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button login = (Button) findViewById(R.id.btn_sign_in);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, Login.class));
+
+            }
+        });
+
     }
     /**
      * Making notification bar transparent
