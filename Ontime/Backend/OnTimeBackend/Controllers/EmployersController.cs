@@ -10,6 +10,7 @@ using Uber4Cream.Data.DatabaseModels;
 using Microsoft.AspNetCore.Authorization;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.EntityFrameworkCore;
+using OnTimeBackend.Models.AccountViewModels;
 
 namespace OnTimeBackend.Controllers
 {
@@ -32,7 +33,21 @@ namespace OnTimeBackend.Controllers
 
             var employers = await context.employers.ToListAsync();
 
-            return new JsonResult(employers);
+            List<ReturnEmployers> returnemployers = new List<ReturnEmployers>();
+
+            foreach (var employer in employers)
+            {
+                returnemployers.Add(new ReturnEmployers
+                {
+                    CreatedAt = employer.CreatedAt,
+                    EmployerID = employer.EmployerID,
+                    IdentityID = employer.IdentityID,
+                    Name = employer.Name,
+                    Username = employer.Username
+                });
+            }
+
+            return new JsonResult(returnemployers);
         }
 
         // GET: api/Employers/5

@@ -1,7 +1,9 @@
 package com.dytstudio.signup;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -16,11 +18,14 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.dytstudio.signup.Models.AccessToken;
+import com.google.gson.Gson;
 
 public class UserDashboard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     AccessToken accessToken;
+    SharedPreferences mPrefs;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +43,13 @@ public class UserDashboard extends AppCompatActivity
             }
         });
 
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        Intent intent = getIntent();
 
-        accessToken = (AccessToken) intent.getSerializableExtra("token");
+
+        Gson gson = new Gson();
+        String json = mPrefs.getString("token", "");
+        accessToken = gson.fromJson(json, AccessToken.class);
 
 
 
