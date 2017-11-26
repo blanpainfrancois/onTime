@@ -9,6 +9,7 @@ using Uber4Cream.Data.DatabaseModels;
 using OnTimeBackend.Data;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace Uber4Cream.Controllers
 {

@@ -119,6 +119,9 @@ namespace OnTimeBackend.Controllers
                 return BadRequest("Passwords don't match");
             }
 
+
+
+
             var result = await usermanager.CreateAsync(user, model.password);
 
             if (result.Succeeded)
@@ -130,6 +133,7 @@ namespace OnTimeBackend.Controllers
                     context.employers.Add(new Employer
                     {
                         CreatedAt = DateTime.Now,
+                        Username = model.username,
                         Name = model.givenName + " " + model.familyName,
                         IdentityID = user.Id,
                     });
@@ -138,7 +142,7 @@ namespace OnTimeBackend.Controllers
 
                     if (roleresult.Succeeded)
                     {
-                        return Ok("user created");
+                        return Ok();
                     }
                 }
                 else if (model.role == "employee")
@@ -148,6 +152,7 @@ namespace OnTimeBackend.Controllers
                     context.employees.Add(new Employee
                     {
                         Givenname = model.givenName,
+                        Username = model.username,
                         Familyname = model.familyName,
                         IdentityID = user.Id
                     });
@@ -156,7 +161,7 @@ namespace OnTimeBackend.Controllers
 
                     if (roleresult.Succeeded)
                     {
-                        return Ok("user created");
+                        return Ok();
                     }
                 }
             }

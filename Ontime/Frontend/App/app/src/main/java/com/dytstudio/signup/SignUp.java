@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.dytstudio.signup.Models.AccessToken;
 import com.dytstudio.signup.Models.PostEmployer;
@@ -91,18 +92,19 @@ public class SignUp extends AppCompatActivity {
 
                         if(response.isSuccessful()){
 
+                            Toast.makeText(SignUp.this, "Employee added", Toast.LENGTH_SHORT).show();
 
                             Call<AccessToken> token_call = apiInterface.POST_TOKEN_CALL(username.getText().toString(), password.getText().toString(), client_id ,grant_type ,scope);
 
                             token_call.enqueue(new Callback<AccessToken>() {
                                 @Override
                                 public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
-                                    if(response.isSuccessful()){
 
+
+                                    if(response.isSuccessful()){
                                         Intent intent = new Intent(SignUp.this, UserDashboard.class);
                                         intent.putExtra("token", response.body());
                                         SignUp.this.startActivity(intent);
-
                                     }
 
                                 }
