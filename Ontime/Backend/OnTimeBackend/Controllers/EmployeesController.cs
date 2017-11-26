@@ -85,21 +85,6 @@ namespace Uber4Cream.Controllers
             return NoContent();
         }
 
-        // POST: api/Employees
-        [HttpPost]
-        public async Task<IActionResult> PostEmployee([FromBody] Employee employee)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            _context.employees.Add(employee);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetEmployee", new { id = employee.EmployeeID }, employee);
-        }
-
         // DELETE: api/Employees/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEmployee([FromRoute] int id)
