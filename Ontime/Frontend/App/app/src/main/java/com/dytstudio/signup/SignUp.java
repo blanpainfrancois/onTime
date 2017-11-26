@@ -3,8 +3,10 @@ package com.dytstudio.signup;
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 
 import com.dytstudio.signup.Models.AccessToken;
 import com.dytstudio.signup.Models.PostEmployer;
+import com.google.gson.Gson;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,6 +38,9 @@ public class SignUp extends AppCompatActivity {
     private final String scope = "WebAPI openid profile roles";
     private final  String client_id = "Android";
     private final String grant_type = "password";
+
+    SharedPreferences mPrefs;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +100,7 @@ public class SignUp extends AppCompatActivity {
 
                             Toast.makeText(SignUp.this, "Employee added", Toast.LENGTH_SHORT).show();
 
-                            Call<AccessToken> token_call = apiInterface.POST_TOKEN_CALL(username.getText().toString(), password.getText().toString(), client_id ,grant_type ,scope);
+                            final Call<AccessToken> token_call = apiInterface.POST_TOKEN_CALL(username.getText().toString(), password.getText().toString(), client_id ,grant_type ,scope);
 
                             token_call.enqueue(new Callback<AccessToken>() {
                                 @Override
@@ -103,8 +109,15 @@ public class SignUp extends AppCompatActivity {
 
                                     if(response.isSuccessful()){
                                         Intent intent = new Intent(SignUp.this, UserDashboard.class);
-                                        intent.putExtra("token", response.body());
-                                        SignUp.this.startActivity(intent);
+
+                                        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                                        Gson gson = new Gson();
+                                        String json = gson.toJson(response.body());
+                                        prefsEditor.putString("token", json);
+                                        if(prefsEditor.commit()) {
+                                            SignUp.this.startActivity(intent);
+                                        }
+
                                     }
 
                                 }

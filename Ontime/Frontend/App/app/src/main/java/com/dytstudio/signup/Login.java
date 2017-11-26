@@ -3,8 +3,10 @@ package com.dytstudio.signup;
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.dytstudio.signup.Models.AccessToken;
+import com.google.gson.Gson;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,6 +31,7 @@ public class Login extends AppCompatActivity {
     APIInterface apiInterface;
     ImageView iv_back;
     LinearLayout ll_button, ll_bottom;
+    SharedPreferences mPrefs;
 
 
     private final String scope = "WebAPI openid profile roles";
@@ -41,6 +45,8 @@ public class Login extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }
+
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         changeStatusBarColor();
 
@@ -76,9 +82,18 @@ public class Login extends AppCompatActivity {
                     public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
                         if(response.isSuccessful()){
 
+
+
                             Intent intent = new Intent(Login.this, UserDashboard.class);
-                            intent.putExtra("token", response.body());
-                            Login.this.startActivity(intent);
+
+                            SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                            Gson gson = new Gson();
+                            String json = gson.toJson(response.body());
+                            prefsEditor.putString("token", json);
+                            if(prefsEditor.commit()){
+                                Login.this.startActivity(intent);
+
+                            }
 
                         }
                     }
