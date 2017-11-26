@@ -1,9 +1,8 @@
 package com.dytstudio.signup;
 
 import com.dytstudio.signup.Models.AccessToken;
-import com.dytstudio.signup.Models.CreateIceMakerUser;
+import com.dytstudio.signup.Models.PostEmployer;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -17,8 +16,8 @@ import retrofit2.http.POST;
 public interface APIInterface {
 
 
-        @POST("/api/Identity/CreateIceMaker")
-        Call<CreateIceMakerUser> CREATE_ICE_MAKER_USER_CALL(@Body CreateIceMakerUser createIceMakerUser);
+        @POST("/api/Identity/Create")
+        Call<PostEmployer> POST_EMPLOYER(@Body PostEmployer postEmployer);
 
         @FormUrlEncoded
         @POST("/connect/token")

@@ -2,7 +2,6 @@ package com.dytstudio.signup;
 
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -15,13 +14,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.dytstudio.signup.Models.AccessToken;
-import com.dytstudio.signup.Models.CreateIceMakerUser;
+import com.dytstudio.signup.Models.PostEmployer;
 
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,9 +30,9 @@ public class SignUp extends AppCompatActivity {
     LinearLayout ll_button, ll_bottom;
     Button bbtn_sign_up;
     APIInterface apiInterface;
-    CreateIceMakerUser user;
+    PostEmployer user;
     private final String scope = "WebAPI openid profile roles";
-    private final  String client_id = "android";
+    private final  String client_id = "Android";
     private final String grant_type = "password";
 
     @Override
@@ -85,48 +81,39 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                user = new CreateIceMakerUser(username.getText().toString().trim(), email.getText().toString().trim(), password.getText().toString().trim(), passwordvalidate.getText().toString().trim(), givenname.getText().toString().trim(), familyname.getText().toString().trim());
+                user = new PostEmployer(username.getText().toString().trim(), email.getText().toString().trim(), password.getText().toString().trim(), passwordvalidate.getText().toString().trim(), givenname.getText().toString().trim(), familyname.getText().toString().trim(), "employee");
 
-                Call<CreateIceMakerUser> call = apiInterface.CREATE_ICE_MAKER_USER_CALL(user);
+                Call<PostEmployer> call = apiInterface.POST_EMPLOYER(user);
 
-                call.enqueue(new Callback<CreateIceMakerUser>() {
+                call.enqueue(new Callback<PostEmployer>() {
                     @Override
-                    public void onResponse(Call<CreateIceMakerUser> call, retrofit2.Response<CreateIceMakerUser> response) {
+                    public void onResponse(Call<PostEmployer> call, retrofit2.Response<PostEmployer> response) {
 
                         if(response.isSuccessful()){
 
 
-
-                            final Call<AccessToken> token_call = apiInterface.POST_TOKEN_CALL(username.getText().toString(), "Admin01*", client_id ,grant_type ,scope);
-
-                            //ToDo: loading screen on
+                            Call<AccessToken> token_call = apiInterface.POST_TOKEN_CALL(username.getText().toString(), password.getText().toString(), client_id ,grant_type ,scope);
 
                             token_call.enqueue(new Callback<AccessToken>() {
                                 @Override
                                 public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
-
-
-
                                     if(response.isSuccessful()){
 
                                         Intent intent = new Intent(SignUp.this, UserDashboard.class);
-                                       intent.putExtra("token", response.body());
+                                        intent.putExtra("token", response.body());
                                         SignUp.this.startActivity(intent);
 
                                     }
-                                    else{
-                                        //Todo: display error
-                                    }
-
 
                                 }
 
                                 @Override
                                 public void onFailure(Call<AccessToken> call, Throwable t) {
-                                    //Todo: display error
 
                                 }
                             });
+
+
 
 
                         }
@@ -135,7 +122,7 @@ public class SignUp extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<CreateIceMakerUser> call, Throwable t) {
+                    public void onFailure(Call<PostEmployer> call, Throwable t) {
 
                     }
                 });

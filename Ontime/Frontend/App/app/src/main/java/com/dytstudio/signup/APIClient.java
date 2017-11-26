@@ -32,7 +32,7 @@ public class APIClient {
 
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://uber4cream.azurewebsites.net")
+                .baseUrl("http://ontimeapi.azurewebsites.net")
                 .addConverterFactory(new NullOnEmptyConverterFactory())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addConverterFactory(ScalarsConverterFactory.create())
