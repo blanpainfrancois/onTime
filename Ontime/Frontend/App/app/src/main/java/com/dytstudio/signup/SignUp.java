@@ -109,7 +109,6 @@ public class SignUp extends AppCompatActivity {
 
                                     if(response.isSuccessful()){
                                         Intent intent = new Intent(SignUp.this, UserDashboard.class);
-
                                         SharedPreferences.Editor prefsEditor = mPrefs.edit();
                                         Gson gson = new Gson();
                                         String json = gson.toJson(response.body());
