@@ -48,6 +48,12 @@ public class Login extends AppCompatActivity {
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
+        if(mPrefs.contains("token")){
+            Intent intent = new Intent(Login.this, UserDashboard.class);
+            Login.this.startActivity(intent);
+
+        }
+
         changeStatusBarColor();
 
         ll_button = (LinearLayout) findViewById(R.id.ll_button);

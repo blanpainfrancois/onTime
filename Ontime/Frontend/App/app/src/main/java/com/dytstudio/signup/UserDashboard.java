@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -51,6 +52,7 @@ public class UserDashboard extends AppCompatActivity
         String json = mPrefs.getString("token", "");
         accessToken = gson.fromJson(json, AccessToken.class);
 
+        Toast.makeText(this, accessToken.getAccess_token(), Toast.LENGTH_SHORT).show();
 
 
 
@@ -89,8 +91,16 @@ public class UserDashboard extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.menu_item_logout) {
+            SharedPreferences.Editor editor = mPrefs.edit();
+            editor.remove("token");
+            if(editor.commit()){
+                Intent intent = new Intent(UserDashboard.this, Login.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                UserDashboard.this.startActivity(intent);
+
+
+            }
         }
 
         return super.onOptionsItemSelected(item);
