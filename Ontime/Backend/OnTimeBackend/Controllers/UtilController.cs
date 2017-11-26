@@ -116,6 +116,7 @@ namespace OnTimeBackend.Controllers
                     {
                         IdentityID = user.Id,
                         Name = user.UserName,
+                        Username = user.UserName,
                         CreatedAt = DateTime.Now
                           
                     });
@@ -128,6 +129,7 @@ namespace OnTimeBackend.Controllers
                     {
                         IdentityID = user.Id,
                         Givenname = user.GivenName,
+                        Username = user.UserName,
                         Familyname = user.FamilyName
                     });
 
