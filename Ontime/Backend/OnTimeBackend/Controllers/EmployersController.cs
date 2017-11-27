@@ -6,11 +6,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OnTimeBackend.Data;
-using Uber4Cream.Data.DatabaseModels;
 using Microsoft.AspNetCore.Authorization;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.EntityFrameworkCore;
 using OnTimeBackend.Models.AccountViewModels;
+using OnTimeBackend.Models;
+using Microsoft.AspNetCore.Identity;
+using Uber4Cream.Data.DatabaseModels;
+using System.Collections.ObjectModel;
 
 namespace OnTimeBackend.Controllers
 {
@@ -20,10 +23,12 @@ namespace OnTimeBackend.Controllers
     public class EmployersController : Controller
     {
         private readonly ApplicationDbContext context;
+        private readonly UserManager<ApplicationUser> usermanager;
 
-        public EmployersController(ApplicationDbContext context)
+        public EmployersController(ApplicationDbContext context, UserManager<ApplicationUser> usermanager)
         {
             this.context = context;
+            this.usermanager = usermanager;
         }
 
         // GET: api/Employers
@@ -48,6 +53,33 @@ namespace OnTimeBackend.Controllers
             }
 
             return new JsonResult(returnemployers);
+        }
+
+
+        [HttpPost("employeetoemployer")]
+
+        public async Task<IActionResult> employeetoemployer(string id)
+        {
+            var employeeIdentity = await usermanager.GetUserAsync(User);
+            var employee = context.employees.Where(e => e.IdentityID == employeeIdentity.Id).FirstOrDefault();
+            var employer = context.employers.Where(e => e.IdentityID == id).FirstOrDefault();
+
+
+            if(employee != null)
+            {
+               
+                    employer.employees = new List<Employee>();
+                
+                employer.employees.Add(employee);
+                await context.SaveChangesAsync();
+                return Ok();
+            }
+            
+
+            return BadRequest();
+
+            
+            
         }
 
         // GET: api/Employers/5

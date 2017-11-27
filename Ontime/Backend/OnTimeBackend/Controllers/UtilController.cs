@@ -65,14 +65,14 @@ namespace OnTimeBackend.Controllers
 
             if (role == "employer")
             {
-               var employers = await context.employers.ToListAsync();
+                var employers = context.employers;
 
                 return new JsonResult(employers);
 
             }
             if (role == "employee")
             {
-                var employees = await context.employees.ToListAsync();
+                var employees = context.employees;
 
                 return new JsonResult(employees);
 

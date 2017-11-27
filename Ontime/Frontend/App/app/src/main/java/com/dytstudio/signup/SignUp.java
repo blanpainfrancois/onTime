@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.dytstudio.signup.EmployerSeekerPackage.EmployerSeeker;
 import com.dytstudio.signup.Models.AccessToken;
 import com.dytstudio.signup.Models.PostEmployer;
 import com.google.gson.Gson;
@@ -52,6 +53,7 @@ public class SignUp extends AppCompatActivity {
         }
 
         apiInterface = APIClient.getClient().create(APIInterface.class);
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
 
 
@@ -108,7 +110,7 @@ public class SignUp extends AppCompatActivity {
 
 
                                     if(response.isSuccessful()){
-                                        Intent intent = new Intent(SignUp.this, UserDashboard.class);
+                                        Intent intent = new Intent(SignUp.this, EmployerSeeker.class);
                                         SharedPreferences.Editor prefsEditor = mPrefs.edit();
                                         Gson gson = new Gson();
                                         String json = gson.toJson(response.body());
