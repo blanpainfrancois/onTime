@@ -29,7 +29,7 @@ public class AccessToken implements Serializable {
 
 
     public String getAccess_token() {
-        return access_token;
+        return "Bearer " + access_token;
     }
 
     public String getToken_type() {

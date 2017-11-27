@@ -11,7 +11,7 @@ namespace Uber4Cream.Data.DatabaseModels
         public string Name { get; set; }
         public string Username { get; set; }
         public DateTime CreatedAt { get; set; }
-        public ICollection<Employee> employees { get; set; }
+        public  ICollection<Employee> employees { get; set; }
         public string IdentityID { get; set; }
     }
 }

@@ -191,6 +191,7 @@ namespace OnTimeBackend.Controllers
             
             if(result.Succeeded && roleresult.Succeeded)
             {
+                await addClaims(model.username);
 
                 context.employees.Add(new Employee
                 {
@@ -238,7 +239,9 @@ namespace OnTimeBackend.Controllers
             var user = await usermanager.FindByNameAsync(userName);
             var claims = new List<Claim> {
                 new Claim(type: JwtClaimTypes.GivenName, value: user.GivenName),
-                new Claim(type: JwtClaimTypes.FamilyName, value: user.FamilyName),
+                new Claim(type: JwtClaimTypes.FamilyName, value: user.FamilyName)
+
+                
             };
             await usermanager.AddClaimsAsync(user, claims);
         }

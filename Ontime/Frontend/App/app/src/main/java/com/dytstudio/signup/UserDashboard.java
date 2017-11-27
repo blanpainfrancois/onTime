@@ -96,7 +96,7 @@ public class UserDashboard extends AppCompatActivity
             editor.remove("token");
             if(editor.commit()){
                 Intent intent = new Intent(UserDashboard.this, Login.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 UserDashboard.this.startActivity(intent);
 
 

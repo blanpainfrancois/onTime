@@ -17,15 +17,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUp"
-            android:noHistory="true"/>
+        <activity
+            android:name=".SignUp"
+            android:noHistory="true" />
         <activity
             android:name=".UserDashboard"
             android:label="@string/title_activity_user_dashboard"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Login"
-            android:noHistory="true"
-            ></activity>
+        <activity
+            android:name=".Login"
+            android:noHistory="true" />
+        <activity android:name=".EmployerSeekerPackage.EmployerSeeker"></activity>
     </application>
+
+    <uses-sdk android:minSdkVersion="24"
+        android:targetSdkVersion="24"
+         />
 
 </manifest>
