@@ -84,17 +84,26 @@ namespace OnTimeBackend.Controllers
 
         // POST: api/Issues
         [HttpPost]
-        public async Task<IActionResult> PostIssue(string employee , [FromBody] Issue issue)
+        public async Task<IActionResult> PostIssue(int employeeid , [FromBody] Issue issue)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            context.issues.Add(issue);
-            await context.SaveChangesAsync();
+            var employee = await context.employees.Where(em => em.EmployeeID == employeeid).FirstOrDefaultAsync();
 
-            return CreatedAtAction("GetIssue", new { id = issue.IssueID }, issue);
+            if(employee != null)
+            {
+                issue.employee = employee;
+                context.issues.Add(issue);
+                await context.SaveChangesAsync();
+                return Ok();
+
+            }
+
+            return BadRequest();
+
         }
 
         // DELETE: api/Issues/5
