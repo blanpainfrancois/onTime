@@ -19,17 +19,16 @@ import { LandingComponent } from './landing/landing.component';
 import { RegisterComponent } from './register/register.component';
 import { NotfoundComponent } from './notfound/notfound.component'
 import { DashboardComponent } from './dashboard/dashboard.component';
-
+import {TableFilteringExample} from './filterlist/filterlist.component';
 import { AuthService } from './services/auth.service';
 import { RegisterService } from './services/register.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { UserService } from './services/user.service'
 
-import {MatToolbarModule, MatButtonModule,MatInputModule, MatRadioModule , MatIconModule , MatMenuModule} from '@angular/material';
+import {MatToolbarModule, MatButtonModule,MatInputModule, MatRadioModule , MatIconModule , MatMenuModule, MatTableModule} from '@angular/material';
 import { MainmetricComponent } from './dashboard/mainmetric/mainmetric.component';
 import { ProfileComponent } from './dashboard/profile/profile.component';
 import { TocapitalPipe } from './pipes/tocapital.pipe';
-import { FilterlistComponent } from './filterlist/filterlist.component';
 
 
 @NgModule({
@@ -45,7 +44,7 @@ import { FilterlistComponent } from './filterlist/filterlist.component';
     MainmetricComponent,
     ProfileComponent,
     TocapitalPipe,
-    FilterlistComponent,
+    TableFilteringExample,
 
   ],
   imports: [
@@ -62,6 +61,7 @@ import { FilterlistComponent } from './filterlist/filterlist.component';
     MatRadioModule,
     MatIconModule,
     MatMenuModule,
+    MatTableModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCMBIzGWubc2qVa2vrjYcxlttDC4BxVJC4'
     })

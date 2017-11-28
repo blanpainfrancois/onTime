@@ -1,13 +1,15 @@
 import {Component} from '@angular/core';
-import {MatTableDataSource} from '@angular/material';
+import {MatTableDataSource} from '@angular/material/table';
+
 
 /**
  * @title Table with filtering
  */
+
 @Component({
-  selector: 'table-filtering-example',
-  styleUrls: ['table-filtering-example.css'],
-  templateUrl: 'table-filtering-example.html',
+  selector: 'app-filterlist',
+  styleUrls: ['filterlist.component.css'],
+  templateUrl: 'filterlist.component.html',
 })
 export class TableFilteringExample {
   displayedColumns = ['position', 'name', 'weight', 'symbol'];
