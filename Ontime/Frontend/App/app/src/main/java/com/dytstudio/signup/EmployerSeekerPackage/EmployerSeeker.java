@@ -9,18 +9,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.animation.OvershootInterpolator;
 
 import com.arlib.floatingsearchview.FloatingSearchView;
-import com.dytstudio.signup.APIClient;
-import com.dytstudio.signup.APIInterface;
+import com.dytstudio.signup.Util.APIClient;
+import com.dytstudio.signup.Util.APIInterface;
 import com.dytstudio.signup.Models.AccessToken;
 import com.dytstudio.signup.Models.Employer;
 import com.dytstudio.signup.R;
 import com.google.gson.Gson;
 
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;

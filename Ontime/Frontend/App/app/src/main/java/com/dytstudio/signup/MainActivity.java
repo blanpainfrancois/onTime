@@ -1,6 +1,5 @@
 package com.dytstudio.signup;
 
-import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -9,9 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.LinearInterpolator;
 import android.widget.Button;
-import android.widget.ImageView;
+
+import com.dytstudio.signup.Login.Login;
+import com.dytstudio.signup.Registration.SignUp;
 
 public class MainActivity extends AppCompatActivity {
 

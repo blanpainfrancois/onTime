@@ -1,4 +1,4 @@
-package com.dytstudio.signup;
+package com.dytstudio.signup.Dashboard;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,7 +17,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.dytstudio.signup.Login.Login;
 import com.dytstudio.signup.Models.AccessToken;
+import com.dytstudio.signup.R;
 import com.google.gson.Gson;
 
 public class UserDashboard extends AppCompatActivity
