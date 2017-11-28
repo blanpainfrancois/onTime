@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {MatTableDtaSource} from '@angular/material';
+import {MatTableDataSource} from '@angular/material';
 
 /**
  * @title Table with filtering
