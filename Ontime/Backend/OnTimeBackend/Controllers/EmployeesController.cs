@@ -10,6 +10,8 @@ using OnTimeBackend.Data;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using OnTimeBackend.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Uber4Cream.Controllers
 {
@@ -18,19 +20,48 @@ namespace Uber4Cream.Controllers
     [Route("api/Employees")]
     public class EmployeesController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext context;
+        private readonly UserManager<ApplicationUser> usermanager;
 
-        public EmployeesController(ApplicationDbContext context)
+        public EmployeesController(ApplicationDbContext context , UserManager<ApplicationUser> usermanager)
         {
-            _context = context;
+            this.context = context;
+            this.usermanager = usermanager;
         }
 
         // GET: api/Employees
         [HttpGet]
         public IEnumerable<Employee> Getemployees()
         {
-            return _context.employees;
+            return context.employees;
         }
+
+        [HttpGet("employeefromtoken")]
+        public async Task<IActionResult> EmployeeFromToken()
+        {
+            var useridentity = await usermanager.GetUserAsync(User);
+            if(useridentity != null)
+            {
+                var employee = await context.employees.Where(em => em.IdentityID == useridentity.Id).FirstOrDefaultAsync();
+
+                if(employee != null)
+                {
+                    var tempemployer = await context.employers.Where(emp => emp.EmployerID == employee.EmployeeID).FirstOrDefaultAsync();
+                    if(tempemployer != null)
+                    {
+                        employee.employer = await context.employers.Where(emp => emp.EmployerID == employee.EmployeeID).FirstOrDefaultAsync();
+
+                    }
+
+
+
+                    return new JsonResult(employee);
+                }
+            }
+
+            return BadRequest();
+        }
+
 
         // GET: api/Employees/5
         [HttpGet("{id}")]
@@ -41,7 +72,7 @@ namespace Uber4Cream.Controllers
                 return BadRequest(ModelState);
             }
 
-            var employee = await _context.employees.SingleOrDefaultAsync(m => m.EmployeeID == id);
+            var employee = await context.employees.SingleOrDefaultAsync(m => m.EmployeeID == id);
 
             if (employee == null)
             {
@@ -65,11 +96,11 @@ namespace Uber4Cream.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(employee).State = EntityState.Modified;
+            context.Entry(employee).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -95,21 +126,24 @@ namespace Uber4Cream.Controllers
                 return BadRequest(ModelState);
             }
 
-            var employee = await _context.employees.SingleOrDefaultAsync(m => m.EmployeeID == id);
+            var employee = await context.employees.SingleOrDefaultAsync(m => m.EmployeeID == id);
             if (employee == null)
             {
                 return NotFound();
             }
 
-            _context.employees.Remove(employee);
-            await _context.SaveChangesAsync();
+            context.employees.Remove(employee);
+            await context.SaveChangesAsync();
 
             return Ok(employee);
         }
 
         private bool EmployeeExists(int id)
         {
-            return _context.employees.Any(e => e.EmployeeID == id);
+            return context.employees.Any(e => e.EmployeeID == id);
         }
+
+
+
     }
 }

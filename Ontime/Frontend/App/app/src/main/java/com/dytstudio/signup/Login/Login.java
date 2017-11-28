@@ -1,4 +1,4 @@
-package com.dytstudio.signup;
+package com.dytstudio.signup.Login;
 
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
@@ -16,151 +16,115 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
-import com.dytstudio.signup.EmployerSeekerPackage.EmployerSeeker;
+import com.dytstudio.signup.Dashboard.UserDashboard;
+import com.dytstudio.signup.MainActivity;
 import com.dytstudio.signup.Models.AccessToken;
-import com.dytstudio.signup.Models.PostEmployer;
+import com.dytstudio.signup.R;
+import com.dytstudio.signup.Util.APIClient;
+import com.dytstudio.signup.Util.APIInterface;
+import com.dytstudio.signup.Util.Easing;
 import com.google.gson.Gson;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SignUp extends AppCompatActivity {
+public class Login extends AppCompatActivity {
 
-
-    EditText username, email, password, passwordvalidate , givenname, familyname;
+    EditText password, username;
+    Button loginbtn;
+    APIInterface apiInterface;
     ImageView iv_back;
     LinearLayout ll_button, ll_bottom;
-    Button bbtn_sign_up;
-    APIInterface apiInterface;
-    PostEmployer user;
-    private final String scope = "WebAPI openid profile roles";
-    private final  String client_id = "Android";
-    private final String grant_type = "password";
-
     SharedPreferences mPrefs;
 
 
+    private final String scope = "WebAPI openid profile roles";
+    private final  String client_id = "Android";
+    private final String grant_type = "password";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        setContentView(R.layout.activity_login);
 
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }
 
-        apiInterface = APIClient.getClient().create(APIInterface.class);
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
+        if(mPrefs.contains("token")){
+            Intent intent = new Intent(Login.this, UserDashboard.class);
+            Login.this.startActivity(intent);
 
+        }
 
         changeStatusBarColor();
-        username = (EditText) findViewById(R.id.et_username);
-        username.setPadding(0,15,0,15);
-        email = (EditText) findViewById(R.id.et_email);
-        email.setPadding(0,15,0,15);
-        password= (EditText) findViewById(R.id.et_password);
-        password.setPadding(0,15,0,15);
-        passwordvalidate= (EditText) findViewById(R.id.et_password);
-        passwordvalidate.setPadding(0,15,0,15);
-        givenname= (EditText) findViewById(R.id.et_givenname);
-        givenname.setPadding(0,15,0,15);
-        familyname= (EditText) findViewById(R.id.et_familyname);
-        familyname.setPadding(0,15,0,15);
-
 
         ll_button = (LinearLayout) findViewById(R.id.ll_button);
         ll_bottom = (LinearLayout) findViewById(R.id.ll_bottom);
-        bbtn_sign_up = (Button) findViewById(R.id.btn_sign_up);
+
         ease(ll_button);
         ease2(ll_bottom);
+
+        apiInterface = APIClient.getClient().create(APIInterface.class);
+
+
+        password = (EditText) findViewById(R.id.et_password_login);
+        username = (EditText) findViewById(R.id.et_username_login);
+        loginbtn = (Button) findViewById(R.id.btn_login);
+
         iv_back = (ImageView) findViewById(R.id.iv_back);
         iv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SignUp.this, MainActivity.class));
+                startActivity(new Intent(Login.this, MainActivity.class));
                 finish();
             }
         });
 
-        bbtn_sign_up.setOnClickListener(new View.OnClickListener() {
+        loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                 Call<AccessToken> token_call = apiInterface.POST_TOKEN_CALL(username.getText().toString(), password.getText().toString(), client_id ,grant_type ,scope);
 
-                user = new PostEmployer(username.getText().toString().trim(), email.getText().toString().trim(), password.getText().toString().trim(), passwordvalidate.getText().toString().trim(), givenname.getText().toString().trim(), familyname.getText().toString().trim(), "employee");
-
-                Call<PostEmployer> call = apiInterface.POST_EMPLOYER(user);
-
-                call.enqueue(new Callback<PostEmployer>() {
+                token_call.enqueue(new Callback<AccessToken>() {
                     @Override
-                    public void onResponse(Call<PostEmployer> call, retrofit2.Response<PostEmployer> response) {
-
+                    public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
                         if(response.isSuccessful()){
 
-                            Toast.makeText(SignUp.this, "Employee added", Toast.LENGTH_SHORT).show();
-
-                            final Call<AccessToken> token_call = apiInterface.POST_TOKEN_CALL(username.getText().toString(), password.getText().toString(), client_id ,grant_type ,scope);
-
-                            token_call.enqueue(new Callback<AccessToken>() {
-                                @Override
-                                public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
 
 
-                                    if(response.isSuccessful()){
-                                        Intent intent = new Intent(SignUp.this, EmployerSeeker.class);
-                                        SharedPreferences.Editor prefsEditor = mPrefs.edit();
-                                        Gson gson = new Gson();
-                                        String json = gson.toJson(response.body());
-                                        prefsEditor.putString("token", json);
-                                        if(prefsEditor.commit()) {
-                                            SignUp.this.startActivity(intent);
-                                        }
+                            Intent intent = new Intent(Login.this, UserDashboard.class);
 
-                                    }
+                            SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                            Gson gson = new Gson();
+                            String json = gson.toJson(response.body());
+                            prefsEditor.putString("token", json);
+                            if(prefsEditor.commit()){
+                                Login.this.startActivity(intent);
 
-                                }
-
-                                @Override
-                                public void onFailure(Call<AccessToken> call, Throwable t) {
-
-                                }
-                            });
-
-
-
+                            }
 
                         }
-
-
                     }
 
                     @Override
-                    public void onFailure(Call<PostEmployer> call, Throwable t) {
+                    public void onFailure(Call<AccessToken> call, Throwable t) {
 
                     }
                 });
 
 
 
-
-
-
-
-
-
             }
         });
 
+
+
+
     }
-    /**
-     * Making notification bar transparent
-     */
-
-
-
 
     private void changeStatusBarColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -209,5 +173,4 @@ public class SignUp extends AppCompatActivity {
         animatorSet.setDuration(1100);
         animatorSet.start();
     }
-
 }

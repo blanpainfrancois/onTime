@@ -4,7 +4,7 @@
     android:id="@+id/activity_sign_up"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.dytstudio.signup.SignUp">
+    tools:context="com.dytstudio.signup.Registration.SignUp">
     <com.flaviofaria.kenburnsview.KenBurnsView
         android:id="@+id/image"
         android:layout_width="match_parent"

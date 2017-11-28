@@ -4,25 +4,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.dytstudio.signup.APIClient;
-import com.dytstudio.signup.APIInterface;
-import com.dytstudio.signup.Login;
+import com.dytstudio.signup.Util.APIClient;
+import com.dytstudio.signup.Util.APIInterface;
 import com.dytstudio.signup.Models.AccessToken;
 import com.dytstudio.signup.Models.Employer;
 import com.dytstudio.signup.R;
-import com.dytstudio.signup.UserDashboard;
+import com.dytstudio.signup.Dashboard.UserDashboard;
 
 import java.util.List;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
