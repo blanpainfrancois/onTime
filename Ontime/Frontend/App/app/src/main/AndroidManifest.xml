@@ -2,7 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dytstudio.signup">
 
+    <uses-sdk
+        android:minSdkVersion="24"
+        android:targetSdkVersion="24" />
+
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -27,11 +34,8 @@
         <activity
             android:name=".Login.Login"
             android:noHistory="true" />
-        <activity android:name=".EmployerSeekerPackage.EmployerSeeker"></activity>
+        <activity android:name=".EmployerSeekerPackage.EmployerSeeker" />
+        <activity android:name=".Issues.AddIssue"></activity>
     </application>
-
-    <uses-sdk android:minSdkVersion="24"
-        android:targetSdkVersion="24"
-         />
 
 </manifest>

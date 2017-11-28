@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.dytstudio.signup.Issues.AddIssue;
 import com.dytstudio.signup.Login.Login;
 import com.dytstudio.signup.Models.AccessToken;
 import com.dytstudio.signup.R;
@@ -40,8 +41,8 @@ public class UserDashboard extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent myIntent = new Intent(UserDashboard.this, AddIssue.class);
+                UserDashboard.this.startActivity(myIntent);
             }
         });
 

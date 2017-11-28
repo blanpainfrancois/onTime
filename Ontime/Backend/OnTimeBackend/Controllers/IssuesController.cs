@@ -84,7 +84,7 @@ namespace OnTimeBackend.Controllers
 
         // POST: api/Issues
         [HttpPost]
-        public async Task<IActionResult> PostIssue([FromBody] Issue issue)
+        public async Task<IActionResult> PostIssue(string employee , [FromBody] Issue issue)
         {
             if (!ModelState.IsValid)
             {
