@@ -99,7 +99,10 @@ namespace OnTimeBackend
                     options.ApiName = "WebAPI";
                 });
 
-
+            services.AddMvc()
+       .AddJsonOptions(
+           options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+       );
 
 
 

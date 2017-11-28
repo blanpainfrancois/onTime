@@ -42,20 +42,19 @@ namespace Uber4Cream.Controllers
             var useridentity = await usermanager.GetUserAsync(User);
             if(useridentity != null)
             {
-                var employee = await context.employees.Where(em => em.IdentityID == useridentity.Id).FirstOrDefaultAsync();
+                var employee = await context.employees.Where(em => em.IdentityID == useridentity.Id)
+                    .Include(em => em.issues)
+                        .ThenInclude(issue => issue.reason)
+                    .Include(em => em.issues)
+                        .ThenInclude(issue => issue.location)
+                    .Include(em => em.employer)
+                    .Include(em => em.address).FirstOrDefaultAsync();
 
-                if(employee != null)
+
+
+                if (employee != null)
                 {
-                    var tempemployer = await context.employers.Where(emp => emp.EmployerID == employee.EmployeeID).FirstOrDefaultAsync();
-                    if(tempemployer != null)
-                    {
-                        employee.employer = await context.employers.Where(emp => emp.EmployerID == employee.EmployeeID).FirstOrDefaultAsync();
-
-                    }
-
-
-
-                    return new JsonResult(employee);
+                    return Ok(employee);
                 }
             }
 
@@ -138,10 +137,15 @@ namespace Uber4Cream.Controllers
             return Ok(employee);
         }
 
+
+
         private bool EmployeeExists(int id)
         {
             return context.employees.Any(e => e.EmployeeID == id);
         }
+
+
+
 
 
 

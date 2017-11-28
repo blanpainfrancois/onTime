@@ -68,7 +68,17 @@
                         android:id="@+id/author"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:text="Reason subject"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+
+                    <EditText
+                        android:id="@+id/et_reason_subject"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        />
 
                     <TextView
                         android:id="@+id/quote"
@@ -95,13 +105,17 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/article_detail_more_info"
+                        android:text="Reason message"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-                    <TextView
+                    <EditText
+                        android:id="@+id/et_reason_message"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/lorem_ipsum" />
+                        android:ems="10"
+                        android:inputType="textMultiLine" />
+
+
 
                 </LinearLayout>
 
@@ -117,7 +131,7 @@
         android:layout_width="wrap_content"
         app:layout_anchor="@id/appbar"
         app:layout_anchorGravity="bottom|right|end"
-        android:src="@drawable/ic_action_back"
+        app:srcCompat="@android:drawable/ic_input_add"
         android:layout_margin="@dimen/fab_margin"
         android:clickable="true"/>
 
