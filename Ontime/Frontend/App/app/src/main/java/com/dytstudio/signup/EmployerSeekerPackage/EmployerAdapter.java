@@ -35,10 +35,10 @@ public class EmployerAdapter extends RecyclerView.Adapter<EmployerAdapter.ViewHo
     AccessToken accessToken;
 
 
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         Employer employer;
-        CardView cv;
         TextView employerid;
         TextView employername;
         ImageView employerphoto;
@@ -48,7 +48,6 @@ public class EmployerAdapter extends RecyclerView.Adapter<EmployerAdapter.ViewHo
         public ViewHolder(View v) {
             super(v);
 
-            cv = (CardView)itemView.findViewById(R.id.cv);
             employerid = (TextView)itemView.findViewById(R.id.tv_employer_id);
             employername = (TextView)itemView.findViewById(R.id.tv_employer_name);
             employerphoto = (ImageView)itemView.findViewById(R.id.person_photo);
@@ -72,7 +71,6 @@ public class EmployerAdapter extends RecyclerView.Adapter<EmployerAdapter.ViewHo
     public EmployerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.employer_choose_card, parent, false);
-
 
         ViewHolder viewHolder = new ViewHolder(v);
 
