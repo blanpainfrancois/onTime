@@ -31,7 +31,7 @@ namespace OnTimeBackend.Controllers
         [HttpGet]
         public IEnumerable<Issue> Getissues()
         {
-            return context.issues;
+            return context.issues.Include(i => i.reason).Include(i=> i.location);
         }
 
         // GET: api/Issues/5
@@ -90,7 +90,7 @@ namespace OnTimeBackend.Controllers
 
         // POST: api/Issues
         [HttpPost]
-        public async Task<IActionResult> PostIssue([FromBody] Issue issue)
+        public async Task<IActionResult> PostIssue([FromBody] CreateIssue tempissue)
         {
             if (!ModelState.IsValid)
             {
@@ -103,14 +103,17 @@ namespace OnTimeBackend.Controllers
 
             if(employee != null)
             {
-
-                issue.employee = employee;
+                var issue = new Issue
+                {
+                    location = tempissue.location,
+                    reason = tempissue.reason,
+                    employee = employee
+                };
 
                 await context.issues.AddAsync(issue);
                 await context.SaveChangesAsync();
 
-                return CreatedAtAction("CreatedIssue", new { id = issue.IssueID }, issue);
-
+                return Ok();
 
             }
 

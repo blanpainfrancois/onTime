@@ -36,7 +36,7 @@
             android:noHistory="true" />
         <activity android:name=".EmployerSeekerPackage.EmployerSeeker"
             android:noHistory="true"/>
-        <activity android:name=".Issues.AddIssue"
+        <activity android:name=".Issues.AddIssueActivity"
             android:noHistory="true"></activity>
     </application>
 

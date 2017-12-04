@@ -24,10 +24,24 @@ public class Issue {
     @Expose
     public boolean isClosed;
 
-    public Issue(Integer issueID, Reason reason, Date date, boolean isClosed) {
+    @SerializedName("location")
+    @Expose
+    public Location location;
+
+    public Issue(Reason reason, Date date, boolean isClosed, Location location) {
+        this.reason = reason;
+        this.date = date;
+        this.isClosed = isClosed;
+        this.location = location;
+    }
+
+
+
+    public Issue(Integer issueID, Reason reason, Date date, boolean isClosed, Location location) {
         this.issueID = issueID;
         this.reason = reason;
         this.date = date;
         this.isClosed = isClosed;
+        this.location = location;
     }
 }
