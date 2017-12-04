@@ -218,11 +218,11 @@ namespace OnTimeBackend.Controllers
         /// </summary>
         /// <returns>IdentityResult</returns>
         // POST: api/identity/Delete
-        [HttpPost("Delete")]
-        public async Task<IActionResult> Delete([FromBody]string username)
+        [HttpDelete("Delete")]
+        public async Task<IActionResult> Delete()
         {
-            var user = await usermanager.FindByNameAsync(username);
-
+            var user = await usermanager.GetUserAsync(User);
+            
             var result = await usermanager.DeleteAsync(user);
 
             return new JsonResult(result);

@@ -1,24 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OnTimeBackend.Data;
 using Uber4Cream.Data.DatabaseModels;
+using Microsoft.AspNetCore.Identity;
+using OnTimeBackend.Models;
+using OnTimeBackend.Models.AccountViewModels;
+using IdentityServer4.AccessTokenValidation;
+using Microsoft.AspNetCore.Authorization;
 
 namespace OnTimeBackend.Controllers
 {
+    [Authorize(AuthenticationSchemes = IdentityServerAuthenticationDefaults.AuthenticationScheme, Policy = "Access Resources")]
     [Produces("application/json")]
     [Route("api/Issues")]
     public class IssuesController : Controller
     {
         private readonly ApplicationDbContext context;
+        private readonly UserManager<ApplicationUser> usermanager;
 
-        public IssuesController(ApplicationDbContext context)
+        public IssuesController(ApplicationDbContext context, UserManager<ApplicationUser> usermanager)
         {
             this.context = context;
+            this.usermanager = usermanager;
         }
 
         // GET: api/Issues
@@ -84,21 +90,27 @@ namespace OnTimeBackend.Controllers
 
         // POST: api/Issues
         [HttpPost]
-        public async Task<IActionResult> PostIssue(int employeeid , [FromBody] Issue issue)
+        public async Task<IActionResult> PostIssue([FromBody] Issue issue)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var employee = await context.employees.Where(em => em.EmployeeID == employeeid).FirstOrDefaultAsync();
+            var tokenUser = await usermanager.GetUserAsync(User);
+
+            var employee = await context.employees.Where(em => em.IdentityID == tokenUser.Id).FirstOrDefaultAsync();
 
             if(employee != null)
             {
+
                 issue.employee = employee;
-                context.issues.Add(issue);
+
+                await context.issues.AddAsync(issue);
                 await context.SaveChangesAsync();
-                return Ok();
+
+                return CreatedAtAction("CreatedIssue", new { id = issue.IssueID }, issue);
+
 
             }
 

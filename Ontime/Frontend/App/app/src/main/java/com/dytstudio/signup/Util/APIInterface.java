@@ -10,6 +10,7 @@ import java.util.List;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -37,7 +38,9 @@ public interface APIInterface {
         @POST("/api/Employers/employeetoemployer")
         Call<Void> POST_EMPLOYEE_TO_EMPLOYER (@Header("Authorization") String token, @Query("id") String id);
 
-        @POST("")
+        @DELETE("/api/Employees")
+        Call<Void> DELETE_EMPLOYER(@Header("Authorization") String token);
+
 
 
 
