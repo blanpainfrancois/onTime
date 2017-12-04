@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,7 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.dytstudio.signup.Issues.AddIssue;
+import com.dytstudio.signup.Issues.AddIssueActivity;
 import com.dytstudio.signup.Login.Login;
 import com.dytstudio.signup.MainActivity;
 import com.dytstudio.signup.Models.AccessToken;
@@ -52,7 +51,7 @@ public class UserDashboard extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myIntent = new Intent(UserDashboard.this, AddIssue.class);
+                Intent myIntent = new Intent(UserDashboard.this, AddIssueActivity.class);
                 UserDashboard.this.startActivity(myIntent);
             }
         });

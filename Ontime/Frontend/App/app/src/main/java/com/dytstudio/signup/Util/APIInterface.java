@@ -1,19 +1,20 @@
 package com.dytstudio.signup.Util;
 
 
+import com.dytstudio.signup.Issues.Issue;
 import com.dytstudio.signup.Models.AccessToken;
 import com.dytstudio.signup.Models.Employer;
 import com.dytstudio.signup.Models.PostEmployer;
 
 import java.util.List;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.HEAD;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -32,6 +33,9 @@ public interface APIInterface {
         @POST("/connect/token")
         Call<AccessToken> POST_TOKEN_CALL (@Field("username") String username, @Field("password") String password, @Field("client_id") String client_id, @Field("grant_type") String grant_type, @Field("scope") String scope);
 
+
+        //EMPLOYERS
+
         @GET("/api/Employers")
         Call<List<Employer>> GET_EMPLOYERS(@Header("Authorization") String token);
 
@@ -42,6 +46,11 @@ public interface APIInterface {
         Call<Void> DELETE_EMPLOYER(@Header("Authorization") String token);
 
 
+
+        //ISSUES
+
+        @POST("/api/Issues")
+        Call<Issue> POST_ISSUE(@Header("Authorization") String token , @Body Issue issue);
 
 
 }

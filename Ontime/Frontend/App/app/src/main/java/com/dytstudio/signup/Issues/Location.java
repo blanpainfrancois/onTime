@@ -9,19 +9,26 @@ import com.google.gson.annotations.SerializedName;
 
 public class Location {
 
+
+
     @SerializedName("locationID")
     @Expose
     public Integer locationID;
     @SerializedName("latitude")
     @Expose
-    public Integer latitude;
-    @SerializedName("longtitude")
+    public double latitude;
+    @SerializedName("longitude")
     @Expose
-    public Integer longtitude;
+    public double longitude;
 
-    public Location(Integer locationID, Integer latitude, Integer longtitude) {
+    public Location(Integer locationID, Integer latitude, Integer longitude) {
         this.locationID = locationID;
         this.latitude = latitude;
-        this.longtitude = longtitude;
+        this.longitude = longitude;
+    }
+
+    public Location(Integer latitude, Integer longitude) {
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 }
