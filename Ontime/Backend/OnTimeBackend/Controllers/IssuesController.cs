@@ -10,6 +10,7 @@ using OnTimeBackend.Models;
 using OnTimeBackend.Models.AccountViewModels;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Authorization;
+using System;
 
 namespace OnTimeBackend.Controllers
 {
@@ -34,59 +35,40 @@ namespace OnTimeBackend.Controllers
             return context.issues.Include(i => i.reason).Include(i=> i.location);
         }
 
-        // GET: api/Issues/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetIssue([FromRoute] int id)
+        [HttpGet("issuesfromuser")]
+        public async Task<IActionResult> getallissuesfromuser()
         {
-            if (!ModelState.IsValid)
+            var user = await usermanager.GetUserAsync(User);
+
+            var issues = await context.issues.Where(i => i.employee.IdentityID == user.Id).Include(i => i.location).Include(i => i.reason).ToListAsync();
+
+            if(issues != null)
             {
-                return BadRequest(ModelState);
+                return new JsonResult(issues);
             }
 
-            var issue = await context.issues.SingleOrDefaultAsync(m => m.IssueID == id);
 
-            if (issue == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(issue);
+            return BadRequest();
         }
 
-        // PUT: api/Issues/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutIssue([FromRoute] int id, [FromBody] Issue issue)
+        [HttpPost("changestatus")]
+        public async Task<IActionResult> changestatususer(int id)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            var user = await usermanager.GetUserAsync(User);
 
-            if (id != issue.IssueID)
+            var issue = await context.issues.Where(i => i.IssueID == id).FirstAsync();
+            
+            if (issue != null)
             {
-                return BadRequest();
-            }
-
-            context.Entry(issue).State = EntityState.Modified;
-
-            try
-            {
+                issue.IssueClosed = !issue.IssueClosed;
                 await context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!IssueExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return Ok();
             }
 
-            return NoContent();
+
+            return BadRequest();
         }
+
 
         // POST: api/Issues
         [HttpPost]
@@ -107,7 +89,8 @@ namespace OnTimeBackend.Controllers
                 {
                     location = tempissue.location,
                     reason = tempissue.reason,
-                    employee = employee
+                    employee = employee,
+                    IssueCreated = DateTime.Now
                 };
 
                 await context.issues.AddAsync(issue);

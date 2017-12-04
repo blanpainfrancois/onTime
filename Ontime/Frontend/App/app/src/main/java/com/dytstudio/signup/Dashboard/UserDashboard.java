@@ -5,6 +5,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,6 +20,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.dytstudio.signup.Issues.AddIssueActivity;
+import com.dytstudio.signup.Issues.Issue;
 import com.dytstudio.signup.Login.Login;
 import com.dytstudio.signup.MainActivity;
 import com.dytstudio.signup.Models.AccessToken;
@@ -24,6 +28,8 @@ import com.dytstudio.signup.R;
 import com.dytstudio.signup.Util.APIClient;
 import com.dytstudio.signup.Util.APIInterface;
 import com.google.gson.Gson;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,6 +42,9 @@ public class UserDashboard extends AppCompatActivity
     SharedPreferences mPrefs;
     String json;
     APIInterface apiInterface;
+    RecyclerView recyclerView;
+    IssueAdapter issueAdapter;
+    List<Issue> issues;
 
 
     @Override
@@ -44,19 +53,17 @@ public class UserDashboard extends AppCompatActivity
         setContentView(R.layout.activity_user_dashboard);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        
-        apiInterface = APIClient.getClient().create(APIInterface.class);
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent myIntent = new Intent(UserDashboard.this, AddIssueActivity.class);
-                UserDashboard.this.startActivity(myIntent);
-            }
-        });
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        recyclerView = (RecyclerView) findViewById(R.id.issue_list);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(llm);
+
+        apiInterface = APIClient.getClient().create(APIInterface.class);
 
 
 
@@ -64,9 +71,26 @@ public class UserDashboard extends AppCompatActivity
         json = mPrefs.getString("token", "");
         accessToken = gson.fromJson(json, AccessToken.class);
 
+        Call<List<Issue>> issuecall = apiInterface.GET_ISSUES(accessToken.getAccess_token());
+
+        issuecall.enqueue(new Callback<List<Issue>>() {
+            @Override
+            public void onResponse(Call<List<Issue>> call, Response<List<Issue>> response) {
+                if(response.isSuccessful()){
+                    System.out.println(response.body().toString());
+                    issueAdapter = new IssueAdapter(response.body(),accessToken);
+                    recyclerView.setAdapter(issueAdapter);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Issue>> call, Throwable t) {
 
 
-        Toast.makeText(this, accessToken.getAccess_token(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
 
 
@@ -78,6 +102,15 @@ public class UserDashboard extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(UserDashboard.this, AddIssueActivity.class);
+                UserDashboard.this.startActivity(myIntent);
+            }
+        });
     }
 
     @Override

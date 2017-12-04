@@ -52,25 +52,30 @@ public class AddIssueActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Issue issue = issueBuilder(et_reason_subject.getText().toString().trim(), et_reason_message.getText().toString().trim(), new Location(5,5));
+                btn_save_issue.setEnabled(false);
+                    Issue issue = issueBuilder(et_reason_subject.getText().toString().trim(), et_reason_message.getText().toString().trim(), new Location(5,5));
 
-                Call<Issue> issue_call = apiInterface.POST_ISSUE(accessToken.getAccess_token(), issue );
-                issue_call.enqueue(new Callback<Issue>() {
-                    @Override
-                    public void onResponse(Call<Issue> call, Response<Issue> response) {
-                        if(response.isSuccessful()){
+                    Call<Issue> issue_call = apiInterface.POST_ISSUE(accessToken.getAccess_token(), issue );
+                    issue_call.enqueue(new Callback<Issue>() {
+                        @Override
+                        public void onResponse(Call<Issue> call, Response<Issue> response) {
+                            if(response.isSuccessful()){
+                                finish();
+                            }
 
+                            else{
+                                btn_save_issue.setEnabled(true);
+                            }
+                        }
 
-
+                        @Override
+                        public void onFailure(Call<Issue> call, Throwable t) {
+                            btn_save_issue.setEnabled(true);
 
                         }
-                    }
+                    });
 
-                    @Override
-                    public void onFailure(Call<Issue> call, Throwable t) {
 
-                    }
-                });
 
 
             }

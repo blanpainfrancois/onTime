@@ -62,9 +62,7 @@ public class EmployerSeeker extends AppCompatActivity {
 
                     ScaleInAnimationAdapter scaleInAnimationAdapter = new ScaleInAnimationAdapter(adapter);
                     scaleInAnimationAdapter.setInterpolator(new OvershootInterpolator());
-
                     scaleInAnimationAdapter.setFirstOnly(false);
-
                     recyclerView.setAdapter(scaleInAnimationAdapter);
 
                 }

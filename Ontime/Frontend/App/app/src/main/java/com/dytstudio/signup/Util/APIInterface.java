@@ -52,5 +52,8 @@ public interface APIInterface {
         @POST("/api/Issues")
         Call<Issue> POST_ISSUE(@Header("Authorization") String token , @Body Issue issue);
 
+        @GET("/api/Issues/issuesfromuser")
+        Call<List<Issue>> GET_ISSUES(@Header("Authorization") String token);
+
 
 }
