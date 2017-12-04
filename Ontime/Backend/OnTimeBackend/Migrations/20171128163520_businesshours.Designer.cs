@@ -11,9 +11,10 @@ using System;
 namespace OnTimeBackend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171128163520_businesshours")]
+    partial class businesshours
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -128,6 +129,20 @@ namespace OnTimeBackend.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("OnTimeBackend.Data.DatabaseModels.BusinessHours", b =>
+                {
+                    b.Property<int>("BusinessHoursID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("closinghour");
+
+                    b.Property<DateTime>("starthour");
+
+                    b.HasKey("BusinessHoursID");
+
+                    b.ToTable("BusinessHours");
+                });
+
             modelBuilder.Entity("OnTimeBackend.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -234,6 +249,8 @@ namespace OnTimeBackend.Migrations
                     b.Property<int>("EmployerID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int?>("BusinessHoursID");
+
                     b.Property<DateTime>("CreatedAt");
 
                     b.Property<string>("IdentityID");
@@ -243,6 +260,10 @@ namespace OnTimeBackend.Migrations
                     b.Property<string>("Username");
 
                     b.HasKey("EmployerID");
+
+                    b.HasIndex("BusinessHoursID")
+                        .IsUnique()
+                        .HasFilter("[BusinessHoursID] IS NOT NULL");
 
                     b.ToTable("employers");
                 });
@@ -254,9 +275,7 @@ namespace OnTimeBackend.Migrations
 
                     b.Property<int?>("EmployeeID");
 
-                    b.Property<bool>("IssueClosed");
-
-                    b.Property<DateTime>("IssueClosedDate");
+                    b.Property<DateTime>("IssueClosed");
 
                     b.Property<DateTime>("IssueCreated");
 
@@ -363,6 +382,13 @@ namespace OnTimeBackend.Migrations
                     b.HasOne("Uber4Cream.Data.DatabaseModels.Employer", "employer")
                         .WithMany("employees")
                         .HasForeignKey("EmployerID");
+                });
+
+            modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.Employer", b =>
+                {
+                    b.HasOne("OnTimeBackend.Data.DatabaseModels.BusinessHours", "BusinessHours")
+                        .WithOne("employer")
+                        .HasForeignKey("Uber4Cream.Data.DatabaseModels.Employer", "BusinessHoursID");
                 });
 
             modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.Issue", b =>

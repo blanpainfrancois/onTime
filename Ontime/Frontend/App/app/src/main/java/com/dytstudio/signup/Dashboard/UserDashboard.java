@@ -19,15 +19,24 @@ import android.widget.Toast;
 
 import com.dytstudio.signup.Issues.AddIssue;
 import com.dytstudio.signup.Login.Login;
+import com.dytstudio.signup.MainActivity;
 import com.dytstudio.signup.Models.AccessToken;
 import com.dytstudio.signup.R;
+import com.dytstudio.signup.Util.APIClient;
+import com.dytstudio.signup.Util.APIInterface;
 import com.google.gson.Gson;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class UserDashboard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     AccessToken accessToken;
     SharedPreferences mPrefs;
+    String json;
+    APIInterface apiInterface;
 
 
     @Override
@@ -36,6 +45,8 @@ public class UserDashboard extends AppCompatActivity
         setContentView(R.layout.activity_user_dashboard);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        
+        apiInterface = APIClient.getClient().create(APIInterface.class);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -51,8 +62,10 @@ public class UserDashboard extends AppCompatActivity
 
 
         Gson gson = new Gson();
-        String json = mPrefs.getString("token", "");
+        json = mPrefs.getString("token", "");
         accessToken = gson.fromJson(json, AccessToken.class);
+
+
 
         Toast.makeText(this, accessToken.getAccess_token(), Toast.LENGTH_SHORT).show();
 
@@ -100,10 +113,38 @@ public class UserDashboard extends AppCompatActivity
                 Intent intent = new Intent(UserDashboard.this, Login.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 UserDashboard.this.startActivity(intent);
-
+                finish();
 
             }
         }
+
+        if( id == R.id.menu_item_delete_user){
+
+            Call<Void> deletecall = apiInterface.DELETE_EMPLOYER(accessToken.getAccess_token());
+            deletecall.enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    if(response.isSuccessful()){
+
+                        Toast.makeText(UserDashboard.this, "Account deleted", Toast.LENGTH_SHORT).show();
+                        
+                        Intent intent = new Intent(UserDashboard.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+
+                }
+            });
+
+        }
+
+
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -132,4 +173,22 @@ public class UserDashboard extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        checkavaileble();
+
+    }
+
+    private void checkavaileble(){
+
+        if(json == null || json.equals("")){
+            Intent myIntent = new Intent(this, MainActivity.class);
+            startActivity(myIntent);
+        }
+    }
+
+
 }

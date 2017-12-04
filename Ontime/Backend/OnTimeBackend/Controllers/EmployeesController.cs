@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Uber4Cream.Data.DatabaseModels;
 using OnTimeBackend.Data;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.EntityFrameworkCore;
 using OnTimeBackend.Models;
 using Microsoft.AspNetCore.Identity;
 
@@ -62,79 +59,33 @@ namespace Uber4Cream.Controllers
         }
 
 
-        // GET: api/Employees/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetEmployee([FromRoute] int id)
+       
+        [HttpDelete]
+        public async Task<IActionResult> DeleteEmployee()
         {
-            if (!ModelState.IsValid)
+
+            var user = await usermanager.GetUserAsync(User);
+
+            if(user != null)
             {
-                return BadRequest(ModelState);
-            }
-
-            var employee = await context.employees.SingleOrDefaultAsync(m => m.EmployeeID == id);
-
-            if (employee == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(employee);
-        }
-
-        // PUT: api/Employees/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutEmployee([FromRoute] int id, [FromBody] Employee employee)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != employee.EmployeeID)
-            {
-                return BadRequest();
-            }
-
-            context.Entry(employee).State = EntityState.Modified;
-
-            try
-            {
-                await context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!EmployeeExists(id))
+                var employee = await context.employees.SingleOrDefaultAsync(m => m.IdentityID == user.Id);
+                if (employee == null)
                 {
                     return NotFound();
                 }
-                else
-                {
-                    throw;
-                }
+
+                context.employees.Remove(employee);
+
+                await usermanager.DeleteAsync(user);
+                await context.SaveChangesAsync();
+                return Ok();
+
+
             }
 
-            return NoContent();
-        }
+            return BadRequest();
 
-        // DELETE: api/Employees/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteEmployee([FromRoute] int id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
 
-            var employee = await context.employees.SingleOrDefaultAsync(m => m.EmployeeID == id);
-            if (employee == null)
-            {
-                return NotFound();
-            }
-
-            context.employees.Remove(employee);
-            await context.SaveChangesAsync();
-
-            return Ok(employee);
         }
 
 

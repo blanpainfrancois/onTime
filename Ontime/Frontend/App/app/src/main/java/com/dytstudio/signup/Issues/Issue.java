@@ -20,9 +20,14 @@ public class Issue {
     @Expose
     public Date date;
 
-    public Issue(Integer issueID, Reason reason, Date date) {
+    @SerializedName("isclosed")
+    @Expose
+    public boolean isClosed;
+
+    public Issue(Integer issueID, Reason reason, Date date, boolean isClosed) {
         this.issueID = issueID;
         this.reason = reason;
         this.date = date;
+        this.isClosed = isClosed;
     }
 }
