@@ -52,7 +52,7 @@ public class AddIssueActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Issue issue = issueBuilder("dit is een test", "dit is nog meer testnensogjhsqfpkgj", new Location(5,5));
+                Issue issue = issueBuilder(et_reason_subject.getText().toString().trim(), et_reason_message.getText().toString().trim(), new Location(5,5));
 
                 Call<Issue> issue_call = apiInterface.POST_ISSUE(accessToken.getAccess_token(), issue );
                 issue_call.enqueue(new Callback<Issue>() {
