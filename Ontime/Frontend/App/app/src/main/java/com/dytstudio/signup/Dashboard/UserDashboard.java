@@ -31,6 +31,7 @@ import com.google.gson.Gson;
 
 import java.util.List;
 
+import co.dift.ui.SwipeToAction;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -45,7 +46,6 @@ public class UserDashboard extends AppCompatActivity
     RecyclerView recyclerView;
     IssueAdapter issueAdapter;
     List<Issue> issues;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,26 +70,10 @@ public class UserDashboard extends AppCompatActivity
         Gson gson = new Gson();
         json = mPrefs.getString("token", "");
         accessToken = gson.fromJson(json, AccessToken.class);
+        
+        
+        updateIssueAdapter();
 
-        Call<List<Issue>> issuecall = apiInterface.GET_ISSUES(accessToken.getAccess_token());
-
-        issuecall.enqueue(new Callback<List<Issue>>() {
-            @Override
-            public void onResponse(Call<List<Issue>> call, Response<List<Issue>> response) {
-                if(response.isSuccessful()){
-                    System.out.println(response.body().toString());
-                    issueAdapter = new IssueAdapter(response.body(),accessToken);
-                    recyclerView.setAdapter(issueAdapter);
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<List<Issue>> call, Throwable t) {
-
-
-            }
-        });
 
 
 
@@ -122,6 +106,9 @@ public class UserDashboard extends AppCompatActivity
             super.onBackPressed();
         }
     }
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -209,8 +196,8 @@ public class UserDashboard extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-
         checkavaileble();
+        updateIssueAdapter();
 
     }
 
@@ -220,6 +207,29 @@ public class UserDashboard extends AppCompatActivity
             Intent myIntent = new Intent(this, MainActivity.class);
             startActivity(myIntent);
         }
+    }
+
+    private void updateIssueAdapter(){
+
+
+
+        Call<List<Issue>> issuecall = apiInterface.GET_ISSUES(accessToken.getAccess_token());
+        issuecall.enqueue(new Callback<List<Issue>>() {
+            @Override
+            public void onResponse(Call<List<Issue>> call, Response<List<Issue>> response) {
+                if(response.isSuccessful()){
+                    issueAdapter = new IssueAdapter(response.body(),accessToken);
+                    recyclerView.setAdapter(issueAdapter);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Issue>> call, Throwable t) {
+
+
+            }
+        });
     }
 
 

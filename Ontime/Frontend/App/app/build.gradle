@@ -46,5 +46,6 @@ dependencies {
     compile 'com.android.support:cardview-v7:24.0.+'
     compile 'com.android.support:recyclerview-v7:24.0.+'
     compile 'jp.wasabeef:recyclerview-animators:2.2.7'
+    compile 'co.dift.ui.swipetoaction:library:1.1'
 
 }
