@@ -1,12 +1,21 @@
 apply plugin: 'com.android.application'
 
 android {
+<<<<<<< HEAD
     compileSdkVersion 24
     buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.dytstudio.signup"
         minSdkVersion 24
         targetSdkVersion 24
+=======
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+    defaultConfig {
+        applicationId "com.dytstudio.signup"
+        minSdkVersion 16
+        targetSdkVersion 26
+>>>>>>> 87b81047015cd8ab03cf2fc44f692dfe5cd0b7d0
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -17,13 +26,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+<<<<<<< HEAD
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+=======
+    aaptOptions {
+        cruncherEnabled = false
+>>>>>>> 87b81047015cd8ab03cf2fc44f692dfe5cd0b7d0
     }
 }
 
 dependencies {
+<<<<<<< HEAD
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -47,5 +62,14 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:24.0.+'
     compile 'jp.wasabeef:recyclerview-animators:2.2.7'
     compile 'co.dift.ui.swipetoaction:library:1.1'
+=======
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    compile 'com.flaviofaria:kenburnsview:1.0.7'
+>>>>>>> 87b81047015cd8ab03cf2fc44f692dfe5cd0b7d0
 
 }
