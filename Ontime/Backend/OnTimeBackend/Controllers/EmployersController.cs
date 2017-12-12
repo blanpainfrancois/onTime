@@ -47,6 +47,24 @@ namespace OnTimeBackend.Controllers
             return BadRequest();
         }
 
+        [HttpGet]
+        public async Task<IActionResult> employer()
+        {
+
+            var tokenuser = await usermanager.GetUserAsync(User);
+            var employer = await context.employers.Where(e => e.IdentityID == tokenuser.Id).FirstOrDefaultAsync();
+
+
+
+            if (employer != null)
+            {
+                return new JsonResult(employer);
+            }
+
+
+            return BadRequest();
+        }
+
 
         [HttpPost("subscribe employee to employer")]
         public async Task<IActionResult> employeetoemployer(int id)
