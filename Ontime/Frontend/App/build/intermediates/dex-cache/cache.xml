@@ -3,165 +3,165 @@
 
     <item
         is-multidex="false"
-        jar="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-24.2.1_be4b4e2a0aad58cfc7e99ad637467546632ac8f9.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
-        <dex dex="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_749bbe35eaffe06601b2b58f6c793063999609de.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\design\24.2.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
-        <dex dex="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\pre-dexed\debug\com.android.support-design-24.2.1_fc29d3a91ee7bb0916e50862c6f7698cacc1810a.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
-        <dex dex="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-24.2.1_2ac35a43be2bdefd67499fadc9060a851a634306.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
-        <dex dex="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\pre-dexed\debug\com.android.support-support-fragment-24.2.1_df6c161ee2b690b0adef5d23b973aa99ee6b6b4b.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\24.2.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
-        <dex dex="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-24.2.1_a03a9d74e0be2b5e9d28a21d6c99fec41a5b5dd1.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.2.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
-        <dex dex="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-24.2.1_c5b5cfd04b310bae99cb036b1635b7eda3d52ed0.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Mo\.gradle\caches\modules-2\files-2.1\com.flaviofaria\kenburnsview\1.0.7\ce4e8bba9e026dd29f8110b2f6bb1fc4ecbdd9b1\kenburnsview-1.0.7.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="ce4e8bba9e026dd29f8110b2f6bb1fc4ecbdd9b1">
-        <dex dex="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\pre-dexed\debug\kenburnsview-1.0.7_4340d24e6f17b98ab8a2320cadb03a03c90d4f48.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
-        <dex dex="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-24.2.1_53f8e86d42f5bcd26783bbfb3892eadeb83498b4.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
-        <dex dex="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\pre-dexed\debug\com.android.support-support-media-compat-24.2.1_d29da3a7061638b17a3e6a2a3944874c38171f8c.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
-        <dex dex="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_d63686ae1bbd6e3238a2feafca2ee9c734237ac0.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.2.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
-        <dex dex="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-24.2.1_06fbf77c4ebb0f5a0349cdf5c7f0d9158ed43372.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jar="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
-        <dex dex="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_11a46bc26c1df269e1b87bee48e1843d61cf302e.jar" />
+        <dex dex="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_9ad0702150ae11e04feb638598eec4802a802d68.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jar="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="867dad63c33388ff8c7644b236579355036d075f">
-        <dex dex="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_46fede1b8ad5e3d9ef8afc42a72195dabb46363f.jar" />
+        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
+        <dex dex="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-24.2.1_3ada14591a974075419545a811ef40597b4ff0a8.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jar="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
-        <dex dex="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_8c324c1573409ab118f1820f4aaa44d1bb3b6e69.jar" />
+        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
+        <dex dex="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-24.2.1_0b48510414ba3711df26446ab8438f463e146ea0.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\Mo\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\24.2.1\support-annotations-24.2.1.jar"
+        jar="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
-        <dex dex="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\pre-dexed\debug\support-annotations-24.2.1_26fa6eff9596902a8faa85541c97a0847a133a01.jar" />
+        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
+        <dex dex="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\pre-dexed\debug\com.android.support-support-fragment-24.2.1_ceb87add2cb1e69fa503769c6429b48871c1ee12.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\classes.jar"
+        jar="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\design\24.2.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
-        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
-        <dex dex="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-24.2.1_c65633e9eff1ec75cd107f771cd496042e37e29f.jar" />
+        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
+        <dex dex="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\pre-dexed\debug\com.android.support-design-24.2.1_7cf7b5cae72b792b63d79b479489bbae720eb1fb.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
+        jar="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
-        <dex dex="C:\Users\Mo\OneDrive\Schooljaar 2017-2018\Ap Valley\onTime\CA-Uber4\Frontend\App\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-24.2.1_8e508e2569aeb39dcdcff1952eb375828f4d2db8.jar" />
+        <dex dex="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\pre-dexed\debug\com.android.support-support-compat-24.2.1_17cf84f97e8d0d4dc06d1ec3c835820a228a0efb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
+        <dex dex="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-24.2.1_d30b85397aa56cc20a56b96e733c4e5de5a9ee07.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
+        <dex dex="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-24.2.1_b1a182f1f5b2ad2f654163ef8271bf2462a91c07.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
+        <dex dex="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\pre-dexed\debug\com.android.support-support-media-compat-24.2.1_b7657b6a05e02eb73cd7c0543602611a8a000855.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Francois Blanpain\.gradle\caches\modules-2\files-2.1\com.flaviofaria\kenburnsview\1.0.7\ce4e8bba9e026dd29f8110b2f6bb1fc4ecbdd9b1\kenburnsview-1.0.7.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ce4e8bba9e026dd29f8110b2f6bb1fc4ecbdd9b1">
+        <dex dex="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\pre-dexed\debug\kenburnsview-1.0.7_d1a44bd2ddeb816fae3755c0e4d9bfeec4fbd354.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
+        <dex dex="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_31ac997d2be73ebe0cfbc41deb8b799506bbb286.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="867dad63c33388ff8c7644b236579355036d075f">
+        <dex dex="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_f97546523ba5417897dca62767641bc2d7499d80.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Francois Blanpain\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\24.2.1\support-annotations-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
+        <dex dex="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\pre-dexed\debug\support-annotations-24.2.1_4a111e3b2ad6c520def3343d0dbf0e8435a8d5e3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
+        <dex dex="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-24.2.1_c3e6a6661812f1a47a2e19ee9596967f2af604af.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
+        <dex dex="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_c6b683cd13c3c9bd9494e5d4e2271395c6d015c9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-24.2.1_8e74427613748b05afbf1f177f68fd28c2173732.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\24.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
+        <dex dex="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-24.2.1_1cdf65980f5fd8e6a2a0ef22281c3ef905eb9521.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
+        <dex dex="C:\Users\Francois Blanpain\Documents\AP 2017-2018\AP Valley\onTime\Ontime\Frontend\App\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_f393501afaa71781edbdc641c471d3385a9f6060.jar" />
     </item>
 
 </items>
