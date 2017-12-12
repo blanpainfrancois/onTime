@@ -9,7 +9,7 @@ import {MatTableDataSource} from '@angular/material';
   styleUrls: ['table-filtering-example.css'],
   templateUrl: 'table-filtering-example.html',
 })
-export class TableFilteringExample {
+export class TableFiltering {
   displayedColumns = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
