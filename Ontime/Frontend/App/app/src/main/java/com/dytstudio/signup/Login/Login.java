@@ -1,57 +1,131 @@
-package com.dytstudio.signup;
+package com.dytstudio.signup.Login;
 
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.ButtonBarLayout;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-public class SignUp extends AppCompatActivity {
-    EditText username, email, password;
+import com.dytstudio.signup.Dashboard.UserDashboard;
+import com.dytstudio.signup.MainActivity;
+import com.dytstudio.signup.Models.AccessToken;
+import com.dytstudio.signup.R;
+import com.dytstudio.signup.Util.APIClient;
+import com.dytstudio.signup.Util.APIInterface;
+import com.dytstudio.signup.Util.Easing;
+import com.google.gson.Gson;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class Login extends AppCompatActivity {
+
+    EditText password, username;
+    Button loginbtn;
+    APIInterface apiInterface;
     ImageView iv_back;
     LinearLayout ll_button, ll_bottom;
+    SharedPreferences mPrefs;
+
+
+    private final String scope = "WebAPI openid profile roles";
+    private final  String client_id = "Android";
+    private final String grant_type = "password";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        setContentView(R.layout.activity_login);
 
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }
 
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        if(mPrefs.contains("token")){
+            Intent intent = new Intent(Login.this, UserDashboard.class);
+            Login.this.startActivity(intent);
+
+        }
+
         changeStatusBarColor();
-        username = (EditText) findViewById(R.id.et_username);
-        username.setPadding(0,15,0,15);
-        email = (EditText) findViewById(R.id.et_email);
-        email.setPadding(0,15,0,15);
-        password= (EditText) findViewById(R.id.et_password);
-        password.setPadding(0,15,0,15);
+
         ll_button = (LinearLayout) findViewById(R.id.ll_button);
         ll_bottom = (LinearLayout) findViewById(R.id.ll_bottom);
+
         ease(ll_button);
         ease2(ll_bottom);
+
+        apiInterface = APIClient.getClient().create(APIInterface.class);
+
+
+        password = (EditText) findViewById(R.id.et_password_login);
+        username = (EditText) findViewById(R.id.et_username_login);
+        loginbtn = (Button) findViewById(R.id.btn_login);
+
         iv_back = (ImageView) findViewById(R.id.iv_back);
         iv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SignUp.this, MainActivity.class));
+                startActivity(new Intent(Login.this, MainActivity.class));
                 finish();
             }
         });
 
+        loginbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                 Call<AccessToken> token_call = apiInterface.POST_TOKEN_CALL(username.getText().toString(), password.getText().toString(), client_id ,grant_type ,scope);
+
+                token_call.enqueue(new Callback<AccessToken>() {
+                    @Override
+                    public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
+                        if(response.isSuccessful()){
+
+
+
+                            Intent intent = new Intent(Login.this, UserDashboard.class);
+
+                            SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                            Gson gson = new Gson();
+                            String json = gson.toJson(response.body());
+                            prefsEditor.putString("token", json);
+                            if(prefsEditor.commit()){
+                                Login.this.startActivity(intent);
+
+                            }
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<AccessToken> call, Throwable t) {
+
+                    }
+                });
+
+
+
+            }
+        });
+
+
+
+
     }
-    /**
-     * Making notification bar transparent
-     */
+
     private void changeStatusBarColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
@@ -99,5 +173,4 @@ public class SignUp extends AppCompatActivity {
         animatorSet.setDuration(1100);
         animatorSet.start();
     }
-
 }

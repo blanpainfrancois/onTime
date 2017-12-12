@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
-using System;
 using OnTimeBackend.Data;
+using System;
 
-namespace Uber4Cream.Migrations
+namespace OnTimeBackend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -128,117 +128,7 @@ namespace Uber4Cream.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.Address", b =>
-                {
-                    b.Property<int>("AddressID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Country");
-
-                    b.Property<string>("city");
-
-                    b.Property<string>("housenumber");
-
-                    b.Property<string>("streetname");
-
-                    b.Property<string>("zipcode");
-
-                    b.HasKey("AddressID");
-
-                    b.ToTable("addresses");
-                });
-
-            modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.Employee", b =>
-                {
-                    b.Property<int>("EmployeeID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int?>("AddressID");
-
-                    b.Property<int?>("EmployerID");
-
-                    b.Property<string>("Familyname");
-
-                    b.Property<string>("Givenname");
-
-                    b.HasKey("EmployeeID");
-
-                    b.HasIndex("AddressID");
-
-                    b.HasIndex("EmployerID");
-
-                    b.ToTable("employees");
-                });
-
-            modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.Employer", b =>
-                {
-                    b.Property<int>("EmployerID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("CreatedAt");
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("EmployerID");
-
-                    b.ToTable("employers");
-                });
-
-            modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.Issue", b =>
-                {
-                    b.Property<int>("IssueID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int?>("EmployeeID");
-
-                    b.Property<int?>("LocationID");
-
-                    b.Property<int?>("ReasonID");
-
-                    b.Property<DateTime>("timestamp");
-
-                    b.HasKey("IssueID");
-
-                    b.HasIndex("EmployeeID");
-
-                    b.HasIndex("LocationID")
-                        .IsUnique()
-                        .HasFilter("[LocationID] IS NOT NULL");
-
-                    b.HasIndex("ReasonID")
-                        .IsUnique()
-                        .HasFilter("[ReasonID] IS NOT NULL");
-
-                    b.ToTable("issues");
-                });
-
-            modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.Location", b =>
-                {
-                    b.Property<int>("LocationID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<double>("latitude");
-
-                    b.Property<double>("longtitude");
-
-                    b.HasKey("LocationID");
-
-                    b.ToTable("locations");
-                });
-
-            modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.Reason", b =>
-                {
-                    b.Property<int>("ReasonID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("reason");
-
-                    b.HasKey("ReasonID");
-
-                    b.ToTable("reasons");
-                });
-
-            modelBuilder.Entity("Uber4CreamBackend.Models.ApplicationUser", b =>
+            modelBuilder.Entity("OnTimeBackend.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -293,6 +183,132 @@ namespace Uber4Cream.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.Address", b =>
+                {
+                    b.Property<int>("AddressID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Country");
+
+                    b.Property<string>("city");
+
+                    b.Property<string>("housenumber");
+
+                    b.Property<string>("streetname");
+
+                    b.Property<string>("zipcode");
+
+                    b.HasKey("AddressID");
+
+                    b.ToTable("addresses");
+                });
+
+            modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.Employee", b =>
+                {
+                    b.Property<int>("EmployeeID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("AddressID");
+
+                    b.Property<int?>("EmployerID");
+
+                    b.Property<string>("Familyname");
+
+                    b.Property<string>("Givenname");
+
+                    b.Property<string>("IdentityID");
+
+                    b.Property<string>("Username");
+
+                    b.HasKey("EmployeeID");
+
+                    b.HasIndex("AddressID");
+
+                    b.HasIndex("EmployerID");
+
+                    b.ToTable("employees");
+                });
+
+            modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.Employer", b =>
+                {
+                    b.Property<int>("EmployerID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreatedAt");
+
+                    b.Property<string>("IdentityID");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Username");
+
+                    b.HasKey("EmployerID");
+
+                    b.ToTable("employers");
+                });
+
+            modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.Issue", b =>
+                {
+                    b.Property<int>("IssueID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("EmployeeID");
+
+                    b.Property<bool>("IssueClosed");
+
+                    b.Property<DateTime>("IssueClosedDate");
+
+                    b.Property<DateTime>("IssueCreated");
+
+                    b.Property<int?>("LocationID");
+
+                    b.Property<int?>("ReasonID");
+
+                    b.Property<DateTime>("timestamp");
+
+                    b.HasKey("IssueID");
+
+                    b.HasIndex("EmployeeID");
+
+                    b.HasIndex("LocationID")
+                        .IsUnique()
+                        .HasFilter("[LocationID] IS NOT NULL");
+
+                    b.HasIndex("ReasonID")
+                        .IsUnique()
+                        .HasFilter("[ReasonID] IS NOT NULL");
+
+                    b.ToTable("issues");
+                });
+
+            modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.Location", b =>
+                {
+                    b.Property<int>("LocationID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<double>("latitude");
+
+                    b.Property<double>("longitude");
+
+                    b.HasKey("LocationID");
+
+                    b.ToTable("locations");
+                });
+
+            modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.Reason", b =>
+                {
+                    b.Property<int>("ReasonID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("reason");
+
+                    b.Property<string>("reasontitle");
+
+                    b.HasKey("ReasonID");
+
+                    b.ToTable("reasons");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
@@ -303,7 +319,7 @@ namespace Uber4Cream.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Uber4CreamBackend.Models.ApplicationUser")
+                    b.HasOne("OnTimeBackend.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -311,7 +327,7 @@ namespace Uber4Cream.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Uber4CreamBackend.Models.ApplicationUser")
+                    b.HasOne("OnTimeBackend.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -324,7 +340,7 @@ namespace Uber4Cream.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Uber4CreamBackend.Models.ApplicationUser")
+                    b.HasOne("OnTimeBackend.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -332,7 +348,7 @@ namespace Uber4Cream.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Uber4CreamBackend.Models.ApplicationUser")
+                    b.HasOne("OnTimeBackend.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -345,7 +361,7 @@ namespace Uber4Cream.Migrations
                         .HasForeignKey("AddressID");
 
                     b.HasOne("Uber4Cream.Data.DatabaseModels.Employer", "employer")
-                        .WithMany("employers")
+                        .WithMany("employees")
                         .HasForeignKey("EmployerID");
                 });
 

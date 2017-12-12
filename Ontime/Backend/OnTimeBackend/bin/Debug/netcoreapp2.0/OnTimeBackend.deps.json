@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "9237c970a7deeccc94cbd935e7df29538b1e078e"
+    "signature": "bff1b34b80134fc9fdbdd57f55761962c7d5fb33"
   },
   "compilationOptions": {
     "defines": [
@@ -26,10 +26,12 @@
           "IdentityServer4": "2.0.2",
           "IdentityServer4.AccessTokenValidation": "2.1.0",
           "IdentityServer4.AspNetIdentity": "2.0.0",
+          "Microsoft.ApplicationInsights.AspNetCore": "2.1.1",
           "Microsoft.AspNetCore.All": "2.0.0",
           "Microsoft.EntityFrameworkCore": "2.0.0",
           "Microsoft.NETCore.App": "2.0.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.0.0",
+          "MvcScaffolding": "1.0.9",
           "Serilog": "2.5.0",
           "Swashbuckle.AspNetCore": "1.0.0"
         },
@@ -38,6 +40,14 @@
         },
         "compile": {
           "OnTimeBackend.dll": {}
+        }
+      },
+      "EFCodeFirst/0.8.0": {
+        "runtime": {
+          "lib/EntityFramework.dll": {}
+        },
+        "compile": {
+          "lib/EntityFramework.dll": {}
         }
       },
       "IdentityModel/2.13.0": {
@@ -2521,6 +2531,11 @@
           "ref/netstandard2.0/Microsoft.Win32.Registry.dll": {}
         }
       },
+      "MvcScaffolding/1.0.9": {
+        "dependencies": {
+          "T4Scaffolding": "0.8.0"
+        }
+      },
       "Newtonsoft.Json/10.0.3": {
         "dependencies": {
           "Microsoft.CSharp": "4.4.0",
@@ -4167,6 +4182,11 @@
           "System.Xml.XPath": "4.3.0"
         }
       },
+      "T4Scaffolding/0.8.0": {
+        "dependencies": {
+          "EFCodeFirst": "0.8.0"
+        }
+      },
       "WindowsAzure.Storage/8.1.4": {
         "dependencies": {
           "Microsoft.Data.OData": "5.8.2",
@@ -4364,6 +4384,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "EFCodeFirst/0.8.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3otCbjCHUtpXbW4Gl7olshMBMmEB2i25d5qJhGJu6rVQbWnfmD52Q4uPwMqR06CjZZQG+n/56DjikhDz/5pqDQ==",
+      "path": "efcodefirst/0.8.0",
+      "hashPath": "efcodefirst.0.8.0.nupkg.sha512"
     },
     "IdentityModel/2.13.0": {
       "type": "package",
@@ -5604,6 +5631,13 @@
       "path": "microsoft.win32.registry/4.4.0",
       "hashPath": "microsoft.win32.registry.4.4.0.nupkg.sha512"
     },
+    "MvcScaffolding/1.0.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Gz2oFiaXFBpuqtcRwoJV/5D++JgMu4cxuw9J/B/MQDYZMYDhewoPO96I3f+m4wBMy2Gko9i8gSG2JJNuXEAaUA==",
+      "path": "mvcscaffolding/1.0.9",
+      "hashPath": "mvcscaffolding.1.0.9.nupkg.sha512"
+    },
     "Newtonsoft.Json/10.0.3": {
       "type": "package",
       "serviceable": true,
@@ -6555,6 +6589,13 @@
       "sha512": "sha512-jw9oHHEIVW53mHY9PgrQa98Xo2IZ0ZjrpdOTmtvk+Rvg4tq7dydmxdNqUvJ5YwjDqhn75mBXWttWjiKhWP53LQ==",
       "path": "system.xml.xpath.xdocument/4.3.0",
       "hashPath": "system.xml.xpath.xdocument.4.3.0.nupkg.sha512"
+    },
+    "T4Scaffolding/0.8.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1Pdkhin4ha/9H4BrDa1QziM/CUQ8VzzUZs/+IsgNDpGRM2ZLPuJldwvPnPn3d5vfNbmzVqDfFiywrMJVWvHqMA==",
+      "path": "t4scaffolding/0.8.0",
+      "hashPath": "t4scaffolding.0.8.0.nupkg.sha512"
     },
     "WindowsAzure.Storage/8.1.4": {
       "type": "package",

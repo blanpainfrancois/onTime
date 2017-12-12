@@ -70,14 +70,14 @@ namespace OnTimeBackend
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
                     AllowAccessTokensViaBrowser = true,
                     ClientSecrets = new List<Secret> { (new Secret("secret".Sha256())) },
-
+                    AccessTokenLifetime = 2592000, // Lifetime of access token in seconds.
                     RequireConsent = true,
-                    AllowedCorsOrigins = { "http://localhost:4200" },
                     AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        "WebAPI"
+                        "WebAPI",
+                        "roles"
                     },
                    RequireClientSecret = false
                     
