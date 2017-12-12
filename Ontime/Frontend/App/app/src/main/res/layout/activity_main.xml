@@ -44,23 +44,18 @@
             android:textColor="@android:color/white"
             android:background="@drawable/bg_btn_purple"
             android:layout_marginBottom="@dimen/space20"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="See a demo of the app"
-            android:textSize="@dimen/txt14"
-            android:textStyle="normal"
-            android:textColor="@android:color/white"
-            android:gravity="center_horizontal"/>
+
     </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/iv_logo"
         android:layout_above="@id/ll_bottom"
+        android:layout_below="@id/iv_logo"
         android:layout_margin="@dimen/space40"
-        android:text="Measure your success across all channels"
-        android:textSize="@dimen/txt30"
-        android:textStyle="bold"
-        android:textColor="@android:color/white"/>
+        android:text="On Time"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 </RelativeLayout>

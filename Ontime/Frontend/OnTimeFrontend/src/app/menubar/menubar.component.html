@@ -8,8 +8,8 @@
   <button *ngIf="!user" routerLink="/login" mat-button>Login</button>
   <div *ngIf="user">
       <button  mat-icon-button routerLink="/dashboard">
-          <mat-icon>contacts</mat-icon>
-        </button>
+    <mat-icon>contacts</mat-icon>
+    </button>
 
    <span>Hi,  {{user?.givenName | tocapital}} {{user?.familyName | tocapital}} </span>
   <button  mat-icon-button [matMenuTriggerFor]="menu">
@@ -26,8 +26,9 @@
       </button>
 
     </mat-menu>
-
+    <button *ngIf="user" routerLink="/filterlist" mat-button>List</button>
   </div>
+
 </mat-toolbar>
 
 

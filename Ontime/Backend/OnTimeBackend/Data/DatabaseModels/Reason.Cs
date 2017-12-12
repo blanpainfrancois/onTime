@@ -8,6 +8,7 @@ namespace Uber4Cream.Data.DatabaseModels
     public class Reason
     {
         public int ReasonID { get; set; }
+        public string reasontitle  { get; set; }
         public string reason { get; set; }
         public Issue issue { get; set; }
     }
