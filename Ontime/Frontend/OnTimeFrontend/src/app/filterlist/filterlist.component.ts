@@ -11,7 +11,7 @@ import {MatTableDataSource} from '@angular/material/table';
   styleUrls: ['filterlist.component.css'],
   templateUrl: 'filterlist.component.html',
 })
-export class TableFilter {
+export class TableFilter{
   displayedColumns = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
