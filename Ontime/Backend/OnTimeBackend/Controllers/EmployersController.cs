@@ -31,54 +31,41 @@ namespace OnTimeBackend.Controllers
             this.usermanager = usermanager;
         }
 
-        // GET: api/Employers
+
         [HttpGet]
         public async Task<IActionResult> Getemployers()
         {
 
-            var employers = await context.employers.ToListAsync();
+            var employers = context.employers;
 
-            List<ReturnEmployers> returnemployers = new List<ReturnEmployers>();
-
-            foreach (var employer in employers)
+            if(employers != null)
             {
-                returnemployers.Add(new ReturnEmployers
-                {
-                    CreatedAt = employer.CreatedAt,
-                    EmployerID = employer.EmployerID,
-                    IdentityID = employer.IdentityID,
-                    Name = employer.Name,
-                    Username = employer.Username
-                });
+                return new JsonResult(employers);
             }
+                   
 
-            return new JsonResult(returnemployers);
+            return BadRequest();
         }
 
 
-        [HttpPost("employeetoemployer")]
-
-        public async Task<IActionResult> employeetoemployer(string id)
+        [HttpPost("subscribe employee to employer")]
+        public async Task<IActionResult> employeetoemployer(int id)
         {
-            var employeeIdentity = await usermanager.GetUserAsync(User);
-            var employee = context.employees.Where(e => e.IdentityID == employeeIdentity.Id).FirstOrDefault();
-            var employer = context.employers.Where(e => e.IdentityID == id).FirstOrDefault();
+            var tokenuser = await usermanager.GetUserAsync(User);
 
-
-            if(employee != null)
+            var employer = await context.employers.Where(e => e.IdentityID == tokenuser.Id).FirstOrDefaultAsync();
+            var employee = await context.employees.Where(em => em.EmployeeID == id).FirstOrDefaultAsync();
+            
+            if(employee != null && employer != null)
             {
-               
-                    employer.employees = new List<Employee>();
-                
                 employer.employees.Add(employee);
                 await context.SaveChangesAsync();
+
                 return Ok();
             }
             
 
             return BadRequest();
-
-            
             
         }
 
@@ -101,55 +88,8 @@ namespace OnTimeBackend.Controllers
             return Ok(employer);
         }
 
-        // PUT: api/Employers/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutEmployer([FromRoute] int id, [FromBody] Employer employer)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != employer.EmployerID)
-            {
-                return BadRequest();
-            }
-
-            context.Entry(employer).State = EntityState.Modified;
-
-            try
-            {
-                await context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!EmployerExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Employers
-        [HttpPost]
-        public async Task<IActionResult> PostEmployer([FromBody] Employer employer)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            context.employers.Add(employer);
-            await context.SaveChangesAsync();
-
-            return CreatedAtAction("GetEmployer", new { id = employer.EmployerID }, employer);
-        }
+       
+        
 
         // DELETE: api/Employers/5
         [HttpDelete("{id}")]
@@ -171,6 +111,8 @@ namespace OnTimeBackend.Controllers
 
             return Ok(employer);
         }
+
+        
 
         private bool EmployerExists(int id)
         {

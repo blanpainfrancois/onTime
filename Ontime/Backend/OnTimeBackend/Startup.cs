@@ -116,11 +116,11 @@ namespace OnTimeBackend
             {
                 c.SwaggerDoc("v1", new Info
                 {
-                    Version = "v1",
-                    Title = "Uber 4 Cream API",
-                    Description = "Cloud application projects",
-                    TermsOfService = "None",
-                    Contact = new Contact { Name = "Mo" }
+                    Version = "v2",
+                    Title = "On time API",
+                    Description = "AP Valley project",
+                    TermsOfService = "temporary none",
+                    Contact = new Contact { Name = "Mo Bouzim", Email = "mo.bouzim@live.be" }
                 });
                 c.AddSecurityDefinition("Bearer", new ApiKeyScheme() { In = "header", Description = "Please insert JWT with Bearer into field", Name = "Authorization", Type = "apiKey" });
 
