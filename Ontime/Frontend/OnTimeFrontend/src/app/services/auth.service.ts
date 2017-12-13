@@ -82,7 +82,7 @@ export class AuthService {
         }
       });
 
-      xhr.open("POST", "http://ontimeapi.azurewebsites.net/swagger/connect/token");
+      xhr.open("POST", "http://ontimeapi.azurewebsites.net/connect/token");
       xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
       xhr.setRequestHeader("cache-control", "no-cache");
       xhr.send(data);
