@@ -11,11 +11,11 @@ export class Constants {
          */
         public static readonly USERINFO_ENDPOINT: string = "/connect/userinfo";
 
-        public static readonly CLIENT_ID: string = "ng";
+        public static readonly CLIENT_ID: string = "Angular";
 
         public static readonly GRANT_TYPE: string = "password";
 
-        public static readonly SCOPE: string = "WebAPI openid profile";
+        public static readonly SCOPE: string = "WebAPI roles";
 
 
 
