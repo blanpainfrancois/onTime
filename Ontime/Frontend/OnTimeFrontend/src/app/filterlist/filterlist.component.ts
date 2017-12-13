@@ -17,18 +17,21 @@ import { Constants } from '../Constants'
 })
 
 export class TableFilter implements OnInit{
+  error;
+  constructor(getemployeesService : GetemployeesService) {
 
-  constructor(getemployeesService : GetemployeesService){
-    if (getemployeesService){
-      this.dataSource = new MatTableDataSource(employeesdata);
-    }
-    else{
-      console.log('data employers not found *error*')
-    }
-  }
-  ngOnInit() {
+    getemployeesService.getAllEmployees().subscribe(data => {
 
+    }, error => {
+      this.error = JSON.parse(error)
+    })
   }
+
+  ngOnInit()
+    {
+
+    }
+
   displayedColumns = ['name', 'isChecked'];
   dataSource;
 
@@ -39,6 +42,7 @@ export class TableFilter implements OnInit{
   }
 
 }
+
 
 export interface Employees {
   name: string;
