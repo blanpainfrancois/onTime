@@ -24,7 +24,7 @@ const appRoutes: Routes = [
 
     ]},
     { path: 'register', component: RegisterComponent},
-    {path: 'filterlist', component: TableFilter, canActivate: [AuthGuardService] },
+    {path: 'filterlist', component: TableFilter, /*canActivate: [AuthGuardService]*/ },
     { path: '**', component: NotfoundComponent }
   ];
 
