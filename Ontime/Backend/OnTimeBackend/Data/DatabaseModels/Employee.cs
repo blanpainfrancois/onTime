@@ -9,6 +9,7 @@ namespace Uber4Cream.Data.DatabaseModels
     {
         public int EmployeeID { get; set; }
         public string Givenname { get; set; }
+        public string Username { get; set; }
         public string Familyname { get; set; }
         public Address address { get; set; }
         public ICollection<Issue> issues { get; set; }

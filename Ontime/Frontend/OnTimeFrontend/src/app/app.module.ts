@@ -23,13 +23,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthService } from './services/auth.service';
 import { RegisterService } from './services/register.service';
 import { AuthGuardService } from './services/auth-guard.service';
-import { UserService } from './services/user.service'
+import { UserService } from './services/user.service';
+import { GetemployeesService } from "./getemployees.service";
 
-import { MatToolbarModule, MatButtonModule,MatInputModule, MatRadioModule , MatIconModule , MatMenuModule} from '@angular/material';
+import { MatToolbarModule, MatButtonModule,MatInputModule, MatRadioModule , MatIconModule , MatMenuModule, MatTableModule} from '@angular/material';
 import { MainmetricComponent } from './dashboard/mainmetric/mainmetric.component';
 import { ProfileComponent } from './dashboard/profile/profile.component';
 import { TocapitalPipe } from './pipes/tocapital.pipe';
-import { TableFiltering } from './filterlist/filterlist.component';
+//import { TableFiltering } from './filterlist/filterlist.component';
 
 
 @NgModule({
@@ -45,11 +46,12 @@ import { TableFiltering } from './filterlist/filterlist.component';
     MainmetricComponent,
     ProfileComponent,
     TocapitalPipe,
-    FilterlistComponent,
+    //TableFiltering,
 
   ],
   imports: [
     BrowserModule,
+    MatTableModule,
     BrowserAnimationsModule,
     routing,
     HttpClientModule,
@@ -66,7 +68,7 @@ import { TableFiltering } from './filterlist/filterlist.component';
       apiKey: 'AIzaSyCMBIzGWubc2qVa2vrjYcxlttDC4BxVJC4'
     })
   ],
-  providers: [AuthService, RegisterService, AuthGuardService, UserService],
+  providers: [AuthService, RegisterService, AuthGuardService, UserService, GetemployeesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

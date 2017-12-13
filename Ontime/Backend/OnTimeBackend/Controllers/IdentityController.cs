@@ -29,7 +29,7 @@ namespace OnTimeBackend.Controllers
 
     public class IdentityController : Controller
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<ApplicationUser> usermanager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
@@ -44,7 +44,7 @@ namespace OnTimeBackend.Controllers
             IEmailSender emailSender,
             ILogger<IdentityController> logger, ApplicationDbContext context)
         {
-            _userManager = userManager;
+            usermanager = userManager;
             _roleManager = roleManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
@@ -65,7 +65,7 @@ namespace OnTimeBackend.Controllers
         {
 
             var rolefound = await _roleManager.FindByNameAsync(role);
-            var users = await _userManager.GetUsersInRoleAsync(rolefound.Name);
+            var users = await usermanager.GetUsersInRoleAsync(rolefound.Name);
 
             foreach (var user in users)
             {
@@ -119,39 +119,49 @@ namespace OnTimeBackend.Controllers
                 return BadRequest("Passwords don't match");
             }
 
-            var result = await _userManager.CreateAsync(user, model.password);
+
+
+
+            var result = await usermanager.CreateAsync(user, model.password);
 
             if (result.Succeeded)
             {
                 if (model.role == "employer")
                 {
-                    var roleresult = await _userManager.AddToRoleAsync(user, "employer");
+                    var roleresult = await usermanager.AddToRoleAsync(user, "employer");
 
                     context.employers.Add(new Employer
                     {
                         CreatedAt = DateTime.Now,
+                        Username = model.username,
                         Name = model.givenName + " " + model.familyName,
                         IdentityID = user.Id,
                     });
+
+                    await context.SaveChangesAsync();
+
                     if (roleresult.Succeeded)
                     {
-                        return Ok("user created");
+                        return Ok();
                     }
                 }
                 else if (model.role == "employee")
                 {
-                    var roleresult = await _userManager.AddToRoleAsync(user, "employee");
+                    var roleresult = await usermanager.AddToRoleAsync(user, "employee");
 
                     context.employees.Add(new Employee
                     {
                         Givenname = model.givenName,
+                        Username = model.username,
                         Familyname = model.familyName,
                         IdentityID = user.Id
                     });
 
+                    await context.SaveChangesAsync();
+
                     if (roleresult.Succeeded)
                     {
-                        return Ok("user created");
+                        return Ok();
                     }
                 }
             }
@@ -161,7 +171,45 @@ namespace OnTimeBackend.Controllers
 
         }
 
+        [AllowAnonymous]
+        [HttpPost("CreateEmployee")]
+        public async Task<IActionResult> CreateEmployer([FromBody]CreateEmployeeModel model)
+        {
 
+            var user = new ApplicationUser
+            {
+                UserName = model.username,
+                GivenName = model.givenname,
+                FamilyName = model.familyname,
+                Email = model.email
+            };
+
+            
+
+            var result = await usermanager.CreateAsync(user, model.password);
+            var roleresult = await usermanager.AddToRoleAsync(user, "employer");
+            
+            if(result.Succeeded && roleresult.Succeeded)
+            {
+                await addClaims(model.username);
+
+                context.employees.Add(new Employee
+                {
+                    IdentityID = user.Id,
+                    Givenname = model.givenname,
+                    Familyname = model.familyname
+                });
+
+                await context.SaveChangesAsync();
+
+                return Ok();
+            }
+            
+           
+            return BadRequest();
+
+
+        }
 
 
 
@@ -170,30 +218,32 @@ namespace OnTimeBackend.Controllers
         /// </summary>
         /// <returns>IdentityResult</returns>
         // POST: api/identity/Delete
-        [HttpPost("Delete")]
-        public async Task<IActionResult> Delete([FromBody]string username)
+        [HttpDelete("Delete")]
+        public async Task<IActionResult> Delete()
         {
-            var user = await _userManager.FindByNameAsync(username);
-
-            var result = await _userManager.DeleteAsync(user);
+            var user = await usermanager.GetUserAsync(User);
+            
+            var result = await usermanager.DeleteAsync(user);
 
             return new JsonResult(result);
         }
 
         private async Task addToRole(string userName, string roleName)
         {
-            var user = await _userManager.FindByNameAsync(userName);
-            await _userManager.AddToRoleAsync(user, roleName);
+            var user = await usermanager.FindByNameAsync(userName);
+            await usermanager.AddToRoleAsync(user, roleName);
         }
 
         private async Task addClaims(string userName)
         {
-            var user = await _userManager.FindByNameAsync(userName);
+            var user = await usermanager.FindByNameAsync(userName);
             var claims = new List<Claim> {
                 new Claim(type: JwtClaimTypes.GivenName, value: user.GivenName),
-                new Claim(type: JwtClaimTypes.FamilyName, value: user.FamilyName),
+                new Claim(type: JwtClaimTypes.FamilyName, value: user.FamilyName)
+
+                
             };
-            await _userManager.AddClaimsAsync(user, claims);
+            await usermanager.AddClaimsAsync(user, claims);
         }
     }
 }

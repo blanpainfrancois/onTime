@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 import {MatTableDataSource} from '@angular/material';
+import {GetemployeesService} from "../getemployees.service";
+
 
 /**
  * @title Table with filtering
@@ -9,7 +11,7 @@ import {MatTableDataSource} from '@angular/material';
   styleUrls: ['table-filtering-example.css'],
   templateUrl: 'table-filtering-example.html',
 })
-export class TableFiltering {
+export class TableFilteringExample {
   displayedColumns = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
