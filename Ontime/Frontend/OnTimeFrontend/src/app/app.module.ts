@@ -10,7 +10,7 @@ import { AgmCoreModule } from '@agm/core';
 
 import { routing  } from './routes/routes';
 
-
+import {GetemployeesService} from ' ./services/getemployees.service'
 import { AppComponent } from './app.component';
 import { MenubarComponent } from './menubar/menubar.component';
 import { BodyComponent } from './body/body.component';
@@ -66,7 +66,7 @@ import { TocapitalPipe } from './pipes/tocapital.pipe';
       apiKey: 'AIzaSyCMBIzGWubc2qVa2vrjYcxlttDC4BxVJC4'
     })
   ],
-  providers: [AuthService, RegisterService, AuthGuardService, UserService],
+  providers: [AuthService, RegisterService, AuthGuardService, UserService,GetemployeesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
