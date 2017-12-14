@@ -42,7 +42,7 @@ export class RegisterComponent implements OnInit {
       passwordvalidate: ['', Validators.required ],
       givenname: ['', Validators.required ],
       familyname: ['', Validators.required ],
-      role: ['', Validators.required ]
+      role: ['employer' ]
     });
   }
 
@@ -50,15 +50,19 @@ export class RegisterComponent implements OnInit {
     if(this.registerForm.valid){
       this.registerService.register(this.registerForm.value).subscribe(data => {
 
+        
 
-              if(data["succeeded"]){
+        
+
+              
                 this.authService.logIn(this.registerForm.value.username, this.registerForm.value.password).subscribe( data => {
                   if(data){
                     this.authService.setToken(data);
+                    console.log(data);
                     this.router.navigate(["/dashboard"]);
                   }
                 })
-              }
+              
 
             }, error => {this.error = error["error"]}
 
