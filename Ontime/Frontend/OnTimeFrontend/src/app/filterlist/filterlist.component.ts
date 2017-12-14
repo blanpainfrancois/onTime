@@ -15,36 +15,14 @@ import { Constants } from '../Constants'
   templateUrl: 'filterlist.component.html',
   animations: [routerTransition()]
 })
-<<<<<<< HEAD
 export class TableFiltering {
   displayedColumns = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
-=======
-
-export class TableFilter implements OnInit{
-  error;
-  constructor(getemployeesService : GetemployeesService) {
-
-    getemployeesService.getAllEmployees().subscribe(data => {
-
-    }, error => {
-      this.error = JSON.parse(error)
-    })
-  }
-
-  ngOnInit()
-    {
-
-    }
-
-  displayedColumns = ['name', 'isChecked'];
-  dataSource;
->>>>>>> 959ca35dffaf65632ae55efba5ab4e666bef03b7
+  //dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
+    //this.dataSource.filter = filterValue;
   }
 
 }

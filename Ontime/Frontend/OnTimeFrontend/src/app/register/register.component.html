@@ -17,10 +17,6 @@
             <input matInput formControlName="familyname" placeholder="Familyname" id="familyname" type="text">
             <input matInput formControlName="password" placeholder="Password" id="password" type="password" class="validate">
             <input matInput formControlName="passwordvalidate" placeholder="Reenter password" id="password-again" type="password">
-            <input formControlName="role" type="radio" name="role" value="user" id="User" ><label for="User">User</label>
-            <input formControlName="role" type="radio" name="role" value="Ice Maker" id="Ice Maker"><label for="Ice Maker">Ice Maker</label>
-            
-              
             <button (click)="register()"  class="btn btn-lg btn-primary btn-block btn-signin" [disabled]="!registerForm.valid" mat-button>Register</button>
         </form><!-- /form -->
         <a href="#" class="forgot-password">
