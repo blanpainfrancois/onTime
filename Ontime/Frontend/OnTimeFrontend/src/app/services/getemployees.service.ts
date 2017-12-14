@@ -9,10 +9,10 @@ export class GetemployeesService {
 
 
     public getAllEmployees(){
-      return this.client.get("http://ontimeapi.azurewebsites.net/swagger/#!/Employees/ApiEmployeesGet");
+      return this.client.get("http://ontimeapi.azurewebsites.net/api/Employees");
     }
 
     public getDataEmployee(){
-      return this.client.get("http://ontimeapi.azurewebsites.net/swagger/#!/Employees/ApiEmployeesEmployeefromtokenGet");
+      return this.client.get("http://ontimeapi.azurewebsites.net/api/Employees/employeefromtoken");
     }
 }
