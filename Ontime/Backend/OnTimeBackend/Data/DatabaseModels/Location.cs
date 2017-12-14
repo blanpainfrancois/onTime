@@ -9,7 +9,7 @@ namespace Uber4Cream.Data.DatabaseModels
     {
         public int LocationID { get; set; }
         public double latitude { get; set; }
-        public double longtitude { get; set; }
+        public double longitude { get; set; }
         public Issue issue { get; set; }
 
     }

@@ -10,6 +10,7 @@ import { AgmCoreModule } from '@agm/core';
 
 import { routing  } from './routes/routes';
 
+import { GetemployeesService } from './services/getemployees.service';
 
 import { AppComponent } from './app.component';
 import { MenubarComponent } from './menubar/menubar.component';
@@ -19,17 +20,24 @@ import { LandingComponent } from './landing/landing.component';
 import { RegisterComponent } from './register/register.component';
 import { NotfoundComponent } from './notfound/notfound.component'
 import { DashboardComponent } from './dashboard/dashboard.component';
-
+import {TableFilter} from './filterlist/filterlist.component';
 import { AuthService } from './services/auth.service';
 import { RegisterService } from './services/register.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { UserService } from './services/user.service'
 
+<<<<<<< HEAD
 import { MatToolbarModule, MatButtonModule,MatInputModule, MatRadioModule , MatIconModule , MatMenuModule} from '@angular/material';
 import { MainmetricComponent } from './dashboard/mainmetric/mainmetric.component';
 import { ProfileComponent } from './dashboard/profile/profile.component';
 import { TocapitalPipe } from './pipes/tocapital.pipe';
 import { TableFiltering } from './filterlist/filterlist.component';
+=======
+import {MatToolbarModule, MatButtonModule,MatInputModule, MatRadioModule , MatIconModule , MatMenuModule, MatTableModule} from '@angular/material';
+import { MainmetricComponent } from './dashboard/mainmetric/mainmetric.component';
+import { ProfileComponent } from './dashboard/profile/profile.component';
+import { TocapitalPipe } from './pipes/tocapital.pipe';
+>>>>>>> 959ca35dffaf65632ae55efba5ab4e666bef03b7
 
 
 @NgModule({
@@ -45,7 +53,7 @@ import { TableFiltering } from './filterlist/filterlist.component';
     MainmetricComponent,
     ProfileComponent,
     TocapitalPipe,
-    FilterlistComponent,
+    TableFilter,
 
   ],
   imports: [
@@ -62,11 +70,12 @@ import { TableFiltering } from './filterlist/filterlist.component';
     MatRadioModule,
     MatIconModule,
     MatMenuModule,
+    MatTableModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCMBIzGWubc2qVa2vrjYcxlttDC4BxVJC4'
     })
   ],
-  providers: [AuthService, RegisterService, AuthGuardService, UserService],
+  providers: [AuthService, RegisterService, AuthGuardService, UserService,GetemployeesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
