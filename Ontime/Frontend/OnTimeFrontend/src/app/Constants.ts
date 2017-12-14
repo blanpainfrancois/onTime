@@ -25,7 +25,7 @@ export class Constants {
 
         public static readonly DELETE_USER_ENDPOINT: string = "http://ontimeapi.azurewebsites.net/api/Users/deleteuser";
 
-        public static readonly GET_USER_PROFILE: string = "http://ontimeapi.azurewebsites.net/api/users/getuser";
+        public static readonly GET_EMPLOYER: string = "http://ontimeapi.azurewebsites.net/api/Employers";
 
 
     }
