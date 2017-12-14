@@ -21,7 +21,7 @@ export class UserService {
   public getuser (){
     const headers = new HttpHeaders().set('Authorization', "Bearer " + this.authService.getToken()["access_token"]);
 
-    return this.http.get(Constants.GET_USER_PROFILE, {headers:headers});
+    return this.http.get(Constants.GET_EMPLOYER, {headers:headers});
     
   }
 
