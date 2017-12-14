@@ -13,7 +13,6 @@
 
         public string givenName { get; set; }
         public string familyName { get; set; }
-
         public string role { get; set; }
     }
 }
