@@ -32,7 +32,7 @@ export class TableFilter implements OnInit {
 
   displayedColumns = ['name','Lastname', 'isChecked'];
   //dataSource = new MatTableDataSource(employeesdata);
-  dataSource = new MatTableDataSource(this.data);
+  dataSource = new MatTableDataSource(employeesdata);
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -53,7 +53,7 @@ export interface Employees {
 
 
 export const employeesdata: Employees[] = [
-  {name: '',Lastname:'',isChecked: null},
+  {name: 'francois',Lastname:'zin in de problemen',isChecked: true},
 
 ];
 
