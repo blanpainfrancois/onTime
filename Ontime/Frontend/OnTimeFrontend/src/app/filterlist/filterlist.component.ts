@@ -26,14 +26,15 @@ export class TableFilter implements OnInit {
     this.mydata = "testddd";
     getservice.getAllEmployees().subscribe(data => {
       //this.mydata = "test"
-      
+      console.log(data);
+
     });
   }
 
   getemployeesService: GetemployeesService
-  
 
-  public getallemployees() {
+
+ /*lic getallemployees() {
     this.getemployeesService.getAllEmployees().subscribe((res: Response) => {
         this.data = res.json
     }, error => {
@@ -41,7 +42,7 @@ export class TableFilter implements OnInit {
     })
     console.log("success")
   }
-
+*/
   public getall(){
     this.mydata = "test";
   }
@@ -65,7 +66,7 @@ export interface Employees {
 
 }
 export const employeesdata: Employees[] = [
-  {name: 'jan',isChecked: false}, 
+  {name: 'jan',isChecked: false},
   {name: "shtankdier", isChecked:true}
 ];
 
