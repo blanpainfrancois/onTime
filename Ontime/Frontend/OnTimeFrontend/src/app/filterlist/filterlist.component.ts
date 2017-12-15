@@ -31,10 +31,10 @@ export class TableFilter implements OnInit {
     });
   }
 
-  getemployeesService: GetemployeesService
 
 
- /*lic getallemployees() {
+
+ /*public getallemployees() {
     this.getemployeesService.getAllEmployees().subscribe((res: Response) => {
         this.data = res.json
     }, error => {
@@ -43,9 +43,6 @@ export class TableFilter implements OnInit {
     console.log("success")
   }
 */
-  public getall(){
-    this.mydata = "test";
-  }
 
   displayedColumns = ['name', 'isChecked'];
   dataSource = new MatTableDataSource(employeesdata);
