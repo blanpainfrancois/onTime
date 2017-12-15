@@ -10,8 +10,8 @@ export class GetemployeesService {
 
    authService :AuthService
     public getAllEmployees(){
-     // const headers = new HttpHeaders().set('Authorization', "Bearer " + this.authService.getToken()["access_token"]);
-      return this.client.get("http://ontimeapi.azurewebsites.net/api/Employees")// {headers:headers};
+      const headers = new HttpHeaders().set('Authorization', "Bearer " + this.authService.getToken()["access_token"]);
+      return this.client.get("http://ontimeapi.azurewebsites.net/api/Employees",{headers:headers});
 
     }
 
