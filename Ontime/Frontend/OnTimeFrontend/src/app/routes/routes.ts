@@ -20,11 +20,12 @@ const appRoutes: Routes = [
     { path: 'dashboard', component : DashboardComponent , canActivate: [AuthGuardService] ,
     children: [
       { path: '', component :MainmetricComponent },
-      { path: 'profile', component: ProfileComponent}
+      { path: 'profile', component: ProfileComponent},
+      {path: 'filterlist', component: TableFilter },
+      
 
     ]},
     { path: 'register', component: RegisterComponent},
-    {path: 'filterlist', component: TableFilter },
     { path: '**', component: NotfoundComponent }
   ];
 
