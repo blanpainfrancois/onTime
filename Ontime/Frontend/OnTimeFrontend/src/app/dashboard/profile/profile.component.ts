@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -10,9 +11,12 @@ import { User } from '../../models/user';
 export class ProfileComponent implements OnInit {
 
 
-  user : User
+  user : User;
+  addressform: FormGroup;
+  
 
-  constructor(private userService : UserService ){
+
+  constructor(private userService : UserService, private fb: FormBuilder ){
 
     this.userService.getuser().subscribe(user => {
       this.user = new User();
@@ -22,10 +26,27 @@ export class ProfileComponent implements OnInit {
       this.user.identityID = user["identityID"];
       this.user.name = user["name"];
     });
+
+
+    this.addressform = this.fb.group({
+      streetname: ['' ],
+      housenumber: [''],
+      city: [''],
+      zipcode: [''],
+      country: ['']
+       });
     
    }
 
+ 
+
   ngOnInit() {
+  }
+
+  postaddress(){
+
+    this.userService.postAddress(this.addressform.value).subscribe(data => alert("address updatet, " + data));
+
   }
 
 }

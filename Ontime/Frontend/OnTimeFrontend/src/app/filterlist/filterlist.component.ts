@@ -22,23 +22,23 @@ export class TableFilter implements OnInit {
   error;
   employees;
   names;
+  dataSource
 
 
 
   constructor(public getservice : GetemployeesService ) {
     getservice.getAllEmployees().subscribe(data => {
 
-      this.employees = data;
-      this.names = data['username']
-
       console.log(data);
+      
+      this.employees = data;
+      this.dataSource = new MatTableDataSource(this.employees);
+      
 
     });
   }
 
   displayedColumns = ['name','Lastname', 'isChecked'];
-  //dataSource = new MatTableDataSource(employeesdata);
-  dataSource = new MatTableDataSource(employeesdata);
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -50,17 +50,14 @@ export class TableFilter implements OnInit {
 
 }
 
-export interface Employees {
-  givenName: string;
-  Lastname : string;
-  isChecked: boolean;
+export interface Employee {
+  givenname: string;
+  familyname : string;
+  employeeID: number;
+  username: string;
 
 }
 
 
-export const employeesdata: Employees[] = [
-  {givenName: 'francois',Lastname:'zin in de problemen',isChecked: true}
-
-];
 
 
