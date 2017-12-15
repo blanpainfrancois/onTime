@@ -8,35 +8,31 @@
   <mat-table #table [dataSource]="dataSource">
 
     <!-- Position Column -->
-   <div *ngFor = "let employee of employees">
+   <div>
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{employee.familyname}} </mat-cell>
+      <mat-cell *matCellDef="let employee"> {{employee.givenName}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Lastname">
       <mat-header-cell *matHeaderCellDef> Lastname </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{employee.Lastname}}  </mat-cell>
+      <mat-cell *matCellDef="let employee"> {{employee.Lastname}}  </mat-cell>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="isChecked">
       <mat-header-cell *matHeaderCellDef> IsChecked </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{employee.givenname}} </mat-cell>
+      <mat-cell *matCellDef="let employee"> {{employee.isChecked}} </mat-cell>
     </ng-container>
    </div>
-    
+
 
     <!-- Name Column -->
-    
+
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;">{{this.data}}</mat-row>
+    <mat-row *matRowDef="let data; columns: displayedColumns;">{{this.data}}</mat-row>
   </mat-table>
 </div>
 
-<div *ngFor = "let employee of employees">
-  <li>{{employee.givenname}} {{employee.familyname}} {{employee.employeeID}}</li>
-
-</div>
 
