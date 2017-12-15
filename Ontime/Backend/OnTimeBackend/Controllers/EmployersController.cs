@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OnTimeBackend.Data;
+using Uber4Cream.Data.DatabaseModels;
 using Microsoft.AspNetCore.Authorization;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.EntityFrameworkCore;
@@ -15,166 +16,215 @@ using Microsoft.AspNetCore.Identity;
 using Uber4Cream.Data.DatabaseModels;
 using System.Collections.ObjectModel;
 
+
 namespace OnTimeBackend.Controllers
 {
     [Produces("application/json")]
     [Route("api/Employers")]
-    [Authorize(AuthenticationSchemes = IdentityServerAuthenticationDefaults.AuthenticationScheme, Policy = "Access Resources")]
+
     public class EmployersController : Controller
     {
-        private readonly ApplicationDbContext context;
-        private readonly UserManager<ApplicationUser> usermanager;
+        private readonly ApplicationDbContext _context;
 
-        public EmployersController(ApplicationDbContext context, UserManager<ApplicationUser> usermanager)
+        public EmployersController(ApplicationDbContext context)
         {
-            this.context = context;
-            this.usermanager = usermanager;
+            _context = context;
         }
 
-        // GET: api/Employers
-        [HttpGet]
-        public async Task<IActionResult> Getemployers()
+        [Authorize(AuthenticationSchemes = IdentityServerAuthenticationDefaults.AuthenticationScheme,
+            Policy = "Access Resources")]
+        public class EmployersController : Controller
         {
+            private readonly ApplicationDbContext context;
+            private readonly UserManager<ApplicationUser> usermanager;
 
-            var employers = await context.employers.ToListAsync();
-
-            List<ReturnEmployers> returnemployers = new List<ReturnEmployers>();
-
-            foreach (var employer in employers)
+            public EmployersController(ApplicationDbContext context, UserManager<ApplicationUser> usermanager)
             {
-                returnemployers.Add(new ReturnEmployers
+                this.context = context;
+                this.usermanager = usermanager;
+
+            }
+
+            // GET: api/Employers
+            [HttpGet]
+
+            public IEnumerable<Employer> Getemployers()
+            {
+                return _context.employers;
+
+                Public async Task<IActionResult> Getemployers()
                 {
-                    CreatedAt = employer.CreatedAt,
-                    EmployerID = employer.EmployerID,
-                    IdentityID = employer.IdentityID,
-                    Name = employer.Name,
-                    Username = employer.Username
-                });
+
+                    var employers = await context.employers.ToListAsync();
+
+                    List<ReturnEmployers> returnemployers = new List<ReturnEmployers>();
+
+                    foreach (var employer in employers)
+                    {
+                        returnemployers.Add(new ReturnEmployers
+                        {
+                            CreatedAt = employer.CreatedAt,
+                            EmployerID = employer.EmployerID,
+                            IdentityID = employer.IdentityID,
+                            Name = employer.Name,
+                            Username = employer.Username
+                        });
+                    }
+
+                    return new JsonResult(returnemployers);
+                }
+
             }
 
-            return new JsonResult(returnemployers);
-        }
+            [HttpPost("employeetoemployer")]
 
-
-        [HttpPost("employeetoemployer")]
-
-        public async Task<IActionResult> employeetoemployer(string id)
-        {
-            var employeeIdentity = await usermanager.GetUserAsync(User);
-            var employee = context.employees.Where(e => e.IdentityID == employeeIdentity.Id).FirstOrDefault();
-            var employer = context.employers.Where(e => e.IdentityID == id).FirstOrDefault();
-
-
-            if(employee != null)
+            public async Task<IActionResult> employeetoemployer(string id)
             {
-               
+                var employeeIdentity = await usermanager.GetUserAsync(User);
+                var employee = context.employees.Where(e => e.IdentityID == employeeIdentity.Id).FirstOrDefault();
+                var employer = context.employers.Where(e => e.IdentityID == id).FirstOrDefault();
+
+
+                if (employee != null)
+                {
+
                     employer.employees = new List<Employee>();
-                
-                employer.employees.Add(employee);
-                await context.SaveChangesAsync();
-                return Ok();
-            }
-            
 
-            return BadRequest();
+                    employer.employees.Add(employee);
+                    await context.SaveChangesAsync();
+                    return Ok();
+                }
 
-            
-            
-        }
 
-        // GET: api/Employers/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetEmployer([FromRoute] int id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var employer = await context.employers.SingleOrDefaultAsync(m => m.EmployerID == id);
-
-            if (employer == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(employer);
-        }
-
-        // PUT: api/Employers/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutEmployer([FromRoute] int id, [FromBody] Employer employer)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != employer.EmployerID)
-            {
                 return BadRequest();
+
+
+
+
             }
 
-            context.Entry(employer).State = EntityState.Modified;
+            // GET: api/Employers/5
+            [HttpGet("{id}")]
+            public async Task<IActionResult> GetEmployer([FromRoute] int id)
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
 
-            try
-            {
-                await context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!EmployerExists(id))
+
+                var employer = await _context.employers.SingleOrDefaultAsync(m => m.EmployerID == id);
+                var employer = await context.employers.SingleOrDefaultAsync(m => m.EmployerID == id);
+
+
+                if (employer == null)
                 {
                     return NotFound();
                 }
-                else
+
+                return Ok(employer);
+            }
+
+            // PUT: api/Employers/5
+            [HttpPut("{id}")]
+            public async Task<IActionResult> PutEmployer([FromRoute] int id, [FromBody] Employer employer)
+            {
+                if (!ModelState.IsValid)
                 {
-                    throw;
+                    return BadRequest(ModelState);
+                }
+
+                if (id != employer.EmployerID)
+                {
+                    return BadRequest();
+                }
+
+
+                _context.Entry(employer).State = EntityState.Modified;
+
+                try
+                {
+                    await _context.SaveChangesAsync();
+                    context.Entry(employer).State = EntityState.Modified;
+
+                    try
+                    {
+                        await context.SaveChangesAsync();
+
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!EmployerExists(id))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+
+                    return NoContent();
                 }
             }
 
-            return NoContent();
-        }
-
-        // POST: api/Employers
-        [HttpPost]
-        public async Task<IActionResult> PostEmployer([FromBody] Employer employer)
-        {
-            if (!ModelState.IsValid)
+            // POST: api/Employers
+            [HttpPost]
+            public async Task<IActionResult> PostEmployer([FromBody] Employer employer)
             {
-                return BadRequest(ModelState);
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                _context.employers.Add(employer);
+                await _context.SaveChangesAsync();
+
+                context.employers.Add(employer);
+                await context.SaveChangesAsync();
+
+
+                return CreatedAtAction("GetEmployer", new {id = employer.EmployerID}, employer);
             }
 
-            context.employers.Add(employer);
-            await context.SaveChangesAsync();
-
-            return CreatedAtAction("GetEmployer", new { id = employer.EmployerID }, employer);
-        }
-
-        // DELETE: api/Employers/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteEmployer([FromRoute] int id)
-        {
-            if (!ModelState.IsValid)
+            // DELETE: api/Employers/5
+            [HttpDelete("{id}")]
+            public async Task<IActionResult> DeleteEmployer([FromRoute] int id)
             {
-                return BadRequest(ModelState);
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+
+                var employer = await _context.employers.SingleOrDefaultAsync(m => m.EmployerID == id);
+
+                var employer = await context.employers.SingleOrDefaultAsync(m => m.EmployerID == id);
+
+                if (employer == null)
+                {
+                    return NotFound();
+                }
+
+
+                _context.employers.Remove(employer);
+                await _context.SaveChangesAsync();
+
+                context.employers.Remove(employer);
+                await context.SaveChangesAsync();
+
+
+                return Ok(employer);
             }
 
-            var employer = await context.employers.SingleOrDefaultAsync(m => m.EmployerID == id);
-            if (employer == null)
+            private bool EmployerExists(int id)
             {
-                return NotFound();
+
+                return _context.employers.Any(e => e.EmployerID == id);
+
+                return context.employers.Any(e => e.EmployerID == id);
+
             }
-
-            context.employers.Remove(employer);
-            await context.SaveChangesAsync();
-
-            return Ok(employer);
-        }
-
-        private bool EmployerExists(int id)
-        {
-            return context.employers.Any(e => e.EmployerID == id);
         }
     }
 }

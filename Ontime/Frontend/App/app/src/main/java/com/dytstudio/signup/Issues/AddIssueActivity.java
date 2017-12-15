@@ -52,9 +52,12 @@ public class AddIssueActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                btn_save_issue.setEnabled(false);
-                    Issue issue = issueBuilder(et_reason_subject.getText().toString().trim(), et_reason_message.getText().toString().trim(), new Location(5,5));
-
+                if(isEmpty(et_reason_message) && isEmpty(et_reason_subject)){
+                    Toast.makeText(AddIssueActivity.this, "Issue cannot be empty", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    btn_save_issue.setEnabled(false);
+                    Issue issue = issueBuilder(et_reason_subject.getText().toString().trim(), et_reason_message.getText().toString().trim(), new Location(5f,5f));
                     Call<Issue> issue_call = apiInterface.POST_ISSUE(accessToken.getAccess_token(), issue );
                     issue_call.enqueue(new Callback<Issue>() {
                         @Override
@@ -75,6 +78,11 @@ public class AddIssueActivity extends AppCompatActivity {
                         }
                     });
 
+                }
+
+
+
+
 
 
 
@@ -87,10 +95,14 @@ public class AddIssueActivity extends AppCompatActivity {
 
     private Issue issueBuilder(String issuetitle, String isssueareason, Location location){
 
-        Reason reason = new Reason( isssueareason, issuetitle);
+        Reason reason = new Reason( 0, isssueareason, issuetitle);
 
-        Issue issue = new Issue(reason , new Date(), false, location);
+        Issue issue = new Issue(reason , new Date().toString(), false, location);
 
         return issue;
+    }
+
+    private boolean isEmpty(EditText etText) {
+        return etText.getText().toString().trim().length() == 0;
     }
 }

@@ -10,25 +10,33 @@ import com.google.gson.annotations.SerializedName;
 public class Reason{
 
 
+
     @SerializedName("reasonID")
-        @Expose
-        public Integer reasonID;
-        @SerializedName("reason")
-        @Expose
-        public String reason;
-         @SerializedName("reasontitle")
-         @Expose
-         public String reasonTitle;
+    @Expose
+    public Integer reasonID;
+    @SerializedName("reasontitle")
+    @Expose
+    public String reasontitle;
+    @SerializedName("reason")
+    @Expose
+    public String reason;
 
-    public Reason(Integer reasonID, String reason, String reasonTitle) {
+    public Reason() {
+    }
+
+    /**
+     *
+     * @param reasontitle
+     * @param reason
+     * @param reasonID
+     */
+    public Reason(Integer reasonID, String reasontitle, String reason) {
+        super();
         this.reasonID = reasonID;
+        this.reasontitle = reasontitle;
         this.reason = reason;
-        this.reasonTitle = reasonTitle;
     }
 
-    public Reason(String reason, String reasonTitle) {
-        this.reason = reason;
-        this.reasonTitle = reasonTitle;
-    }
+
 
 }
