@@ -20,13 +20,18 @@ import {Http, HttpModule} from '@angular/http';
 export class TableFilter implements OnInit {
   error;
   data : any;
+  mydata;
 
-  constructor() {
-
+  constructor(public getservice : GetemployeesService) {
+    this.mydata = "testddd";
+    getservice.getAllEmployees().subscribe(data => {
+      //this.mydata = "test"
+      
+    });
   }
 
   getemployeesService: GetemployeesService
-  mydata:string;
+  
 
   public getallemployees() {
     this.getemployeesService.getAllEmployees().subscribe((res: Response) => {
