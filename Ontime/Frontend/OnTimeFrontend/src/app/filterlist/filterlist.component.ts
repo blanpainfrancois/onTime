@@ -22,7 +22,7 @@ export class TableFilter implements OnInit {
   error;
   employees;
   names;
-  dataSource
+  dataSource;
 
 
 
@@ -30,10 +30,10 @@ export class TableFilter implements OnInit {
     getservice.getAllEmployees().subscribe(data => {
 
       console.log(data);
-      
+
       this.employees = data;
       this.dataSource = new MatTableDataSource(this.employees);
-      
+
 
     });
   }
