@@ -29,7 +29,7 @@ export class TableFilter implements OnInit {
     getservice.getAllEmployees().subscribe(data => {
 
       this.employees = data;
-      this.names = data['username']
+      
 
       console.log(data);
 
@@ -37,8 +37,8 @@ export class TableFilter implements OnInit {
   }
 
   displayedColumns = ['name','Lastname', 'isChecked'];
+  dataSource = new MatTableDataSource(this.employees);
   //dataSource = new MatTableDataSource(employeesdata);
-  dataSource = new MatTableDataSource(employeesdata);
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
