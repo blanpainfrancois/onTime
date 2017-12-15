@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import {Router} from "@angular/router";
+import {AuthService} from './auth.service';
 
 @Injectable()
 export class GetemployeesService {
-  constructor(private client : HttpClient, private router : Router) { }
+  constructor(private client : HttpClient, private router : Router, ) { }
 
-
+   authService :AuthService
     public getAllEmployees(){
-      return this.client.get("http://ontimeapi.azurewebsites.net/api/Employees");
+     // const headers = new HttpHeaders().set('Authorization', "Bearer " + this.authService.getToken()["access_token"]);
+      return this.client.get("http://ontimeapi.azurewebsites.net/api/Employees")// {headers:headers};
+
     }
 
     public getDataEmployee(){
