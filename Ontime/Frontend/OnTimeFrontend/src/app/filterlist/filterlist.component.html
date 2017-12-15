@@ -13,6 +13,11 @@
       <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="Lastname">
+      <mat-header-cell *matHeaderCellDef> Lastname </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.Lastname}} </mat-cell>
+    </ng-container>
+
     <!-- Name Column -->
     <ng-container matColumnDef="isChecked">
       <mat-header-cell *matHeaderCellDef> IsChecked </mat-header-cell>
@@ -20,7 +25,7 @@
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">{{this.data}}</mat-row>
   </mat-table>
 </div>
 {{mydata}}
