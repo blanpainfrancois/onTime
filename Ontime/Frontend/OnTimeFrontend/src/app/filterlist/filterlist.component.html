@@ -18,9 +18,17 @@
       <mat-header-cell *matHeaderCellDef> Lastname </mat-header-cell>
       <mat-cell *matCellDef="let employee"> {{employee.Lastname}}  </mat-cell>
     </ng-container>
-   </div>
 
     <!-- Name Column -->
+    <ng-container matColumnDef="isChecked">
+      <mat-header-cell *matHeaderCellDef> IsChecked </mat-header-cell>
+      <mat-cell *matCellDef="let employee"> {{employee.isChecked}} </mat-cell>
+    </ng-container>
+   </div>
+
+
+    <!-- Name Column -->
+
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let data; columns: displayedColumns;">{{this.data}}</mat-row>
