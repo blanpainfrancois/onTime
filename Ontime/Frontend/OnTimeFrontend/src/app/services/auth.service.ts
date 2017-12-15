@@ -12,6 +12,7 @@ import { Registermodel } from '../register/registermodel'
 
 
 import { Constants } from '../Constants'
+import { HttpParams } from '@angular/common/http';
 
 @Injectable()
 export class AuthService {
@@ -21,13 +22,13 @@ export class AuthService {
 
   private tokenExpire : Date;
 
-  constructor(private http: HttpClient, private router : Router) { 
-    
+  constructor(private http: HttpClient, private router : Router) {
+
     if(localStorage.getItem('tokenUser')){
       this.token = JSON.parse(localStorage.getItem('tokenUser'));
     }
-      
-  
+
+
 
   }
 
@@ -38,7 +39,7 @@ export class AuthService {
       this.tokenExpire.setSeconds((token["expires_in"]));
       this.token["expires_on"] = this.tokenExpire;
       localStorage.setItem('tokenUser', JSON.stringify(this.token));
-      
+
     }
   }
 
@@ -60,34 +61,24 @@ export class AuthService {
 
     }
   }
-  
+
   public logIn(username : string, password : string){
 
-    return Observable.fromPromise(new Promise((resolve, reject) => {
+    const body = new HttpParams()
+    .set('username', username)
+    .set('password', password)
+    .set('scope', Constants.SCOPE)
+    .set('client_id', Constants.CLIENT_ID)
+    .set('grant_type', Constants.GRANT_TYPE)
+    
 
-      var data = "client_id=ng&grant_type=password&username="+username+"&password="+password+"&scope=WebAPI%20openid%20profile";
-      var xhr = new XMLHttpRequest();
-      xhr.withCredentials = true;
-      
-      xhr.addEventListener("readystatechange", function () {
-        if (this.readyState === 4) {
+    return this.http.post("http://ontimeapi.azurewebsites.net/connect/token", body.toString(),
+    {
+      headers: new HttpHeaders()
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+    });
 
-          if (xhr.status === 200) {
-            resolve(JSON.parse(xhr.response))
-         }
-         
-         else{
-          reject(xhr.response);
-         }
-        }
-      });
-      
-      xhr.open("POST", "http://localhost:5000/connect/token");
-      xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-      xhr.setRequestHeader("cache-control", "no-cache");
-      xhr.send(data);
 
-    }))
   }
 
   public logout(): void {
@@ -95,8 +86,7 @@ export class AuthService {
             localStorage.removeItem('tokenUser');
             this.router.navigateByUrl('/login');
         }
-}  
+}
 
 
 
-  

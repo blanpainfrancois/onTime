@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
+import {GetemployeesService } from '../services/getemployees.service';
 
 import { User } from '../models/user'
 
@@ -24,10 +25,10 @@ export class DashboardComponent  {
 
       this.userService.getuser().subscribe(data  => {
         this.user = new User();
-        this.user.email = data["email"];
-        this.user.familyName = data["familyName"];
-        this.user.givenName = data["givenName"];
-        this.user.role = data["role"];
+        this.user.employerID = data["employerID"];
+        this.user.username = data["username"];
+        this.user.createdAt = data["createdAt"];
+        this.user.identityID = data["identityID"];
         this.user.username = data["userName"];
         this.userService.setUser(this.user);
         console.log(data)

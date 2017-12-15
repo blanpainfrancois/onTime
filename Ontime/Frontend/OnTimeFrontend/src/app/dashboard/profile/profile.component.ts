@@ -16,11 +16,11 @@ export class ProfileComponent implements OnInit {
 
     this.userService.getuser().subscribe(user => {
       this.user = new User();
-      this.user.email = user["email"];
-      this.user.familyName = user["familyName"];
-      this.user.givenName = user["givenName"];
-      this.user.username = user["userName"];
-      this.user.role = user["role"];
+      this.user.employerID = user["employerID"];
+      this.user.username = user["username"];
+      this.user.createdAt = user["createdAt"];
+      this.user.identityID = user["identityID"];
+      this.user.name = user["name"];
     });
     
    }

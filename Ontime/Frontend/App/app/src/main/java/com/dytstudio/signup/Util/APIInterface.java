@@ -55,5 +55,8 @@ public interface APIInterface {
         @GET("/api/Issues/issuesfromuser")
         Call<List<Issue>> GET_ISSUES(@Header("Authorization") String token);
 
+        @POST("/api/Issues/changestatus")
+        Call<Void> CHANGE_ISSUESTATUS(@Header("Authorization") String token, @Query("id") int id);
+
 
 }
