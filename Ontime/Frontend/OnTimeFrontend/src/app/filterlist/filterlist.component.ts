@@ -20,13 +20,19 @@ import {Http, HttpModule} from '@angular/http';
 
 export class TableFilter implements OnInit {
   error;
-  data : any;
+  employees;
+  names;
 
 
 
   constructor(public getservice : GetemployeesService ) {
     getservice.getAllEmployees().subscribe(data => {
+
+      this.employees = data;
+      this.names = data['username']
+
       console.log(data);
+
     });
   }
 
@@ -53,7 +59,7 @@ export interface Employees {
 
 
 export const employeesdata: Employees[] = [
-  {name: 'francois',Lastname:'zin in de problemen',isChecked: true},
+  {name: 'francois',Lastname:'zin in de problemen',isChecked: true}
 
 ];
 
