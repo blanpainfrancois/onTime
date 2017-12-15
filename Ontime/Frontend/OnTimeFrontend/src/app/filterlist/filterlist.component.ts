@@ -23,9 +23,9 @@ export class TableFilter implements OnInit {
   mydata;
 
   constructor(public getservice : GetemployeesService) {
-    this.mydata = "testddd";
+    //this.mydata = "testddd";
     getservice.getAllEmployees().subscribe(data => {
-      //this.mydata = "test"
+      this.mydata = "test"
       
     });
   }
