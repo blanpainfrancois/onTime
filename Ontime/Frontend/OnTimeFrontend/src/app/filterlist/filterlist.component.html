@@ -14,15 +14,12 @@
       <mat-cell *matCellDef="let element"> {{employee.familyname}} </mat-cell>
     </ng-container>
 
-<<<<<<< HEAD
-=======
     <ng-container matColumnDef="Lastname">
       <mat-header-cell *matHeaderCellDef> Lastname </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.Lastname}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{employee.Lastname}}  </mat-cell>
     </ng-container>
 
     <!-- Name Column -->
->>>>>>> 500f65e18a22c12b8bba4aa926035ce282e87654
     <ng-container matColumnDef="isChecked">
       <mat-header-cell *matHeaderCellDef> IsChecked </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{employee.givenname}} </mat-cell>
@@ -37,6 +34,9 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;">{{this.data}}</mat-row>
   </mat-table>
 </div>
-{{names|json}}
-{{employees | json}}
+
+<div *ngFor = "let employee of employees">
+  <li>{{employee.givenname}} {{employee.familyname}} {{employee.employeeID}}</li>
+
+</div>
 
