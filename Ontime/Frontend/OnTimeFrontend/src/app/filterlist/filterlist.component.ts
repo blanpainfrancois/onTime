@@ -21,38 +21,46 @@ import {Http, HttpModule} from '@angular/http';
 export class TableFilter implements OnInit {
   error;
   employees;
+  names;
+
+
 
   constructor(public getservice : GetemployeesService ) {
     getservice.getAllEmployees().subscribe(data => {
 
       this.employees = data;
+      this.names = data['username']
+
       console.log(data);
-      console.log(this.employees.givenName);
-      console.log(this.employees.Lastname);
+
     });
   }
 
   displayedColumns = ['name','Lastname', 'isChecked'];
   //dataSource = new MatTableDataSource(employeesdata);
-  dataSource = new MatTableDataSource(this.employees);
+  dataSource = new MatTableDataSource(employeesdata);
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
-
   ngOnInit() {
   }
 
 }
 
-export interface employees {
+export interface Employees {
   givenName: string;
   Lastname : string;
   isChecked: boolean;
 
 }
 
+
+export const employeesdata: Employees[] = [
+  {givenName: 'francois',Lastname:'zin in de problemen',isChecked: true}
+
+];
 
 
