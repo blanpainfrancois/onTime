@@ -23,13 +23,23 @@ export class TableFilter implements OnInit {
   data : any;
   mydata;
 
+<<<<<<< HEAD
 
   constructor(public getservice : GetemployeesService ) {
     this.mydata = "testddd";
+=======
+  constructor(public getservice : GetemployeesService) {
+    //this.mydata = "testddd";
+>>>>>>> 303d8085d7cf5704299b19af8fba371982e77b9f
     getservice.getAllEmployees().subscribe(data => {
+<<<<<<< HEAD
+      this.mydata = "test"
+      
+=======
       //this.mydata = "test"
       console.log(data);
 
+>>>>>>> edac5ef26ae9915132d58b6ae7cfa7cad1e9e3c8
     });
   }
 
