@@ -51,7 +51,7 @@ export class TableFilter implements OnInit {
 }
 
 export interface Employees {
-  name: string;
+  givenName: string;
   Lastname : string;
   isChecked: boolean;
 
@@ -59,7 +59,7 @@ export interface Employees {
 
 
 export const employeesdata: Employees[] = [
-  {name: 'francois',Lastname:'zin in de problemen',isChecked: true}
+  {givenName: 'francois',Lastname:'zin in de problemen',isChecked: true}
 
 ];
 
