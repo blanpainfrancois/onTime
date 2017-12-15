@@ -19,7 +19,7 @@ import {Http, HttpModule} from '@angular/http';
 
 export class TableFilter implements OnInit {
   error;
-
+  data : any;
   constructor() {
 
   }
@@ -27,8 +27,8 @@ export class TableFilter implements OnInit {
   getemployeesService: GetemployeesService
 
   public getallemployees() {
-    this.getemployeesService.getAllEmployees().subscribe(data => {
-
+    this.getemployeesService.getAllEmployees().subscribe((res: Response) => {
+        this.data = res.json
     }, error => {
       this.error = JSON.parse(error)
     })
@@ -41,12 +41,12 @@ export class TableFilter implements OnInit {
 
  export class TableFiltering {
   displayedColumns = ['position', 'name', 'weight', 'symbol'];
-  //dataSource = new MatTableDataSource(ELEMENT_DATA);
+  dataSource = new MatTableDataSource(employeesdata);
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    //this.dataSource.filter = filterValue;
+    this.dataSource.filter = filterValue;
   }
 
 }
