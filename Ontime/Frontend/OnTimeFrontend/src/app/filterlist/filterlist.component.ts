@@ -26,15 +26,11 @@ export class TableFilter implements OnInit {
 
   constructor(public getservice : GetemployeesService ) {
     getservice.getAllEmployees().subscribe(data => {
-
-
       console.log(data);
-
-
     });
   }
 
-  displayedColumns = ['name', 'isChecked'];
+  displayedColumns = ['name','Lastname', 'isChecked'];
   //dataSource = new MatTableDataSource(employeesdata);
   dataSource = new MatTableDataSource(this.data);
 
@@ -50,13 +46,14 @@ export class TableFilter implements OnInit {
 
 export interface Employees {
   name: string;
+  Lastname : string;
   isChecked: boolean;
 
 }
 
 
 export const employeesdata: Employees[] = [
-  {name: '',isChecked: null},
+  {name: '',Lastname:'',isChecked: null},
 
 ];
 
