@@ -20,23 +20,21 @@ import {Http, HttpModule} from '@angular/http';
 
 export class TableFilter implements OnInit {
   error;
-  data : any;
+  employees;
+  names;
 
 
 
   constructor(public getservice : GetemployeesService ) {
     getservice.getAllEmployees().subscribe(data => {
-
-
-      console.log(data);
-
-
+      this.employees = data;
+      this.names = data['username']
     });
   }
 
   displayedColumns = ['name', 'isChecked'];
   //dataSource = new MatTableDataSource(employeesdata);
-  dataSource = new MatTableDataSource(this.data);
+  dataSource = new MatTableDataSource(employeesdata);
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -56,7 +54,7 @@ export interface Employees {
 
 
 export const employeesdata: Employees[] = [
-  {name: '',isChecked: null},
+  {name: 'Hallo',isChecked: true},
 
 ];
 
