@@ -10,13 +10,13 @@
     <!-- Position Column -->
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-      <mat-cell *matCellDef="let name"> {{element.name}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="isChecked">
       <mat-header-cell *matHeaderCellDef> IsChecked </mat-header-cell>
-      <mat-cell *matCellDef="let isChecked"> {{element.isChecked}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.isChecked}} </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

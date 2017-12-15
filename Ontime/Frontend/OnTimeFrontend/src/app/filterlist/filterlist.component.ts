@@ -20,6 +20,7 @@ import {Http, HttpModule} from '@angular/http';
 export class TableFilter implements OnInit {
   error;
   data : any;
+
   constructor() {
 
   }
