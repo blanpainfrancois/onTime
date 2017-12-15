@@ -20,7 +20,8 @@ import { LandingComponent } from './landing/landing.component';
 import { RegisterComponent } from './register/register.component';
 import { NotfoundComponent } from './notfound/notfound.component'
 import { DashboardComponent } from './dashboard/dashboard.component';
-import {TableFiltering} from './filterlist/filterlist.component';
+
+import {TableFilter} from './filterlist/filterlist.component';
 import { AuthService } from './services/auth.service';
 import { RegisterService } from './services/register.service';
 import { AuthGuardService } from './services/auth-guard.service';
@@ -45,8 +46,7 @@ import { TocapitalPipe } from './pipes/tocapital.pipe';
     MainmetricComponent,
     ProfileComponent,
     TocapitalPipe,
-    TableFiltering,
-
+    TableFilter,
   ],
   imports: [
     BrowserModule,

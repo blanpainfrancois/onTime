@@ -32,21 +32,17 @@ export class TableFilter implements OnInit {
     }, error => {
       this.error = JSON.parse(error)
     })
+    console.log("success")
   }
-
-  ngOnInit() {
-  }
-  displayedColumns = ['name', 'isChecked'];dataSource;
-}
-
- export class TableFiltering {
-  displayedColumns = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns = ['name', 'isChecked'];
   dataSource = new MatTableDataSource(employeesdata);
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.dataSource.filter = filterValue;
+  }
+  ngOnInit() {
   }
 
 }
