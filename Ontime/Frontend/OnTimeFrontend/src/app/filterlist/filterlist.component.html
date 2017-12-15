@@ -10,6 +10,7 @@
   <mat-table #table [dataSource]="dataSource">
 
     <!-- Position Column -->
+<<<<<<< HEAD
     <div>
       <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
@@ -27,6 +28,26 @@
         <mat-cell *matCellDef="let employee"> {{employee.isChecked}} </mat-cell>
       </ng-container>
     </div>
+
+=======
+   <div>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let employee"> {{employee.givenName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Lastname">
+      <mat-header-cell *matHeaderCellDef> Lastname </mat-header-cell>
+      <mat-cell *matCellDef="let employee"> {{employee.Lastname}}  </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="isChecked">
+      <mat-header-cell *matHeaderCellDef> IsChecked </mat-header-cell>
+      <mat-cell *matCellDef="let employee"> {{employee.isChecked}} </mat-cell>
+    </ng-container>
+   </div>
+>>>>>>> 1e386b50dca0d703e123253ce26894eea70ffa6e
 
 
     <!-- Name Column -->

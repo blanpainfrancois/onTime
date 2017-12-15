@@ -29,7 +29,6 @@ export class TableFilter implements OnInit {
     getservice.getAllEmployees().subscribe(data => {
 
       this.employees = data;
-      
 
       console.log(data);
 
@@ -37,6 +36,7 @@ export class TableFilter implements OnInit {
   }
 
   displayedColumns = ['name','Lastname', 'isChecked'];
+
   dataSource = new MatTableDataSource(this.employees);
   //dataSource = new MatTableDataSource(employeesdata);
 
@@ -62,6 +62,3 @@ export const employeesdata: Employees[] = [
   {givenName: 'francois',Lastname:'zin in de problemen',isChecked: true}
 
 ];
-
-
-
