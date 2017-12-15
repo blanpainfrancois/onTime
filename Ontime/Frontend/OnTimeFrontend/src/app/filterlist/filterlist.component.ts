@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {GetemployeesService} from '../services/getemployees.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router'
 import { routerTransition } from '../router.transitions';
 import { Constants } from '../Constants'
@@ -20,32 +21,22 @@ import {Http, HttpModule} from '@angular/http';
 export class TableFilter implements OnInit {
   error;
   data : any;
-  mydata;
 
-  constructor(public getservice : GetemployeesService) {
-    this.mydata = "testddd";
+
+
+  constructor(public getservice : GetemployeesService ) {
     getservice.getAllEmployees().subscribe(data => {
-      //this.mydata = "test"
+
+
       console.log(data);
+
 
     });
   }
 
-
-
-
- /*public getallemployees() {
-    this.getemployeesService.getAllEmployees().subscribe((res: Response) => {
-        this.data = res.json
-    }, error => {
-      this.error = JSON.parse(error)
-    })
-    console.log("success")
-  }
-*/
-
   displayedColumns = ['name', 'isChecked'];
-  dataSource = new MatTableDataSource(employeesdata);
+  //dataSource = new MatTableDataSource(employeesdata);
+  dataSource = new MatTableDataSource(this.data);
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -62,9 +53,11 @@ export interface Employees {
   isChecked: boolean;
 
 }
+
+
 export const employeesdata: Employees[] = [
-  {name: 'jan',isChecked: false},
-  {name: "shtankdier", isChecked:true}
+  {name: '',isChecked: null},
+
 ];
 
 
