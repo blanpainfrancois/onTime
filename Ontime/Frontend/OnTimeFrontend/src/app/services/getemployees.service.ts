@@ -10,11 +10,7 @@ export class GetemployeesService {
 
     public getAllEmployees(){
       const headers = new HttpHeaders().set('Authorization', "Bearer " + this.authService.getToken()["access_token"]);
-<<<<<<< HEAD
       return this.client.get("http://ontimeapi.azurewebsites.net/api/Employees",{headers:headers});
-=======
-      return this.client.get("http://ontimeapi.azurewebsites.net/api/Employees"), {headers:headers};
->>>>>>> 303d8085d7cf5704299b19af8fba371982e77b9f
 
     }
 
