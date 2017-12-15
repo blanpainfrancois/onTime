@@ -21,43 +21,22 @@ import {Http, HttpModule} from '@angular/http';
 export class TableFilter implements OnInit {
   error;
   data : any;
-  mydata;
 
-<<<<<<< HEAD
+
 
   constructor(public getservice : GetemployeesService ) {
-    this.mydata = "testddd";
-=======
-  constructor(public getservice : GetemployeesService) {
-    //this.mydata = "testddd";
->>>>>>> 303d8085d7cf5704299b19af8fba371982e77b9f
     getservice.getAllEmployees().subscribe(data => {
-<<<<<<< HEAD
-      this.mydata = "test"
-      
-=======
-      //this.mydata = "test"
+
+
       console.log(data);
 
->>>>>>> edac5ef26ae9915132d58b6ae7cfa7cad1e9e3c8
+
     });
   }
 
-
-
-
- /*public getallemployees() {
-    this.getemployeesService.getAllEmployees().subscribe((res: Response) => {
-        this.data = res.json
-    }, error => {
-      this.error = JSON.parse(error)
-    })
-    console.log("success")
-  }
-*/
-
   displayedColumns = ['name', 'isChecked'];
-  dataSource = new MatTableDataSource(employeesdata);
+  //dataSource = new MatTableDataSource(employeesdata);
+  dataSource = new MatTableDataSource(this.data);
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -74,9 +53,11 @@ export interface Employees {
   isChecked: boolean;
 
 }
+
+
 export const employeesdata: Employees[] = [
-  {name: 'jan',isChecked: false},
-  {name: "shtankdier", isChecked:true}
+  {name: '',isChecked: null},
+
 ];
 
 
