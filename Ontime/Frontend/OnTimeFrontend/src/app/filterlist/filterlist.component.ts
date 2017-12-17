@@ -23,19 +23,26 @@ export class TableFilter implements OnInit {
   employees;
   names;
   dataSource;
+  logdata;
 
 
 
   constructor(public getservice : GetemployeesService ) {
     getservice.getAllEmployees().subscribe(data => {
-
-      console.log(data);
-
       this.employees = data;
       this.dataSource = new MatTableDataSource(this.employees);
-
-
     });
+    
+    getservice.employeeToEmployer(5).subscribe(data =>{
+      this.logdata = data;
+      console.log(this.logdata);
+    })
+  }
+
+
+  linkEmployees(naam){
+    //alert("Pas op, " + firstName +  lastName +"!"); 
+    console.log(naam);
   }
 
   displayedColumns = ['name','Lastname', 'isChecked'];
