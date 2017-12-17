@@ -1,13 +1,13 @@
 
 
-<div class="container mat-elevation-z8">
+<div class="container mat-elevation-z8 filterl">
   <div class="header">
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
   </div>
 
-  <mat-table #table [dataSource]="dataSource">
+  <mat-table #table [dataSource]="dataSource" class="filtert">
 
     <!-- Position Column -->
    <div>
@@ -22,9 +22,9 @@
     </ng-container>
 
     <!-- Name Column -->
-    <ng-container matColumnDef="isChecked">
-      <mat-header-cell *matHeaderCellDef> IsChecked </mat-header-cell>
-      <mat-cell *matCellDef="let employee"> {{employee.username}} </mat-cell>
+    <ng-container matColumnDef="isChecked" >
+      <mat-header-cell *matHeaderCellDef > IsChecked </mat-header-cell>
+      <mat-cell *matCellDef="let employee" > {{employee.username}} </mat-cell>
     </ng-container>
    </div>
 
@@ -32,8 +32,8 @@
     <!-- Name Column -->
 
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row  *matRowDef="let data; columns: displayedColumns;">{{this.data}}</mat-row>
+    <mat-header-row *matHeaderRowDef="displayedColumns" ></mat-header-row>
+    <mat-row  *matRowDef="let data; columns: displayedColumns;" >{{this.data}}</mat-row>
   </mat-table>
 </div>
 
