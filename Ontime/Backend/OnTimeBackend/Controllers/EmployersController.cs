@@ -22,17 +22,7 @@ namespace OnTimeBackend.Controllers
     [Produces("application/json")]
     [Route("api/Employers")]
 
-    public class EmployersController : Controller
-    {
-        private readonly ApplicationDbContext _context;
-
-        public EmployersController(ApplicationDbContext context)
-        {
-            _context = context;
-        }
-
-        [Authorize(AuthenticationSchemes = IdentityServerAuthenticationDefaults.AuthenticationScheme,
-            Policy = "Access Resources")]
+ 
         public class EmployersController : Controller
         {
             private readonly ApplicationDbContext context;
@@ -45,14 +35,9 @@ namespace OnTimeBackend.Controllers
 
             }
 
-            // GET: api/Employers
-            [HttpGet]
+      
 
-            public IEnumerable<Employer> Getemployers()
-            {
-                return _context.employers;
-
-                Public async Task<IActionResult> Getemployers()
+                public async Task<IActionResult> Getemployers()
                 {
 
                     var employers = await context.employers.ToListAsync();
@@ -74,32 +59,38 @@ namespace OnTimeBackend.Controllers
                     return new JsonResult(returnemployers);
                 }
 
-            }
+            
 
             [HttpPost("employeetoemployer")]
 
-            public async Task<IActionResult> employeetoemployer(string id)
+            public async Task<IActionResult> employeetoemployer(int id)
             {
-                var employeeIdentity = await usermanager.GetUserAsync(User);
-                var employee = context.employees.Where(e => e.IdentityID == employeeIdentity.Id).FirstOrDefault();
-                var employer = context.employers.Where(e => e.IdentityID == id).FirstOrDefault();
+            var employerIdentity = await usermanager.GetUserAsync(User);
+            var employer = context.employers.Where(e => e.IdentityID == employerIdentity.Id).FirstOrDefault();
 
+            var employee = await context.employees.Where(i => i.EmployeeID == id).FirstOrDefaultAsync();
 
-                if (employee != null)
+            if(employee != null && employer != null)
+            {
+                if(employer.employees == null)
                 {
-
                     employer.employees = new List<Employee>();
 
-                    employer.employees.Add(employee);
-                    await context.SaveChangesAsync();
-                    return Ok();
                 }
 
+                employer.employees.Add(employee);
 
-                return BadRequest();
+                await context.SaveChangesAsync();
+
+                return Ok();
+            }
+            
 
 
 
+
+
+            return BadRequest();
 
             }
 
@@ -113,7 +104,6 @@ namespace OnTimeBackend.Controllers
                 }
 
 
-                var employer = await _context.employers.SingleOrDefaultAsync(m => m.EmployerID == id);
                 var employer = await context.employers.SingleOrDefaultAsync(m => m.EmployerID == id);
 
 
@@ -125,48 +115,7 @@ namespace OnTimeBackend.Controllers
                 return Ok(employer);
             }
 
-            // PUT: api/Employers/5
-            [HttpPut("{id}")]
-            public async Task<IActionResult> PutEmployer([FromRoute] int id, [FromBody] Employer employer)
-            {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
-
-                if (id != employer.EmployerID)
-                {
-                    return BadRequest();
-                }
-
-
-                _context.Entry(employer).State = EntityState.Modified;
-
-                try
-                {
-                    await _context.SaveChangesAsync();
-                    context.Entry(employer).State = EntityState.Modified;
-
-                    try
-                    {
-                        await context.SaveChangesAsync();
-
-                    }
-                    catch (DbUpdateConcurrencyException)
-                    {
-                        if (!EmployerExists(id))
-                        {
-                            return NotFound();
-                        }
-                        else
-                        {
-                            throw;
-                        }
-                    }
-
-                    return NoContent();
-                }
-            }
+          
 
             // POST: api/Employers
             [HttpPost]
@@ -177,8 +126,6 @@ namespace OnTimeBackend.Controllers
                     return BadRequest(ModelState);
                 }
 
-                _context.employers.Add(employer);
-                await _context.SaveChangesAsync();
 
                 context.employers.Add(employer);
                 await context.SaveChangesAsync();
@@ -197,7 +144,6 @@ namespace OnTimeBackend.Controllers
                 }
 
 
-                var employer = await _context.employers.SingleOrDefaultAsync(m => m.EmployerID == id);
 
                 var employer = await context.employers.SingleOrDefaultAsync(m => m.EmployerID == id);
 
@@ -207,8 +153,7 @@ namespace OnTimeBackend.Controllers
                 }
 
 
-                _context.employers.Remove(employer);
-                await _context.SaveChangesAsync();
+           
 
                 context.employers.Remove(employer);
                 await context.SaveChangesAsync();
@@ -219,12 +164,8 @@ namespace OnTimeBackend.Controllers
 
             private bool EmployerExists(int id)
             {
-
-                return _context.employers.Any(e => e.EmployerID == id);
-
                 return context.employers.Any(e => e.EmployerID == id);
 
             }
         }
     }
-}
