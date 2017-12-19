@@ -15,6 +15,8 @@ export class RegisterService {
 
   public register(model){
 
+    console.log(model);
+
     let body = {
       "username": model.username,
       "password": model.password,
