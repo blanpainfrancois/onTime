@@ -28,9 +28,11 @@ namespace Uber4Cream.Controllers
 
         // GET: api/Employees
         [HttpGet]
-        public IEnumerable<Employee> Getemployees()
+        public async Task<IActionResult> getemployees()
         {
-            return context.employees;
+
+            return Ok(await context.employees.ToListAsync());
+
         }
 
         [HttpGet("employeefromtoken")]
@@ -57,7 +59,6 @@ namespace Uber4Cream.Controllers
 
             return BadRequest();
         }
-
 
        
         [HttpDelete]
@@ -87,6 +88,34 @@ namespace Uber4Cream.Controllers
 
 
         }
+
+        [HttpGet("isemployeeassigned")]
+        public async Task<IActionResult> IsEmployeeAssigned()
+        {
+            var user = await usermanager.GetUserAsync(User);
+            var employee = await context.employees.Where(em => em.IdentityID == user.Id).FirstOrDefaultAsync();
+
+            if(employee != null)
+            {
+                if(employee.employer != null)
+                {
+                    return Ok(true);
+                }
+
+                else
+                {
+                    return Ok(false);
+                }
+            }
+
+
+
+            return BadRequest();
+
+
+        }
+
+
 
 
 
