@@ -21,9 +21,9 @@ namespace OnTimeBackend.Controllers
 {
     [Produces("application/json")]
     [Route("api/Employers")]
+    [Authorize(AuthenticationSchemes = IdentityServerAuthenticationDefaults.AuthenticationScheme, Policy = "Access Resources")]
 
- 
-        public class EmployersController : Controller
+    public class EmployersController : Controller
         {
             private readonly ApplicationDbContext context;
             private readonly UserManager<ApplicationUser> usermanager;
@@ -36,7 +36,7 @@ namespace OnTimeBackend.Controllers
             }
 
       
-
+            [HttpGet("getemployers")]
                 public async Task<IActionResult> Getemployers()
                 {
 
@@ -62,33 +62,24 @@ namespace OnTimeBackend.Controllers
             
 
             [HttpPost("employeetoemployer")]
-
-            public async Task<IActionResult> employeetoemployer(int id)
+            public async Task<IActionResult> employeetoemployer(int employeeid)
             {
             var employerIdentity = await usermanager.GetUserAsync(User);
-            var employer = context.employers.Where(e => e.IdentityID == employerIdentity.Id).FirstOrDefault();
+            var employer = await context.employers.Where(e => e.IdentityID == employerIdentity.Id).FirstOrDefaultAsync();
 
-            var employee = await context.employees.Where(i => i.EmployeeID == id).FirstOrDefaultAsync();
+
+            var employee = await context.employees.Where(i => i.EmployeeID == employeeid).FirstOrDefaultAsync();
 
             if(employee != null && employer != null)
             {
-                if(employer.employees == null)
-                {
-                    employer.employees = new List<Employee>();
 
-                }
-
-                employer.employees.Add(employee);
-
+                employee.employer = employer;
                 await context.SaveChangesAsync();
 
                 return Ok();
             }
             
-
-
-
-
+           
 
             return BadRequest();
 
