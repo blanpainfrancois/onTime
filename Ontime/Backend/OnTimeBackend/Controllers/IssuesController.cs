@@ -30,9 +30,12 @@ namespace OnTimeBackend.Controllers
 
         // GET: api/Issues
         [HttpGet]
-        public IEnumerable<Issue> Getissues()
+        public async Task<IActionResult> getallissues()
         {
-            return context.issues.Include(i => i.reason).Include(i=> i.location);
+
+            var issues = await context.issues.Include(i => i.reason).Include(i => i.location).ToListAsync();
+
+            return Ok(issues);
         }
 
         [HttpGet("issuesfromuser")]

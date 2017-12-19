@@ -37,7 +37,7 @@ namespace OnTimeBackend.Controllers
 
       
             [HttpGet("getemployers")]
-                public async Task<IActionResult> Getemployers()
+            public async Task<IActionResult> Getemployers()
                 {
 
                     var employers = await context.employers.ToListAsync();
@@ -106,24 +106,6 @@ namespace OnTimeBackend.Controllers
                 return Ok(employer);
             }
 
-          
-
-            // POST: api/Employers
-            [HttpPost]
-            public async Task<IActionResult> PostEmployer([FromBody] Employer employer)
-            {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
-
-
-                context.employers.Add(employer);
-                await context.SaveChangesAsync();
-
-
-                return CreatedAtAction("GetEmployer", new {id = employer.EmployerID}, employer);
-            }
 
             // DELETE: api/Employers/5
             [HttpDelete("{id}")]
@@ -152,6 +134,44 @@ namespace OnTimeBackend.Controllers
 
                 return Ok(employer);
             }
+
+
+            [HttpGet("getlocationfromaddressfromemployerid")]
+            public async Task<IActionResult> GetLocation(int employerid)
+        {
+
+            var employer = await context.employers.Where(em => em.EmployerID == employerid).FirstOrDefaultAsync();
+
+            if(employer != null)
+            {
+
+
+            }
+            
+            return BadRequest("employer doesn't exist");
+        }
+
+
+            [HttpPost("postaddress")]
+            public async Task<IActionResult> postaddress( [FromBody] Address address)
+        {
+
+            var employerIdentity = await usermanager.GetUserAsync(User);
+            var employer = await context.employers.Where(e => e.IdentityID == employerIdentity.Id).FirstOrDefaultAsync();
+
+            if(employer != null)
+            {
+
+                employer.address = address;
+
+                await context.SaveChangesAsync();
+
+                return Ok();
+
+            }
+
+            return BadRequest();
+        }
 
             private bool EmployerExists(int id)
             {
