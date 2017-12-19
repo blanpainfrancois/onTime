@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IdentityServer4.AccessTokenValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,79 +12,29 @@ using Uber4Cream.Data.DatabaseModels;
 
 namespace OnTimeBackend.Controllers
 {
+    [Authorize(AuthenticationSchemes = IdentityServerAuthenticationDefaults.AuthenticationScheme, Policy = "Access Resources")]
     [Produces("application/json")]
     [Route("api/Reasons")]
     public class ReasonsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext context;
 
         public ReasonsController(ApplicationDbContext context)
         {
-            _context = context;
+            this.context = context;
         }
 
         // GET: api/Reasons
         [HttpGet]
-        public IEnumerable<Reason> Getreasons()
+        public async Task<IActionResult>  GetReasons()
         {
-            return _context.reasons;
+
+            var reasons = await context.reasons.ToListAsync();
+
+            return Ok(reasons);
         }
 
-        // GET: api/Reasons/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetReason([FromRoute] int id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var reason = await _context.reasons.SingleOrDefaultAsync(m => m.ReasonID == id);
-
-            if (reason == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(reason);
-        }
-
-        // PUT: api/Reasons/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutReason([FromRoute] int id, [FromBody] Reason reason)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != reason.ReasonID)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(reason).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ReasonExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Reasons
+       
         [HttpPost]
         public async Task<IActionResult> PostReason([FromBody] Reason reason)
         {
@@ -91,8 +43,8 @@ namespace OnTimeBackend.Controllers
                 return BadRequest(ModelState);
             }
 
-            _context.reasons.Add(reason);
-            await _context.SaveChangesAsync();
+            context.reasons.Add(reason);
+            await context.SaveChangesAsync();
 
             return CreatedAtAction("GetReason", new { id = reason.ReasonID }, reason);
         }
@@ -106,21 +58,18 @@ namespace OnTimeBackend.Controllers
                 return BadRequest(ModelState);
             }
 
-            var reason = await _context.reasons.SingleOrDefaultAsync(m => m.ReasonID == id);
+            var reason = await context.reasons.SingleOrDefaultAsync(m => m.ReasonID == id);
             if (reason == null)
             {
                 return NotFound();
             }
 
-            _context.reasons.Remove(reason);
-            await _context.SaveChangesAsync();
+            context.reasons.Remove(reason);
+            await context.SaveChangesAsync();
 
             return Ok(reason);
         }
 
-        private bool ReasonExists(int id)
-        {
-            return _context.reasons.Any(e => e.ReasonID == id);
-        }
+        
     }
 }
