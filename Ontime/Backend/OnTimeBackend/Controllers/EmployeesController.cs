@@ -87,7 +87,7 @@ namespace Uber4Cream.Controllers
         {
             var useridentity = await usermanager.GetUserAsync(User);
             var employee = await context.employees.Where(em => em.IdentityID == useridentity.Id).Include(i => i.employer).FirstOrDefaultAsync();
-            var issues = await context.issues.Where(i => i.employee == employee).Where(i => i.IssueClosed == false).FirstOrDefaultAsync();
+            var issues = await context.issues.Where(i => i.employee == employee).Where(i => i.IssueClosed == false).Include(r => r.reason).FirstOrDefaultAsync();
 
 
             if (useridentity != null)
