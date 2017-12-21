@@ -89,10 +89,7 @@ namespace OnTimeBackend.Controllers
             [HttpGet("{id}")]
             public async Task<IActionResult> GetEmployer([FromRoute] int id)
             {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
+                
 
 
                 var employer = await context.employers.SingleOrDefaultAsync(m => m.EmployerID == id);
@@ -140,11 +137,11 @@ namespace OnTimeBackend.Controllers
             public async Task<IActionResult> GetLocation(int employerid)
         {
 
-            var employer = await context.employers.Where(em => em.EmployerID == employerid).FirstOrDefaultAsync();
+            var employer = await context.employers.Where(em => em.EmployerID == employerid).Include(e => e.address).FirstOrDefaultAsync();
 
             if(employer != null)
             {
-
+                return Ok(employer);
 
             }
             
@@ -155,6 +152,10 @@ namespace OnTimeBackend.Controllers
             [HttpPost("postaddress")]
             public async Task<IActionResult> postaddress( [FromBody] Address address)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
             var employerIdentity = await usermanager.GetUserAsync(User);
             var employer = await context.employers.Where(e => e.IdentityID == employerIdentity.Id).FirstOrDefaultAsync();
