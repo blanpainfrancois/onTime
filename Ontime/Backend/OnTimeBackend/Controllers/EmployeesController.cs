@@ -39,18 +39,11 @@ namespace Uber4Cream.Controllers
         public async Task<IActionResult> EmployeeFromToken()
         {
             var useridentity = await usermanager.GetUserAsync(User);
-            if(useridentity != null)
+            var employee = await context.employees.Where(em => em.IdentityID == useridentity.Id).Include(i => i.employer).FirstOrDefaultAsync();
+                   
+
+            if (useridentity != null)
             {
-                var employee = await context.employees.Where(em => em.IdentityID == useridentity.Id)
-                    .Include(em => em.issues)
-                        .ThenInclude(issue => issue.reason)
-                    .Include(em => em.issues)
-                        .ThenInclude(issue => issue.location)
-                    .Include(em => em.employer)
-                    .Include(em => em.address).FirstOrDefaultAsync();
-
-
-
                 if (employee != null)
                 {
                     return Ok(employee);
@@ -89,42 +82,29 @@ namespace Uber4Cream.Controllers
 
         }
 
-        [HttpGet("isemployeeassigned")]
-        public async Task<IActionResult> IsEmployeeAssigned()
+        [HttpGet("getopenissue")]
+        public async Task<IActionResult> GetOpenIssue()
         {
-            var user = await usermanager.GetUserAsync(User);
-            var employee = await context.employees.Where(em => em.IdentityID == user.Id).FirstOrDefaultAsync();
+            var useridentity = await usermanager.GetUserAsync(User);
+            var employee = await context.employees.Where(em => em.IdentityID == useridentity.Id).Include(i => i.employer).FirstOrDefaultAsync();
+            var issues = await context.issues.Where(i => i.employee == employee).Where(i => i.IssueClosed == false).FirstOrDefaultAsync();
 
-            if(employee != null)
+
+            if (useridentity != null)
             {
-                if(employee.employer != null)
+                if (employee != null && issues != null)
                 {
-                    return Ok(true);
+                    return Ok(issues);
                 }
-
-                else
+                
+                if (employee == null && issues == null)
                 {
-                    return Ok(false);
+                    return Ok("No open issue");
                 }
             }
 
-
-
             return BadRequest();
-
-
         }
-
-
-
-
-
-        private bool EmployeeExists(int id)
-        {
-            return context.employees.Any(e => e.EmployeeID == id);
-        }
-
-
 
 
 
