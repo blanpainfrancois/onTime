@@ -262,13 +262,13 @@ namespace OnTimeBackend.Migrations
 
                     b.Property<bool>("IssueClosed");
 
-                    b.Property<DateTime>("IssueClosedDate");
-
                     b.Property<DateTime>("IssueCreated");
 
                     b.Property<int?>("LocationID");
 
                     b.Property<int?>("ReasonID");
+
+                    b.Property<DateTime>("dateclosed");
 
                     b.Property<DateTime>("timestamp");
 
