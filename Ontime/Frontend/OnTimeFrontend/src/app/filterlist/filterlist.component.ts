@@ -21,24 +21,42 @@ import {Http, HttpModule} from '@angular/http';
 export class TableFilter implements OnInit {
   error;
   employees;
+  employee;
   names;
-  dataSource
-
-
+  dataSource;
+  logdata;
+  wasClicked = false;
+  buttonColor: string = '#fff';
 
   constructor(public getservice : GetemployeesService ) {
     getservice.getAllEmployees().subscribe(data => {
-
-      console.log(data);
-      
       this.employees = data;
       this.dataSource = new MatTableDataSource(this.employees);
-      
-
+      console.log(this.employees);
     });
+    getservice.employeeToEmployer(5).subscribe( data =>{
+      this.logdata = data;
+
+
+    })
   }
 
-  displayedColumns = ['name','Lastname', 'isChecked'];
+
+  linkEmployees(){
+
+    this.wasClicked= !this.wasClicked
+    if(this.wasClicked == true){
+      this.buttonColor = '#8BC34A';
+    }
+    else{
+      this.buttonColor = '#fff';
+    }
+
+    console.log(this.wasClicked);
+    console.log(this.logdata);
+  }
+
+  displayedColumns = ['employeeID','name','Lastname'];
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -50,13 +68,6 @@ export class TableFilter implements OnInit {
 
 }
 
-export interface Employee {
-  givenname: string;
-  familyname : string;
-  employeeID: number;
-  username: string;
-
-}
 
 
 

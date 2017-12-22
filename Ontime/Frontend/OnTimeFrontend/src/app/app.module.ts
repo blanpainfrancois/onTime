@@ -20,7 +20,6 @@ import { LandingComponent } from './landing/landing.component';
 import { RegisterComponent } from './register/register.component';
 import { NotfoundComponent } from './notfound/notfound.component'
 import { DashboardComponent } from './dashboard/dashboard.component';
-
 import {TableFilter} from './filterlist/filterlist.component';
 import { AuthService } from './services/auth.service';
 import { RegisterService } from './services/register.service';

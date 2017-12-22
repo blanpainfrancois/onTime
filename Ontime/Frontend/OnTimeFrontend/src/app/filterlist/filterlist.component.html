@@ -1,38 +1,35 @@
 
 
-<div class="container mat-elevation-z8">
+<div class="container mat-elevation-z8 filterl">
   <div class="header">
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
   </div>
 
-  <mat-table #table [dataSource]="dataSource">
+  <mat-table #table [dataSource]="dataSource" class="filtert">
 
     <!-- Position Column -->
    <div>
+     <ng-container matColumnDef="employeeID">
+       <mat-header-cell *matHeaderCellDef> employeeID </mat-header-cell>
+       <mat-cell *matCellDef="let employee" #givenname [ngStyle]="{'background-color': buttonColor}"> {{employee.employeeID}} </mat-cell>
+     </ng-container>
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-      <mat-cell *matCellDef="let employee"> {{employee.givenname}} </mat-cell>
+      <mat-cell *matCellDef="let employee" #givenname [ngStyle]="{'background-color': buttonColor}" (click)="linkEmployees(i)"> {{employee.givenname}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Lastname">
       <mat-header-cell *matHeaderCellDef> Lastname </mat-header-cell>
-      <mat-cell *matCellDef="let employee"> {{employee.familyname}}  </mat-cell>
+      <mat-cell *matCellDef="let employee" #familyname  [ngStyle]="{'background-color': buttonColor}" [class.selected]="wasClicked" (click)="linkEmployees(employee.givenname)"> {{employee.familyname}}  </mat-cell>
     </ng-container>
 
     <!-- Name Column -->
-    <ng-container matColumnDef="isChecked">
-      <mat-header-cell *matHeaderCellDef> IsChecked </mat-header-cell>
-      <mat-cell *matCellDef="let employee"> {{employee.username}} </mat-cell>
-    </ng-container>
-   </div>
-
-
+</div>
     <!-- Name Column -->
-
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row  *matRowDef="let data; columns: displayedColumns;">{{this.data}}</mat-row>
+    <mat-header-row *matHeaderRowDef="displayedColumns" ></mat-header-row>
+    <mat-row  *matRowDef="let data; columns: displayedColumns;"  >{{this.data}}</mat-row>
   </mat-table>
 </div>
+
