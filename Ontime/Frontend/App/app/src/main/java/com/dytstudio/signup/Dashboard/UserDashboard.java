@@ -24,6 +24,7 @@ import com.dytstudio.signup.Issues.Issue;
 import com.dytstudio.signup.Login.Login;
 import com.dytstudio.signup.MainActivity;
 import com.dytstudio.signup.Models.AccessToken;
+import com.dytstudio.signup.Models.Employee;
 import com.dytstudio.signup.R;
 import com.dytstudio.signup.Util.APIClient;
 import com.dytstudio.signup.Util.APIInterface;
@@ -47,12 +48,23 @@ public class UserDashboard extends AppCompatActivity
     IssueAdapter issueAdapter;
     List<Issue> issues;
 
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_dashboard);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+
+
+
+
+
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -65,18 +77,9 @@ public class UserDashboard extends AppCompatActivity
 
         apiInterface = APIClient.getClient().create(APIInterface.class);
 
-
-
         Gson gson = new Gson();
         json = mPrefs.getString("token", "");
         accessToken = gson.fromJson(json, AccessToken.class);
-        
-        
-        updateIssueAdapter();
-
-
-
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -196,41 +199,50 @@ public class UserDashboard extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        checkavaileble();
-        updateIssueAdapter();
+
 
     }
 
-    private void checkavaileble(){
 
-        if(json == null || json.equals("")){
-            Intent myIntent = new Intent(this, MainActivity.class);
-            startActivity(myIntent);
-        }
-    }
+    public void checkIssue(){
 
-    private void updateIssueAdapter(){
+        Call<Employee> get_employeefromtoken = apiInterface.GET_EMPLOYEE_TOKEN(accessToken.getAccess_token());
 
-
-
-        Call<List<Issue>> issuecall = apiInterface.GET_ISSUES(accessToken.getAccess_token());
-        issuecall.enqueue(new Callback<List<Issue>>() {
+        get_employeefromtoken.enqueue(new Callback<Employee>() {
             @Override
-            public void onResponse(Call<List<Issue>> call, Response<List<Issue>> response) {
+            public void onResponse(Call<Employee> call, Response<Employee> response) {
+
+
                 if(response.isSuccessful()){
-                    issueAdapter = new IssueAdapter(response.body(),accessToken);
-                    recyclerView.setAdapter(issueAdapter);
+
+                    if(response.body().employer == null){
+                        // NO EMPLOYER ISSIGNED
+
+                        Intent i = new Int
+
+
+                    }
+
                 }
 
             }
 
             @Override
-            public void onFailure(Call<List<Issue>> call, Throwable t) {
-
+            public void onFailure(Call<Employee> call, Throwable t) {
 
             }
         });
+
+
+
     }
+
+
+
+
+
+
+
 
 
 }

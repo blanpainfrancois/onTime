@@ -35,6 +35,21 @@ namespace OnTimeBackend.Controllers
 
             }
 
+
+            [HttpGet]
+            public async Task<IActionResult> GetEmployer()
+        {
+            var tokenuser = await usermanager.GetUserAsync(User);
+            var employer = await context.employers.Where(em => em.IdentityID == tokenuser.Id).FirstOrDefaultAsync();
+
+            if(employer != null)
+            {
+                return Ok(employer);
+            }
+            return BadRequest();
+            
+        }
+
       
             [HttpGet("getemployers")]
             public async Task<IActionResult> Getemployers()
@@ -85,23 +100,7 @@ namespace OnTimeBackend.Controllers
 
             }
 
-            // GET: api/Employers/5
-            [HttpGet("{id}")]
-            public async Task<IActionResult> GetEmployer([FromRoute] int id)
-            {
-                
-
-
-                var employer = await context.employers.SingleOrDefaultAsync(m => m.EmployerID == id);
-
-
-                if (employer == null)
-                {
-                    return NotFound();
-                }
-
-                return Ok(employer);
-            }
+           
 
 
             // DELETE: api/Employers/5
@@ -133,7 +132,7 @@ namespace OnTimeBackend.Controllers
             }
 
 
-            [HttpGet("getlocationfromaddressfromemployerid")]
+            [HttpGet("NOTREADYgetlocationfromaddressfromemployerid")]
             public async Task<IActionResult> GetLocation(int employerid)
         {
 
