@@ -2,6 +2,7 @@ package com.dytstudio.signup.Registration;
 
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -19,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.dytstudio.signup.Dashboard.UserDashboard;
+import com.dytstudio.signup.Login.Login;
 import com.dytstudio.signup.MainActivity;
 import com.dytstudio.signup.Models.AccessToken;
 import com.dytstudio.signup.Models.PostEmployer;
@@ -95,6 +97,11 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                ProgressDialog pd = new ProgressDialog(SignUp.this,R.style.spinner);
+                pd.setCancelable(false);
+                pd.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
+                pd.show();
+
                 user = new PostEmployer(username.getText().toString().trim(), email.getText().toString().trim(), password.getText().toString().trim(), passwordvalidate.getText().toString().trim(), givenname.getText().toString().trim(), familyname.getText().toString().trim(), "employee");
 
                 Call<PostEmployer> call = apiInterface.POST_EMPLOYER(user);
@@ -121,16 +128,25 @@ public class SignUp extends AppCompatActivity {
                                         String json = gson.toJson(response.body());
                                         prefsEditor.putString("token", json);
                                         if(prefsEditor.commit()) {
+                                            pd.hide();
                                             SignUp.this.startActivity(intent);
+                                            finish();
                                         }
 
                                     }
+                                    else{
+                                        pd.hide();
+                                        Toast.makeText(SignUp.this, "Registration not succeeded", Toast.LENGTH_SHORT).show();
+
+                                    }
+
 
                                 }
 
                                 @Override
                                 public void onFailure(Call<AccessToken> call, Throwable t) {
-
+                                    pd.hide();
+                                    Toast.makeText(SignUp.this, "Registration not succeeded", Toast.LENGTH_SHORT).show();
                                 }
                             });
 

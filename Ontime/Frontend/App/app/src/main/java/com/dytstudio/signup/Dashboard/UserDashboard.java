@@ -277,7 +277,6 @@ public class UserDashboard extends AppCompatActivity
                 //  tv_name.setText(employee.username);
                 //  tv_extrainfo.setText("Hi, " + employee.givenname + employee.familyname );
 
-                  Toast.makeText(UserDashboard.this, employee.givenname + " " + employee.familyname, Toast.LENGTH_SHORT).show();
 
 
 

@@ -2,6 +2,7 @@ package com.dytstudio.signup.Login;
 
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -16,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.dytstudio.signup.Dashboard.UserDashboard;
 import com.dytstudio.signup.MainActivity;
@@ -87,6 +89,11 @@ public class Login extends AppCompatActivity {
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                ProgressDialog pd = new ProgressDialog(Login.this,R.style.spinner);
+                pd.setCancelable(false);
+                pd.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
+                pd.show();
                  Call<AccessToken> token_call = apiInterface.POST_TOKEN_CALL(username.getText().toString(), password.getText().toString(), client_id ,grant_type ,scope);
 
                 token_call.enqueue(new Callback<AccessToken>() {
@@ -104,15 +111,23 @@ public class Login extends AppCompatActivity {
                             prefsEditor.putString("token", json);
                             if(prefsEditor.commit()){
                                 Login.this.startActivity(intent);
-
+                                finish();
                             }
 
                         }
+                        else{
+                            Toast.makeText(Login.this, "Login not succeeded", Toast.LENGTH_SHORT).show();
+                            pd.hide();
+                        }
+
+
                     }
 
                     @Override
                     public void onFailure(Call<AccessToken> call, Throwable t) {
 
+                        Toast.makeText(Login.this, "Login not succeeded", Toast.LENGTH_SHORT).show();
+                        pd.hide();
                     }
                 });
 
