@@ -1,7 +1,8 @@
 package com.dytstudio.signup.Util;
 
 
-import com.dytstudio.signup.Issues.Issue;
+import com.dytstudio.signup.Models.Employee;
+import com.dytstudio.signup.Models.Issue;
 import com.dytstudio.signup.Models.AccessToken;
 import com.dytstudio.signup.Models.Employer;
 import com.dytstudio.signup.Models.PostEmployer;
@@ -14,7 +15,6 @@ import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.HEAD;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -36,8 +36,8 @@ public interface APIInterface {
 
         //Employees
 
-        @GET("/api/Issues/issuesfromuser")
-        Call<List<Issue>> GET_ISSUES(@Header("Authorization") String token);
+        @GET("/api/Employees/employeefromtoken")
+        Call<Employee> GET_EMPLOYEE_FROM_TOKEN(@Header("Authorization") String token);
 
 
         //EMPLOYERS

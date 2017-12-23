@@ -1,9 +1,7 @@
-package com.dytstudio.signup.Issues;
+package com.dytstudio.signup.Models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.Date;
 
 /**
  * Created by Mo on 28/11/2017.
