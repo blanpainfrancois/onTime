@@ -70,9 +70,14 @@ public class UserDashboard extends AppCompatActivity
         Gson gson = new Gson();
         json = mPrefs.getString("token", "");
         accessToken = gson.fromJson(json, AccessToken.class);
+
+
+
+
+
         
         
-        updateIssueAdapter();
+      //  updateIssueAdapter();
 
 
 
@@ -197,7 +202,7 @@ public class UserDashboard extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         checkavaileble();
-        updateIssueAdapter();
+      //  updateIssueAdapter();
 
     }
 
@@ -209,7 +214,10 @@ public class UserDashboard extends AppCompatActivity
         }
     }
 
-    private void updateIssueAdapter(){
+
+
+
+  /*  private void updateIssueAdapter(){
 
 
 
@@ -232,5 +240,12 @@ public class UserDashboard extends AppCompatActivity
         });
     }
 
+    */
+
+  private void checkSubscribedtoEmployer(){
+
+      call
+
+  }
 
 }
