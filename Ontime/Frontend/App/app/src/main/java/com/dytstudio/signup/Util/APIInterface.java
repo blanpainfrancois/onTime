@@ -34,13 +34,16 @@ public interface APIInterface {
         Call<AccessToken> POST_TOKEN_CALL (@Field("username") String username, @Field("password") String password, @Field("client_id") String client_id, @Field("grant_type") String grant_type, @Field("scope") String scope);
 
 
+        //Employees
+
+        @GET("/api/Issues/issuesfromuser")
+        Call<List<Issue>> GET_ISSUES(@Header("Authorization") String token);
+
+
         //EMPLOYERS
 
         @GET("/api/Employers")
         Call<List<Employer>> GET_EMPLOYERS(@Header("Authorization") String token);
-
-        @POST("/api/Employers/employeetoemployer")
-        Call<Void> POST_EMPLOYEE_TO_EMPLOYER (@Header("Authorization") String token, @Query("id") String id);
 
         @DELETE("/api/Employees")
         Call<Void> DELETE_EMPLOYER(@Header("Authorization") String token);
@@ -57,6 +60,8 @@ public interface APIInterface {
 
         @POST("/api/Issues/changestatus")
         Call<Void> CHANGE_ISSUESTATUS(@Header("Authorization") String token, @Query("id") int id);
+
+
 
 
 }
