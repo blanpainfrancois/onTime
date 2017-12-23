@@ -47,7 +47,7 @@ namespace OnTimeBackend.Controllers
 
             if(issues != null)
             {
-                return new JsonResult(issues);
+                return Ok(issues);
             }
 
 
@@ -75,7 +75,7 @@ namespace OnTimeBackend.Controllers
 
         // POST: api/Issues
         [HttpPost]
-        public async Task<IActionResult> PostIssue([FromBody] CreateIssue tempissue)
+        public async Task<IActionResult> PostIssue([FromBody] Issue issue)
         {
             if (!ModelState.IsValid)
             {
@@ -88,13 +88,10 @@ namespace OnTimeBackend.Controllers
 
             if(employee != null)
             {
-                var issue = new Issue
-                {
-                    location = tempissue.location,
-                    reason = tempissue.reason,
-                    employee = employee,
-                    IssueCreated = DateTime.Now
-                };
+
+                issue.employee = employee;
+                issue.IssueCreated = DateTime.Now;
+                issue.IssueClosed = false;
 
                 await context.issues.AddAsync(issue);
                 await context.SaveChangesAsync();
