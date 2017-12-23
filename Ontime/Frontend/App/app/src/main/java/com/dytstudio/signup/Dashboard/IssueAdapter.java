@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.dytstudio.signup.Issues.Issue;
+import com.dytstudio.signup.Models.Issue;
 import com.dytstudio.signup.Models.AccessToken;
 import com.dytstudio.signup.R;
 import com.dytstudio.signup.Util.APIClient;

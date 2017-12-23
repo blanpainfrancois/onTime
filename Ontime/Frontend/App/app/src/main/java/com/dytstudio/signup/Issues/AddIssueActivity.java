@@ -10,6 +10,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.dytstudio.signup.Models.AccessToken;
+import com.dytstudio.signup.Models.Issue;
+import com.dytstudio.signup.Models.Location;
+import com.dytstudio.signup.Models.Reason;
 import com.dytstudio.signup.R;
 import com.dytstudio.signup.Util.APIClient;
 import com.dytstudio.signup.Util.APIInterface;

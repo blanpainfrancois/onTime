@@ -7,7 +7,6 @@ import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,10 +16,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dytstudio.signup.Issues.AddIssueActivity;
-import com.dytstudio.signup.Issues.Issue;
+import com.dytstudio.signup.Models.Employee;
+import com.dytstudio.signup.Models.Issue;
 import com.dytstudio.signup.Login.Login;
 import com.dytstudio.signup.MainActivity;
 import com.dytstudio.signup.Models.AccessToken;
@@ -31,7 +32,6 @@ import com.google.gson.Gson;
 
 import java.util.List;
 
-import co.dift.ui.SwipeToAction;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -46,6 +46,10 @@ public class UserDashboard extends AppCompatActivity
     RecyclerView recyclerView;
     IssueAdapter issueAdapter;
     List<Issue> issues;
+
+    Employee employee;
+
+    TextView tv_name, tv_extrainfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +68,9 @@ public class UserDashboard extends AppCompatActivity
         recyclerView.setLayoutManager(llm);
 
         apiInterface = APIClient.getClient().create(APIInterface.class);
+
+        tv_name = (TextView) findViewById(R.id.name);
+        tv_extrainfo = (TextView) findViewById(R.id.extrainfo);
 
 
 
@@ -100,6 +107,12 @@ public class UserDashboard extends AppCompatActivity
                 UserDashboard.this.startActivity(myIntent);
             }
         });
+
+
+
+        checkSubscribedtoEmployer();
+
+
     }
 
     @Override
@@ -201,12 +214,12 @@ public class UserDashboard extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        checkavaileble();
+        checkAvaileble();
       //  updateIssueAdapter();
 
     }
 
-    private void checkavaileble(){
+    private void checkAvaileble(){
 
         if(json == null || json.equals("")){
             Intent myIntent = new Intent(this, MainActivity.class);
@@ -244,7 +257,42 @@ public class UserDashboard extends AppCompatActivity
 
   private void checkSubscribedtoEmployer(){
 
-      call
+      Call<Employee> getemployeecall = apiInterface.GET_EMPLOYEE_FROM_TOKEN(accessToken.getAccess_token());
+
+      getemployeecall.enqueue(new Callback<Employee>() {
+          @Override
+          public void onResponse(Call<Employee> call, Response<Employee> response) {
+
+              if(response.isSuccessful()){
+
+                  //if no employer has assigned
+                  if(response.body().employer == null){
+                      Intent intent = new Intent(UserDashboard.this, NoEmployerAssigned.class);
+                      startActivity(intent);
+                      finish();
+
+                  }
+
+                  employee = response.body();
+                //  tv_name.setText(employee.username);
+                //  tv_extrainfo.setText("Hi, " + employee.givenname + employee.familyname );
+
+                  Toast.makeText(UserDashboard.this, employee.givenname + " " + employee.familyname, Toast.LENGTH_SHORT).show();
+
+
+
+
+                  //Checkopenissues
+
+              }
+
+          }
+
+          @Override
+          public void onFailure(Call<Employee> call, Throwable t) {
+
+          }
+      });
 
   }
 

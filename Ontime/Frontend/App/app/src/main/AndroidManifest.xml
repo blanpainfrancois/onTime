@@ -34,10 +34,13 @@
         <activity
             android:name=".Login.Login"
             android:noHistory="true" />
-        <activity android:name=".EmployerSeekerPackage.EmployerSeeker"
-            android:noHistory="true"/>
-        <activity android:name=".Issues.AddIssueActivity"
-            android:noHistory="true"></activity>
+        <activity
+            android:name=".EmployerSeekerPackage.EmployerSeeker"
+            android:noHistory="true" />
+        <activity
+            android:name=".Issues.AddIssueActivity"
+            android:noHistory="true" />
+        <activity android:name=".Dashboard.NoEmployerAssigned"></activity>
     </application>
 
 </manifest>
