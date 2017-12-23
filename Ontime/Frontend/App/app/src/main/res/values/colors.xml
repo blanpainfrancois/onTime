@@ -8,4 +8,6 @@
     <color name="purple_trans">#66872C76</color>
     <color name="yellow">#FFF895</color>
     <color name="txt_hint">#33FFFFFF</color>
+    <color name="transparent">#00000000</color>
+
 </resources>
