@@ -3,6 +3,10 @@ package com.dytstudio.signup.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 /**
  * Created by Mo on 28/11/2017.
  */
@@ -43,6 +47,12 @@ public class Issue {
     }
 
     public Issue(){
+    }
+
+    public DateTime getDateTime(){
+
+        DateTime dt = DateTime.parse(issueCreated);
+        return dt;
     }
 
 

@@ -22,7 +22,12 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.gson.Gson;
 
-import org.w3c.dom.Text;
+import org.joda.time.DateTime;
+import org.joda.time.Period;
+import org.joda.time.Seconds;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.PeriodFormatter;
+import org.joda.time.format.PeriodFormatterBuilder;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -39,7 +44,7 @@ public class OpenIssue extends AppCompatActivity {
     MapView mapView;
     
     Button btn_closeissue;
-    TextView tv_title, tv_reason_body;
+    TextView tv_title, tv_reason_body, tv_open_time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +57,49 @@ public class OpenIssue extends AppCompatActivity {
         accessToken = gson.fromJson(json, AccessToken.class);
 
         apiInterface = APIClient.getClient().create(APIInterface.class);
-        
+
+        Thread t = new Thread() {
+
+            @Override
+            public void run() {
+                try {
+
+                    PeriodFormatter HoursMinutesSeconds = new PeriodFormatterBuilder()
+                            .appendHours()
+                            .appendSeparator(":")
+                            .appendMinutes()
+                            .appendSeparator(":")
+                            .appendSeconds()
+                            .toFormatter();
+
+                    while (!isInterrupted()) {
+                        Thread.sleep(1000);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                if(issue != null){
+                                    DateTime dt = DateTime.now();
+
+                                    Period p = new Period(issue.getDateTime(), dt);
+
+                                    tv_open_time.setText(HoursMinutesSeconds.print(p));
+                                }
+
+
+
+
+                            }
+                        });
+                    }
+                } catch (InterruptedException e) {
+                }
+            }
+        };
+
+        t.start();
+
+
 
         
 
@@ -69,6 +116,10 @@ public class OpenIssue extends AppCompatActivity {
                     tv_title = (TextView) findViewById(R.id.title_open_issue);
                     btn_closeissue = (Button) findViewById(R.id.btn_close_issue);
                     tv_reason_body = (TextView) findViewById(R.id.close_issue_text);
+                    tv_open_time = (TextView) findViewById(R.id.tv_issue_open);
+
+
+
                     
                     mapView = (MapView) findViewById(R.id.mapView);
                     
@@ -81,6 +132,8 @@ public class OpenIssue extends AppCompatActivity {
 
                     tv_title.setText(issue.reason.reasontitle);
                     tv_reason_body.setText(issue.reason.reason);
+
+
 
                     btn_closeissue.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -135,6 +188,12 @@ public class OpenIssue extends AppCompatActivity {
             }
         });
     }
+
+
+
+
+
+
 
 
 }
