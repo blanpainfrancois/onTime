@@ -42,12 +42,7 @@ public class Issue {
         this.location = location;
     }
 
-    public Issue(Reason reason , String issueCreated, boolean isClosed, Location location){
-        this.reason = reason;
-        this.issueCreated = issueCreated;
-        this.issueClosed = isClosed;
-        this.location = location;
-
+    public Issue(){
     }
 
 
