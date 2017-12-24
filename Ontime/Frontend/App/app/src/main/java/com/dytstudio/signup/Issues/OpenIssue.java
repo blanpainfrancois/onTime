@@ -1,5 +1,6 @@
 package com.dytstudio.signup.Issues;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -16,6 +17,9 @@ import com.dytstudio.signup.Models.Issue;
 import com.dytstudio.signup.R;
 import com.dytstudio.signup.Util.APIClient;
 import com.dytstudio.signup.Util.APIInterface;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.gson.Gson;
 
 import org.w3c.dom.Text;
@@ -32,8 +36,10 @@ public class OpenIssue extends AppCompatActivity {
     String json;
     Issue issue;
     
+    MapView mapView;
+    
     Button btn_closeissue;
-    TextView tv_title;
+    TextView tv_title, tv_reason_body;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +68,19 @@ public class OpenIssue extends AppCompatActivity {
 
                     tv_title = (TextView) findViewById(R.id.title_open_issue);
                     btn_closeissue = (Button) findViewById(R.id.btn_close_issue);
+                    tv_reason_body = (TextView) findViewById(R.id.close_issue_text);
+                    
+                    mapView = (MapView) findViewById(R.id.mapView);
+                    
+                    mapView.getMapAsync(new OnMapReadyCallback() {
+                        @Override
+                        public void onMapReady(GoogleMap googleMap) {
+                            Toast.makeText(OpenIssue.this, "geladen", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
                     tv_title.setText(issue.reason.reasontitle);
+                    tv_reason_body.setText(issue.reason.reason);
 
                     btn_closeissue.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -89,21 +106,32 @@ public class OpenIssue extends AppCompatActivity {
     }
 
     private void closeissue(){
-        Call<Void> closeissuecall = apiInterface.close_issue(accessToken.toString(), issue.issueID);
+        Call<Void> closeissuecall = apiInterface.close_issue(accessToken.getAccess_token(), issue.issueID);
+
+        ProgressDialog pd = new ProgressDialog(OpenIssue.this,R.style.spinner);
+        pd.setCancelable(false);
+        pd.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
+        pd.show();
+
 
         closeissuecall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if(response.isSuccessful()){
                     Intent myIntent = new Intent(OpenIssue.this, UserDashboard.class);
+                    pd.hide();
                     startActivity(myIntent);
                     finish();
                 }
+
+                pd.hide();
+                Toast.makeText(OpenIssue.this, "Issue not closed", Toast.LENGTH_SHORT).show();
             }
+            
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-
+            pd.hide();
             }
         });
     }
