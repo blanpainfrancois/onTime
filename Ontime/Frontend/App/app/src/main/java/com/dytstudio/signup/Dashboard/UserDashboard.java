@@ -201,13 +201,14 @@ public class UserDashboard extends AppCompatActivity
 
                   }
 
-                  employee = response.body();
-                //  tv_name.setText(employee.username);
-                //  tv_extrainfo.setText("Hi, " + employee.givenname + employee.familyname );
+                  else{
+                      employee = response.body();
+                      //  tv_name.setText(employee.username);
+                      //  tv_extrainfo.setText("Hi, " + employee.givenname + employee.familyname );
+                      checkOpenIssue();
+                  }
 
 
-
-                checkOpenIssue();
 
 
 
@@ -238,39 +239,41 @@ public class UserDashboard extends AppCompatActivity
               }
 
 
+              else{
+                  setContentView(R.layout.activity_user_dashboard);
+
+                  FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+                  recyclerView = (RecyclerView) findViewById(R.id.issue_list);
+                  LinearLayoutManager llm = new LinearLayoutManager(UserDashboard.this);
+                  recyclerView.setLayoutManager(llm);
+
+                  tv_name = (TextView) findViewById(R.id.name);
+                  tv_extrainfo = (TextView) findViewById(R.id.extrainfo);
+
+                  DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                  Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+                  setSupportActionBar(toolbar);
+
+                  ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                          UserDashboard.this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                  drawer.addDrawerListener(toggle);
+                  toggle.syncState();
+
+                  NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+                  navigationView.setNavigationItemSelectedListener(UserDashboard.this);
 
 
-
-              setContentView(R.layout.activity_user_dashboard);
-
-              FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-              recyclerView = (RecyclerView) findViewById(R.id.issue_list);
-              LinearLayoutManager llm = new LinearLayoutManager(UserDashboard.this);
-              recyclerView.setLayoutManager(llm);
-
-              tv_name = (TextView) findViewById(R.id.name);
-              tv_extrainfo = (TextView) findViewById(R.id.extrainfo);
-
-              DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-              Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-              setSupportActionBar(toolbar);
-
-              ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                      UserDashboard.this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-              drawer.addDrawerListener(toggle);
-              toggle.syncState();
-
-              NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-              navigationView.setNavigationItemSelectedListener(UserDashboard.this);
+                  fab.setOnClickListener(new View.OnClickListener() {
+                      @Override
+                      public void onClick(View view) {
+                          Intent myIntent = new Intent(UserDashboard.this, AddIssueActivity.class);
+                          UserDashboard.this.startActivity(myIntent);
+                      }
+                  });
+              }
 
 
-              fab.setOnClickListener(new View.OnClickListener() {
-                  @Override
-                  public void onClick(View view) {
-                      Intent myIntent = new Intent(UserDashboard.this, AddIssueActivity.class);
-                      UserDashboard.this.startActivity(myIntent);
-                  }
-              });          }
+                 }
 
           @Override
           public void onFailure(Call<Issue> call, Throwable t) {
