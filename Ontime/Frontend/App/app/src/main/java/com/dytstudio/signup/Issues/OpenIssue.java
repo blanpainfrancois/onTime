@@ -66,10 +66,16 @@ public class OpenIssue extends AppCompatActivity {
                 try {
 
                     PeriodFormatter HoursMinutesSeconds = new PeriodFormatterBuilder()
+                            .printZeroAlways()
+                            .minimumPrintedDigits(2)
                             .appendHours()
                             .appendSeparator(":")
+                            .printZeroAlways()
+                            .minimumPrintedDigits(2)
                             .appendMinutes()
                             .appendSeparator(":")
+                            .printZeroAlways()
+                            .minimumPrintedDigits(2)
                             .appendSeconds()
                             .toFormatter();
 
@@ -82,7 +88,8 @@ public class OpenIssue extends AppCompatActivity {
                                 if(issue != null){
                                     DateTime dt = DateTime.now();
 
-                                    Period p = new Period(issue.getDateTime(), dt);
+                                    //Door verschillende tijdzones
+                                    Period p = new Period(issue.getDateTime(), dt).minusHours(1);
 
                                     tv_open_time.setText(HoursMinutesSeconds.print(p));
                                 }
