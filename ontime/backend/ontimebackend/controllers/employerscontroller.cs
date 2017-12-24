@@ -164,26 +164,6 @@ namespace OnTimeBackend.Controllers
 
             }
 
-        static async void GetData()
-    {
-        //We will make a GET request to a really cool website...
-       
-         string baseUrl = "http://mwolfhoffman.com";
-        //The 'using' will help to prevent memory leaks.
-        //Create a new instance of HttpClient
-        using (HttpClient client = new HttpClient())
-        
-        //Setting up the response...         
-        
-  using (HttpResponseMessage res = await client.GetAsync(baseUrl))
-        using (HttpContent content = res.Content)
-        {
-            string data = await content.ReadAsStringAsync();
-            if (data != null)
-        {
-            Console.WriteLine(data);
-        }
-    }
-}
+
         }
     }
