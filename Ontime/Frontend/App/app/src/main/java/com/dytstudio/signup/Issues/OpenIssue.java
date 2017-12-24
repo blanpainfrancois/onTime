@@ -40,6 +40,7 @@ public class OpenIssue extends AppCompatActivity {
     SharedPreferences mPrefs;
     String json;
     Issue issue;
+    Thread t;
     
     MapView mapView;
     
@@ -58,7 +59,7 @@ public class OpenIssue extends AppCompatActivity {
 
         apiInterface = APIClient.getClient().create(APIInterface.class);
 
-        Thread t = new Thread() {
+         t = new Thread() {
 
             @Override
             public void run() {
@@ -85,9 +86,6 @@ public class OpenIssue extends AppCompatActivity {
 
                                     tv_open_time.setText(HoursMinutesSeconds.print(p));
                                 }
-
-
-
 
                             }
                         });
@@ -174,11 +172,16 @@ public class OpenIssue extends AppCompatActivity {
                     Intent myIntent = new Intent(OpenIssue.this, UserDashboard.class);
                     pd.hide();
                     startActivity(myIntent);
+                    t.interrupt();
                     finish();
                 }
 
-                pd.hide();
-                Toast.makeText(OpenIssue.this, "Issue not closed", Toast.LENGTH_SHORT).show();
+               else {
+                    pd.hide();
+                    Toast.makeText(OpenIssue.this, "Issue not closed", Toast.LENGTH_SHORT).show();
+                }
+
+
             }
             
 
