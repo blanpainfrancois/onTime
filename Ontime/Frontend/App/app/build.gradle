@@ -58,4 +58,5 @@ dependencies {
     compile 'co.dift.ui.swipetoaction:library:1.1'
 
 
+    implementation 'com.google.android.gms:play-services-maps:11.6.2'
 }
