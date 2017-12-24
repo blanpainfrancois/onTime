@@ -101,10 +101,7 @@ public class Login extends AppCompatActivity {
                     public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
                         if(response.isSuccessful()){
 
-
-
                             Intent intent = new Intent(Login.this, UserDashboard.class);
-
                             SharedPreferences.Editor prefsEditor = mPrefs.edit();
                             Gson gson = new Gson();
                             String json = gson.toJson(response.body());
@@ -112,6 +109,7 @@ public class Login extends AppCompatActivity {
                             if(prefsEditor.commit()){
                                 Login.this.startActivity(intent);
                                 finish();
+                                pd.hide();
                             }
 
                         }
