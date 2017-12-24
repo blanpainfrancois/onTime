@@ -9,6 +9,8 @@ using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Authorization;
 using OnTimeBackend.Models;
 using Microsoft.AspNetCore.Identity;
+using System.Net.Http;
+using QuickType;
 
 namespace Uber4Cream.Controllers
 {
@@ -106,6 +108,48 @@ namespace Uber4Cream.Controllers
             return BadRequest();
         }
 
+        [HttpGet("getlocationfromaddressfromtoken")]
+        public async Task<IActionResult> GetLocation()
+        {
+            var tokenidentity = await usermanager.GetUserAsync(User);
+
+            var employee = await context.employees.Where(e => e.IdentityID == tokenidentity.Id).Include(e => e.employer).ThenInclude(em => em.address).FirstOrDefaultAsync();
+
+
+            if (employee.employer.address != null)
+            {
+
+                HttpClient client = new HttpClient();
+
+                string baseurl = "https://maps.googleapis.com/maps/api/geocode/json?address=";
+                string apikey = "&key=AIzaSyBNjw8WH4iP9ogdl7Ovy5asQeGJP4RNiqg";
+
+
+                var response = await client.GetStringAsync(baseurl + employee.employer.address.GetAddress() + apikey);
+
+
+                //CUSTOM GOOGLEAPI FACTORY TO GETLOCATION OF EMPLOYER FROM ADDRESS
+                GoogleApi res = GoogleApi.FromJson(response);
+
+
+                return Ok(res.Results[0].Geometry.Location);
+
+            }
+
+            if(employee.employer == null)
+            {
+                return BadRequest("Employee was not assigned to en employer ");
+
+            }
+            if (employee.employer.address == null)
+            {
+                return BadRequest("assigned employer doesn't have an address");
+
+            }
+
+            return BadRequest();
+
+        }
 
 
 

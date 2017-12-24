@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OnTimeBackend.Data;
 using Uber4Cream.Data.DatabaseModels;
 using Microsoft.AspNetCore.Authorization;
 using IdentityServer4.AccessTokenValidation;
-using Microsoft.EntityFrameworkCore;
 using OnTimeBackend.Models.AccountViewModels;
 using OnTimeBackend.Models;
 using Microsoft.AspNetCore.Identity;
-using Uber4Cream.Data.DatabaseModels;
-using System.Collections.ObjectModel;
-
+using System.Net.Http;
+using Newtonsoft.Json.Linq;
+using System.Runtime.Serialization;
+using OnTimeBackend.Data.DatabaseModels;
+using QuickType;
 
 namespace OnTimeBackend.Controllers
 {
@@ -131,22 +131,7 @@ namespace OnTimeBackend.Controllers
                 return Ok(employer);
             }
 
-
-            [HttpGet("NOTREADYgetlocationfromaddressfromemployerid")]
-            public async Task<IActionResult> GetLocation(int employerid)
-        {
-
-            var employer = await context.employers.Where(em => em.EmployerID == employerid).Include(e => e.address).FirstOrDefaultAsync();
-
-            if(employer != null)
-            {
-                return Ok(employer);
-
-            }
-            
-            return BadRequest("employer doesn't exist");
-        }
-
+          
 
             [HttpPost("postaddress")]
             public async Task<IActionResult> postaddress( [FromBody] Address address)
@@ -178,5 +163,27 @@ namespace OnTimeBackend.Controllers
                 return context.employers.Any(e => e.EmployerID == id);
 
             }
+
+        static async void GetData()
+    {
+        //We will make a GET request to a really cool website...
+       
+         string baseUrl = "http://mwolfhoffman.com";
+        //The 'using' will help to prevent memory leaks.
+        //Create a new instance of HttpClient
+        using (HttpClient client = new HttpClient())
+        
+        //Setting up the response...         
+        
+  using (HttpResponseMessage res = await client.GetAsync(baseUrl))
+        using (HttpContent content = res.Content)
+        {
+            string data = await content.ReadAsStringAsync();
+            if (data != null)
+        {
+            Console.WriteLine(data);
+        }
+    }
+}
         }
     }
