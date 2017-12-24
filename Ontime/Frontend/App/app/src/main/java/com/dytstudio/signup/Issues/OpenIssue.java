@@ -3,6 +3,7 @@ package com.dytstudio.signup.Issues;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.Location;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,9 +18,14 @@ import com.dytstudio.signup.Models.Issue;
 import com.dytstudio.signup.R;
 import com.dytstudio.signup.Util.APIClient;
 import com.dytstudio.signup.Util.APIInterface;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 
 import org.joda.time.DateTime;
@@ -29,6 +35,8 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;
 
+import io.nlopez.smartlocation.OnLocationUpdatedListener;
+import io.nlopez.smartlocation.SmartLocation;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -42,8 +50,8 @@ public class OpenIssue extends AppCompatActivity {
     Issue issue;
     Thread t;
     
+    GoogleMap googleMap;
     MapView mapView;
-    
     Button btn_closeissue;
     TextView tv_title, tv_reason_body, tv_open_time;
 
@@ -124,14 +132,30 @@ public class OpenIssue extends AppCompatActivity {
                     tv_open_time = (TextView) findViewById(R.id.tv_issue_open);
 
 
-
-                    
-                    mapView = (MapView) findViewById(R.id.mapView);
-                    
-                    mapView.getMapAsync(new OnMapReadyCallback() {
+                    SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                            .findFragmentById(R.id.map);
+                    mapFragment.getMapAsync(new OnMapReadyCallback() {
                         @Override
                         public void onMapReady(GoogleMap googleMap) {
-                            Toast.makeText(OpenIssue.this, "geladen", Toast.LENGTH_SHORT).show();
+                            googleMap.getUiSettings().setAllGesturesEnabled(true);
+
+                            SmartLocation.with(OpenIssue.this).location().start(new OnLocationUpdatedListener() {
+                                @Override
+                                public void onLocationUpdated(Location location) {
+
+                                    CameraUpdate center=
+                                            CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(),
+                                                    location.getLongitude()));
+                                    CameraUpdate zoom=CameraUpdateFactory.zoomTo(15);
+
+                                    googleMap.moveCamera(center);
+                                    googleMap.animateCamera(zoom);
+
+                                    Toast.makeText(OpenIssue.this, location.toString(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+
                         }
                     });
 
