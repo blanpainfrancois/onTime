@@ -15,5 +15,12 @@ namespace Uber4Cream.Data.DatabaseModels
         public string Country { get; set; }
 
         public Employer employer { get; set; }
+
+       public string GetAddress()
+        {
+
+            return streetname + "+" + housenumber + "+" + city + "+" + zipcode + "+" + Country;
+        }  
+
     }
 }
