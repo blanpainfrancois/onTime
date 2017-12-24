@@ -88,24 +88,24 @@ namespace Uber4Cream.Controllers
         public async Task<IActionResult> GetOpenIssue()
         {
             var useridentity = await usermanager.GetUserAsync(User);
-            var employee = await context.employees.Where(em => em.IdentityID == useridentity.Id).Include(i => i.employer).FirstOrDefaultAsync();
-            var issues = await context.issues.Where(i => i.employee == employee).Where(i => i.IssueClosed == false).Include(r => r.reason).FirstOrDefaultAsync();
+            var employee = await context.employees.Where(em => em.IdentityID == useridentity.Id).Include(i => i.issues).FirstOrDefaultAsync();
 
+            var issue = employee.issues.Where(i => i.IssueClosed == false).FirstOrDefault();
 
-            if (useridentity != null)
+            if(issue == null)
             {
-                if (employee != null && issues != null)
-                {
-                    return Ok(issues);
-                }
-                
-                if (employee == null && issues == null)
-                {
-                    return Ok("No open issue");
-                }
+                return BadRequest("no open requests");
             }
 
+            issue.employee = null;
+
+            if(issue != null)
+            {
+                return Ok(issue);
+            }
             return BadRequest();
+
+
         }
 
         [HttpGet("getlocationfromaddressfromtoken")]
@@ -151,7 +151,34 @@ namespace Uber4Cream.Controllers
 
         }
 
+        [HttpPut("closeissue")]
+        public async Task<IActionResult> closeissue(int id)
+        {
+            var useridentity = await usermanager.GetUserAsync(User);
+            var employee = await context.employees.Where(em => em.IdentityID == useridentity.Id).Include(i => i.employer).Include(i => i.issues).FirstOrDefaultAsync();
 
+            if(employee != null)
+            {
+
+                var tempissue = employee.issues.Where(i => i.IssueID == id).FirstOrDefault();
+                if(tempissue != null)
+                {
+                    tempissue.IssueClosed = true;
+
+                    await context.SaveChangesAsync();
+                    return Ok();
+                }
+
+                else
+                {
+                    return BadRequest("Employee has not such issue with provied ");
+                }
+
+            }
+
+
+            return BadRequest();
+        }
 
     }
 }
