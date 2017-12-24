@@ -17,6 +17,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
 /**
@@ -58,8 +59,12 @@ public interface APIInterface {
         @GET("/api/Issues/issuesfromuser")
         Call<List<Issue>> GET_ISSUES(@Header("Authorization") String token);
 
-        @POST("/api/Issues/changestatus")
-        Call<Void> CHANGE_ISSUESTATUS(@Header("Authorization") String token, @Query("id") int id);
+        @GET("api/Employees/getopenissue")
+        Call<Issue> GET_OPEN_ISSUE(@Header("Authorization") String token);
+
+        @PUT("api/Employees/closeissue")
+        Call<Void> close_issue(@Header("Authorization") String token, @Query("id") int id);
+
 
 
 
