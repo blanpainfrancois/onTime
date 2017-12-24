@@ -11,6 +11,7 @@ using OnTimeBackend.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Net.Http;
 using QuickType;
+using System;
 
 namespace Uber4Cream.Controllers
 {
@@ -88,9 +89,11 @@ namespace Uber4Cream.Controllers
         public async Task<IActionResult> GetOpenIssue()
         {
             var useridentity = await usermanager.GetUserAsync(User);
-            var employee = await context.employees.Where(em => em.IdentityID == useridentity.Id).Include(i => i.issues).FirstOrDefaultAsync();
+            var employee = await context.employees.Where(em => em.IdentityID == useridentity.Id).Include(i => i.issues).ThenInclude(i => i.reason).FirstOrDefaultAsync();
 
             var issue = employee.issues.Where(i => i.IssueClosed == false).FirstOrDefault();
+
+            
 
             if(issue == null)
             {
@@ -164,7 +167,7 @@ namespace Uber4Cream.Controllers
                 if(tempissue != null)
                 {
                     tempissue.IssueClosed = true;
-
+                    tempissue.dateclosed = DateTime.Now;
                     await context.SaveChangesAsync();
                     return Ok();
                 }
