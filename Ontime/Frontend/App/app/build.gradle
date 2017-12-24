@@ -56,6 +56,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:24.0.+'
     compile 'jp.wasabeef:recyclerview-animators:2.2.7'
     compile 'co.dift.ui.swipetoaction:library:1.1'
+    compile 'joda-time:joda-time:2.9.9'
 
 
     implementation 'com.google.android.gms:play-services-maps:11.6.2'
