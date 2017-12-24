@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dytstudio.signup.Issues.AddIssueActivity;
+import com.dytstudio.signup.Issues.OpenIssue;
 import com.dytstudio.signup.Models.Employee;
 import com.dytstudio.signup.Models.Issue;
 import com.dytstudio.signup.Login.Login;
@@ -44,8 +45,6 @@ public class UserDashboard extends AppCompatActivity
     String json;
     APIInterface apiInterface;
     RecyclerView recyclerView;
-    IssueAdapter issueAdapter;
-    List<Issue> issues;
 
     Employee employee;
 
@@ -54,59 +53,14 @@ public class UserDashboard extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_dashboard);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-
-        recyclerView = (RecyclerView) findViewById(R.id.issue_list);
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(llm);
-
         apiInterface = APIClient.getClient().create(APIInterface.class);
-
-        tv_name = (TextView) findViewById(R.id.name);
-        tv_extrainfo = (TextView) findViewById(R.id.extrainfo);
-
-
-
         Gson gson = new Gson();
         json = mPrefs.getString("token", "");
         accessToken = gson.fromJson(json, AccessToken.class);
 
-
-
-
-
-        
-        
-      //  updateIssueAdapter();
-
-
-
-
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent myIntent = new Intent(UserDashboard.this, AddIssueActivity.class);
-                UserDashboard.this.startActivity(myIntent);
-            }
-        });
 
 
 
@@ -215,8 +169,7 @@ public class UserDashboard extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         checkAvaileble();
-      //  updateIssueAdapter();
-
+        checkOpenIssue();
     }
 
     private void checkAvaileble(){
@@ -229,31 +182,6 @@ public class UserDashboard extends AppCompatActivity
 
 
 
-
-  /*  private void updateIssueAdapter(){
-
-
-
-        Call<List<Issue>> issuecall = apiInterface.GET_ISSUES(accessToken.getAccess_token());
-        issuecall.enqueue(new Callback<List<Issue>>() {
-            @Override
-            public void onResponse(Call<List<Issue>> call, Response<List<Issue>> response) {
-                if(response.isSuccessful()){
-                    issueAdapter = new IssueAdapter(response.body(),accessToken);
-                    recyclerView.setAdapter(issueAdapter);
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<List<Issue>> call, Throwable t) {
-
-
-            }
-        });
-    }
-
-    */
 
   private void checkSubscribedtoEmployer(){
 
@@ -279,9 +207,9 @@ public class UserDashboard extends AppCompatActivity
 
 
 
+                checkOpenIssue();
 
 
-                  //Checkopenissues
 
               }
 
@@ -292,6 +220,64 @@ public class UserDashboard extends AppCompatActivity
 
           }
       });
+
+  }
+
+
+  private void checkOpenIssue(){
+
+      Call<Issue> get_open_issue = apiInterface.GET_OPEN_ISSUE(accessToken.getAccess_token());
+
+      get_open_issue.enqueue(new Callback<Issue>() {
+          @Override
+          public void onResponse(Call<Issue> call, Response<Issue> response) {
+              if(response.isSuccessful()){
+                  Intent intent = new Intent(UserDashboard.this, OpenIssue.class);
+                  startActivity(intent);
+                  finish();
+              }
+
+
+
+
+
+              setContentView(R.layout.activity_user_dashboard);
+
+              FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+              recyclerView = (RecyclerView) findViewById(R.id.issue_list);
+              LinearLayoutManager llm = new LinearLayoutManager(UserDashboard.this);
+              recyclerView.setLayoutManager(llm);
+
+              tv_name = (TextView) findViewById(R.id.name);
+              tv_extrainfo = (TextView) findViewById(R.id.extrainfo);
+
+              DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+              Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+              setSupportActionBar(toolbar);
+
+              ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                      UserDashboard.this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+              drawer.addDrawerListener(toggle);
+              toggle.syncState();
+
+              NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+              navigationView.setNavigationItemSelectedListener(UserDashboard.this);
+
+
+              fab.setOnClickListener(new View.OnClickListener() {
+                  @Override
+                  public void onClick(View view) {
+                      Intent myIntent = new Intent(UserDashboard.this, AddIssueActivity.class);
+                      UserDashboard.this.startActivity(myIntent);
+                  }
+              });          }
+
+          @Override
+          public void onFailure(Call<Issue> call, Throwable t) {
+
+          }
+      });
+
 
   }
 
