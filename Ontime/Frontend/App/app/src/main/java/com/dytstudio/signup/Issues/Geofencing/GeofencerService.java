@@ -71,7 +71,7 @@ public class GeofencerService  extends IntentService implements
                     // The GeofenceRequest object.
                     getGeofencingRequest(),
                     getGeofencePendingIntent()
-            ).setResultCallback(this); // Result processed in onResult().
+            ).setResultCallback(this);
         } catch (SecurityException securityException) {
             // Catch exception generated if the app does not use ACCESS_FINE_LOCATION permission.
             Log.i(getClass().getSimpleName(),securityException.getMessage());
