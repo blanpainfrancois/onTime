@@ -202,6 +202,13 @@ public class UserDashboard extends AppCompatActivity
 
                   else{
                       employee = response.body();
+
+                      if(employee.address == null){
+                          Intent intent = new Intent(UserDashboard.this, employerhasnoaddress.class);
+                          startActivity(intent);
+                          finish();
+                      }
+
                       //  tv_name.setText(employee.username);
                       //  tv_extrainfo.setText("Hi, " + employee.givenname + employee.familyname );
                       checkOpenIssue();
