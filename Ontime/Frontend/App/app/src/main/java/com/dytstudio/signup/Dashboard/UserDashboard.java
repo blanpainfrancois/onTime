@@ -167,18 +167,11 @@ public class UserDashboard extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-     //   checkAvaileble();
-      //  checkOpenIssue();
+
+        checkSubscribedtoEmployer();
+        checkOpenIssue();
+
     }
-
-    private void checkAvaileble(){
-
-        if(json == null || json.equals("")){
-            Intent myIntent = new Intent(this, MainActivity.class);
-            startActivity(myIntent);
-        }
-    }
-
 
 
 
