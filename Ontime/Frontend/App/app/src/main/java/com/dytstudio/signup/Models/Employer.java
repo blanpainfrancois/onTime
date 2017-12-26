@@ -11,6 +11,7 @@ public class Employer {
     @SerializedName("employerID")
     @Expose
     public Integer employerID;
+
     @SerializedName("name")
     @Expose
     public String name;
@@ -23,23 +24,19 @@ public class Employer {
     @SerializedName("identityID")
     @Expose
     public String identityID;
+    @SerializedName("address")
+    @Expose
+    public Address address;
 
-    /**
-     *
-     * @param employerID
-     * @param username
-     * @param identityID
-     * @param createdAt
-     * @param name
-     */
-    public Employer(Integer employerID, String name, String username, String createdAt, String identityID) {
+
+    public Employer(Integer employerID, String name, String username, String createdAt, String identityID, Address address) {
         this.employerID = employerID;
         this.name = name;
         this.username = username;
         this.createdAt = createdAt;
         this.identityID = identityID;
+        this.address = address;
     }
-
 
     @Override
     public String toString() {

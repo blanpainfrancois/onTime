@@ -203,7 +203,7 @@ public class UserDashboard extends AppCompatActivity
                   else{
                       employee = response.body();
 
-                      if(employee.address == null){
+                      if(employee.employer.address == null){
                           Intent intent = new Intent(UserDashboard.this, employerhasnoaddress.class);
                           startActivity(intent);
                           finish();
