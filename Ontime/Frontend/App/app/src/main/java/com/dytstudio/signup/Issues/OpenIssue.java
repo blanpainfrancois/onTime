@@ -18,14 +18,18 @@ import com.dytstudio.signup.Models.Issue;
 import com.dytstudio.signup.R;
 import com.dytstudio.signup.Util.APIClient;
 import com.dytstudio.signup.Util.APIInterface;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.gson.Gson;
 
 import org.joda.time.DateTime;
@@ -49,9 +53,18 @@ public class OpenIssue extends AppCompatActivity {
     String json;
     Issue issue;
     Thread t;
+
+    CameraUpdate center;
+    CameraUpdate zoom;
+
+    com.dytstudio.signup.Models.Location locationEmployer;
     
     GoogleMap googleMap;
     MapView mapView;
+    private FusedLocationProviderClient mFusedLocationClient;
+    Location currentlocation;
+    MarkerOptions currentlocationposition;
+
     Button btn_closeissue;
     TextView tv_title, tv_reason_body, tv_open_time;
 
@@ -132,35 +145,80 @@ public class OpenIssue extends AppCompatActivity {
                     tv_open_time = (TextView) findViewById(R.id.tv_issue_open);
 
 
-                    SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                            .findFragmentById(R.id.map);
-                    mapFragment.getMapAsync(new OnMapReadyCallback() {
+                    Call<com.dytstudio.signup.Models.Location> getlocationemployercall = apiInterface.GET_LOCATION_FROM_ADDRESS_EMPLOYER(accessToken.getAccess_token());
+                    getlocationemployercall.enqueue(new Callback<com.dytstudio.signup.Models.Location>() {
                         @Override
-                        public void onMapReady(GoogleMap googleMap) {
-                            googleMap.getUiSettings().setAllGesturesEnabled(true);
+                        public void onResponse(Call<com.dytstudio.signup.Models.Location> call, Response<com.dytstudio.signup.Models.Location> response) {
 
-                            SmartLocation.with(OpenIssue.this).location().start(new OnLocationUpdatedListener() {
-                                @Override
-                                public void onLocationUpdated(Location location) {
+                            if(response.isSuccessful()){
+                                locationEmployer = response.body();
 
-                                    CameraUpdate center=
-                                            CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(),
-                                                    location.getLongitude()));
-                                    CameraUpdate zoom=CameraUpdateFactory.zoomTo(15);
+                                Toast.makeText(OpenIssue.this, Double.toString(locationEmployer.lat), Toast.LENGTH_SHORT).show();
 
-                                    googleMap.moveCamera(center);
-                                    googleMap.animateCamera(zoom);
 
-                                    Toast.makeText(OpenIssue.this, location.toString(), Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                                SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                                        .findFragmentById(R.id.map);
+                                mapFragment.getMapAsync(new OnMapReadyCallback() {
+                                    @Override
+                                    public void onMapReady(GoogleMap googleMap) {
 
+                                        googleMap.setTrafficEnabled(true);
+
+                                        googleMap.addMarker(new MarkerOptions().position(new LatLng(locationEmployer.lat,locationEmployer.lng)).title("locationemployeer"));
+
+                                        CameraPosition cameraPosition = new CameraPosition.Builder()
+                                                .target(new LatLng(locationEmployer.lat,locationEmployer.lng))
+                                                .zoom(14)
+                                                .build();
+
+                                        googleMap.getUiSettings().setZoomControlsEnabled(true);
+                                        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 5000, null);
+
+                                        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getApplicationContext());
+
+
+
+                                        currentlocation = SmartLocation.with(OpenIssue.this).location().getLastLocation();
+
+                                        if(currentlocation != null){
+                                            currentlocationposition = new MarkerOptions().position(new LatLng(currentlocation.getLatitude(), currentlocation.getLongitude())).title("my location");
+                                        }
+
+                                        SmartLocation.with(OpenIssue.this).location().start(new OnLocationUpdatedListener() {
+                                            @Override
+                                            public void onLocationUpdated(Location location) {
+                                                currentlocation = location;
+                                                currentlocationposition = new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("my location");
+                                                googleMap.addMarker(currentlocationposition);
+
+                                            }
+                                        });
+
+
+
+
+
+
+                                    }
+                                });
+                            }
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<com.dytstudio.signup.Models.Location> call, Throwable t) {
 
                         }
                     });
 
+
+
+
+
                     tv_title.setText(issue.reason.reasontitle);
                     tv_reason_body.setText(issue.reason.reason);
+
+
 
 
 
