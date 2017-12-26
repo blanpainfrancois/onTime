@@ -197,8 +197,17 @@ public class OpenIssue extends AppCompatActivity {
                                                         .zoom(14)
                                                         .build();
                                                 googleMap.getUiSettings().setZoomControlsEnabled(true);
-                                                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(locationcamera), 5000, null);
-                                                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(employercameraposition), 1500, null);
+                                                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(locationcamera), 5000, new GoogleMap.CancelableCallback() {
+                                                    @Override
+                                                    public void onFinish() {
+                                                        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(employercameraposition), 1500, null);
+                                                    }
+
+                                                    @Override
+                                                    public void onCancel() {
+
+                                                    }
+                                                });
 
                                             }
                                         });
