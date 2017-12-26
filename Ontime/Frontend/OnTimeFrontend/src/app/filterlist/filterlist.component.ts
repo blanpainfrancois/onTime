@@ -29,12 +29,16 @@ export class TableFilter implements OnInit {
   buttonColor: string = '#fff';
   issuesdata;
   selectedissue;
+  employeeID : number;
+  id;
 
   constructor(public getservice : GetemployeesService ) {
     getservice.getAllEmployees().subscribe(data => {
       this.employees = data;
       this.dataSource = new MatTableDataSource(this.employees);
+      this.employees.employeeID = this.id;
       console.log(this.employees);
+
     });
 
     getservice.employeeToEmployer(5).subscribe( data =>{
@@ -51,6 +55,10 @@ export class TableFilter implements OnInit {
 
     this.wasClicked= !this.wasClicked
     if(this.wasClicked == true){
+      this.getservice.employeeToEmployer(2).subscribe(data =>{
+
+        this.logdata = data;
+      });
       this.buttonColor = '#8BC34A';
     }
     else{
@@ -58,7 +66,9 @@ export class TableFilter implements OnInit {
     }
 
     console.log(this.wasClicked);
-    console.log(this.logdata);
+    console.log(this.dataSource.employee.employerID);
+    console.log(this.dataSource.employees.employeeID);
+    console.log(this.id);
   }
 
   displayIssues(id: number){
