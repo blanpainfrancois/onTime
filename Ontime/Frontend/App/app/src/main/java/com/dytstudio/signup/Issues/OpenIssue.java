@@ -169,7 +169,6 @@ public class OpenIssue extends AppCompatActivity {
 
 
                                         googleMap.getUiSettings().setZoomControlsEnabled(true);
-                                        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 5000, null);
 
                                         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getApplicationContext());
 
@@ -197,10 +196,8 @@ public class OpenIssue extends AppCompatActivity {
                                                         .target(new LatLng(locationEmployer.lat,locationEmployer.lng))
                                                         .zoom(14)
                                                         .build();
-
-                                                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(locationcamera), 5000, null);
-
                                                 googleMap.getUiSettings().setZoomControlsEnabled(true);
+                                                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(locationcamera), 5000, null);
                                                 googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(employercameraposition), 1500, null);
 
                                             }
