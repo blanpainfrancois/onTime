@@ -30,6 +30,14 @@
     <string name="navigation_dummy_item_2">Dummy item 2</string>
     <string name="google_maps_key">AIzaSyAyVfzGdOknhIomMRcr1v_V074rxyORmH4</string>
     <string name="title_activity_maps">Map</string>
+    <string name="geofence_not_available" />
+    <string name="geofence_too_many_geofences" />
+    <string name="geofence_too_many_pending_intents" />
+    <string name="unknown_geofence_error" />
+    <string name="geofence_transition_invalid_type" />
+    <string name="geofence_transition_notification_text" />
+    <string name="geofence_transition_entered" />
+    <string name="geofence_transition_exited" />
 
 
 </resources>

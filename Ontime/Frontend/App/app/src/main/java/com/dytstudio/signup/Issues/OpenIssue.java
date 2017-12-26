@@ -14,12 +14,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dytstudio.signup.Dashboard.UserDashboard;
+import com.dytstudio.signup.Issues.Geofencing.GeofencerService;
 import com.dytstudio.signup.Models.AccessToken;
 import com.dytstudio.signup.Models.Issue;
 import com.dytstudio.signup.R;
 import com.dytstudio.signup.Util.APIClient;
 import com.dytstudio.signup.Util.APIInterface;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.GeofencingClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 
@@ -55,15 +58,12 @@ public class OpenIssue extends AppCompatActivity {
     Issue issue;
     Thread t;
 
-
-
     com.dytstudio.signup.Models.Location locationEmployer;
     
     GoogleMap googlemap;
-    private FusedLocationProviderClient mFusedLocationClient;
     Location currentlocation;
-    MarkerOptions currentmarkeroptions;
     LatLng employerlocation;
+    private GeofencingClient mGeofencingClient;
 
     Button btn_closeissue;
     TextView tv_title, tv_reason_body, tv_open_time;
@@ -79,55 +79,10 @@ public class OpenIssue extends AppCompatActivity {
         accessToken = gson.fromJson(json, AccessToken.class);
 
         apiInterface = APIClient.getClient().create(APIInterface.class);
+        mGeofencingClient = LocationServices.getGeofencingClient(this);
 
-         t = new Thread() {
-
-            @Override
-            public void run() {
-                try {
-
-                    PeriodFormatter HoursMinutesSeconds = new PeriodFormatterBuilder()
-                            .printZeroAlways()
-                            .minimumPrintedDigits(2)
-                            .appendHours()
-                            .appendSeparator(":")
-                            .printZeroAlways()
-                            .minimumPrintedDigits(2)
-                            .appendMinutes()
-                            .appendSeparator(":")
-                            .printZeroAlways()
-                            .minimumPrintedDigits(2)
-                            .appendSeconds()
-                            .toFormatter();
-
-                    while (!isInterrupted()) {
-                        Thread.sleep(1000);
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                if(issue != null){
-                                    DateTime dt = DateTime.now();
-
-                                    //Door verschillende tijdzones
-                                    Period p = new Period(issue.getDateTime(), dt).minusHours(1);
-
-                                    tv_open_time.setText(HoursMinutesSeconds.print(p));
-                                }
-
-                            }
-                        });
-                    }
-                } catch (InterruptedException e) {
-                }
-            }
-        };
-
-        t.start();
-
-
-
-        
+         t = gettimer();
+         t.start();
 
         Call<Issue> get_open_issue = apiInterface.GET_OPEN_ISSUE(accessToken.getAccess_token());
 
@@ -153,7 +108,8 @@ public class OpenIssue extends AppCompatActivity {
                             if(response.isSuccessful()){
                                 locationEmployer = response.body();
 
-                                Toast.makeText(OpenIssue.this, Double.toString(locationEmployer.lat), Toast.LENGTH_SHORT).show();
+
+
 
 
                                 SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -164,12 +120,19 @@ public class OpenIssue extends AppCompatActivity {
 
                                         googlemap = googleMap;
 
+                                        Intent intent = new Intent(OpenIssue.this, GeofencerService.class);
+                                        intent.putExtra("lat", locationEmployer.lat);
+                                        intent.putExtra("lng", locationEmployer.lng);
+
+
+                                        startService(intent);
+
                                         googlemap.setMyLocationEnabled(true);
 
                                         employerlocation = new LatLng(locationEmployer.lat,locationEmployer.lng);
 
                                         googlemap.addMarker(new MarkerOptions().position(employerlocation).title("locationemployeer"));
-                                        googlemap.addCircle(new CircleOptions().center(employerlocation).strokeWidth(0).fillColor(Color.RED).radius(75));
+                                        googlemap.addCircle(new CircleOptions().center(employerlocation).strokeWidth(0).fillColor(Color.RED).radius(30));
 
                                         SmartLocation.with(OpenIssue.this).location().oneFix().start(new OnLocationUpdatedListener() {
                                             @Override
@@ -206,9 +169,13 @@ public class OpenIssue extends AppCompatActivity {
                                                                 public void onFinish() {
 
 
-                                                                    LatLngBounds edges = new LatLngBounds( new LatLng(locationEmployer.lat,locationEmployer.lng), new LatLng(location.getLatitude(),location.getLongitude()));
+                                                                        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+                                                                        builder.include(new LatLng(location.getLatitude(),location.getLongitude())).include(new LatLng(locationEmployer.lat,locationEmployer.lng));
 
-                                                                    googlemap.animateCamera(CameraUpdateFactory.newLatLngBounds(edges, 200), 2000, new GoogleMap.CancelableCallback() {
+
+
+
+                                                                    googlemap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 200), 2000, new GoogleMap.CancelableCallback() {
                                                                         @Override
                                                                         public void onFinish() {
 
@@ -243,21 +210,7 @@ public class OpenIssue extends AppCompatActivity {
                                                     });
                                                 }
 
-
-
-
-
-
-
                                         });
-
-
-
-
-
-
-
-
 
                                     }
                                 });
@@ -304,6 +257,9 @@ public class OpenIssue extends AppCompatActivity {
 
 
     }
+
+
+
 
     private void closeissue(){
         Call<Void> closeissuecall = apiInterface.close_issue(accessToken.getAccess_token(), issue.issueID);
@@ -369,7 +325,52 @@ public class OpenIssue extends AppCompatActivity {
 
     }
 
+    private Thread gettimer(){
 
+
+        return new Thread() {
+
+            @Override
+            public void run() {
+                try {
+
+                    PeriodFormatter HoursMinutesSeconds = new PeriodFormatterBuilder()
+                            .printZeroAlways()
+                            .minimumPrintedDigits(2)
+                            .appendHours()
+                            .appendSeparator(":")
+                            .printZeroAlways()
+                            .minimumPrintedDigits(2)
+                            .appendMinutes()
+                            .appendSeparator(":")
+                            .printZeroAlways()
+                            .minimumPrintedDigits(2)
+                            .appendSeconds()
+                            .toFormatter();
+
+                    while (!isInterrupted()) {
+                        Thread.sleep(1000);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                if(issue != null){
+                                    DateTime dt = DateTime.now();
+
+                                    //Door verschillende tijdzones
+                                    Period p = new Period(issue.getDateTime(), dt).minusHours(1);
+
+                                    tv_open_time.setText(HoursMinutesSeconds.print(p));
+                                }
+
+                            }
+                        });
+                    }
+                } catch (InterruptedException e) {
+                }
+            }
+        };
+    }
 
 
 
