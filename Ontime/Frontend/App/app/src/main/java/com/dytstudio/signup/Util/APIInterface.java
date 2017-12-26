@@ -5,6 +5,7 @@ import com.dytstudio.signup.Models.Employee;
 import com.dytstudio.signup.Models.Issue;
 import com.dytstudio.signup.Models.AccessToken;
 import com.dytstudio.signup.Models.Employer;
+import com.dytstudio.signup.Models.Location;
 import com.dytstudio.signup.Models.PostEmployer;
 
 import java.util.List;
@@ -49,6 +50,9 @@ public interface APIInterface {
         @DELETE("/api/Employees")
         Call<Void> DELETE_EMPLOYER(@Header("Authorization") String token);
 
+        @GET("/api/Employees/getlocationfromaddressfromtoken")
+        Call<com.dytstudio.signup.Models.Location> GET_LOCATION_FROM_ADDRESS_EMPLOYER(@Header("Authorization") String token);
+
 
 
         //ISSUES
@@ -64,6 +68,8 @@ public interface APIInterface {
 
         @PUT("api/Employees/closeissue")
         Call<Void> close_issue(@Header("Authorization") String token, @Query("id") int id);
+
+
 
 
 

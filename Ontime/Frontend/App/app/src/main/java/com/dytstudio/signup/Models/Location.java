@@ -1,23 +1,17 @@
 package com.dytstudio.signup.Models;
 
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by Mo on 28/11/2017.
- */
-
 public class Location {
 
-    @SerializedName("locationID")
+    @SerializedName("lat")
     @Expose
-    public Integer locationID;
-    @SerializedName("latitude")
+    public float lat;
+    @SerializedName("lng")
     @Expose
-    public Float latitude;
-    @SerializedName("longitude")
-    @Expose
-    public Float longitude;
+    public float lng;
 
     /**
      * No args constructor for use in serialization
@@ -28,13 +22,13 @@ public class Location {
 
     /**
      *
-     * @param longitude
-     * @param latitude
+     * @param lng
+     * @param lat
      */
-    public Location(Float latitude, Float longitude) {
-
-        this.locationID = locationID;
-        this.latitude = latitude;
-        this.longitude = longitude;
+    public Location(float lat, float lng) {
+        super();
+        this.lat = lat;
+        this.lng = lng;
     }
+
 }
