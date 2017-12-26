@@ -188,7 +188,7 @@ public class OpenIssue extends AppCompatActivity {
                                                 googleMap.addMarker(currentlocationposition);
 
                                                 CameraPosition locationcamera = new CameraPosition.Builder()
-                                                        .target(new LatLng(locationEmployer.lat,locationEmployer.lng))
+                                                        .target(new LatLng(location.getLatitude(),location.getLongitude()))
                                                         .zoom(14)
                                                         .build();
 
