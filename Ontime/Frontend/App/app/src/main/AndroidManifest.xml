@@ -53,6 +53,7 @@
             android:noHistory="true" />
         <activity android:name=".Dashboard.NoEmployerAssigned" />
         <activity android:name=".Issues.OpenIssue" />
+        <activity android:name=".Dashboard.employerhasnoaddress"></activity>
     </application>
 
 </manifest>
