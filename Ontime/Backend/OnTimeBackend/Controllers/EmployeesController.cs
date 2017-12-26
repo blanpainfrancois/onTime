@@ -42,7 +42,7 @@ namespace Uber4Cream.Controllers
         public async Task<IActionResult> EmployeeFromToken()
         {
             var useridentity = await usermanager.GetUserAsync(User);
-            var employee = await context.employees.Where(em => em.IdentityID == useridentity.Id).Include(i => i.employer).FirstOrDefaultAsync();
+            var employee = await context.employees.Where(em => em.IdentityID == useridentity.Id).Include(i => i.employer).ThenInclude(employer => employer.address).FirstOrDefaultAsync();
                    
 
             if (useridentity != null)
