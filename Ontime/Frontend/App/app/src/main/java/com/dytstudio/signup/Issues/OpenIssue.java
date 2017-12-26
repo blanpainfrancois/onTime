@@ -166,10 +166,7 @@ public class OpenIssue extends AppCompatActivity {
 
                                         googleMap.addMarker(new MarkerOptions().position(new LatLng(locationEmployer.lat,locationEmployer.lng)).title("locationemployeer"));
 
-                                        CameraPosition cameraPosition = new CameraPosition.Builder()
-                                                .target(new LatLng(locationEmployer.lat,locationEmployer.lng))
-                                                .zoom(14)
-                                                .build();
+
 
                                         googleMap.getUiSettings().setZoomControlsEnabled(true);
                                         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition), 5000, null);
@@ -190,6 +187,21 @@ public class OpenIssue extends AppCompatActivity {
                                                 currentlocation = location;
                                                 currentlocationposition = new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("my location");
                                                 googleMap.addMarker(currentlocationposition);
+
+                                                CameraPosition locationcamera = new CameraPosition.Builder()
+                                                        .target(new LatLng(locationEmployer.lat,locationEmployer.lng))
+                                                        .zoom(14)
+                                                        .build();
+
+                                                CameraPosition employercameraposition = new CameraPosition.Builder()
+                                                        .target(new LatLng(locationEmployer.lat,locationEmployer.lng))
+                                                        .zoom(14)
+                                                        .build();
+
+                                                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(locationcamera), 5000, null);
+
+                                                googleMap.getUiSettings().setZoomControlsEnabled(true);
+                                                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(employercameraposition), 1500, null);
 
                                             }
                                         });
