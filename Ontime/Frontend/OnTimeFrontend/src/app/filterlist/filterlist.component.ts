@@ -41,9 +41,12 @@ export class TableFilter implements OnInit {
 
     });
 
-    getservice.employeeToEmployer(5).subscribe( data =>{
+    this.getservice.getAllEmployers().subscribe(data =>{
+
       this.logdata = data;
-    })
+      console.log(data);
+
+    });
 
     getservice.getAllIssues().subscribe(data =>{
       this.issuesdata = data;
@@ -59,6 +62,7 @@ export class TableFilter implements OnInit {
 
         this.logdata = data;
       });
+
       this.buttonColor = '#8BC34A';
     }
     else{
