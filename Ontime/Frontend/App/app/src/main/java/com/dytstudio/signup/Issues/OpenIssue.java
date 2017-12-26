@@ -3,6 +3,7 @@ package com.dytstudio.signup.Issues;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.location.Location;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -19,28 +20,28 @@ import com.dytstudio.signup.R;
 import com.dytstudio.signup.Util.APIClient;
 import com.dytstudio.signup.Util.APIInterface;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
+
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.gson.Gson;
 
 import org.joda.time.DateTime;
 import org.joda.time.Period;
-import org.joda.time.Seconds;
-import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;
 
 import io.nlopez.smartlocation.OnLocationUpdatedListener;
 import io.nlopez.smartlocation.SmartLocation;
+import io.nlopez.smartlocation.location.config.LocationParams;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -54,16 +55,15 @@ public class OpenIssue extends AppCompatActivity {
     Issue issue;
     Thread t;
 
-    CameraUpdate center;
-    CameraUpdate zoom;
+
 
     com.dytstudio.signup.Models.Location locationEmployer;
     
-    GoogleMap googleMap;
-    MapView mapView;
+    GoogleMap googlemap;
     private FusedLocationProviderClient mFusedLocationClient;
     Location currentlocation;
-    MarkerOptions currentlocationposition;
+    MarkerOptions currentmarkeroptions;
+    LatLng employerlocation;
 
     Button btn_closeissue;
     TextView tv_title, tv_reason_body, tv_open_time;
@@ -162,55 +162,97 @@ public class OpenIssue extends AppCompatActivity {
                                     @Override
                                     public void onMapReady(GoogleMap googleMap) {
 
-                                        googleMap.setTrafficEnabled(true);
+                                        googlemap = googleMap;
 
-                                        googleMap.addMarker(new MarkerOptions().position(new LatLng(locationEmployer.lat,locationEmployer.lng)).title("locationemployeer"));
+                                        googlemap.setMyLocationEnabled(true);
 
+                                        employerlocation = new LatLng(locationEmployer.lat,locationEmployer.lng);
 
+                                        googlemap.addMarker(new MarkerOptions().position(employerlocation).title("locationemployeer"));
+                                        googlemap.addCircle(new CircleOptions().center(employerlocation).strokeWidth(0).fillColor(Color.RED).radius(75));
 
-                                        googleMap.getUiSettings().setZoomControlsEnabled(true);
-
-                                        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getApplicationContext());
-
-
-
-                                        currentlocation = SmartLocation.with(OpenIssue.this).location().getLastLocation();
-
-                                        if(currentlocation != null){
-                                            currentlocationposition = new MarkerOptions().position(new LatLng(currentlocation.getLatitude(), currentlocation.getLongitude())).title("my location");
-                                        }
-
-                                        SmartLocation.with(OpenIssue.this).location().start(new OnLocationUpdatedListener() {
+                                        SmartLocation.with(OpenIssue.this).location().oneFix().start(new OnLocationUpdatedListener() {
                                             @Override
                                             public void onLocationUpdated(Location location) {
+
+
                                                 currentlocation = location;
-                                                currentlocationposition = new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("my location");
-                                                googleMap.addMarker(currentlocationposition);
 
-                                                CameraPosition locationcamera = new CameraPosition.Builder()
-                                                        .target(new LatLng(location.getLatitude(),location.getLongitude()))
-                                                        .zoom(14)
-                                                        .build();
+                                                    CameraPosition initcamera = new CameraPosition.Builder()
+                                                            .target(new LatLng(location.getLatitude(),location.getLongitude()))
+                                                            .zoom(8)
+                                                            .build();
 
-                                                CameraPosition employercameraposition = new CameraPosition.Builder()
-                                                        .target(new LatLng(locationEmployer.lat,locationEmployer.lng))
-                                                        .zoom(14)
-                                                        .build();
-                                                googleMap.getUiSettings().setZoomControlsEnabled(true);
-                                                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(locationcamera), 5000, new GoogleMap.CancelableCallback() {
-                                                    @Override
-                                                    public void onFinish() {
-                                                        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(employercameraposition), 1500, null);
-                                                    }
+                                                    CameraPosition locationcamera = new CameraPosition.Builder()
+                                                            .target(new LatLng(location.getLatitude(),location.getLongitude()))
+                                                            .zoom(14)
+                                                            .build();
 
-                                                    @Override
-                                                    public void onCancel() {
+                                                    CameraPosition employercameraposition = new CameraPosition.Builder()
+                                                            .target(new LatLng(locationEmployer.lat,locationEmployer.lng))
+                                                            .zoom(14)
+                                                            .build();
 
-                                                    }
-                                                });
+                                                    googlemap.moveCamera(CameraUpdateFactory.newCameraPosition(initcamera));
 
-                                            }
+                                                    googlemap.getUiSettings().setZoomControlsEnabled(true);
+
+                                                googlemap.animateCamera(CameraUpdateFactory.newCameraPosition(locationcamera), 5000, new GoogleMap.CancelableCallback() {
+                                                        @Override
+                                                        public void onFinish() {
+
+                                                            googlemap.animateCamera(CameraUpdateFactory.newCameraPosition(employercameraposition), 4000, new GoogleMap.CancelableCallback() {
+                                                                @Override
+                                                                public void onFinish() {
+
+
+                                                                    LatLngBounds edges = new LatLngBounds( new LatLng(locationEmployer.lat,locationEmployer.lng), new LatLng(location.getLatitude(),location.getLongitude()));
+
+                                                                    googlemap.animateCamera(CameraUpdateFactory.newLatLngBounds(edges, 200), 2000, new GoogleMap.CancelableCallback() {
+                                                                        @Override
+                                                                        public void onFinish() {
+
+                                                                            changelocationmarker();
+
+                                                                        }
+
+                                                                        @Override
+                                                                        public void onCancel() {
+                                                                            changelocationmarker();
+
+                                                                        }
+
+                                                                    });
+
+
+                                                                }
+
+                                                                @Override
+                                                                public void onCancel() {
+                                                                    changelocationmarker();
+
+                                                                }
+                                                            });
+                                                        }
+
+                                                        @Override
+                                                        public void onCancel() {
+                                                            changelocationmarker();
+
+                                                        }
+                                                    });
+                                                }
+
+
+
+
+
+
+
                                         });
+
+
+
 
 
 
@@ -300,7 +342,32 @@ public class OpenIssue extends AppCompatActivity {
     }
 
 
+    private void changelocationmarker(){
 
+        googlemap.clear();
+        googlemap.setTrafficEnabled(true);
+        googlemap.getUiSettings().setZoomControlsEnabled(true);
+
+
+
+        SmartLocation.with(OpenIssue.this).location().config(LocationParams.NAVIGATION).start(new OnLocationUpdatedListener() {
+            @Override
+            public void onLocationUpdated(Location location) {
+
+                employerlocation = new LatLng(locationEmployer.lat,locationEmployer.lng);
+
+                googlemap.addMarker(new MarkerOptions().position(employerlocation).title("locationemployeer"));
+                googlemap.addCircle(new CircleOptions().center(employerlocation).strokeWidth(0).fillColor(Color.RED).radius(75));
+                currentlocation = location;
+
+
+
+
+            }
+        });
+
+
+    }
 
 
 
