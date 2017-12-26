@@ -31,7 +31,7 @@ export class DashboardComponent  {
         this.user.identityID = data["identityID"];
         this.user.username = data["userName"];
         this.userService.setUser(this.user);
-        console.log(data)
+        //console.log(data)
         this.userService.user.subscribe(data => this.user = data);
         
       }, error =>{

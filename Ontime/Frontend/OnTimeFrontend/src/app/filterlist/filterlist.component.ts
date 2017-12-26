@@ -21,24 +21,69 @@ import {Http, HttpModule} from '@angular/http';
 export class TableFilter implements OnInit {
   error;
   employees;
+  employee;
   names;
-  dataSource
-
-
+  dataSource;
+  logdata;
+  wasClicked = false;
+  buttonColor: string = '#fff';
+  issuesdata;
+  selectedissue;
+  employeeID : number;
+  id;
 
   constructor(public getservice : GetemployeesService ) {
     getservice.getAllEmployees().subscribe(data => {
-
-      console.log(data);
-      
       this.employees = data;
       this.dataSource = new MatTableDataSource(this.employees);
-      
+      this.employees.employeeID = this.id;
+      console.log(this.employees);
 
     });
+
+    this.getservice.getAllEmployers().subscribe(data =>{
+
+      this.logdata = data;
+      console.log(data);
+
+    });
+
+    getservice.getAllIssues().subscribe(data =>{
+      this.issuesdata = data;
+    })
   }
 
-  displayedColumns = ['name','Lastname', 'isChecked'];
+
+  linkEmployees(){
+
+    this.wasClicked= !this.wasClicked
+    if(this.wasClicked == true){
+      this.getservice.employeeToEmployer(2).subscribe(data =>{
+
+        this.logdata = data;
+      });
+
+      this.buttonColor = '#8BC34A';
+    }
+    else{
+      this.buttonColor = '#fff';
+    }
+
+    console.log(this.wasClicked);
+    console.log(this.dataSource.employee.employerID);
+    console.log(this.dataSource.employees.employeeID);
+    console.log(this.id);
+  }
+
+  displayIssues(id: number){
+    for (let x = 0; x < this.issuesdata.length(); x++){
+      if (this.issuesdata.x["employee"] = id){
+        this.selectedissue = this.issuesdata.x;
+      }
+    }
+  }
+
+  displayedColumns = ['employeeID','name','Lastname'];
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -50,13 +95,6 @@ export class TableFilter implements OnInit {
 
 }
 
-export interface Employee {
-  givenname: string;
-  familyname : string;
-  employeeID: number;
-  username: string;
-
-}
 
 
 
