@@ -173,6 +173,14 @@ public class UserDashboard extends AppCompatActivity
 
     }
 
+    @Override
+    protected void onPause(){
+        super.onPause();
+
+        finish();
+
+    }
+
 
 
   private void checkSubscribedtoEmployer(){
