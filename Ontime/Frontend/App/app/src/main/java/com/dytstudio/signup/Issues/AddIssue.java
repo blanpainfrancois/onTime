@@ -18,15 +18,16 @@ import com.dytstudio.signup.Models.Reason;
 import com.dytstudio.signup.R;
 import com.dytstudio.signup.Util.APIClient;
 import com.dytstudio.signup.Util.APIInterface;
+import com.github.johnpersano.supertoasts.library.Style;
+import com.github.johnpersano.supertoasts.library.SuperToast;
+import com.github.johnpersano.supertoasts.library.utils.PaletteUtils;
 import com.google.gson.Gson;
-
-import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddIssueActivity extends AppCompatActivity {
+public class AddIssue extends AppCompatActivity {
 
     FloatingActionButton btn_save_issue;
     EditText et_reason_subject, et_reason_message;
@@ -58,7 +59,7 @@ public class AddIssueActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if(isEmpty(et_reason_message) && isEmpty(et_reason_subject)){
-                    Toast.makeText(AddIssueActivity.this, "Issue cannot be empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddIssue.this, "Issue cannot be empty", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     btn_save_issue.setEnabled(false);
@@ -76,7 +77,7 @@ public class AddIssueActivity extends AppCompatActivity {
 
                     Call<Issue> issue_call = apiInterface.POST_ISSUE(accessToken.getAccess_token(), issue );
 
-                    ProgressDialog pd = new ProgressDialog(AddIssueActivity.this,R.style.spinner);
+                    ProgressDialog pd = new ProgressDialog(AddIssue.this,R.style.spinner);
                     pd.setCancelable(false);
                     pd.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
                     pd.show();
@@ -86,13 +87,24 @@ public class AddIssueActivity extends AppCompatActivity {
                         public void onResponse(Call<Issue> call, Response<Issue> response) {
                             if(response.isSuccessful()){
                                 pd.hide();
+                                new SuperToast(AddIssue.this)
+                                        .setText("Issue added")
+                                        .setDuration(Style.DURATION_SHORT)
+                                        .setColor(PaletteUtils.getTransparentColor(PaletteUtils.MATERIAL_GREEN))
+                                        .setAnimations(Style.ANIMATIONS_POP)
+                                        .show();
                                 finish();
                             }
 
                             else{
                                 btn_save_issue.setEnabled(true);
                                 pd.hide();
-                                Toast.makeText(AddIssueActivity.this, "Issue not added", Toast.LENGTH_SHORT).show();
+                                new SuperToast(AddIssue.this)
+                                        .setText("Issue not added")
+                                        .setDuration(Style.DURATION_SHORT)
+                                        .setColor(PaletteUtils.getTransparentColor(PaletteUtils.MATERIAL_RED))
+                                        .setAnimations(Style.ANIMATIONS_POP)
+                                        .show();
                             }
                         }
 
@@ -100,7 +112,13 @@ public class AddIssueActivity extends AppCompatActivity {
                         public void onFailure(Call<Issue> call, Throwable t) {
                             btn_save_issue.setEnabled(true);
                             pd.hide();
-                            Toast.makeText(AddIssueActivity.this, "Issue not added", Toast.LENGTH_SHORT).show();
+                            new SuperToast(AddIssue.this)
+                                    .setText("Issue not added")
+                                    .setDuration(Style.DURATION_SHORT)
+                                    .setColor(PaletteUtils.getTransparentColor(PaletteUtils.MATERIAL_RED))
+                                    .setAnimations(Style.ANIMATIONS_POP)
+                                    .show();
+
                         }
                     });
 
