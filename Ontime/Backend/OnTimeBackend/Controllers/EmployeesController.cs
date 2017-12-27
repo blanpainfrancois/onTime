@@ -200,5 +200,21 @@ namespace Uber4Cream.Controllers
            return BadRequest();
         }
 
+        [HttpDelete("closeopenissue")]
+        public async Task<IActionResult> deleteopenissue()
+        {
+            var useridentity = await usermanager.GetUserAsync(User);
+            var employee = await context.employees.Where(em => em.IdentityID == useridentity.Id).Include(i => i.issues).ThenInclude(i => i.reason).FirstOrDefaultAsync();
+            var issue = employee.issues.Where(i => i.IssueClosed == false).FirstOrDefault();
+
+            if (issue != null)
+            {
+                context.issues.Remove(issue);
+                await context.SaveChangesAsync();
+                return Ok();
+            }
+
+            return BadRequest();
+        }
     }
 }
