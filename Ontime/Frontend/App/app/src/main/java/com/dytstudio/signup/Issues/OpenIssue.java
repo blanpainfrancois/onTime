@@ -108,10 +108,6 @@ public class OpenIssue extends AppCompatActivity {
                             if(response.isSuccessful()){
                                 locationEmployer = response.body();
 
-
-
-
-
                                 SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                                         .findFragmentById(R.id.map);
                                 mapFragment.getMapAsync(new OnMapReadyCallback() {
@@ -123,6 +119,7 @@ public class OpenIssue extends AppCompatActivity {
                                         Intent intent = new Intent(OpenIssue.this, GeofencerService.class);
                                         intent.putExtra("lat", locationEmployer.lat);
                                         intent.putExtra("lng", locationEmployer.lng);
+                                        intent.putExtra("issueID", issue.issueID);
 
 
                                         startService(intent);
