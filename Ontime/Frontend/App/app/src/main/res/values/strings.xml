@@ -39,5 +39,12 @@
     <string name="geofence_transition_entered" />
     <string name="geofence_transition_exited" />
 
+    <string-array name="reasons">
+        <item>File</item>
+        <item>Kinderen</item>
+        <item>Ziek</item>
+        <item>Custom</item>
+    </string-array>
+
 
 </resources>
