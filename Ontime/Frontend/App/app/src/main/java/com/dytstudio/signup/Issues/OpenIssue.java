@@ -214,6 +214,10 @@ public class OpenIssue extends AppCompatActivity {
 
                                     }
                                 });
+
+
+
+
                             }
 
                         }
@@ -295,6 +299,11 @@ public class OpenIssue extends AppCompatActivity {
             pd.hide();
             }
         });
+    }
+
+
+    private void deleteissue(){
+        //STILL TO IMPLEMENT
     }
 
 
