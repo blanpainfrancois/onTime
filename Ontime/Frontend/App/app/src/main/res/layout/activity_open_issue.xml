@@ -75,6 +75,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="#ff0000"
+                            android:id="@+id/btn_deleteissue"
                             android:text="Delete issue"
                             />
                     </LinearLayout>
