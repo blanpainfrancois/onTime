@@ -183,5 +183,22 @@ namespace Uber4Cream.Controllers
             return BadRequest();
         }
 
+        [HttpPut("timestamparrival")]
+        public async Task<IActionResult> timestamparrival(int id)
+        {
+            var usertoken = await usermanager.GetUserAsync(User);
+            var issue = await context.issues.Where(i => i.IssueID == id).FirstOrDefaultAsync();
+
+            if(issue != null)
+            {
+                issue.timestamp = DateTime.Now;
+                await context.SaveChangesAsync();
+                return Ok();
+
+            }
+
+           return BadRequest();
+        }
+
     }
 }
