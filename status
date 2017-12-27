@@ -1,0 +1,1034 @@
+[33mcommit 3e1e8be0dce987f0f080f9af9316fb9e55554efa[m[33m ([m[1;36mHEAD[m[33m)[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Thu Dec 28 00:30:07 2017 +0100
+
+    fix merge
+
+[33mcommit 5deae499a52a78060664c420d1417a507340a5d0[m[33m ([m[1;32mandroidmo[m[33m)[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Thu Dec 28 00:04:46 2017 +0100
+
+    assign to waze button
+
+[33mcommit aa8228dd591996170e58485337525bba20ba6dd8[m[33m ([m[1;31morigin/androidmo[m[33m)[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Wed Dec 27 23:58:31 2017 +0100
+
+    custom spinner reason body
+
+[33mcommit 307213b0a3eec43fc269c98fcafca8995583d44c[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Wed Dec 27 20:56:01 2017 +0100
+
+    delete issue and small improvements
+
+[33mcommit 886f0db8e9ed9ebafc9a0bf85a318d367894c521[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Wed Dec 27 20:28:10 2017 +0100
+
+    small improvements
+
+[33mcommit e1f5c534bba20e36fd7ed4423f628b86f1156c71[m[33m ([m[1;32mpermissions[m[33m)[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Wed Dec 27 20:18:00 2017 +0100
+
+    added permissions
+    
+    small improvements
+
+[33mcommit b0d8a19b55ec387bd89071de47c0fdc6427318d6[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Wed Dec 27 18:51:22 2017 +0100
+
+    issuetimestampposted
+
+[33mcommit 3422f6d2bdd19a73970c34b9bd18074ae741b5d0[m[33m ([m[1;32mandroidmocardimprovements[m[33m)[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Wed Dec 27 12:19:49 2017 +0100
+
+    open issue layout card improvements
+
+[33mcommit f351e6085f7a0e188b7e60305a944fedc48c5ddc[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Tue Dec 26 18:42:54 2017 +0100
+
+    working geofencing
+
+[33mcommit 8e71f6682170e7d5b15e07da7941f149a65fb071[m
+Merge: 58ccf2e7 5951cca0
+Author: Mo Bouzim <info@norant.be>
+Date:   Tue Dec 26 18:42:14 2017 +0100
+
+    Merge branch 'backup' of https://github.com/blanpainfrancois/onTime into androidmo
+
+[33mcommit 5951cca0de5056302813c77e99a312964534bb21[m
+Author: Seppe Geerinckx <s088608@ap.be>
+Date:   Tue Dec 26 18:41:27 2017 +0100
+
+    pushed code so people can help me
+
+[33mcommit 58ccf2e7d50a42f4d7ef86b04ead24cba6fbbbf1[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Tue Dec 26 18:32:58 2017 +0100
+
+    working geofencing
+
+[33mcommit 7fb1cb88e886cc44452fbb749c6b3af23aa43907[m
+Author: Seppe Geerinckx <s088608@ap.be>
+Date:   Tue Dec 26 16:05:13 2017 +0100
+
+    pushed code so people can help me
+
+[33mcommit 872be3d7a15a1a32935116d473ca4f994fa00e18[m
+Author: Seppe Geerinckx <s088608@ap.be>
+Date:   Tue Dec 26 14:47:02 2017 +0100
+
+    fixed francois issue
+
+[33mcommit 306ebceb60de04f32bf92613d149c39bde2e3018[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Tue Dec 26 14:06:23 2017 +0100
+
+    show current location
+
+[33mcommit 3b00016adfda63c6e5a144427f0315af5fd5101f[m
+Author: François Blanpain <blanpainfrancois@gmail.com>
+Date:   Tue Dec 26 13:33:24 2017 +0100
+
+    retreive issue from id
+
+[33mcommit 5274cf8eca8895ca2ee7d24e001e2f9713c6a3b4[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Tue Dec 26 11:49:27 2017 +0100
+
+    improvements
+
+[33mcommit 7cdc62f91b0ae6afff65bbc58896ed08bf672d1c[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Tue Dec 26 11:48:13 2017 +0100
+
+    improvements
+
+[33mcommit bd9e850cf06eced0c97a21ed6518e703f0592530[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Tue Dec 26 11:45:44 2017 +0100
+
+    added mo
+
+[33mcommit bd8186a3e900699b4de7bff2d1d45a76b1de1959[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Tue Dec 26 11:44:26 2017 +0100
+
+    improved location update
+
+[33mcommit 4a1ec0895710e14e74bd34141dfd539152393695[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Tue Dec 26 11:34:42 2017 +0100
+
+    improved onpause
+
+[33mcommit 0408d31975ef456d42f88bbe406a542021e396cb[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Tue Dec 26 11:32:43 2017 +0100
+
+    check issue on pause
+
+[33mcommit 206becf4046d7f99784f919bc2c8d0392038bb6e[m
+Author: François Blanpain <blanpainfrancois@gmail.com>
+Date:   Tue Dec 26 11:30:28 2017 +0100
+
+    api call issues
+
+[33mcommit b3b5245f504d71f47ae07cd3fde4d81eb175aef7[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Tue Dec 26 11:28:34 2017 +0100
+
+    check if employer has address
+
+[33mcommit fd1395e4a268692fc47d7d4fd568c613e168895f[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Tue Dec 26 11:17:04 2017 +0100
+
+    notify when employer has no address
+
+[33mcommit e6824fa78bcd400436b0bb8e394416b19aa36713[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Tue Dec 26 11:07:12 2017 +0100
+
+    locationupdate
+
+[33mcommit 01f289ce3b3299ebcfe12feb62f7755c1d3eb8a7[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Mon Dec 25 00:17:00 2017 +0100
+
+    working mapview
+
+[33mcommit 73cc0ef8a9b674e12fae3b624e9ef75563fcab0a[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Sun Dec 24 23:23:57 2017 +0100
+
+    improved open issue time
+
+[33mcommit 5bb318499c6f4a29c83841fd5b18c277ca9d53c0[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Sun Dec 24 23:16:24 2017 +0100
+
+    open issue time
+
+[33mcommit 5f8142565ecd8bcb27ae251f21b176bc6e958ca8[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Sun Dec 24 23:13:38 2017 +0100
+
+    open issue time
+
+[33mcommit 9aa84b25d5b6843dc1cd952c872415719492451e[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Sun Dec 24 21:04:37 2017 +0100
+
+    added mapview
+
+[33mcommit 0eef66083bcb69fdf1e2f585c01430e76098a4c5[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Sun Dec 24 19:49:50 2017 +0100
+
+    check openissue
+
+[33mcommit fd59632b2ef33dbf04a6ea86a63b67a3d4e992c4[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Sun Dec 24 01:13:20 2017 +0100
+
+    issueadd
+
+[33mcommit df0b8e675a53b993e9abaccdb6f175f44dab6e9b[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Sun Dec 24 01:01:08 2017 +0100
+
+    post issue
+
+[33mcommit 77e401125c0b4d9f174de89730f63eacda50b4e9[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Sat Dec 23 21:03:57 2017 +0100
+
+    progressbar added
+
+[33mcommit 16eaa305c65f909345fa367e7453412c64c08bb8[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Sat Dec 23 20:36:42 2017 +0100
+
+    no employer assigned to employee
+
+[33mcommit e6ce6f38dbe5fb2e26073b6b26d1f39662d7915a[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Sat Dec 23 19:35:45 2017 +0100
+
+    temp commit
+
+[33mcommit 764ca1fcf57f5e8c409332380df6a6413cd9c806[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Sat Dec 23 19:23:57 2017 +0100
+
+    solved gradle error
+
+[33mcommit cd3557cb771b5dbbdf7c994e665854637204deb6[m
+Author: ClumpsyPenguin <seppe318@gmail.com>
+Date:   Tue Dec 19 17:40:50 2017 +0100
+
+    made on click method when clicked green , added employerID into table
+
+[33mcommit f52b27311bfbb6405b6541d95a195569db486dc4[m[33m ([m[1;31morigin/dataview[m[33m)[m
+Author: themaawaa <maartenwachtersmast@gmail.com>
+Date:   Sun Dec 17 17:37:19 2017 +0100
+
+    added styling to dashboard
+
+[33mcommit 384327d899ef3308ff28ab50d303246931dcea54[m
+Author: François Blanpain <blanpainfrancois@gmail.com>
+Date:   Sun Dec 17 13:01:36 2017 +0100
+
+    click event + post call
+
+[33mcommit c535a36e2581a9afb2feae8e08ad7891adfa6cdf[m
+Author: Seppe Geerinckx <s088608@ap.be>
+Date:   Fri Dec 15 16:50:16 2017 +0100
+
+    cleaned some syntaxes
+
+[33mcommit 913a626da3b1e0dc2339728cfc5e209a218f6354[m[33m ([m[1;32mdataview[m[33m)[m
+Merge: 6988deca fd46dafc
+Author: Mo Bouzim <info@norant.be>
+Date:   Fri Dec 15 16:40:35 2017 +0100
+
+    dataviewissue solved
+
+[33mcommit 6988deca082c1e4e4a6602d025da7be36e7fc5b6[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Fri Dec 15 16:38:39 2017 +0100
+
+    solved dataview issue
+
+[33mcommit fd46dafca6fd7a73053912b4e4e403bac1c8a12e[m
+Author: Seppe Geerinckx <s088608@ap.be>
+Date:   Fri Dec 15 16:08:59 2017 +0100
+
+    fixed  merge issue
+
+[33mcommit 477c48101d6d840ec4d4408c263f8aff6ef54608[m
+Merge: 602f9193 1e386b50
+Author: Seppe Geerinckx <s088608@ap.be>
+Date:   Fri Dec 15 16:08:17 2017 +0100
+
+    fixed francois issue
+
+[33mcommit 602f91930d074d138cfd0ba40940e16152cec9b2[m
+Author: Seppe Geerinckx <s088608@ap.be>
+Date:   Fri Dec 15 16:06:52 2017 +0100
+
+    fixed francois issue
+
+[33mcommit 79affd5743dc31e4e9dba8ce47b820f5ab17e1f3[m
+Author: Seppe Geerinckx <s088608@ap.be>
+Date:   Fri Dec 15 16:05:11 2017 +0100
+
+    fixed francois issue
+
+[33mcommit 1e386b50dca0d703e123253ce26894eea70ffa6e[m
+Author: François Blanpain <blanpainfrancois@gmail.com>
+Date:   Fri Dec 15 16:04:57 2017 +0100
+
+    werkende filter met hardcoded data
+
+[33mcommit 2bf009b48774edf314a62268317b12d8c60bf6d4[m
+Author: Seppe Geerinckx <s088608@ap.be>
+Date:   Fri Dec 15 15:11:29 2017 +0100
+
+    trying to add filterlist from json get
+
+[33mcommit e2f8171ec3cc52c4033eea2d076335205b5dd05b[m
+Author: Seppe Geerinckx <s088608@ap.be>
+Date:   Fri Dec 15 14:40:45 2017 +0100
+
+    fixed francois issue
+
+[33mcommit 6ca4aaeba5ac479c3d23172223a8408ae68d5f8d[m
+Merge: 36c82209 933976e5
+Author: Seppe Geerinckx <s088608@ap.be>
+Date:   Fri Dec 15 14:29:05 2017 +0100
+
+    added lastname into table
+
+[33mcommit 36c822093f519fce7490a60541557be0da1869bd[m
+Author: Seppe Geerinckx <s088608@ap.be>
+Date:   Fri Dec 15 14:28:01 2017 +0100
+
+    added lastname into table
+
+[33mcommit 933976e56b903959c9aff724921aaf118c058ffa[m
+Author: François Blanpain <blanpainfrancois@gmail.com>
+Date:   Fri Dec 15 13:44:17 2017 +0100
+
+    displaying givenname, familyname, employeeID onder filterlist
+
+[33mcommit b071c7a601b59e8aa37cca22b6026c77746c2a83[m
+Merge: 4e7fb66d 500f65e1
+Author: François Blanpain <blanpainfrancois@gmail.com>
+Date:   Fri Dec 15 13:37:50 2017 +0100
+
+    displaying entire json
+
+[33mcommit 4e7fb66ddfb2477efb9d52d11f6b98de1d0a0eef[m
+Author: François Blanpain <blanpainfrancois@gmail.com>
+Date:   Fri Dec 15 13:37:00 2017 +0100
+
+    displaying entire json
+
+[33mcommit 500f65e18a22c12b8bba4aa926035ce282e87654[m
+Author: Seppe Geerinckx <s088608@ap.be>
+Date:   Fri Dec 15 12:00:29 2017 +0100
+
+    added lastname into table
+
+[33mcommit f68c9dbfe7c9ff0a6a0872933535c208cd664a41[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Fri Dec 15 11:54:19 2017 +0100
+
+    changed route for listview
+
+[33mcommit 6d69aceb970528caa3c96b105198337669b8d971[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Fri Dec 15 11:48:42 2017 +0100
+
+    merge branch
+
+[33mcommit 70f25fcde91a4891e96949973046929d2b8ce072[m
+Merge: b3beccd5 4622d61e
+Author: Mo Bouzim <info@norant.be>
+Date:   Fri Dec 15 11:46:18 2017 +0100
+
+    Merge branch 'seppe' of https://github.com/blanpainfrancois/onTime into androidmo
+
+[33mcommit 4622d61e0f4eddc6dd29d2fc84f55c3c271ba7b1[m[33m ([m[1;31morigin/seppe[m[33m)[m
+Author: Seppe Geerinckx <s088608@ap.be>
+Date:   Fri Dec 15 11:45:54 2017 +0100
+
+    Added http headers for authorization
+
+[33mcommit b3beccd59cb9847ff6515c939eb55e0f565b55e9[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Fri Dec 15 11:45:37 2017 +0100
+
+    workingbackend
+
+[33mcommit 1c035d4ad2ec2907a0a520b49432f887db20d135[m
+Merge: 701a5bba 303d8085
+Author: Seppe Geerinckx <s088608@ap.be>
+Date:   Fri Dec 15 11:36:50 2017 +0100
+
+    Added http headers for authorization
+
+[33mcommit 701a5bba2e31b9c06839edb02cb3f4dd1a552d0a[m
+Author: Seppe Geerinckx <s088608@ap.be>
+Date:   Fri Dec 15 11:35:03 2017 +0100
+
+    Added http headers for authorization
+
+[33mcommit 303d8085d7cf5704299b19af8fba371982e77b9f[m
+Merge: 9433cfc2 edac5ef2
+Author: François Blanpain <blanpainfrancois@gmail.com>
+Date:   Fri Dec 15 11:28:55 2017 +0100
+
+    employeeservice added header
+
+[33mcommit af2acfee663a02b189188b1a929703da5cf1b40f[m
+Merge: 65011db3 edac5ef2
+Author: Mo Bouzim <info@norant.be>
+Date:   Fri Dec 15 11:25:42 2017 +0100
+
+    merge conflict solved
+
+[33mcommit 9433cfc26b10fd1561aa58bb83cb2ee34fc0401f[m
+Author: François Blanpain <blanpainfrancois@gmail.com>
+Date:   Fri Dec 15 11:19:36 2017 +0100
+
+    header toegevoegd
+
+[33mcommit edac5ef26ae9915132d58b6ae7cfa7cad1e9e3c8[m[33m ([m[1;32mseppe[m[33m)[m
+Author: Seppe Geerinckx <s088608@ap.be>
+Date:   Fri Dec 15 11:19:10 2017 +0100
+
+    table filter dummy data
+
+[33mcommit 65011db342acf5609e0938a19797455a8423557d[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Fri Dec 15 11:17:51 2017 +0100
+
+    reset cache
+
+[33mcommit 571ef0e10c467a4aadc0ab2639a8133f1b10cce9[m
+Author: Seppe Geerinckx <s088608@ap.be>
+Date:   Fri Dec 15 10:55:27 2017 +0100
+
+    table filter dummy data
+
+[33mcommit 80ed8ef0e9ea85f40409007cd39e4d21949f267d[m
+Author: François Blanpain <blanpainfrancois@gmail.com>
+Date:   Fri Dec 15 10:48:16 2017 +0100
+
+    test data on init
+
+[33mcommit 5456fa04d88d9de50bb0fbb228755d5a8c89bb50[m
+Author: François Blanpain <blanpainfrancois@gmail.com>
+Date:   Fri Dec 15 10:38:37 2017 +0100
+
+    test met knop: negatief
+
+[33mcommit 538e5e1e673a3f2dbe56327ba88762b6802e4f0d[m
+Author: Seppe Geerinckx <s088608@ap.be>
+Date:   Fri Dec 15 10:24:45 2017 +0100
+
+    table filter dummy data
+
+[33mcommit 0547b7efee4013dfdc92cca66f6cb19fd93c06a8[m
+Author: Seppe Geerinckx <s088608@ap.be>
+Date:   Fri Dec 15 10:16:33 2017 +0100
+
+    fixed code
+
+[33mcommit e07064d61d8aa13b2e31f8f1099de99b7aff2df6[m
+Author: Seppe Geerinckx <s088608@ap.be>
+Date:   Fri Dec 15 10:11:30 2017 +0100
+
+    added subscribe service again
+
+[33mcommit da21b8d0f86723609e2d1b675d45e476d7086480[m
+Author: Seppe Geerinckx <s088608@ap.be>
+Date:   Fri Dec 15 10:08:42 2017 +0100
+
+    added subscribe service again
+
+[33mcommit 5bc33535b1d9fbb0323ca8bc4e2d937207501fac[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Thu Dec 14 22:18:24 2017 +0100
+
+    solved gettokenissue
+
+[33mcommit a6e87f506c11940cad788e9466342de80e4acdda[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Thu Dec 14 21:53:12 2017 +0100
+
+    mo: updatet registerform, zowel register als tokenrequestwerkt naar behoren
+
+[33mcommit 58b9d9f8933d7a399635f92f546e89c76a9890c5[m
+Merge: 52333d13 959ca35d
+Author: Mo Bouzim <info@norant.be>
+Date:   Thu Dec 14 21:12:40 2017 +0100
+
+    seppe
+
+[33mcommit 52333d136893399eb8bf5e0ea332ea92bb9ee6f8[m
+Author: Mo Bouzim <info@norant.be>
+Date:   Thu Dec 14 20:55:27 2017 +0100
+
+    temp commit
+
+[33mcommit 959ca35dffaf65632ae55efba5ab4e666bef03b7[m
+Author: Seppe Geerinckx <s088608@ap.be>
+Date:   Thu Dec 14 20:50:59 2017 +0100
+
+    updated angular code
+
+[33mcommit c612b763253ab24520202cf14c015307794a1b9d[m
+Author: Seppe Geerinckx <s088608@ap.be>
+Date:   Wed Dec 13 22:20:08 2017 +0100
+
+    making filterlist getting employees from json get
+
+[33mcommit e2d35c615a850b6fb3431148d966f1594a4d22cf[m
+Author: Seppe Geerinckx <s088608@ap.be>
+Date:   Wed Dec 13 21:55:15 2017 +0100
+
+    making filterlist getting employees from json get
+
+[33mcommit 53fcc4fba569bd630ec8de05841ebcd3d329bff3[m
+Merge: 3c15512a 82a7196e
+Author: Seppe Geerinckx <s088608@ap.be>
+Date:   Wed Dec 13 21:13:32 2017 +0100
+
+    created get employees service
+
+[33mcommit 3c15512ae9787765e9e44969e2226de1ef138fd1[m
+Author: Seppe Geerinckx <s088608@ap.be>
+Date:   Wed Dec 13 21:12:12 2017 +0100
+
+    created get employees service
+
+[33mcommit 82a7196e9c46bac2ae9b07540c8ee7cad197f6b8[m
+Author: François Blanpain <blanpainfrancois@gmail.com>
+Date:   Wed Dec 13 21:06:05 2017 +0100
+
+    getemployees services
+
+[33mcommit 440a63bb41b3ddbf3f268c056f55942b42821a56[m
+Author: Seppe Geerinckx <s088608@ap.be>
+Date:   Wed Dec 13 20:41:39 2017 +0100
+
+    created get employees service
+
+[33mcommit a8d55fce07d842bdb533337de216bbf4c3dda7a5[m
+Author: Seppe Geerinckx <s088608@ap.be>
+Date:   Wed Dec 13 20:04:15 2017 +0100
+
+    fix login in progress'
+
+[33mcommit 4ae10681fa1e5a7a27007888422818e6225afecd[m
+Author: Seppe Geerinckx <s088608@ap.be>
+Date:   Wed Dec 13 11:36:51 2017 +0100
+
+    fix login in progress'
+
+[33mcommit 8f8e36d5f4ba3ca5e51bae289c496c2de6fe7f56[m
+Author: ClumpsyPenguin <seppe318@gmail.com>
+Date:   Tue Dec 12 18:11:59 2017 +0100
+
+    added filterlist fixed error
+
+[33mcommit aa071d4aa417ac378b0e37975df8523903cd6e65[m
+Author: François Blanpain <blanpainfrancois@gmail.com>
+Date:   Tue Dec 12 16:48:45 2017 +0100
+
+    tablefiltering
+
+[33mcommit c436719ea68f4a1b33e2085bab2344d4753ac578[m
+Merge: 1f687e2f 34ffb5d1
+Author: ClumpsyPenguin <seppe318@gmail.com>
+Date:   Tue Dec 12 16:44:02 2017 +0100
+
+    Merge branch 'master' of https://github.com/blanpainfrancois/onTime into seppe
+
+[33mcommit 34ffb5d1a43d8f1a8c264c9a198d27cdb2eec309[m
+Author: Maarten <maartenwachtersmast@gmail.com>
+Date:   Tue Dec 12 15:52:54 2017 +0100
+
+    added styling
+
+[33mcommit 1f687e2f5effe8d102d125481f63d3cd2dbd1b82[m
+Merge: 967b7c50 7a5de108
+Author: ClumpsyPenguin <seppe318@gmail.com>
+Date:   Tue Dec 12 15:44:12 2017 +0100
+
+    Merge branch 'master' of https://github.com/blanpainfrancois/onTime into seppe
+
+[33mcommit 967b7c50d24d0f44a698873fbf3847d3fba77892[m
+Merge: 9cc2ebdc 64c8b3f6
+Author: ClumpsyPenguin <seppe318@gmail.com>
+Date:   Tue Dec 12 15:43:32 2017 +0100
+
+    added filterlist
+
+[33mcommit 7a5de10871dacded8fa494e8f0532733b756b76e[m
+Author: Maarten <maartenwachtersmast@gmail.com>
+Date:   Tue Dec 12 14:32:44 2017 +0100
+
+    added reg text
+
+[33mcommit ac70878094d283507fa512fe92c1943cf57c80ba[m
+Author: Maarten <maartenwachtersmast@gmail.com>
+Date:   Tue Dec 12 14:19:42 2017 +0100
+
+    search dashboard
+
+[33mcommit 27ef7f537222a9159e46d236a88ae1a98281413f[m
+Author: François Blanpain <blanpainfrancois@gmail.com>
+Date:   Tue Dec 12 08:58:30 2017 +0100
+
+    presentation + mockups front
+
+[33mcommit 64c8b3f6c9a60339fcebd78dd09d4ebbf848bdc8[m
+Author: krapton <artuurjanssens@gmail.com>
+Date:   Sun Dec 10 16:53:31 2017 +0100
+
+    added breakeven analysis
+
+[33mcommit 9cc2ebdc6bb91db0496f84dcd4119343d64ca203[m
+Author: ClumpsyPenguin <seppe318@gmail.com>
+Date:   Thu Dec 7 20:49:13 2017 +0100
+
+    dummy commit to merge
+
+[33mcommit f57b3227d2084f177dddb36c323284994b5fc564[m
+Merge: 37336888 87b81047
+Author: mo <info@norant.be>
+Date:   Tue Dec 5 15:18:20 2017 +0100
+
+    merge resolved
+
+[33mcommit 37336888613418f019c51507cddf508e2cb666ad[m
+Author: mo <info@norant.be>
+Date:   Tue Dec 5 15:07:28 2017 +0100
+
+    ontime final presentation
+
+[33mcommit 1c1a36a9e0221e08e1ea48d7fefa947f15b53af5[m
+Merge: 9afc2b2a 87b81047
+Author: ClumpsyPenguin <seppe318@gmail.com>
+Date:   Tue Dec 5 14:56:38 2017 +0100
+
+    Merge branch 'master' of https://github.com/blanpainfrancois/onTime into seppe
+
+[33mcommit 87b81047015cd8ab03cf2fc44f692dfe5cd0b7d0[m
+Author: Maarten <maartenwachtersmast@gmail.com>
+Date:   Tue Dec 5 13:20:50 2017 +0100
+
+    added assets
+
+[33mcommit 9c60a2c9f222f2521b21cd85cebf2621a063ef87[m
+Merge: 30c1c841 1c146bd8
+Author: François Blanpain <blanpainfrancois@gmail.com>
+Date:   Tue Dec 5 12:54:59 2017 +0100
+
+    Merge branch 'master' of https://github.com/blanpainfrancois/onTime into Seppe
+
+[33mcommit 1c146bd8788321c8ce9285c80e3b48bea4d9c2f2[m
+Author: krapton <artuurjanssens@gmail.com>
+Date:   Tue Dec 5 12:03:16 2017 +0100
+
+    upated color png
+
+[33mcommit ab5d9b20142f1c9f389ddda5b3820fd12900a969[m
+Author: krapton <artuurjanssens@gmail.com>
+Date:   Tue Dec 5 12:02:30 2017 +0100
+
+    upated color
+
+[33mcommit 4f35506b6273aba6becfb7a574bb10f4ca0c0c3f[m
+Author: mo <info@norant.be>
+Date:   Mon Dec 4 23:56:31 2017 +0100
+
+    work in progress
+
+[33mcommit 9afc2b2aa626cd77605648fa6d1f0e27d70f8891[m
+Merge: 7b069753 b1060577
+Author: Seppe Geerinckx <s088608@ap.be>
+Date:   Mon Dec 4 23:07:02 2017 +0100
+
+    Merge branch 'master' of https://github.com/blanpainfrancois/onTime into seppe
+
+[33mcommit 73f32f751c14bff685518253e448d505401bd8a1[m
+Author: mo <info@norant.be>
+Date:   Mon Dec 4 19:17:31 2017 +0100
+
+    issues are posted to the server
+
+[33mcommit a4d5212c23a22f1c399cbc9030fa3ce83a6d3261[m
+Author: mo <info@norant.be>
+Date:   Mon Dec 4 19:14:24 2017 +0100
+
+    issues are posted to the server
+
+[33mcommit c812134ece83a109f5276decac13dcb5e55cfb82[m
+Author: mo <info@norant.be>
+Date:   Mon Dec 4 18:26:09 2017 +0100
+
+    reading infrastructure for issuecommits
+
+[33mcommit f7d47ff205857dba0e6d05305f3da73070cbd3ac[m
+Author: mo <info@norant.be>
+Date:   Tue Nov 28 17:34:04 2017 +0100
+
+    added businesshoursmodel to database
+
+[33mcommit 7b0697531f1c6913a4bbae4071d0fdd2395e6eb1[m
+Author: ClumpsyPenguin <seppe318@gmail.com>
+Date:   Tue Nov 28 17:24:06 2017 +0100
+
+    added dependency errors
+
+[33mcommit 32c928e5478493cecb6c4da46b7139807da4da9d[m
+Author: ClumpsyPenguin <seppe318@gmail.com>
+Date:   Tue Nov 28 17:02:08 2017 +0100
+
+    alle francois zagevent
+
+[33mcommit b10605774d63d58641055ef88e3dc6ce527f6ca3[m
+Author: François Blanpain <blanpainfrancois@gmail.com>
+Date:   Tue Nov 28 16:49:36 2017 +0100
+
+    flowchart
+
+[33mcommit 6b6a9c1a7e7e9af40d19fc8e92863eb0ad7b8f3f[m
+Merge: 30c1c841 a71414b3
+Author: ClumpsyPenguin <seppe318@gmail.com>
+Date:   Tue Nov 28 14:36:55 2017 +0100
+
+    Merge branch 'master' of https://github.com/blanpainfrancois/onTime into seppe
+
+[33mcommit 30c1c8412b9deefc774965c54017f58a588531b4[m
+Author: ClumpsyPenguin <seppe318@gmail.com>
+Date:   Tue Nov 28 14:33:53 2017 +0100
+
+    weet niet meer ***
+
+[33mcommit 978c8f633b82b94ba8f375e8f30a832b8b5fffd9[m
+Author: mo <info@norant.be>
+Date:   Tue Nov 28 12:35:06 2017 +0100
+
+    added column reasontitle
+
+[33mcommit 126d62e6f7223163a5eed7a39ec965f6639d4a0b[m
+Author: mo <info@norant.be>
+Date:   Tue Nov 28 10:19:46 2017 +0100
+
+    added issue related controllers and init of reasons classes in android
+
+[33mcommit e7949da13b5bf3954ced86ada5e928b3fd845b08[m
+Author: mo <info@norant.be>
+Date:   Tue Nov 28 00:29:46 2017 +0100
+
+    backend and frontend post specifik employee to an employer
+
+[33mcommit a71414b32a3211785df93b105a46dafa1648bf4c[m
+Author: krapton <artuurjanssens@gmail.com>
+Date:   Tue Nov 28 00:02:09 2017 +0100
+
+    Added initial logo design
+
+[33mcommit 124cb7dab2a991b491860a73c93c08aa5cccff06[m
+Author: mo <info@norant.be>
+Date:   Mon Nov 27 00:29:55 2017 +0100
+
+    token stored in shared preferences
+
+[33mcommit d5f2218afbd060803b14e3819c14479197ea07e3[m
+Author: mo <info@norant.be>
+Date:   Mon Nov 27 00:14:29 2017 +0100
+
+    token stored in shared preferences
+
+[33mcommit d6a3b0168afb44bca90a581e1d267c2c1fb33ac9[m
+Author: mo <info@norant.be>
+Date:   Sun Nov 26 23:54:48 2017 +0100
+
+    employer and employee endpoint added
+
+[33mcommit cf8f622cdcd8bf1af173ac60b9ae5872e86660b2[m
+Author: mo <info@norant.be>
+Date:   Sun Nov 26 22:54:54 2017 +0100
+
+    .gitignore has backend bin included
+
+[33mcommit 93abb32a654b315d9d0be84ed96dcdb670af98b7[m
+Author: mo <info@norant.be>
+Date:   Sun Nov 26 22:54:04 2017 +0100
+
+    updatet loginview
+
+[33mcommit f26ea3a7b11e46437e382a6c09e033ec4ad27542[m
+Author: mo <info@norant.be>
+Date:   Sun Nov 26 21:56:27 2017 +0100
+
+    added util testusers controller
+
+[33mcommit 78f3919de372545b82285131e3f3d72cb073d4a5[m
+Author: mo <info@norant.be>
+Date:   Sun Nov 26 21:14:40 2017 +0100
+
+    added init app
+
+[33mcommit 352431ab375df02002cad40db08e08e777039dca[m
+Author: mo <info@norant.be>
+Date:   Tue Nov 21 19:05:53 2017 +0100
+
+    app register app
+
+[33mcommit 29bf3c16bc11d00a908d0073f7015dc182e93ce7[m
+Author: François Blanpain <blanpainfrancois@gmail.com>
+Date:   Tue Nov 21 17:56:40 2017 +0100
+
+    adding filter list in ts
+
+[33mcommit ec77b8209186f9fb4de117e9d95d3fedf2f49bf3[m
+Author: ClumpsyPenguin <seppe318@gmail.com>
+Date:   Tue Nov 21 17:01:24 2017 +0100
+
+    added url swagger api
+
+[33mcommit 67414432a9c89f60a97b16642cdfa29aaa152acf[m[33m ([m[1;31morigin/Tuur[m[33m)[m
+Author: mo <info@norant.be>
+Date:   Tue Nov 21 16:16:12 2017 +0100
+
+    init
+
+[33mcommit d7cfdea8705957f4e4d710c100bd9311dc8aa363[m
+Author: mo <info@norant.be>
+Date:   Tue Nov 21 16:03:09 2017 +0100
+
+    start
+
+[33mcommit a9a4c28e8f20669d7d72eb73a0246670e8d1871c[m
+Merge: 49c9e710 d97ca2c1
+Author: mo <info@norant.be>
+Date:   Tue Nov 21 15:37:07 2017 +0100
+
+    test
+
+[33mcommit 49c9e7105ad31367f11f61334cc3b2d0ec896789[m
+Author: mo <info@norant.be>
+Date:   Tue Nov 21 15:31:14 2017 +0100
+
+    init app
+
+[33mcommit d97ca2c1a57e2d753ff7a5ffa142fd31448489f8[m
+Author: François Blanpain <blanpainfrancois@gmail.com>
+Date:   Tue Nov 21 15:30:24 2017 +0100
+
+    adding credentials
+
+[33mcommit 8be07b05f5240bb64d188dabd6135734f96cd2be[m
+Author: krapton <artuurjanssens@gmail.com>
+Date:   Tue Nov 21 15:01:56 2017 +0100
+
+    Added cloud based database credentials
+
+[33mcommit 5af809eee3f181484ce4bfc714b72e81b4e72243[m
+Author: ClumsyPenguin <seppe318@gmail.com>
+Date:   Tue Nov 21 14:56:57 2017 +0100
+
+    Update README.md
+
+[33mcommit b6c13aca8cb6ffcc539f3ab49a6f19cdb4beb913[m
+Author: ClumsyPenguin <seppe318@gmail.com>
+Date:   Tue Nov 21 14:56:29 2017 +0100
+
+    Update README.md
+
+[33mcommit 89c9eca0e66635f52cf59a5d21deb06062495d95[m
+Author: ClumsyPenguin <seppe318@gmail.com>
+Date:   Tue Nov 21 14:55:25 2017 +0100
+
+    added uml schema
+
+[33mcommit 862f61049c195b2b401e95fd155a0140901761b5[m
+Author: François Blanpain <blanpainfrancois@gmail.com>
+Date:   Tue Nov 21 01:17:55 2017 +0100
+
+    verwerking user stories + toevoeging beschrijving project
+
+[33mcommit 907640c67ea97b9a56338e03d7c671c264eddbab[m
+Merge: c940f2cf 0cb36ea1
+Author: François Blanpain <blanpainfrancois@gmail.com>
+Date:   Mon Nov 20 20:31:26 2017 +0100
+
+    Merge branch 'master' of https://github.com/blanpainfrancois/onTime
+
+[33mcommit c940f2cf2da3250aa617380e251da9a0e435c79d[m
+Author: François Blanpain <blanpainfrancois@gmail.com>
+Date:   Mon Nov 20 20:29:21 2017 +0100
+
+    printklare vragenlijst
+
+[33mcommit 0cb36ea1a7cfece834d019d688ae39f63fc749d3[m
+Merge: 8bd727a3 c8e3c2fe
+Author: mo <info@norant.be>
+Date:   Sat Nov 18 19:50:55 2017 +0100
+
+    solved mergeconflicts with backend/obj
+
+[33mcommit 8bd727a3e804846c17e2101d14600391f502c243[m
+Author: mo <info@norant.be>
+Date:   Sat Nov 18 19:47:02 2017 +0100
+
+    updatet project structure
+
+[33mcommit c8e3c2fe7b4bc15dc0d4f15d2422a5e064c15343[m
+Merge: 9c485290 d94b59a9
+Author: François Blanpain <blanpainfrancois@gmail.com>
+Date:   Fri Nov 17 11:50:49 2017 +0100
+
+    Merge branch 'master' of https://github.com/blanpainfrancois/onTime
+
+[33mcommit 9c485290074018b0a9fcd39f6fc6d716812fdcb6[m
+Author: François Blanpain <blanpainfrancois@gmail.com>
+Date:   Fri Nov 17 11:50:27 2017 +0100
+
+    integrating swagger, not finished!
+
+[33mcommit d94b59a907a439147013980127a8b2b69c00c70a[m
+Author: krapton <artuurjanssens@gmail.com>
+Date:   Wed Nov 15 15:32:14 2017 +0100
+
+    Added Deployment info
+
+[33mcommit d5a3e52556e264ad769b44404984d85616b5a61d[m
+Merge: 39b2f76d 326e1f2b
+Author: François Blanpain <blanpainfrancois@gmail.com>
+Date:   Tue Nov 14 18:10:15 2017 +0100
+
+    readme template + link server
+
+[33mcommit 39b2f76daa7a2ea1e887fc534656efd617f8c939[m
+Author: François Blanpain <blanpainfrancois@gmail.com>
+Date:   Tue Nov 14 18:05:26 2017 +0100
+
+    readme template + link server
+
+[33mcommit 326e1f2be4f7a2f7e47d7f7b59ead3e1774e0f70[m
+Author: ClumsyPenguin <seppe318@gmail.com>
+Date:   Tue Nov 14 18:01:52 2017 +0100
+
+    Update README.md
+
+[33mcommit 9b24869b3fcd3948bae7021741be9696d9fa60ec[m
+Author: ClumsyPenguin <seppe318@gmail.com>
+Date:   Tue Nov 14 18:01:15 2017 +0100
+
+    Update README.md
+
+[33mcommit 88f4ca08bb61236cff0439ad48ac1e4cbf15eb10[m
+Author: ClumsyPenguin <seppe318@gmail.com>
+Date:   Tue Nov 14 18:00:33 2017 +0100
+
+    Added UML Appvalley.png
+
+[33mcommit 617c5c9fe2cfeda996b7ec3d2f17e361fa4f6372[m
+Author: ClumsyPenguin <seppe318@gmail.com>
+Date:   Tue Nov 14 17:59:20 2017 +0100
+
+    Update README.md
+
+[33mcommit 605114d8e929f66919899ef6e58c74b9d7417c82[m
+Author: ClumsyPenguin <seppe318@gmail.com>
+Date:   Tue Nov 14 17:59:03 2017 +0100
+
+    Update README.md
+
+[33mcommit 0f1b1ddd2dfa043d26a794e227caf9537ff23857[m
+Author: ClumsyPenguin <seppe318@gmail.com>
+Date:   Tue Nov 14 17:57:58 2017 +0100
+
+    Update README.md
+
+[33mcommit ca9b3c735b917378a0fe01cf8eb20d4fd692f558[m
+Author: ClumsyPenguin <seppe318@gmail.com>
+Date:   Tue Nov 14 17:57:09 2017 +0100
+
+    updated readme.md
+
+[33mcommit 858eae2198ccbbc1cc704a7846aa4218ab2e3d23[m
+Author: Maarten Wachters <maartenwachtersmast@gmail.com>
+Date:   Tue Nov 14 17:53:47 2017 +0100
+
+    Delete test.md
+
+[33mcommit 05e7189e8e592ac0e082494500ba2047667b46a7[m
+Author: ClumsyPenguin <seppe318@gmail.com>
+Date:   Tue Nov 14 17:52:11 2017 +0100
+
+    Added UML diagram and PDF
+
+[33mcommit c745db4f5242db9190173e17b098d3ba515ece75[m
+Author: Maarten <maartenwachtersmast@gmail.com>
+Date:   Tue Nov 14 17:48:07 2017 +0100
+
+    removing unnessecary files
+
+[33mcommit 3ba4c93fd03c6e6bb1ad2abc6f4389af31705841[m
+Author: Maarten <maartenwachtersmast@gmail.com>
+Date:   Tue Nov 14 17:13:43 2017 +0100
+
+    removing and ignoring node_modules
+
+[33mcommit 48405a2b307c6f154489f3311cf40235056114d9[m
+Merge: adfc6086 e40b2d2d
+Author: mo <info@norant.be>
+Date:   Tue Nov 14 17:09:45 2017 +0100
+
+    Merge branch 'master' of https://github.com/blanpainfrancois/onTime
+
+[33mcommit e40b2d2dbbb07270a2b6199d11a4c5033201c670[m
+Author: Maarten <maartenwachtersmast@gmail.com>
+Date:   Tue Nov 14 17:06:24 2017 +0100
+
+    added gitignore
+
+[33mcommit adfc6086341dedc617494b74c33054aa6b88f4ab[m
+Author: mo <info@norant.be>
+Date:   Tue Nov 14 17:05:13 2017 +0100
+
+    added entities and added mobile app
+
+[33mcommit 8b2e24a269ea7f14d3d50ccbadef13fc79bcc5eb[m
+Author: Maarten <maartenwachtersmast@gmail.com>
+Date:   Tue Nov 7 15:48:53 2017 +0100
+
+    added angular for noobs file
+
+[33mcommit fdc82daef5c0bb5dc838b1fab9c60d0ce080ba50[m
+Author: Maarten <maartenwachtersmast@gmail.com>
+Date:   Tue Nov 7 15:45:05 2017 +0100
+
+    test
+
+[33mcommit 1c53edb493af8c6f6f855fed29ae84f5072d1e38[m
+Author: mo <info@norant.be>
+Date:   Tue Nov 7 15:36:11 2017 +0100
+
+    first commit
