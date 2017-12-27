@@ -225,8 +225,6 @@ public class UserDashboard extends AppCompatActivity
                           finish();
                       }
 
-                      //  tv_name.setText(employee.username);
-                      //  tv_extrainfo.setText("Hi, " + employee.givenname + employee.familyname );
                       checkOpenIssue();
                   }
 
