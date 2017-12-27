@@ -20,6 +20,9 @@ import com.dytstudio.signup.Models.Issue;
 import com.dytstudio.signup.R;
 import com.dytstudio.signup.Util.APIClient;
 import com.dytstudio.signup.Util.APIInterface;
+import com.github.johnpersano.supertoasts.library.Style;
+import com.github.johnpersano.supertoasts.library.SuperToast;
+import com.github.johnpersano.supertoasts.library.utils.PaletteUtils;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.GeofencingClient;
 import com.google.android.gms.location.LocationServices;
@@ -65,7 +68,7 @@ public class OpenIssue extends AppCompatActivity {
     LatLng employerlocation;
     private GeofencingClient mGeofencingClient;
 
-    Button btn_closeissue;
+    Button btn_closeissue, btn_delete_issue;
     TextView tv_title, tv_reason_body, tv_open_time;
 
     @Override
@@ -98,7 +101,59 @@ public class OpenIssue extends AppCompatActivity {
                     btn_closeissue = (Button) findViewById(R.id.btn_close_issue);
                     tv_reason_body = (TextView) findViewById(R.id.close_issue_text);
                     tv_open_time = (TextView) findViewById(R.id.tv_issue_open);
+                    btn_delete_issue = (Button) findViewById(R.id.btn_deleteissue);
 
+                    btn_delete_issue.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                            ProgressDialog pd = new ProgressDialog(OpenIssue.this,R.style.spinner);
+                            pd.setCancelable(false);
+                            pd.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
+                            pd.show();
+
+                            Call<Void> delete_call = apiInterface.DELETE_OPEN_ISSUE(accessToken.getAccess_token());
+                            delete_call.enqueue(new Callback<Void>() {
+                                @Override
+                                public void onResponse(Call<Void> call, Response<Void> response) {
+                                    if(response.isSuccessful()){
+                                        new SuperToast(OpenIssue.this)
+                                                .setText("Issue deleted")
+                                                .setDuration(Style.DURATION_SHORT)
+                                                .setColor(PaletteUtils.getTransparentColor(PaletteUtils.MATERIAL_GREEN))
+                                                .setAnimations(Style.ANIMATIONS_POP)
+                                                .show();
+
+                                        pd.hide();
+
+                                        Intent myIntent = new Intent(OpenIssue.this, UserDashboard.class);
+                                        pd.hide();
+                                        startActivity(myIntent);
+                                        t.interrupt();
+                                        finish();
+
+                                    }
+                                    else{
+                                        new SuperToast(OpenIssue.this)
+                                                .setText("Issue not deleted")
+                                                .setDuration(Style.DURATION_SHORT)
+                                                .setColor(PaletteUtils.getTransparentColor(PaletteUtils.MATERIAL_RED))
+                                                .setAnimations(Style.ANIMATIONS_POP)
+                                                .show();
+
+                                        pd.hide();
+
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<Void> call, Throwable t) {
+
+                                }
+                            });
+
+                        }
+                    });
 
                     Call<com.dytstudio.signup.Models.Location> getlocationemployercall = apiInterface.GET_LOCATION_FROM_ADDRESS_EMPLOYER(accessToken.getAccess_token());
                     getlocationemployercall.enqueue(new Callback<com.dytstudio.signup.Models.Location>() {
@@ -263,6 +318,8 @@ public class OpenIssue extends AppCompatActivity {
 
 
     private void closeissue(){
+
+
         Call<Void> closeissuecall = apiInterface.close_issue(accessToken.getAccess_token(), issue.issueID);
 
         ProgressDialog pd = new ProgressDialog(OpenIssue.this,R.style.spinner);
@@ -275,6 +332,14 @@ public class OpenIssue extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if(response.isSuccessful()){
+
+                    new SuperToast(OpenIssue.this)
+                            .setText("Issue closed")
+                            .setDuration(Style.DURATION_SHORT)
+                            .setColor(PaletteUtils.getTransparentColor(PaletteUtils.MATERIAL_GREEN))
+                            .setAnimations(Style.ANIMATIONS_POP)
+                            .show();
+
                     Intent myIntent = new Intent(OpenIssue.this, UserDashboard.class);
                     pd.hide();
                     startActivity(myIntent);
@@ -283,8 +348,14 @@ public class OpenIssue extends AppCompatActivity {
                 }
 
                else {
+                    new SuperToast(OpenIssue.this)
+                            .setText("Issue not closed")
+                            .setDuration(Style.DURATION_SHORT)
+                            .setColor(PaletteUtils.getTransparentColor(PaletteUtils.MATERIAL_RED))
+                            .setAnimations(Style.ANIMATIONS_POP)
+                            .show();
+
                     pd.hide();
-                    Toast.makeText(OpenIssue.this, "Issue not closed", Toast.LENGTH_SHORT).show();
                 }
 
 
