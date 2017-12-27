@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.location.Location;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -68,7 +69,7 @@ public class OpenIssue extends AppCompatActivity {
     LatLng employerlocation;
     private GeofencingClient mGeofencingClient;
 
-    Button btn_closeissue, btn_delete_issue;
+    Button btn_closeissue, btn_delete_issue, btn_open_in_waze;
     TextView tv_title, tv_reason_body, tv_open_time;
 
     @Override
@@ -102,7 +103,7 @@ public class OpenIssue extends AppCompatActivity {
                     tv_reason_body = (TextView) findViewById(R.id.close_issue_text);
                     tv_open_time = (TextView) findViewById(R.id.tv_issue_open);
                     btn_delete_issue = (Button) findViewById(R.id.btn_deleteissue);
-
+                    btn_open_in_waze = (Button) findViewById(R.id.btn_openinwaze);
                     btn_delete_issue.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -123,13 +124,10 @@ public class OpenIssue extends AppCompatActivity {
                                                 .setColor(PaletteUtils.getTransparentColor(PaletteUtils.MATERIAL_GREEN))
                                                 .setAnimations(Style.ANIMATIONS_POP)
                                                 .show();
-
-                                        pd.hide();
-
-                                        Intent myIntent = new Intent(OpenIssue.this, UserDashboard.class);
-                                        pd.hide();
-                                        startActivity(myIntent);
                                         t.interrupt();
+                                        pd.hide();
+                                        Intent myIntent = new Intent(OpenIssue.this, UserDashboard.class);
+                                        startActivity(myIntent);
                                         finish();
 
                                     }
@@ -163,6 +161,17 @@ public class OpenIssue extends AppCompatActivity {
                             if(response.isSuccessful()){
                                 locationEmployer = response.body();
 
+                                btn_open_in_waze.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        String url = "https://waze.com/ul?ll=" + String.valueOf(locationEmployer.lat)+","+ String.valueOf(locationEmployer.lng);
+                                        Intent i = new Intent(Intent.ACTION_VIEW);
+                                        i.setData(Uri.parse(url));
+                                        startActivity(i);
+                                    }
+                                });
+
+
                                 SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                                         .findFragmentById(R.id.map);
                                 mapFragment.getMapAsync(new OnMapReadyCallback() {
@@ -179,7 +188,13 @@ public class OpenIssue extends AppCompatActivity {
 
                                         startService(intent);
 
-                                        googlemap.setMyLocationEnabled(true);
+                                        try{
+                                            googlemap.setMyLocationEnabled(true);
+
+                                        }
+                                        catch (SecurityException e){
+                                            e.printStackTrace();
+                                        }
 
                                         employerlocation = new LatLng(locationEmployer.lat,locationEmployer.lng);
 
@@ -368,13 +383,6 @@ public class OpenIssue extends AppCompatActivity {
             }
         });
     }
-
-
-    private void deleteissue(){
-        //STILL TO IMPLEMENT
-    }
-
-
     private void changelocationmarker(){
 
         googlemap.clear();
