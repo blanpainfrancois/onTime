@@ -1,7 +1,9 @@
 package com.dytstudio.signup.Issues;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -65,7 +67,7 @@ public class OpenIssue extends AppCompatActivity {
     Thread t;
 
     com.dytstudio.signup.Models.Location locationEmployer;
-    
+
     GoogleMap googlemap;
     Location currentlocation;
     LatLng employerlocation;
@@ -106,54 +108,85 @@ public class OpenIssue extends AppCompatActivity {
                     tv_open_time = (TextView) findViewById(R.id.tv_issue_open);
                     btn_delete_issue = (Button) findViewById(R.id.btn_deleteissue);
                     btn_open_in_waze = (Button) findViewById(R.id.btn_openinwaze);
+
+                    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            switch (which){
+                                case DialogInterface.BUTTON_POSITIVE:
+
+                                    ProgressDialog pd = new ProgressDialog(OpenIssue.this,R.style.spinner);
+                                    pd.setCancelable(false);
+                                    pd.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
+                                    pd.show();
+
+
+                                    Call<Void> delete_call = apiInterface.DELETE_OPEN_ISSUE(accessToken.getAccess_token());
+                                    delete_call.enqueue(new Callback<Void>() {
+                                        @Override
+                                        public void onResponse(Call<Void> call, Response<Void> response) {
+                                            if(response.isSuccessful()){
+                                                new SuperToast(OpenIssue.this)
+                                                        .setText("Issue deleted")
+                                                        .setDuration(Style.DURATION_SHORT)
+                                                        .setColor(PaletteUtils.getTransparentColor(PaletteUtils.MATERIAL_GREEN))
+                                                        .setAnimations(Style.ANIMATIONS_POP)
+                                                        .show();
+                                                t.interrupt();
+                                                pd.hide();
+                                                Intent myIntent = new Intent(OpenIssue.this, UserDashboard.class);
+                                                startActivity(myIntent);
+                                                finish();
+
+                                            }
+                                            else{
+                                                new SuperToast(OpenIssue.this)
+                                                        .setText("Issue not deleted")
+                                                        .setDuration(Style.DURATION_SHORT)
+                                                        .setColor(PaletteUtils.getTransparentColor(PaletteUtils.MATERIAL_RED))
+                                                        .setAnimations(Style.ANIMATIONS_POP)
+                                                        .show();
+
+                                                pd.hide();
+
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<Void> call, Throwable t) {
+                                            new SuperToast(OpenIssue.this)
+                                                    .setText("Issue not deleted")
+                                                    .setDuration(Style.DURATION_SHORT)
+                                                    .setColor(PaletteUtils.getTransparentColor(PaletteUtils.MATERIAL_RED))
+                                                    .setAnimations(Style.ANIMATIONS_POP)
+                                                    .show();
+
+                                            pd.hide();
+                                        }
+                                    });
+                                    break;
+
+                                case DialogInterface.BUTTON_NEGATIVE:
+                                    new SuperToast(OpenIssue.this)
+                                            .setText("Issue not deleted")
+                                            .setDuration(Style.DURATION_SHORT)
+                                            .setColor(PaletteUtils.getTransparentColor(PaletteUtils.MATERIAL_RED))
+                                            .setAnimations(Style.ANIMATIONS_POP)
+                                            .show();                                    break;
+                            }
+                        }
+                    };
+
+
                     btn_delete_issue.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-
-                            ProgressDialog pd = new ProgressDialog(OpenIssue.this,R.style.spinner);
-                            pd.setCancelable(false);
-                            pd.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
-                            pd.show();
-
-                            Call<Void> delete_call = apiInterface.DELETE_OPEN_ISSUE(accessToken.getAccess_token());
-                            delete_call.enqueue(new Callback<Void>() {
-                                @Override
-                                public void onResponse(Call<Void> call, Response<Void> response) {
-                                    if(response.isSuccessful()){
-                                        new SuperToast(OpenIssue.this)
-                                                .setText("Issue deleted")
-                                                .setDuration(Style.DURATION_SHORT)
-                                                .setColor(PaletteUtils.getTransparentColor(PaletteUtils.MATERIAL_GREEN))
-                                                .setAnimations(Style.ANIMATIONS_POP)
-                                                .show();
-                                        t.interrupt();
-                                        pd.hide();
-                                        Intent myIntent = new Intent(OpenIssue.this, UserDashboard.class);
-                                        startActivity(myIntent);
-                                        finish();
-
-                                    }
-                                    else{
-                                        new SuperToast(OpenIssue.this)
-                                                .setText("Issue not deleted")
-                                                .setDuration(Style.DURATION_SHORT)
-                                                .setColor(PaletteUtils.getTransparentColor(PaletteUtils.MATERIAL_RED))
-                                                .setAnimations(Style.ANIMATIONS_POP)
-                                                .show();
-
-                                        pd.hide();
-
-                                    }
-                                }
-
-                                @Override
-                                public void onFailure(Call<Void> call, Throwable t) {
-
-                                }
-                            });
-
+                            AlertDialog.Builder builder = new AlertDialog.Builder(OpenIssue.this, R.style.DialogTheme);
+                            builder.setMessage("Are you sure to delete this issue?").setPositiveButton("Yes", dialogClickListener)
+                                    .setNegativeButton("No", dialogClickListener).show();
                         }
                     });
+
 
                     Call<com.dytstudio.signup.Models.Location> getlocationemployercall = apiInterface.GET_LOCATION_FROM_ADDRESS_EMPLOYER(accessToken.getAccess_token());
                     getlocationemployercall.enqueue(new Callback<com.dytstudio.signup.Models.Location>() {
@@ -167,21 +200,38 @@ public class OpenIssue extends AppCompatActivity {
                                     @Override
                                     public void onClick(View view) {
 
-                                        try
-                                        {
-                                            // Launch Waze to look for Hawaii:
-                                            String url = "https://waze.com/ul?ll=" + String.valueOf(locationEmployer.lat)+","+ String.valueOf(locationEmployer.lng)+"&navigate=yes";
-                                            Log.v("waze", url);
+                                        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                switch (which){
+                                                    case DialogInterface.BUTTON_POSITIVE:
+                                                        try
+                                                        {
+                                                            // Launch Waze to look for Hawaii:
+                                                            String url = "https://waze.com/ul?ll=" + String.valueOf(locationEmployer.lat)+","+ String.valueOf(locationEmployer.lng)+"&navigate=yes";
+                                                            Log.v("waze", url);
 
-                                            Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse( url ) );
-                                            startActivity( intent );
-                                        }
-                                        catch ( ActivityNotFoundException ex  )
-                                        {
-                                            // If Waze is not installed, open it in Google Play:
-                                            Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse( "market://details?id=com.waze" ) );
-                                            startActivity(intent);
-                                        }
+                                                            Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse( url ) );
+                                                            startActivity( intent );
+                                                        }
+                                                        catch ( ActivityNotFoundException ex  )
+                                                        {
+                                                            // If Waze is not installed, open it in Google Play:
+                                                            Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse( "market://details?id=com.waze" ) );
+                                                            startActivity(intent);
+                                                        }                                                        break;
+
+                                                    case DialogInterface.BUTTON_NEGATIVE:
+                                                        //No button clicked
+                                                        break;
+                                                }
+                                            }
+                                        };
+
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(OpenIssue.this, R.style.DialogTheme);
+                                        builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener)
+                                                .setNegativeButton("No", dialogClickListener).show();
+
                                     }
                                 });
 
