@@ -49,7 +49,7 @@
             android:name=".Login.Login"
             android:noHistory="true" />
         <activity
-            android:name=".Issues.AddIssueActivity"
+            android:name=".Issues.AddIssue"
             android:noHistory="true" />
         <activity android:name=".Dashboard.NoEmployerAssigned" />
         <activity android:name=".Issues.OpenIssue" />
@@ -60,7 +60,9 @@
             android:exported="false" />
         <service
             android:name=".Issues.Geofencing.GeofenceTransitionsIntentService"
-            android:exported="false"></service>
+            android:exported="false" />
+
+        <activity android:name=".Dashboard.LocationDenied"></activity>
     </application>
 
 </manifest>

@@ -19,7 +19,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dytstudio.signup.Issues.AddIssueActivity;
+import com.dytstudio.signup.Issues.AddIssue;
 import com.dytstudio.signup.Issues.OpenIssue;
 import com.dytstudio.signup.Models.Employee;
 import com.dytstudio.signup.Models.Issue;
@@ -30,8 +30,6 @@ import com.dytstudio.signup.R;
 import com.dytstudio.signup.Util.APIClient;
 import com.dytstudio.signup.Util.APIInterface;
 import com.google.gson.Gson;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -294,7 +292,7 @@ public class UserDashboard extends AppCompatActivity
                       fab.setOnClickListener(new View.OnClickListener() {
                           @Override
                           public void onClick(View view) {
-                              Intent myIntent = new Intent(UserDashboard.this, AddIssueActivity.class);
+                              Intent myIntent = new Intent(UserDashboard.this, AddIssue.class);
                               UserDashboard.this.startActivity(myIntent);
                           }
                       });
