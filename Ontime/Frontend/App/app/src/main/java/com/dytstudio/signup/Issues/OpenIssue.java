@@ -1,6 +1,7 @@
 package com.dytstudio.signup.Issues;
 
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -9,6 +10,7 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -164,10 +166,22 @@ public class OpenIssue extends AppCompatActivity {
                                 btn_open_in_waze.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        String url = "https://waze.com/ul?ll=" + String.valueOf(locationEmployer.lat)+","+ String.valueOf(locationEmployer.lng);
-                                        Intent i = new Intent(Intent.ACTION_VIEW);
-                                        i.setData(Uri.parse(url));
-                                        startActivity(i);
+
+                                        try
+                                        {
+                                            // Launch Waze to look for Hawaii:
+                                            String url = "https://waze.com/ul?ll=" + String.valueOf(locationEmployer.lat)+","+ String.valueOf(locationEmployer.lng)+"&navigate=yes";
+                                            Log.v("waze", url);
+
+                                            Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse( url ) );
+                                            startActivity( intent );
+                                        }
+                                        catch ( ActivityNotFoundException ex  )
+                                        {
+                                            // If Waze is not installed, open it in Google Play:
+                                            Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse( "market://details?id=com.waze" ) );
+                                            startActivity(intent);
+                                        }
                                     }
                                 });
 
