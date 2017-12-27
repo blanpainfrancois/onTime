@@ -54,12 +54,12 @@ export class TableFilter implements OnInit {
   }
 
 
-  linkEmployees(){
-
+  linkEmployees(id: number){
+    console.log(id);
     this.wasClicked= !this.wasClicked
+    
     if(this.wasClicked == true){
-      this.getservice.employeeToEmployer(2).subscribe(data =>{
-
+      this.getservice.employeeToEmployer(id).subscribe(data =>{
         this.logdata = data;
       });
 
@@ -92,7 +92,6 @@ export class TableFilter implements OnInit {
   }
   ngOnInit() {
   }
-
 }
 
 

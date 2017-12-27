@@ -26,8 +26,6 @@ export class GetemployeesService {
       const headers = new HttpHeaders().set('Authorization', "Bearer " + this.authService.getToken()["access_token"]);
       return this.client.post("http://ontimeapi.azurewebsites.net/api/Employers/employeetoemployer?employeeid=" + id, null ,{headers:headers});
 
-     
-
     }
 
   public getAllIssues(){
