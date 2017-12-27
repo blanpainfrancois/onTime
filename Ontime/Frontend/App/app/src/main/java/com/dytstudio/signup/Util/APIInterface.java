@@ -69,6 +69,9 @@ public interface APIInterface {
         @PUT("api/Employees/closeissue")
         Call<Void> close_issue(@Header("Authorization") String token, @Query("id") int id);
 
+        @PUT("/api/Employees/timestamparrival")
+        Call<Void> TIME_STAMP_ARRIVAL(@Header("Authorization") String token, @Query("id") int id);
+
 
 
 

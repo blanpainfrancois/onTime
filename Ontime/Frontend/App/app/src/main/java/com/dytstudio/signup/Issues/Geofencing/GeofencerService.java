@@ -47,12 +47,14 @@ public class GeofencerService  extends IntentService implements
         }
 
         LatLng employerlocation;
+        int issueID;
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
 
 
         employerlocation = new LatLng(intent.getFloatExtra("lat", 0), intent.getFloatExtra("lng", 0)    );
+        issueID = intent.getIntExtra("issueID",0);
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addOnConnectionFailedListener(this)
@@ -145,6 +147,7 @@ public class GeofencerService  extends IntentService implements
             return mGeofencePendingIntent;
         }
         Intent intent = new Intent(this, GeofenceTransitionsIntentService.class);
+        intent.putExtra("issueID", issueID);
         return PendingIntent.getService(this, 0, intent, PendingIntent.
                 FLAG_UPDATE_CURRENT);
     }

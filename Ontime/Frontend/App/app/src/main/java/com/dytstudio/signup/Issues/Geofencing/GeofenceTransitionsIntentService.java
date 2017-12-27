@@ -7,17 +7,32 @@ import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.Intent;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.dytstudio.signup.Issues.OpenIssue;
-import com.dytstudio.signup.MainActivity;
+import com.dytstudio.signup.Models.AccessToken;
+import com.dytstudio.signup.Models.Issue;
 import com.dytstudio.signup.R;
+import com.dytstudio.signup.Util.APIClient;
+import com.dytstudio.signup.Util.APIInterface;
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofenceStatusCodes;
 import com.google.android.gms.location.GeofencingEvent;
+import com.google.gson.Gson;
+
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
@@ -28,6 +43,11 @@ import com.google.android.gms.location.GeofencingEvent;
  */
 public class GeofenceTransitionsIntentService extends IntentService {
     protected static final String TAG = "GeofenceTransitionsIS";
+    int issueID;
+    APIInterface apiInterface;
+    AccessToken accessToken;
+    SharedPreferences mPrefs;
+    String json;
 
     /**
      * This constructor is required, and calls the super IntentService(String)
@@ -36,6 +56,7 @@ public class GeofenceTransitionsIntentService extends IntentService {
     public GeofenceTransitionsIntentService() {
         // Use the TAG to name the worker thread.
         super(TAG);
+
     }
 
     /**
@@ -51,6 +72,14 @@ public class GeofenceTransitionsIntentService extends IntentService {
             return;
         }
 
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        Gson gson = new Gson();
+        json = mPrefs.getString("token", "");
+        accessToken = gson.fromJson(json, AccessToken.class);
+        apiInterface = APIClient.getClient().create(APIInterface.class);
+        issueID = intent.getIntExtra("issueID", 0);
+
         // Get the transition type.
         int geofenceTransition = geofencingEvent.getGeofenceTransition();
 
@@ -62,7 +91,25 @@ public class GeofenceTransitionsIntentService extends IntentService {
             String geofenceTransitionDetails = "Arrived at Employer";
 
             // Send notification and log the transition details.
-            sendNotification(geofenceTransitionDetails);
+
+            Call<Void> timestampcall = apiInterface.TIME_STAMP_ARRIVAL(accessToken.getAccess_token(),issueID);
+
+            timestampcall.enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    if(response.isSuccessful()){
+                        sendNotification(geofenceTransitionDetails);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+
+                }
+            });
+
+
+
             Log.i(TAG, geofenceTransitionDetails);
         } else {
             // Log the error.
@@ -108,6 +155,9 @@ public class GeofenceTransitionsIntentService extends IntentService {
         // Get a notification builder that's compatible with platform versions >= 4
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
 
+        DateTime dt = new DateTime();
+        DateTimeFormatter fmt = DateTimeFormat.forPattern("MM/dd/yyyy");
+
         // Define the notification settings.
         builder.setSmallIcon(R.drawable.logo)
                 // In a real app, you may want to use a library like Volley
@@ -116,7 +166,7 @@ public class GeofenceTransitionsIntentService extends IntentService {
                         R.drawable.logo))
                 .setColor(Color.RED)
                 .setContentTitle(notificationDetails)
-                .setContentText(getString(R.string.geofence_transition_notification_text))
+                .setContentText("Employee arrived at " + fmt.print(dt))
                 .setContentIntent(notificationPendingIntent)
                 .setDefaults(Notification.DEFAULT_SOUND)
                 .setDefaults(Notification.DEFAULT_VIBRATE)
@@ -133,5 +183,7 @@ public class GeofenceTransitionsIntentService extends IntentService {
         // Issue the notification
         mNotificationManager.notify(0, builder.build());
     }
+
+
 
 }
