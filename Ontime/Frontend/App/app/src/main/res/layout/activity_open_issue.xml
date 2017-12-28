@@ -45,18 +45,20 @@
                             android:text="ABCDEFG"
                             android:id="@+id/title_open_issue"
                             android:textColor="#000"
-                            android:textSize="18sp" />
+                            android:textSize="32sp" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="ABCDEFG"
                             android:id="@+id/tv_issue_open"
+                            android:textSize="22sp"
                             android:textColor="#555" />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="ABCDEFG"
+                            android:textSize="15sp"
                             android:id="@+id/close_issue_text"
                             android:textColor="#555" />
 
