@@ -1,7 +1,11 @@
 package com.dytstudio.signup.Dashboard.userdashboardfragments;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,11 +14,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.dytstudio.signup.Dashboard.UserDashboard;
+import com.dytstudio.signup.Issues.AddIssue;
+import com.dytstudio.signup.Models.AccessToken;
+import com.dytstudio.signup.Models.Issue;
 import com.dytstudio.signup.R;
-import com.dytstudio.signup.Dashboard.userdashboardfragments.dummy.DummyContent;
-import com.dytstudio.signup.Dashboard.userdashboardfragments.dummy.DummyContent.DummyItem;
+import com.dytstudio.signup.Util.APIClient;
+import com.dytstudio.signup.Util.APIInterface;
+import com.github.johnpersano.supertoasts.library.Style;
+import com.github.johnpersano.supertoasts.library.SuperToast;
+import com.github.johnpersano.supertoasts.library.utils.PaletteUtils;
+import com.google.gson.Gson;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A fragment representing a list of Items.
@@ -29,6 +45,13 @@ public class IssueFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+
+    private List<Issue> issues;
+
+    AccessToken accessToken;
+    SharedPreferences mPrefs;
+    String json;
+    APIInterface apiInterface;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -53,25 +76,78 @@ public class IssueFragment extends Fragment {
 
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
+
         }
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_issue_list, container, false);
+        RecyclerView rview = (RecyclerView) view.findViewById(R.id.list);
+
 
         // Set the adapter
-        if (view instanceof RecyclerView) {
+        if (rview instanceof RecyclerView) {
             Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                rview.setLayoutManager(new LinearLayoutManager(context));
             } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+                rview.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyIssueRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+
+            mPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+            apiInterface = APIClient.getClient().create(APIInterface.class);
+            Gson gson = new Gson();
+            json = mPrefs.getString("token", "");
+            accessToken = gson.fromJson(json, AccessToken.class);
+
+
+            Call<List<Issue>> issues_call = apiInterface.GET_ISSUES(accessToken.getAccess_token());
+
+            issues_call.enqueue(new Callback<List<Issue>>() {
+                @Override
+                public void onResponse(Call<List<Issue>> call, Response<List<Issue>> response) {
+                    if(response.isSuccessful()){
+                        rview.setAdapter(new MyIssueRecyclerViewAdapter(response.body(), mListener));
+
+                    }
+                    else{
+                        new SuperToast(getContext())
+                                .setText("Issues not loaded")
+                                .setDuration(Style.DURATION_SHORT)
+                                .setColor(PaletteUtils.getTransparentColor(PaletteUtils.MATERIAL_GREEN))
+                                .setAnimations(Style.ANIMATIONS_POP)
+                                .show();
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<List<Issue>> call, Throwable t) {
+                    new SuperToast(getContext())
+                            .setText("Issues not loaded")
+                            .setDuration(Style.DURATION_SHORT)
+                            .setColor(PaletteUtils.getTransparentColor(PaletteUtils.MATERIAL_GREEN))
+                            .setAnimations(Style.ANIMATIONS_POP)
+                            .show();
+                }
+            });
+
         }
+
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        fab.bringToFront();
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(getContext(), AddIssue.class);
+                startActivity(myIntent);
+            }
+        });
         return view;
     }
 
@@ -105,6 +181,6 @@ public class IssueFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(Issue item);
     }
 }
