@@ -229,7 +229,7 @@ public class OpenIssue extends AppCompatActivity {
                                         };
 
                                         AlertDialog.Builder builder = new AlertDialog.Builder(OpenIssue.this, R.style.DialogTheme);
-                                        builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener)
+                                        builder.setMessage("Do you want to open Waze?").setPositiveButton("Yes", dialogClickListener)
                                                 .setNegativeButton("No", dialogClickListener).show();
 
                                     }

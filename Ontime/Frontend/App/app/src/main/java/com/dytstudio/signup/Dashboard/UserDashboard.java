@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -19,6 +21,8 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dytstudio.signup.Dashboard.userdashboardfragments.IssueFragment;
+import com.dytstudio.signup.Dashboard.userdashboardfragments.dummy.DummyContent;
 import com.dytstudio.signup.Issues.AddIssue;
 import com.dytstudio.signup.Issues.OpenIssue;
 import com.dytstudio.signup.Models.Employee;
@@ -36,7 +40,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class UserDashboard extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener , IssueFragment.OnListFragmentInteractionListener {
 
     static boolean active = false;
 
@@ -266,10 +270,11 @@ public class UserDashboard extends AppCompatActivity
 
                       setContentView(R.layout.activity_user_dashboard);
 
+
                       FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-                      recyclerView = (RecyclerView) findViewById(R.id.issue_list);
-                      LinearLayoutManager llm = new LinearLayoutManager(UserDashboard.this);
-                      recyclerView.setLayoutManager(llm);
+
+
+
 
                       tv_name = (TextView) findViewById(R.id.name);
                       tv_extrainfo = (TextView) findViewById(R.id.extrainfo);
@@ -294,6 +299,13 @@ public class UserDashboard extends AppCompatActivity
                               UserDashboard.this.startActivity(myIntent);
                           }
                       });
+
+                      FragmentManager fragmentManager = getSupportFragmentManager();
+                      FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                      IssueFragment issueFragment = new IssueFragment();
+                      fragmentTransaction.add(R.id.ll_userdashboard, issueFragment);
+                      fragmentTransaction.commit();
                   }
               }
 
@@ -314,4 +326,8 @@ public class UserDashboard extends AppCompatActivity
 
   }
 
+    @Override
+    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+
+    }
 }
