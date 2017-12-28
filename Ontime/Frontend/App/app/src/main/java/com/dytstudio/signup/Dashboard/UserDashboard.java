@@ -33,6 +33,9 @@ import com.dytstudio.signup.Models.AccessToken;
 import com.dytstudio.signup.R;
 import com.dytstudio.signup.Util.APIClient;
 import com.dytstudio.signup.Util.APIInterface;
+import com.github.johnpersano.supertoasts.library.Style;
+import com.github.johnpersano.supertoasts.library.SuperToast;
+import com.github.johnpersano.supertoasts.library.utils.PaletteUtils;
 import com.google.gson.Gson;
 
 import retrofit2.Call;
@@ -48,7 +51,6 @@ public class UserDashboard extends AppCompatActivity
     SharedPreferences mPrefs;
     String json;
     APIInterface apiInterface;
-    RecyclerView recyclerView;
 
     Employee employee;
 
@@ -271,10 +273,6 @@ public class UserDashboard extends AppCompatActivity
                       setContentView(R.layout.activity_user_dashboard);
 
 
-                      FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-
-
-
 
                       tv_name = (TextView) findViewById(R.id.name);
                       tv_extrainfo = (TextView) findViewById(R.id.extrainfo);
@@ -282,6 +280,16 @@ public class UserDashboard extends AppCompatActivity
                       DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                       Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
                       setSupportActionBar(toolbar);
+
+
+
+                      FragmentManager fragmentManager = getSupportFragmentManager();
+                      FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                      IssueFragment issueFragment = new IssueFragment();
+                      fragmentTransaction.add(R.id.ll_userdashboard, issueFragment);
+                      fragmentTransaction.commit();
+
 
                       ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                               UserDashboard.this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -292,20 +300,8 @@ public class UserDashboard extends AppCompatActivity
                       navigationView.setNavigationItemSelectedListener(UserDashboard.this);
 
 
-                      fab.setOnClickListener(new View.OnClickListener() {
-                          @Override
-                          public void onClick(View view) {
-                              Intent myIntent = new Intent(UserDashboard.this, AddIssue.class);
-                              UserDashboard.this.startActivity(myIntent);
-                          }
-                      });
 
-                      FragmentManager fragmentManager = getSupportFragmentManager();
-                      FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-                      IssueFragment issueFragment = new IssueFragment();
-                      fragmentTransaction.add(R.id.ll_userdashboard, issueFragment);
-                      fragmentTransaction.commit();
                   }
               }
 
@@ -327,7 +323,10 @@ public class UserDashboard extends AppCompatActivity
   }
 
     @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+    public void onListFragmentInteraction(Issue item) {
+
+
+
 
     }
 }
