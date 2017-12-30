@@ -158,6 +158,26 @@ namespace OnTimeBackend.Controllers
             return BadRequest();
         }
 
+            
+        [HttpGet("getsubcribedemployees")]
+        public async Task<IActionResult> getsubcribedemployees()
+        {
+
+            var tokenuser = await usermanager.GetUserAsync(User);
+            var employer = await context.employers.Where(em => em.IdentityID == tokenuser.Id).Include(em => em.employees).FirstOrDefaultAsync();
+
+            if(employer.employees != null)
+            {
+                return Ok(employer.employees);
+            }
+            if(employer.employees == null)
+            {
+                return Ok("no employees assigned");
+            }
+            return BadRequest();
+        }
+
+
             private bool EmployerExists(int id)
             {
                 return context.employers.Any(e => e.EmployerID == id);
