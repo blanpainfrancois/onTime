@@ -57,7 +57,7 @@ export class TableFilter implements OnInit {
   linkEmployees(id: number){
     console.log(id);
     this.wasClicked= !this.wasClicked
-    
+
     if(this.wasClicked == true){
       this.getservice.employeeToEmployer(id).subscribe(data =>{
         this.logdata = data;
@@ -70,8 +70,6 @@ export class TableFilter implements OnInit {
     }
 
     console.log(this.wasClicked);
-    console.log(this.dataSource.employee.employerID);
-    console.log(this.dataSource.employees.employeeID);
     console.log(this.id);
   }
 

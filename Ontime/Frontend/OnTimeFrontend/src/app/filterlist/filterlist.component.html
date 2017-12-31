@@ -24,9 +24,7 @@
       <mat-header-cell *matHeaderCellDef> Lastname </mat-header-cell>
       <mat-cell *matCellDef="let employee" #familyname  [ngStyle]="{'background-color': buttonColor}" [class.selected]="wasClicked" (click)="linkEmployees(employee.employeeID)"> {{employee.familyname}}  </mat-cell>
     </ng-container>
-
-    <!-- Name Column -->
-</div>
+   </div>
     <!-- Name Column -->
     <mat-header-row *matHeaderRowDef="displayedColumns" ></mat-header-row>
     <mat-row  *matRowDef="let data; columns: displayedColumns;"  >{{this.data}}</mat-row>
