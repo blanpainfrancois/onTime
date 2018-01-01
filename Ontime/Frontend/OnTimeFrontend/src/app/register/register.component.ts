@@ -14,23 +14,23 @@ import { routerTransition } from '../router.transitions';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
   animations: [routerTransition()]
-  
+
 })
 export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
-  
+
 
   message;
   error;
 
-  constructor(private registerService: RegisterService, private authService: AuthService, 
+  constructor(private registerService: RegisterService, private authService: AuthService,
     private router: Router, private fb: FormBuilder) {
       this.createForm();
      }
 
   ngOnInit() {
-  
+
   }
 
   private createForm() {
@@ -42,30 +42,51 @@ export class RegisterComponent implements OnInit {
       passwordvalidate: ['', Validators.required ],
       givenname: ['', Validators.required ],
       familyname: ['', Validators.required ],
-      role: ['', Validators.required ]
+      role: ['employer' ]
     });
   }
 
   public register() {
     if(this.registerForm.valid){
       this.registerService.register(this.registerForm.value).subscribe(data => {
+
         
+
         
-              if(data["succeeded"]){
+
+              
                 this.authService.logIn(this.registerForm.value.username, this.registerForm.value.password).subscribe( data => {
                   if(data){
                     this.authService.setToken(data);
+                    console.log(data);
                     this.router.navigate(["/dashboard"]);
                   }
                 })
-              }
               
+
             }, error => {this.error = error["error"]}
-            
+
             );
+
     }
-    
-    
+    else {
+      this.registerService.register(this.registerForm.value).subscribe(data => {
+
+
+          if(data["succeeded"]){
+            this.authService.logIn(this.registerForm.value.username, this.registerForm.value.password).subscribe( data => {
+              if(data){
+                this.authService.setToken(data);
+                this.router.navigate(["/dashboard"]);
+              }
+            })
+          }
+
+        }, error => {this.error = error["error"]}
+
+      );
+    }
+
   }
 
 }

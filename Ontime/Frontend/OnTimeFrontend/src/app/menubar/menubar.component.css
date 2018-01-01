@@ -5,5 +5,9 @@
 a, a:hover {
   color: currentColor;
   text-decoration: none;
+}
 
+.mat-toolbar.mat-primary{
+  color: #47525E;
+  background: #FFF;
 }
