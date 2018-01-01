@@ -1,9 +1,8 @@
 export class User{
-    public givenName : string;
-    public familyName: string;
+    public employerID : number;
+    public name: string;
     public username: string;
-    public email: string;
-    public role : string ;
-    
+    public createdAt: string;
+    public identityID : string ;
     
 }
