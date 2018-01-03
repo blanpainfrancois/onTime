@@ -31,9 +31,15 @@ namespace OnTimeBackend.Controllers
             _context = context;
         }
 
+<<<<<<< HEAD
+
+        [HttpGet]
+        public async Task<IActionResult> Getemployers()
+=======
         [Authorize(AuthenticationSchemes = IdentityServerAuthenticationDefaults.AuthenticationScheme,
             Policy = "Access Resources")]
         public class EmployersController : Controller
+>>>>>>> 648d18378b841166df235b94017d16e725b8534e
         {
             private readonly ApplicationDbContext context;
             private readonly UserManager<ApplicationUser> usermanager;
@@ -43,6 +49,58 @@ namespace OnTimeBackend.Controllers
                 this.context = context;
                 this.usermanager = usermanager;
 
+<<<<<<< HEAD
+            var employers = context.employers;
+
+            if(employers != null)
+            {
+                return new JsonResult(employers);
+            }
+                   
+
+            return BadRequest();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> employer()
+        {
+
+            var tokenuser = await usermanager.GetUserAsync(User);
+            var employer = await context.employers.Where(e => e.IdentityID == tokenuser.Id).FirstOrDefaultAsync();
+
+
+
+            if (employer != null)
+            {
+                return new JsonResult(employer);
+            }
+
+
+            return BadRequest();
+        }
+
+
+        [HttpPost("subscribe employee to employer")]
+        public async Task<IActionResult> employeetoemployer(int id)
+        {
+            var tokenuser = await usermanager.GetUserAsync(User);
+
+            var employer = await context.employers.Where(e => e.IdentityID == tokenuser.Id).FirstOrDefaultAsync();
+            var employee = await context.employees.Where(em => em.EmployeeID == id).FirstOrDefaultAsync();
+            
+            if(employee != null && employer != null)
+            {
+                employer.employees.Add(employee);
+                await context.SaveChangesAsync();
+
+                return Ok();
+            }
+            
+
+            return BadRequest();
+            
+        }
+=======
             }
 
             // GET: api/Employers
@@ -95,12 +153,17 @@ namespace OnTimeBackend.Controllers
                     return Ok();
                 }
 
+>>>>>>> 648d18378b841166df235b94017d16e725b8534e
 
                 return BadRequest();
 
 
 
 
+<<<<<<< HEAD
+       
+        
+=======
             }
 
             // GET: api/Employers/5
@@ -213,6 +276,7 @@ namespace OnTimeBackend.Controllers
                 context.employers.Remove(employer);
                 await context.SaveChangesAsync();
 
+>>>>>>> 648d18378b841166df235b94017d16e725b8534e
 
                 return Ok(employer);
             }
@@ -224,7 +288,15 @@ namespace OnTimeBackend.Controllers
 
                 return context.employers.Any(e => e.EmployerID == id);
 
+<<<<<<< HEAD
+        
+
+        private bool EmployerExists(int id)
+        {
+            return context.employers.Any(e => e.EmployerID == id);
+=======
             }
+>>>>>>> 648d18378b841166df235b94017d16e725b8534e
         }
     }
 }
