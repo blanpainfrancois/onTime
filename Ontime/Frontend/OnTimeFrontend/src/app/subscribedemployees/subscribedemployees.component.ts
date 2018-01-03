@@ -23,7 +23,8 @@ export class SubscribedemployeesComponent implements OnInit {
       console.log(this.myEmployees);
     });
   }
-
+  
+  displayedColumns = ['employeeID','name','Lastname'];
     
   ngOnInit() {
   }
