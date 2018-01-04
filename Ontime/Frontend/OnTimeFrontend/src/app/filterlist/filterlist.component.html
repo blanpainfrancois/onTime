@@ -29,7 +29,8 @@
     <mat-header-row *matHeaderRowDef="displayedColumns" ></mat-header-row>
     <mat-row  *matRowDef="let data; columns: displayedColumns;"  >{{this.data}}</mat-row>
   </mat-table>
+  <button *ngIf="!user" routerLink="/dashboard/ownemployees" mat-button>Confirm</button>
 </div>
 
-<button *ngIf="!user" routerLink="/dashboard/ownemployees" mat-button>Confirm</button>
+
 

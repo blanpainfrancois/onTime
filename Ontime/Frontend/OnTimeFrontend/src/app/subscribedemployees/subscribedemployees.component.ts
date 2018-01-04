@@ -25,7 +25,18 @@ export class SubscribedemployeesComponent implements OnInit {
   }
   
   displayedColumns = ['employeeID','name','Lastname'];
-    
+  
+  showIssues(id : number){
+
+  }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
+
+
   ngOnInit() {
   }
 
