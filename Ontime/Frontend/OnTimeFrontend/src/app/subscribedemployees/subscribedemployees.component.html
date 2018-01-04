@@ -24,10 +24,14 @@
       <mat-header-cell *matHeaderCellDef> Lastname </mat-header-cell>
       <mat-cell *matCellDef="let employee" #familyname (click)="showIssues(employee.employeeID)"> {{employee.familyname}}  </mat-cell>
     </ng-container>
+
+    <ng-container matColumnDef="Issues">
+      <mat-header-cell *mathHeaderCellDef>Issues</mat-header-cell>
+      <mat-cell *matCellDef="let employee" #issues (click)="showIssues(employee.employeeID)"> {{employee.issues.length}} </mat-cell>
+    </ng-container>
    </div>
     <!-- Name Column -->
     <mat-header-row *matHeaderRowDef="displayedColumns" ></mat-header-row>
-    <mat-row  *matRowDef="let data; columns: displayedColumns;"  >{{this.data}}</mat-row>
+    <mat-row  *matRowDef="let data; columns: displayedColumns;">{{this.data}}</mat-row>
   </mat-table>
 </div>
-

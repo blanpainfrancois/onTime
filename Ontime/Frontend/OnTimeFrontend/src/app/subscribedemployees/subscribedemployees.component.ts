@@ -24,7 +24,7 @@ export class SubscribedemployeesComponent implements OnInit {
     });
   }
   
-  displayedColumns = ['employeeID','name','Lastname'];
+  displayedColumns = ['employeeID','name','Lastname', 'Issues'];
   
   showIssues(id : number){
 
