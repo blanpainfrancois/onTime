@@ -201,8 +201,25 @@ namespace OnTimeBackend.Controllers
             return BadRequest();
         }
 
+        [HttpGet("GetissuesFromEmployee")]
+        public async Task<IActionResult> GetissuesFromEmployee(int employeeid)
+        {
 
-            private bool EmployerExists(int id)
+          //  var tokenuser = await usermanager.GetUserAsync(User);
+          //  var employer = await context.employers.Where(em => em.IdentityID == tokenuser.Id).Include(em => em.employees).ThenInclude(ee => ee.issues).ThenInclude(i => i.reason).FirstOrDefaultAsync();
+            var employee = await context.employees.Where(e => e.EmployeeID == employeeid).Include(i => i.issues).ThenInclude(i => i.reason).FirstOrDefaultAsync();
+
+
+            if(employee != null)
+            {
+                return Ok(employee);
+            }
+            
+            return BadRequest("no employee with such ID");
+        }
+
+
+        private bool EmployerExists(int id)
             {
                 return context.employers.Any(e => e.EmployerID == id);
 
