@@ -125,6 +125,22 @@ namespace OnTimeBackend.Controllers
             return Ok(issue);
         }
 
+        [HttpGet("issuesfromboss")]
+        public async Task<IActionResult> getallissuesfromboss()
+        {
+            var user = await usermanager.GetUserAsync(User);
+
+            var issues = await context.issues.Where(i => i.employee.employer.IdentityID == user.Id).Include(i => i.location).Include(i => i.reason).ToListAsync();
+
+            if (issues != null)
+            {
+                return Ok(issues);
+            }
+
+
+            return BadRequest();
+        }
+
         private bool IssueExists(int id)
         {
             return context.issues.Any(e => e.IssueID == id);
