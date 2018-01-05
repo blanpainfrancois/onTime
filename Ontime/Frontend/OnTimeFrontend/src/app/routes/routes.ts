@@ -11,6 +11,7 @@ import { ProfileComponent } from '../dashboard/profile/profile.component';
 
 import { AuthGuardService } from '../services/auth-guard.service';
 import { SubscribedemployeesComponent } from '../subscribedemployees/subscribedemployees.component';
+import { IssuesComponent } from '../issues/issues.component';
 
 
 
@@ -23,7 +24,8 @@ const appRoutes: Routes = [
       { path: '', component :MainmetricComponent },
       { path: 'profile', component: ProfileComponent},
       {path: 'filterlist', component: TableFilter },
-      {path: 'ownemployees', component: SubscribedemployeesComponent}
+      {path: 'ownemployees', component: SubscribedemployeesComponent}, 
+      {path: 'issues/:id', component: IssuesComponent}
       
 
     ]},
