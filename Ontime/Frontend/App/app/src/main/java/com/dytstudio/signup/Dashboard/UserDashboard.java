@@ -22,7 +22,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dytstudio.signup.Dashboard.userdashboardfragments.IssueFragment;
-import com.dytstudio.signup.Dashboard.userdashboardfragments.dummy.DummyContent;
 import com.dytstudio.signup.Issues.AddIssue;
 import com.dytstudio.signup.Issues.OpenIssue;
 import com.dytstudio.signup.Models.Employee;
