@@ -61,6 +61,7 @@ export class TableFilter implements OnInit {
     if(this.wasClicked == true){
       this.getservice.employeeToEmployer(id).subscribe(data =>{
         this.logdata = data;
+        console.log("werknemer toegevoegd");
       });
 
       this.buttonColor = '#8BC34A';

@@ -27,10 +27,12 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { UserService } from './services/user.service'
 
 import {MatToolbarModule, MatButtonModule,MatInputModule, MatRadioModule , MatIconModule , MatMenuModule, MatTableModule} from '@angular/material';
+import {MatDialogModule} from '@angular/material/dialog';
 import { MainmetricComponent } from './dashboard/mainmetric/mainmetric.component';
 import { ProfileComponent } from './dashboard/profile/profile.component';
 import { TocapitalPipe } from './pipes/tocapital.pipe';
 import { SubscribedemployeesComponent } from './subscribedemployees/subscribedemployees.component';
+import { IssuesComponent } from './issues/issues.component';
 
 
 @NgModule({
@@ -48,6 +50,7 @@ import { SubscribedemployeesComponent } from './subscribedemployees/subscribedem
     TocapitalPipe,
     TableFilter,
     SubscribedemployeesComponent,
+    IssuesComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +67,7 @@ import { SubscribedemployeesComponent } from './subscribedemployees/subscribedem
     MatIconModule,
     MatMenuModule,
     MatTableModule,
+    MatDialogModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCMBIzGWubc2qVa2vrjYcxlttDC4BxVJC4'
     })
