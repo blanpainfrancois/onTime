@@ -81,8 +81,6 @@ namespace OnTimeBackend.Controllers
             {
             var employerIdentity = await usermanager.GetUserAsync(User);
             var employer = await context.employers.Where(e => e.IdentityID == employerIdentity.Id).FirstOrDefaultAsync();
-
-
             var employee = await context.employees.Where(i => i.EmployeeID == employeeid).FirstOrDefaultAsync();
 
             if(employee != null && employer != null)
@@ -94,17 +92,43 @@ namespace OnTimeBackend.Controllers
                 return Ok();
             }
             
-           
-
             return BadRequest();
 
             }
 
-           
+        [HttpDelete("employeetoemployer")]
+        public async Task<IActionResult> deleteemployeetoemployer(int employeeid)
+        {
+            var employerIdentity = await usermanager.GetUserAsync(User);
+            var employer = await context.employers.Where(e => e.IdentityID == employerIdentity.Id).Include(em => em.employees).FirstOrDefaultAsync();
+
+            if (employer != null)
+            {
+                var employee = employer.employees.Where(i => i.EmployeeID == employeeid).FirstOrDefault();
+                if(employee != null)
+                {
+                    employer.employees.Remove(employee);
+                    await context.SaveChangesAsync();
+                    return Ok("employee removed from employers subscribtionlist");
+                }
+                if(employee == null)
+                {
+                    
+                    return Ok("employee has not been subscribed too employer");
+                }
+            }
+
+
+                return BadRequest();
+        }
+
+
+
+
 
 
             // DELETE: api/Employers/5
-            [HttpDelete("{id}")]
+        [HttpDelete("{id}")]
             public async Task<IActionResult> DeleteEmployer([FromRoute] int id)
             {
                 if (!ModelState.IsValid)
@@ -164,7 +188,7 @@ namespace OnTimeBackend.Controllers
         {
 
             var tokenuser = await usermanager.GetUserAsync(User);
-            var employer = await context.employers.Where(em => em.IdentityID == tokenuser.Id).Include(em => em.employees).FirstOrDefaultAsync();
+            var employer = await context.employers.Where(em => em.IdentityID == tokenuser.Id).Include(em => em.employees).ThenInclude(ee => ee.issues).ThenInclude(i => i.reason).FirstOrDefaultAsync();
 
             if(employer.employees != null)
             {
