@@ -17,7 +17,7 @@ export class SubscribedemployeesComponent implements OnInit {
   myEmployees;
   dataSource;
 
-  constructor(public getservice : GetemployeesService, public dialog: MatDialog) {
+  constructor(public getservice : GetemployeesService, public dialog: MatDialog, public router : Router) {
     getservice.getSubscribedEmployees().subscribe(data => {
       this.myEmployees = data;
       this.dataSource = new MatTableDataSource(this.myEmployees);
@@ -27,8 +27,9 @@ export class SubscribedemployeesComponent implements OnInit {
   
   displayedColumns = ['employeeID','name','Lastname', 'Issues'];
   
-  showIssues(id : number){
-
+  goToIssues(id : number){
+    console.log(id);
+    this.router.navigate(["/dashboard/issues", id])
   }
 
   openDialog(id : number){

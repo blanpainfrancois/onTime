@@ -17,7 +17,7 @@
      </ng-container>
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-      <mat-cell *matCellDef="let employee" #givenname (click)="showIssues(employee.employeeID)"> {{employee.givenname}} </mat-cell>
+      <mat-cell *matCellDef="let employee" #givenname (click)="goToIssues(employee.employeeID)"> {{employee.givenname}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Lastname">
