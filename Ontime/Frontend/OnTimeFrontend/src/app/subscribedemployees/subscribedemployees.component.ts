@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Inject} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {GetemployeesService} from '../services/getemployees.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -6,6 +6,7 @@ import { Router } from '@angular/router'
 import { routerTransition } from '../router.transitions';
 import { Constants } from '../Constants'
 import {Http, HttpModule} from '@angular/http';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-subscribedemployees',
@@ -17,11 +18,11 @@ export class SubscribedemployeesComponent implements OnInit {
   issueclosed;
   dataSource;
 
-  constructor(public getservice : GetemployeesService ) {
+  constructor(public getservice : GetemployeesService, public dialog: MatDialog, public router : Router) {
     getservice.getSubscribedEmployees().subscribe(data => {
       this.myEmployees = data;
       this.dataSource = new MatTableDataSource(this.myEmployees);
-      console.log(this.myEmployees);
+      //console.log(this.myEmployees);
     });
     getservice.getissuesfromboss().subscribe(data => {
       this.issueclosed = data;
@@ -35,8 +36,22 @@ export class SubscribedemployeesComponent implements OnInit {
 
   displayedColumns = ['employeeID','name','Lastname', 'Issues'];
 
-  showIssues(id : number){
+  showIssues(id : number) {
 
+
+/*    goToIssues(id:number)
+    {
+      console.log(id);
+      this.router.navigate(["/dashboard/issues", id])
+    }
+
+
+    openDialog(id:number)
+    {
+      let dialogRef = this.dialog.open(SubscribedemployeesComponent, {
+        width: "1800px",
+      });
+    }*/
   }
 
   applyFilter(filterValue: string) {
@@ -50,4 +65,5 @@ export class SubscribedemployeesComponent implements OnInit {
   }
 
 }
+
 
