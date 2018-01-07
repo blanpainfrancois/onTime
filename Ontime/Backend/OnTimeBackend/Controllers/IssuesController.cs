@@ -130,7 +130,7 @@ namespace OnTimeBackend.Controllers
         {
             var user = await usermanager.GetUserAsync(User);
 
-            var issues = await context.issues.Where(i => i.employee.employer.IdentityID == user.Id).Include(i => i.location).Include(i => i.reason).ToListAsync();
+            var issues = await context.issues.Where(i => i.employee.employer.IdentityID == user.Id).Include(i => i.employee).Include(i => i.location).Include(i => i.reason).ToListAsync();
 
             if (issues != null)
             {
