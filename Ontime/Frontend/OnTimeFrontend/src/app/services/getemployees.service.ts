@@ -32,11 +32,17 @@ export class GetemployeesService {
   public getSubscribedEmployees(){
     const headers = new HttpHeaders().set('Authorization', "Bearer " + this.authService.getToken()["access_token"]);
     return this.client.get("http://ontimeapi.azurewebsites.net/api/Employers/getsubcribedemployees",{headers:headers});
-  }  
+  }
 
   public getAllIssues(){
   const headers = new HttpHeaders().set('Authorization', "Bearer " + this.authService.getToken()["access_token"]);
       return this.client.get("http://ontimeapi.azurewebsites.net/api/Issues", {headers:headers});
     }
+
+  public getissuesfromboss(){
+    const headers = new HttpHeaders().set('Authorization', "Bearer " + this.authService.getToken()["access_token"]);
+    return this.client.get("http://ontimeapi.azurewebsites.net/api/Issues/issuesfromboss", {headers:headers});
+  }
+
 
 }
