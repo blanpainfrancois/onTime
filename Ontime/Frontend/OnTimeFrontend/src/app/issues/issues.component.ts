@@ -18,6 +18,7 @@ export class IssuesComponent implements OnInit, OnDestroy {
   myIssue;
   private sub : any;
   private subissue : any;
+  dataSource;
   
 
   constructor(private route : ActivatedRoute, public client : GetemployeesService) {
@@ -30,10 +31,11 @@ export class IssuesComponent implements OnInit, OnDestroy {
       console.log("Dit zijn de issues");
       console.log("werknemer met id: " + this.myId);
     this.client.getIssuesFromEmployee(this.myId).subscribe(data => {
-        this.myIssue = data;
-        console.log("call uitgevoerd");
+        this.myIssue = data['issues'];
+        this.dataSource = new MatTableDataSource(this.myIssue);
       })
   }
+  displayedColumns = ["Status", "Reason", "Time"];
 
   ngOnDestroy(){
     this.sub.unsubscribe();
