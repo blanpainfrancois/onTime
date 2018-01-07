@@ -7,32 +7,59 @@ import { routerTransition } from '../router.transitions';
 import { Constants } from '../Constants'
 import {Http, HttpModule} from '@angular/http';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import 'rxjs/add/operator/map';
+import {NotificationService} from '../services/notification.service';
 
 @Component({
   selector: 'app-subscribedemployees',
   templateUrl: './subscribedemployees.component.html',
-  styleUrls: ['./subscribedemployees.component.css']
+  styleUrls: ['./subscribedemployees.component.css'],
+ // template: '<simple-notifications [options]="options"></simple-notifications>'
 })
-export class SubscribedemployeesComponent implements OnInit {
-  myEmployees;
-  issueclosed;
-  dataSource;
 
-  constructor(public getservice : GetemployeesService, public dialog: MatDialog, public router : Router) {
+export class SubscribedemployeesComponent implements OnInit {
+
+  public options = {
+    position: ["bottom", "right"],
+    timeOut: 5000,
+    lastOnBottom: true}
+
+  myEmployees;
+  issue :any;
+  dataSource;
+  employee : any;
+  n : number;
+  issueClosed;
+  username;
+
+
+  constructor(public getservice : GetemployeesService, public dialog: MatDialog, public router : Router ) {
+    this.issue = [];
+    this.employee = [];
     getservice.getSubscribedEmployees().subscribe(data => {
       this.myEmployees = data;
       this.dataSource = new MatTableDataSource(this.myEmployees);
       //console.log(this.myEmployees);
     });
     getservice.getissuesfromboss().subscribe(data => {
-      this.issueclosed = data;
-      console.log(this.issueclosed);
-      if(this.issueclosed == true){
+      this.issue = data;
+      this.issue.forEach((issueArray,index)=>{
+          console.log(issueArray);
+         if(issueArray.issueClosed == false){
+           console.log(issueArray.employee.username);
+           console.log('dit issue is open');
+         }
+         else{
+           console.log('dit issue is gesloten');
+         }
+      });
 
-      }
+
+    //  console.log(this.issue);
     });
 
   }
+
 
   displayedColumns = ['employeeID','name','Lastname', 'Issues'];
 
