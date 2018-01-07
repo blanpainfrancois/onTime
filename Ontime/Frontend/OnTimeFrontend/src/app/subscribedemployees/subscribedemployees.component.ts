@@ -58,17 +58,18 @@ export class SubscribedemployeesComponent implements OnInit {
 
 
   displayedColumns = ['employeeID','name','Lastname', 'Issues'];
-
-  showIssues(id : number) {
-
-
-/*    goToIssues(id:number)
+  goToIssues(id:number)
     {
       console.log(id);
       this.router.navigate(["/dashboard/issues", id])
     }
 
+  showIssues(id : number) {
 
+
+    
+
+/*
     openDialog(id:number)
     {
       let dialogRef = this.dialog.open(SubscribedemployeesComponent, {
