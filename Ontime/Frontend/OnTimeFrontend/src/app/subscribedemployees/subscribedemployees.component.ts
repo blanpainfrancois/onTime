@@ -28,7 +28,6 @@ export class SubscribedemployeesComponent implements OnInit {
   issue :any;
   dataSource;
   employee : any;
-  n : number;
   issueClosed;
   username;
 
@@ -39,7 +38,6 @@ export class SubscribedemployeesComponent implements OnInit {
     getservice.getSubscribedEmployees().subscribe(data => {
       this.myEmployees = data;
       this.dataSource = new MatTableDataSource(this.myEmployees);
-      //console.log(this.myEmployees);
     });
     getservice.getissuesfromboss().subscribe(data => {
       this.issue = data;
@@ -54,8 +52,6 @@ export class SubscribedemployeesComponent implements OnInit {
          }
       });
 
-
-    //  console.log(this.issue);
     });
 
   }

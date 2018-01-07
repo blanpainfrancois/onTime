@@ -1,3 +1,58 @@
 .section no-pad-bot {
-    background: #E6E6E6;
+    background: #A5B452;
 }
+
+.lblock{
+    background: #A5B452;
+    height: 275px;
+}
+
+.mblock{
+    background: #C8D96F;
+    height: 275px;
+}
+
+.rblock{
+    background: #C4F7A1;
+    height: 275px;
+}
+
+.htext{
+    color: #3A3042;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: thin; 
+}
+
+.blockhead{
+    color: #3A3042;
+    font-weight: bold;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.orderbtn{
+    margin-top: 10px;
+    border: 1.5px solid #3A3042;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background-color: transparent;
+}
+
+.orderbtn:hover{
+    border: 1.5px solid #3A3042;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background-color: #3A3042;
+    color: white;
+    transition: 0.5s ease;
+}
+
