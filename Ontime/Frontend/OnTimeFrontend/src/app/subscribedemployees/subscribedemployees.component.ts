@@ -14,6 +14,7 @@ import {Http, HttpModule} from '@angular/http';
 })
 export class SubscribedemployeesComponent implements OnInit {
   myEmployees;
+  issueclosed;
   dataSource;
 
   constructor(public getservice : GetemployeesService ) {
@@ -22,10 +23,18 @@ export class SubscribedemployeesComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.myEmployees);
       console.log(this.myEmployees);
     });
+    getservice.getissuesfromboss().subscribe(data => {
+      this.issueclosed = data;
+      console.log(this.issueclosed);
+      if(this.issueclosed == true){
+
+      }
+    });
+
   }
-  
+
   displayedColumns = ['employeeID','name','Lastname', 'Issues'];
-  
+
   showIssues(id : number){
 
   }
