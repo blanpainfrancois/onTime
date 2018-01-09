@@ -12,15 +12,28 @@
 
 
               <mat-toolbar-row>
-                <span routerLink="/dashboard/filterlist">EmployersList</span>
+                <span routerLink="/dashboard/filterlist">All Employees</span>
                 <span class="example-spacer"></span>
               </mat-toolbar-row>
 
             </mat-toolbar>
               <span routerLink = "/dashboard/openissues"> Open issues</span>
               <span class = "example-spacer"></span>
+            <mat-toolbar-row>
+            <span routerLink="/dashboard/ownemployees">My Employees</span>
+            <span class="example-spacer"></span>
+          </mat-toolbar-row>
+            <mat-toolbar-row>
+              <span routerLink="/dashboard/ownemployees">Open Issues</span>
+              <span class="example-spacer"></span>
+            </mat-toolbar-row>
 
-            </mat-toolbar>
+
+
+
+
+
+          </mat-toolbar>
       </div>
       <div class="col-sm-8 text-left">
         <router-outlet class="dashboardrouter"></router-outlet>
