@@ -9,10 +9,6 @@
 
     <!-- Position Column -->
     <div>
-      <ng-container matColumnDef="employeeID">
-        <mat-header-cell *matHeaderCellDef> IssueID </mat-header-cell>
-        <mat-cell *matCellDef="let issue" #givenname (click)="openDialog()"> {{issue.issueID}} </mat-cell>
-      </ng-container>
       <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
         <mat-cell *matCellDef="let issue" #givenname > {{issue.employee.givenname}} </mat-cell>
@@ -21,6 +17,10 @@
       <ng-container matColumnDef="Lastname">
         <mat-header-cell *matHeaderCellDef> Lastname </mat-header-cell>
         <mat-cell *matCellDef="let issue" #familyname > {{issue.employee.familyname}}  </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Reden">
+        <mat-header-cell *matHeaderCellDef> Reden </mat-header-cell>
+        <mat-cell *matCellDef="let issue" #reason > {{issue.reason}}  </mat-cell>
       </ng-container>
     </div>
     <!-- Name Column -->
