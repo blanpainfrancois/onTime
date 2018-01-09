@@ -36,7 +36,7 @@ export class IssuesComponent implements OnInit, OnDestroy {
       })
   }
   displayedColumns = ["Status", "Reason", "Time"];
-
+  
   ngOnDestroy(){
     this.sub.unsubscribe();
     //this.subissue.unsubscribe();
