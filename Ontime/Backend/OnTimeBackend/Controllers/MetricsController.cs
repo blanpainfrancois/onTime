@@ -44,8 +44,13 @@ namespace OnTimeBackend.Controllers
         [HttpGet("getTopReasons")]
         public async Task<IActionResult> getTopReasons()
         {
-            var top = await context.issues.GroupBy(i => i.reason.ReasonID).OrderBy()
+            var tokenuser = await usermanager.GetUserAsync(User);
 
+            var top = await context.issues.GroupBy(i => i.reason.ReasonID).ToListAsync();
+            if (top != null)
+            {
+                Ok(top);
+            }
 
             return BadRequest();
         }
