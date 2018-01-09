@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.dytstudio.signup.Login.Login;
 import com.dytstudio.signup.R;
@@ -40,12 +41,12 @@ public class NoEmployerAssigned extends AppCompatActivity {
     private void logout(){
         SharedPreferences.Editor editor = mPrefs.edit();
         editor.remove("token");
-        if(editor.commit()){
-            Intent intent = new Intent(NoEmployerAssigned.this, Login.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            NoEmployerAssigned.this.startActivity(intent);
-            finish();
+        editor.commit();
+        Toast.makeText(this, "Token removed", Toast.LENGTH_SHORT).show();
 
-        }
+        Intent intent = new Intent(NoEmployerAssigned.this, Login.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        NoEmployerAssigned.this.startActivity(intent);
+        finish();
     }
 }
