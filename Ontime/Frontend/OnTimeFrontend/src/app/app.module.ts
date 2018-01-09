@@ -33,7 +33,11 @@ import { ProfileComponent } from './dashboard/profile/profile.component';
 import { TocapitalPipe } from './pipes/tocapital.pipe';
 import { SubscribedemployeesComponent } from './subscribedemployees/subscribedemployees.component';
 import { IssuesComponent } from './issues/issues.component';
-import { NgComponent } from './ng/ng.component';
+
+
+
+import { OpenissuesComponent } from './openissues/openissues.component';
+
 
 
 @NgModule({
@@ -52,7 +56,8 @@ import { NgComponent } from './ng/ng.component';
     TableFilter,
     SubscribedemployeesComponent,
     IssuesComponent,
-    NgComponent,
+    OpenissuesComponent,
+
   ],
   imports: [
     BrowserModule,
