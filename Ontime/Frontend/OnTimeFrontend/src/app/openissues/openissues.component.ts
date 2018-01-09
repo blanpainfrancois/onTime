@@ -15,7 +15,7 @@ export class OpenissuesComponent implements OnInit {
     position: ["bottom", "right"],
     timeOut: 5000,
     lastOnBottom: true}
-
+  aantalissueclosed : any = 0;
   myEmployees;
   issue :any;
   dataSource;
@@ -24,28 +24,23 @@ export class OpenissuesComponent implements OnInit {
   employee : any;
   issues : any;
   issueID : number;
+  issuetrue:any;
   issueopen : boolean = false;
   index : number = 0;
 
+
   constructor(public getservice : GetemployeesService, public dialog: MatDialog, public router : Router ) {
-    this.issue = [this.index];
+    this.issue = [];
+    this.issuetrue = [];
     getservice.getissuesfromboss().subscribe(data => {
       this.issue = data;
-      this.issue.forEach((issueArray ,index)=>{
+      this.issue.forEach((issueArray,index)=>{
         console.log(issueArray);
-        if(issueArray.issueClosed == false){
-          this.index++;
-          this.dataSource = new MatTableDataSource(this.issue);
-          console.log(issueArray.employee.username);
-          console.log('dit issue is open');
-        }
-        else{
-          console.log('dit issue is gesloten');
-        }
+            this.dataSource = new MatTableDataSource(this.issuetrue);
 
-      });
+          });
 
-    });
+        });
 
   }
 
