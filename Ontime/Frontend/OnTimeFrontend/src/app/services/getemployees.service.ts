@@ -43,6 +43,10 @@ export class GetemployeesService {
     const headers = new HttpHeaders().set('Authorization', "Bearer " + this.authService.getToken()["access_token"]);
     return this.client.get("http://ontimeapi.azurewebsites.net/api/Issues/issuesfromboss", {headers:headers});
   }
+  public getissuesopenfromboss(){
+    const headers = new HttpHeaders().set('Authorization', "Bearer " + this.authService.getToken()["access_token"]);
+    return this.client.get("http://ontimeapi.azurewebsites.net/api/Issues/", {headers:headers});
+  }
 
 
   public getIssuesFromEmployee(id : number){
