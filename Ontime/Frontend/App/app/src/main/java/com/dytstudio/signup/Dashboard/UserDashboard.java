@@ -304,12 +304,6 @@ public class UserDashboard extends AppCompatActivity
                   }
               }
 
-
-
-
-
-
-
                  }
 
           @Override

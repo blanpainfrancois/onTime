@@ -103,9 +103,6 @@ public class Login extends AppCompatActivity {
                 }).check();
 
         if(mPrefs.contains("token")){
-
-
-
             Intent intent = new Intent(Login.this, UserDashboard.class);
             Login.this.startActivity(intent);
 
