@@ -11,10 +11,6 @@
 
     <!-- Position Column -->
    <div>
-     <ng-container matColumnDef="employeeID">
-       <mat-header-cell *matHeaderCellDef> employeeID </mat-header-cell>
-       <mat-cell *matCellDef="let employee" #givenname (click)="openDialog()"> {{employee.employeeID}} </mat-cell>
-     </ng-container>
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
       <mat-cell *matCellDef="let employee" #givenname (click)="goToIssues(employee.employeeID)"> {{employee.givenname}} </mat-cell>

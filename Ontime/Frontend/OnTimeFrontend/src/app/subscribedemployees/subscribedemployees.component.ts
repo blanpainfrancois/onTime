@@ -59,7 +59,7 @@ export class SubscribedemployeesComponent implements OnInit {
   }
 
 
-  displayedColumns = ['employeeID','name','Lastname', 'Issues'];
+  displayedColumns = ['name','Lastname', 'Issues'];
   goToIssues(id:number)
     {
       console.log(id);
