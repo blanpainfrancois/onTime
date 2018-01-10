@@ -31,6 +31,7 @@ export class TableFilter implements OnInit {
   selectedissue;
   employeeID : number;
   id;
+  color:string = 'red';
 
   constructor(public getservice : GetemployeesService ) {
     getservice.getAllEmployees().subscribe(data => {
@@ -56,22 +57,14 @@ export class TableFilter implements OnInit {
 
   linkEmployees(id: number){
     console.log(id);
-    this.wasClicked= !this.wasClicked
 
-    if(this.wasClicked == true){
       this.getservice.employeeToEmployer(id).subscribe(data =>{
         this.logdata = data;
         console.log("werknemer toegevoegd");
-      });
 
       this.buttonColor = '#8BC34A';
-    }
-    else{
-      this.buttonColor = '#fff';
-    }
-
-    console.log(this.wasClicked);
     console.log(this.id);
+  });
   }
 
   displayIssues(id: number){
@@ -82,7 +75,12 @@ export class TableFilter implements OnInit {
     }
   }
 
-  displayedColumns = ['employeeID','name','Lastname'];
+
+  changeStyle($event){
+    this.color = $event.type == 'mouseover' ? 'yellow' : 'red';
+  }
+
+  displayedColumns = ['name','Lastname'];
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
