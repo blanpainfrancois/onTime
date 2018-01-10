@@ -33,7 +33,7 @@ namespace OnTimeBackend.Controllers
         public async Task<IActionResult> getallissues()
         {
 
-            var issues = await context.issues.Include(i => i.reason).Include(i => i.location).ToListAsync();
+            var issues = await context.issues.Include(i => i.reason).Include(i => i.location).Include(i => i.employee).ToListAsync();
 
             return Ok(issues);
         }
