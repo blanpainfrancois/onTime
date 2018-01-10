@@ -219,6 +219,23 @@ namespace OnTimeBackend.Controllers
         }
 
 
+        [HttpGet("GetAllOpenIssues")]
+        public async Task<IActionResult> GetAllOpenIssues()
+        {
+
+            var tokenuser = await usermanager.GetUserAsync(User);
+            var issues = await context.issues.Where(i => i.IssueClosed == false).Include(i => i.employee).ThenInclude(e => e.employer).ToListAsync();
+            
+
+            if (issues != null)
+            {
+                return Ok(issues);
+            }
+
+            return BadRequest("no employee with such ID");
+        }
+
+
         private bool EmployerExists(int id)
             {
                 return context.employers.Any(e => e.EmployerID == id);

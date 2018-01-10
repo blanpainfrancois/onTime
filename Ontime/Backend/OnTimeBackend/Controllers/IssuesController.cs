@@ -43,7 +43,7 @@ namespace OnTimeBackend.Controllers
         {
             var user = await usermanager.GetUserAsync(User);
 
-            var issues = await context.issues.Where(i => i.employee.IdentityID == user.Id).Include(i => i.location).Include(i => i.reason).ToListAsync();
+            var issues = await context.issues.Where(i => i.employee.IdentityID == user.Id).Include(i => i.location).Include(i => i.employee ).Include(i => i.reason).ToListAsync();
 
             if(issues != null)
             {
@@ -139,21 +139,6 @@ namespace OnTimeBackend.Controllers
             return Ok(issue);
         }
 
-        [HttpGet("issuesfromboss")]
-        public async Task<IActionResult> getallissuesfromboss()
-        {
-            var user = await usermanager.GetUserAsync(User);
-
-            var issues = await context.issues.Where(i => i.employee.employer.IdentityID == user.Id).Include(i => i.employee).Include(i => i.location).Include(i => i.reason).ToListAsync();
-
-            if (issues != null)
-            {
-                return Ok(issues);
-            }
-
-
-            return BadRequest();
-        }
 
         private bool IssueExists(int id)
         {
