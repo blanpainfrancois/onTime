@@ -13,8 +13,7 @@ using OnTimeBackend.Models;
 namespace OnTimeBackend.Controllers
 {
     [Authorize(AuthenticationSchemes = IdentityServerAuthenticationDefaults.AuthenticationScheme, Policy = "Access Resources")]
-    [Produces("application/json")]
-    [Route("api/Metrics")]
+    [Route("api/[controller]")]
     public class MetricsController : Controller
     {
         private readonly ApplicationDbContext context;
@@ -25,5 +24,8 @@ namespace OnTimeBackend.Controllers
             this.context = context;
             this.usermanager = usermanager;
         }
+
+
+
     }
 }
