@@ -224,7 +224,7 @@ namespace OnTimeBackend.Controllers
         {
 
             var tokenuser = await usermanager.GetUserAsync(User);
-            var issues = await context.issues.Where(i => i.IssueClosed == false).Include(i => i.employee).ThenInclude(e => e.employer).ToListAsync();
+            var issues = await context.issues.Where(i => i.IssueClosed == false).Include(i => i.reason).Include(i => i.employee).ThenInclude(e => e.employer).ToListAsync();
             
 
             if (issues != null)
