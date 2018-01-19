@@ -1,0 +1,39 @@
+
+vakantie progress seppe geerinckx
+
+in het begin van de vakantie heeft mo mij een document gestuurd voor een andere manier om de employees te weergeven (handsontable)
+ik heb de documentatie gelezen en in de app geimplementeert , ik moest verschillende dingen veranderen om deze tabel werkend te krijgen.
+met wat spelen met de code en wa try en error was het mij gelukt deze succesvol te implemteren. een groot probleem, die tabel zag eruit als
+een excel sheet. ik krijg de css niet geimplementeerd die hiervoor meegegeven was omdat als je naar de app de globale stylesheet kijkt zie ik
+ik nog wat dingen die ik nooit gezien had (https://imgur.com/a/mumRi). Ik kreeg het gevoel dat dit niet de overhaul waart was en heb dit idee
+dan ook laten vallen . gewerkte uren ~4-6 uur
+
+Daarnaast heb heb ik mij bezig gehouden met hoe ik kan ik de selection van de werknemers nu oplossen. ik moet namelijk een element selecteren
+dat op die moment eigenlijk nog niet bestaat (angular manipuleert de DOM tree , ik kan verkeerd zijn maar dit is hoe ik angular altijd heb
+begrepen) en die lijst met employees wordt pas gegeneert on run time.
+ik heb hier dus ook aan gewerkt en na even proberen is dit niet gelukt, maar heb ik heb in de documentatie en sectie gevonden waar ik de 
+employees apart kan selecteren yay ! maar deze is dan wel met checkboxen -.- ik weet niet of dat de bedoeling is.
+Francois heeft dan gezegt dat hij die selection ging overnemen. gewerkten uren 3uur maybe ? 
+
+dan heb de voorbije dagen mij volledig laten gaan met cloud -> ap valley even stilgevallen. Maar om er voor te zorgen dat mijn task niet onvoltooid 
+bleef. heb ik stijn gevraagt deze te assignen aan maarten wachters. Stijn ging akkoord en zei dat hierover een meeting werd rond gedaan.
+Samen met francois. deze meeting ging door om 30/12/2017, Deze meeting is niet doorgegaan veronderstel ik ? omdat ik nog steeds de assignee
+ben. IK heb met maarten op discord gesproken ZONDER francois en uitgelegd wat zijn taak is en wat er moet gebeuren. dit was een gesprek van 
+een klein 20 min. Nu is het NIET mijn taak om mijn taak aan iemand anders toe te wijzen , dit is stijn zen job (denkik toch ?).
+
+Ow ja ik heb ook de links naar de employee naar employer gedaan. heb hier weer effe mee bezig geweest zonder resultaat.
+Ik heb mo zen hulp ingeschakelt en hij wist mij te zeggen dat ik de headers als body mee posten (dom van mij).
+gewerkte uren 5-6u (ja hier heb ik echt onnodig veel aan ligge sukkelen dit gaat wel om de uren van begin van de call tot het einde).
+die post werkt volledig en is ook op done gezet in jira. (dit was ook francois zijn shit) --> hij heeft er mee aangewerkt maar geen resultaat
+geleverd maar ook wel talloze uren liggen zoeken met mij naar de oplossing. dus ook credits aan francois.
+
+voila dit is mijn verslag zo'n beetje ik weet niet of dat ik voldoende gedaan heb voor ap valley in de kerstvakantie (die nog bezig is)
+maar mo ik doe ook alleen maar mijn best. en vraag nu tenminste hulp aan u als ik vastzit. 
+Ik heb 40% gedaan voor iot en maarten ook zoiets en voor cloud ben ik nu de grootste contributor van de repo (proof : https://imgur.com/a/DgsSq)
+
+
+
+ 
+
+
+
