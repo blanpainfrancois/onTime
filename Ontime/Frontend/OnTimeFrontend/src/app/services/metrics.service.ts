@@ -16,4 +16,10 @@ public getlosthoursofemployer(){
 
 }
 
+public getcountofemployees(){
+  const headers = new HttpHeaders().set('Authorization', "Bearer " + this.authService.getToken()["access_token"]);
+  return this.http.get<number>(Constants.GET_COUNT_OF_EMPLOYEES, {headers: headers});
+
+}
+
 }

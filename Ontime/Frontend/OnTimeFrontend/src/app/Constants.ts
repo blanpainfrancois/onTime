@@ -35,5 +35,6 @@ export class Constants {
 
         //METRICS
         public static readonly GET_HOURSCOST_OF_EMPLOYER : string = "http://ontimeapi.azurewebsites.net/api/Metrics/GetCostofHoursToLate";
+        public static readonly GET_COUNT_OF_EMPLOYEES : string = "http://ontimeapi.azurewebsites.net/api/Metrics/getNumberofEmployeesFromEmployer";
 
     }
