@@ -10,6 +10,14 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent {
   
+
+  public options = {
+    position: ["bottom", "right"],
+    timeOut: 5000,
+    lastOnBottom: true
+    
+}
+
   constructor() {
   }
 

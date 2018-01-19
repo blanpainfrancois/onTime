@@ -35,7 +35,7 @@ export class TableFilter implements OnInit {
 
 
   public options = {
-    position: ["bottom", "left"],
+    position: ["bottom", "right"],
     timeOut: 5000,
     lastOnBottom: true
     
