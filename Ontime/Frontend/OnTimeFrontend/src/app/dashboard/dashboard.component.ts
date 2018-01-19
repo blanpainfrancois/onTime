@@ -2,20 +2,23 @@ import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
 import {GetemployeesService } from '../services/getemployees.service';
-
 import { User } from '../models/user'
+import {SelectionModel} from "@angular/cdk/collections";
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
+
+
 export class DashboardComponent  {
 
   user : User ;
 
+
   constructor(private authService: AuthService, private userService : UserService) {
-    
+
 
     if(authService.getToken()){
       if(authService.isTokenExpired()){
@@ -33,17 +36,17 @@ export class DashboardComponent  {
         this.userService.setUser(this.user);
         //console.log(data)
         this.userService.user.subscribe(data => this.user = data);
-        
+
       }, error =>{
         this.authService.logout();
-        
+
       } );
 
     }else{
       this.signOut();
         }
-        
-  
+
+
   }
 
 
@@ -56,13 +59,13 @@ export class DashboardComponent  {
       if(data["succeeded"]){
         this.signOut()
               }
-            
+
     }
-    
-      
+
+
     )
   }
 
-  
+
 
 }
