@@ -28,6 +28,8 @@ export class Constants {
         public static readonly GET_EMPLOYER: string = "http://ontimeapi.azurewebsites.net/api/Employers";
 
         public static readonly POST_ADDRESS_TO_EMPLOYER : string = "http://ontimeapi.azurewebsites.net/api/Employers/postaddress";
+        public static readonly GET_ADDRESS_OF_EMPLOYER : string = "http://ontimeapi.azurewebsites.net/api/Employers/getaddressofemployer";
+
 
 
     }
