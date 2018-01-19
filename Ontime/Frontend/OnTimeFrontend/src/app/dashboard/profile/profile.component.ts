@@ -14,31 +14,25 @@ export class ProfileComponent implements OnInit {
 
   user : User;
   addressform: FormGroup;
+  costofhourgroup: FormGroup;
   
   constructor(private userService : UserService, private fb: FormBuilder, private _service: NotificationsService ){
 
-    this.userService.getuser().subscribe(user => {
-      this.user = new User();
-      this.user.employerID = user["employerID"];
-      this.user.username = user["username"];
-      this.user.createdAt = user["createdAt"];
-      this.user.identityID = user["identityID"];
-      this.user.name = user["name"];
-    });
+
+    this.addressform = this.fb.group({
+      streetname: ['' ],
+      housenumber: [''],
+      city: [''],
+      zipcode: [''],
+      country: ['']
+       });
+
+       this.costofhourgroup = this.fb.group({
+        costofhour: ['']
+       });
 
 
-    this.userService.getAddressofemployer().subscribe(data => {
-
-      this.addressform = this.fb.group({
-        streetname: ['' ],
-        housenumber: [''],
-        city: [''],
-        zipcode: [''],
-        country: ['']
-         });
-
-
-    })
+   
 
     
     
@@ -47,6 +41,46 @@ export class ProfileComponent implements OnInit {
  
 
   ngOnInit() {
+
+    this.userService.getuser().subscribe(user => {
+      this.user = new User();
+      this.user.employerID = user["employerID"];
+      this.user.username = user["username"];
+      this.user.createdAt = user["createdAt"];
+      this.user.identityID = user["identityID"];
+      this.user.name = user["name"];
+      this.user.hourofcost = user["HourCost"];
+      });
+
+  
+
+
+      
+
+
+    this.userService.getAddressofemployer().subscribe(data => {
+
+      this.addressform.setValue({
+        streetname: data["streetname"], 
+        housenumber:  data["housenumber"],
+        city: data["city"],
+        zipcode: data["zipcode"],
+        country: data["country"],
+
+      });
+
+
+
+
+
+    })
+
+    this.userService.getcostofhourofemployee().subscribe(data => {
+      console.log(data);
+      this.costofhourgroup.setValue({
+        costofhour : data+""
+      })
+    })
   }
 
   postaddress(){
@@ -55,6 +89,12 @@ export class ProfileComponent implements OnInit {
       this._service.success("Address succesfull updatet.")
     });
 
+  }
+
+  setHourWeight(){
+    this.userService.Posthourcostemployer(this.costofhourgroup.value.costofhour).subscribe(data => {
+      this._service.success("Cost of hour succesfull updatet.")
+    });
   }
 
   

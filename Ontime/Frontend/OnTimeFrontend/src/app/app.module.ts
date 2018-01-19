@@ -24,6 +24,7 @@ import {TableFilter} from './filterlist/filterlist.component';
 import { AuthService } from './services/auth.service';
 import { RegisterService } from './services/register.service';
 import { AuthGuardService } from './services/auth-guard.service';
+import { MetricsService} from './services/metrics.service'
 import { UserService } from './services/user.service'
 import {MatToolbarModule, MatButtonModule,MatInputModule, MatRadioModule , MatIconModule , MatMenuModule, MatTableModule} from '@angular/material';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -75,7 +76,7 @@ import { OpenissuesComponent } from './openissues/openissues.component';
       apiKey: 'AIzaSyCMBIzGWubc2qVa2vrjYcxlttDC4BxVJC4'
     })
   ],
-  providers: [AuthService, RegisterService, AuthGuardService, UserService,GetemployeesService],
+  providers: [AuthService, RegisterService, AuthGuardService, UserService,GetemployeesService, MetricsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

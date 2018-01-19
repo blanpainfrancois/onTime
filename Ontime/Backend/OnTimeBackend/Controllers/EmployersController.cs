@@ -250,6 +250,21 @@ namespace OnTimeBackend.Controllers
             return BadRequest();
         }
 
+        [HttpGet("getcostofhour")]
+        public async Task<IActionResult> getcostofhour(float hourcost)
+        {
+            var tokenuser = await usermanager.GetUserAsync(User);
+            var employer = await context.employers.Where(i => i.IdentityID == tokenuser.Id).FirstOrDefaultAsync();
+
+            if (employer.HourCost != null)
+            {
+                return Ok(employer.HourCost);
+            }
+
+
+            return BadRequest();
+        }
+
 
 
         [HttpGet("GetAllOpenIssues")]

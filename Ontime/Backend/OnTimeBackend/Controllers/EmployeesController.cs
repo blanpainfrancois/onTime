@@ -168,6 +168,7 @@ namespace Uber4Cream.Controllers
                 {
                     tempissue.IssueClosed = true;
                     tempissue.dateclosed = DateTime.Now;
+                    tempissue.timespan = tempissue.dateclosed.Subtract(tempissue.IssueCreated);
                     await context.SaveChangesAsync();
                     return Ok();
                 }
