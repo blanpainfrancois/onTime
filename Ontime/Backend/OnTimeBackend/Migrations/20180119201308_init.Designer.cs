@@ -11,8 +11,8 @@ using System;
 namespace OnTimeBackend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20171222171847_Initial")]
-    partial class Initial
+    [Migration("20180119201308_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -242,6 +242,8 @@ namespace OnTimeBackend.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreatedAt");
+
+                    b.Property<float>("HourCost");
 
                     b.Property<string>("IdentityID");
 

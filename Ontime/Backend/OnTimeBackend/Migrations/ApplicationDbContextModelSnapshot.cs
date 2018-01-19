@@ -242,6 +242,8 @@ namespace OnTimeBackend.Migrations
 
                     b.Property<DateTime>("CreatedAt");
 
+                    b.Property<float>("HourCost");
+
                     b.Property<string>("IdentityID");
 
                     b.Property<string>("Name");

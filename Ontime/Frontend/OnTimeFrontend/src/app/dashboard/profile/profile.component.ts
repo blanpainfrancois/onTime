@@ -15,8 +15,6 @@ export class ProfileComponent implements OnInit {
   user : User;
   addressform: FormGroup;
   
-
-
   constructor(private userService : UserService, private fb: FormBuilder, private _service: NotificationsService ){
 
     this.userService.getuser().subscribe(user => {
@@ -29,13 +27,20 @@ export class ProfileComponent implements OnInit {
     });
 
 
-    this.addressform = this.fb.group({
-      streetname: ['' ],
-      housenumber: [''],
-      city: [''],
-      zipcode: [''],
-      country: ['']
-       });
+    this.userService.getAddressofemployer().subscribe(data => {
+
+      this.addressform = this.fb.group({
+        streetname: ['' ],
+        housenumber: [''],
+        city: [''],
+        zipcode: [''],
+        country: ['']
+         });
+
+
+    })
+
+    
     
    }
 
@@ -51,5 +56,7 @@ export class ProfileComponent implements OnInit {
     });
 
   }
+
+  
 
 }

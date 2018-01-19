@@ -45,6 +45,12 @@ export class UserService {
     const headers = new HttpHeaders().set('Authorization', "Bearer " + this.authService.getToken()["access_token"]);
     return this.http.post(Constants.POST_ADDRESS_TO_EMPLOYER, model ,{headers : headers} );
   }
+
+  public getAddressofemployer(){
+    const headers = new HttpHeaders().set('Authorization', "Bearer " + this.authService.getToken()["access_token"]);
+    return this.http.get(Constants.GET_ADDRESS_OF_EMPLOYER, {headers : headers} )
+
+  }
   
 
 }
