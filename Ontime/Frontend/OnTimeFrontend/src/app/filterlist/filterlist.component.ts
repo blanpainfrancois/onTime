@@ -32,7 +32,7 @@ export class TableFilter implements OnInit {
   selectedissue;
   employeeID : number;
   id;
-  color:string = 'red';
+
 
   public options = {
     position: ["bottom", "left"],
@@ -85,10 +85,6 @@ export class TableFilter implements OnInit {
     }
   }
 
-
-  changeStyle($event){
-    this.color = $event.type == 'mouseover' ? 'yellow' : 'red';
-  }
 
   displayedColumns = ['name','Lastname'];
 
