@@ -31,7 +31,7 @@ export class TableFilter implements OnInit {
   selectedissue;
   employeeID : number;
   id;
-  color:string = 'red';
+
 
   constructor(public getservice : GetemployeesService ) {
     getservice.getAllEmployees().subscribe(data => {
@@ -75,10 +75,6 @@ export class TableFilter implements OnInit {
     }
   }
 
-
-  changeStyle($event){
-    this.color = $event.type == 'mouseover' ? 'yellow' : 'red';
-  }
 
   displayedColumns = ['name','Lastname'];
 
