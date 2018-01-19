@@ -30,9 +30,12 @@ namespace OnTimeBackend.Controllers
 
         // GET: api/Issues
         [HttpGet]
-        public IEnumerable<Issue> Getissues()
+        public async Task<IActionResult> getallissues()
         {
-            return context.issues.Include(i => i.reason).Include(i=> i.location);
+
+            var issues = await context.issues.Include(i => i.reason).Include(i => i.location).Include(i => i.employee).ToListAsync();
+
+            return Ok(issues);
         }
 
         [HttpGet("issuesfromuser")]
@@ -40,17 +43,31 @@ namespace OnTimeBackend.Controllers
         {
             var user = await usermanager.GetUserAsync(User);
 
-            var issues = await context.issues.Where(i => i.employee.IdentityID == user.Id).Include(i => i.location).Include(i => i.reason).ToListAsync();
+            var issues = await context.issues.Where(i => i.employee.IdentityID == user.Id).Include(i => i.location).Include(i => i.employee ).Include(i => i.reason).ToListAsync();
 
             if(issues != null)
             {
-                return new JsonResult(issues);
+                return Ok(issues);
             }
 
 
             return BadRequest();
         }
+        [HttpGet("issuesfromboss")]
+        public async Task<IActionResult> getallissuesfromboss()
+        {
+            var user = await usermanager.GetUserAsync(User);
 
+            var issues = await context.issues.Where(i => i.employee.employer.IdentityID == user.Id).Include(i => i.location).Include(i => i.reason).ToListAsync();
+
+            if (issues != null)
+            {
+                return Ok(issues);
+            }
+
+
+            return BadRequest();
+        }
         [HttpPost("changestatus")]
         public async Task<IActionResult> changestatususer(int id)
         {
@@ -72,7 +89,7 @@ namespace OnTimeBackend.Controllers
 
         // POST: api/Issues
         [HttpPost]
-        public async Task<IActionResult> PostIssue([FromBody] CreateIssue tempissue)
+        public async Task<IActionResult> PostIssue([FromBody] Issue issue)
         {
             if (!ModelState.IsValid)
             {
@@ -85,13 +102,10 @@ namespace OnTimeBackend.Controllers
 
             if(employee != null)
             {
-                var issue = new Issue
-                {
-                    location = tempissue.location,
-                    reason = tempissue.reason,
-                    employee = employee,
-                    IssueCreated = DateTime.Now
-                };
+
+                issue.employee = employee;
+                issue.IssueCreated = DateTime.Now;
+                issue.IssueClosed = false;
 
                 await context.issues.AddAsync(issue);
                 await context.SaveChangesAsync();
@@ -124,6 +138,7 @@ namespace OnTimeBackend.Controllers
 
             return Ok(issue);
         }
+
 
         private bool IssueExists(int id)
         {

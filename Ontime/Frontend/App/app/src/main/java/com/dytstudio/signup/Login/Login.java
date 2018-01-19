@@ -1,7 +1,9 @@
 package com.dytstudio.signup.Login;
 
+import android.Manifest;
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -16,7 +18,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import com.dytstudio.signup.Dashboard.LocationDenied;
 import com.dytstudio.signup.Dashboard.UserDashboard;
 import com.dytstudio.signup.MainActivity;
 import com.dytstudio.signup.Models.AccessToken;
@@ -24,7 +28,17 @@ import com.dytstudio.signup.R;
 import com.dytstudio.signup.Util.APIClient;
 import com.dytstudio.signup.Util.APIInterface;
 import com.dytstudio.signup.Util.Easing;
+import com.github.johnpersano.supertoasts.library.Style;
+import com.github.johnpersano.supertoasts.library.SuperActivityToast;
+import com.github.johnpersano.supertoasts.library.SuperToast;
+import com.github.johnpersano.supertoasts.library.utils.PaletteUtils;
 import com.google.gson.Gson;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -53,6 +67,40 @@ public class Login extends AppCompatActivity {
         }
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        Dexter.withActivity(this)
+                .withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+                .withListener(new PermissionListener() {
+                    @Override public void onPermissionGranted(PermissionGrantedResponse response) {
+
+                        new SuperToast(Login.this)
+                                .setText("Location granted")
+                                .setDuration(Style.DURATION_SHORT)
+                                .setColor(PaletteUtils.getTransparentColor(PaletteUtils.MATERIAL_INDIGO))
+                                .setAnimations(Style.ANIMATIONS_POP)
+                                .show();
+
+                    }
+                    @Override public void onPermissionDenied(PermissionDeniedResponse response) {
+
+                        Intent i = new Intent(Login.this, LocationDenied.class);
+                        new SuperToast(Login.this)
+                                .setText("This app needs your location to work properlly")
+                                .setDuration(Style.DURATION_SHORT)
+                                .setColor(PaletteUtils.getTransparentColor(PaletteUtils.MATERIAL_RED))
+                                .setAnimations(Style.ANIMATIONS_POP)
+                                .show();
+                        startActivity(i);
+                        finish();
+
+
+
+
+                    }
+                    @Override public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
+
+                    }
+                }).check();
 
         if(mPrefs.contains("token")){
             Intent intent = new Intent(Login.this, UserDashboard.class);
@@ -87,6 +135,11 @@ public class Login extends AppCompatActivity {
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                ProgressDialog pd = new ProgressDialog(Login.this,R.style.spinner);
+                pd.setCancelable(false);
+                pd.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
+                pd.show();
                  Call<AccessToken> token_call = apiInterface.POST_TOKEN_CALL(username.getText().toString(), password.getText().toString(), client_id ,grant_type ,scope);
 
                 token_call.enqueue(new Callback<AccessToken>() {
@@ -94,25 +147,31 @@ public class Login extends AppCompatActivity {
                     public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
                         if(response.isSuccessful()){
 
-
-
                             Intent intent = new Intent(Login.this, UserDashboard.class);
-
                             SharedPreferences.Editor prefsEditor = mPrefs.edit();
                             Gson gson = new Gson();
                             String json = gson.toJson(response.body());
                             prefsEditor.putString("token", json);
                             if(prefsEditor.commit()){
                                 Login.this.startActivity(intent);
-
+                                finish();
+                                pd.hide();
                             }
 
                         }
+                        else{
+                            Toast.makeText(Login.this, "Login not succeeded", Toast.LENGTH_SHORT).show();
+                            pd.hide();
+                        }
+
+
                     }
 
                     @Override
                     public void onFailure(Call<AccessToken> call, Throwable t) {
 
+                        Toast.makeText(Login.this, "Login not succeeded", Toast.LENGTH_SHORT).show();
+                        pd.hide();
                     }
                 });
 

@@ -1,0 +1,28 @@
+<h1>Issues van werknemer met id {{myId}}</h1>
+
+
+<div class="column">
+    <mat-table #table [dataSource]="dataSource" class="filtert">
+
+      <!-- Position Column -->
+      <div>
+        <ng-container matColumnDef="Status">
+          <mat-header-cell *matHeaderCellDef> Status</mat-header-cell>
+          <mat-cell *matCellDef="let Issue" #Status> {{Issue.issueClosed}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Reason">
+          <mat-header-cell *matHeaderCellDef>Reason</mat-header-cell>
+          <mat-cell *matCellDef="let Issue" #Reason>{{Issue.reason.reasontitle}} {{Issue.reason.reason}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Time">
+          <mat-header-cell *matHeaderCellDef> Time</mat-header-cell>
+          <mat-cell *matCellDef="let Issue" #Time>{{Issue.issueCreated}}</mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+      </div>
+      <!-- Name Column -->
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let data; columns: displayedColumns;">{{this.data}}</mat-row>
+    </mat-table>
+  </div>

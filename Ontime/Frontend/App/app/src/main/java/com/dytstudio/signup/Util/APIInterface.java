@@ -1,9 +1,12 @@
 package com.dytstudio.signup.Util;
 
 
-import com.dytstudio.signup.Issues.Issue;
+import com.dytstudio.signup.Models.Employee;
+import com.dytstudio.signup.Models.Issue;
 import com.dytstudio.signup.Models.AccessToken;
+import com.dytstudio.signup.Models.Employee;
 import com.dytstudio.signup.Models.Employer;
+import com.dytstudio.signup.Models.Location;
 import com.dytstudio.signup.Models.PostEmployer;
 
 import java.util.List;
@@ -14,9 +17,9 @@ import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.HEAD;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
 /**
@@ -33,17 +36,20 @@ public interface APIInterface {
         @POST("/connect/token")
         Call<AccessToken> POST_TOKEN_CALL (@Field("username") String username, @Field("password") String password, @Field("client_id") String client_id, @Field("grant_type") String grant_type, @Field("scope") String scope);
 
+        @GET("/api/Employees/employeefromtoken")
+        Call<Employee> GET_EMPLOYEE_FROM_TOKEN(@Header("Authorization") String token);
+
 
         //EMPLOYERS
 
         @GET("/api/Employers")
         Call<List<Employer>> GET_EMPLOYERS(@Header("Authorization") String token);
 
-        @POST("/api/Employers/employeetoemployer")
-        Call<Void> POST_EMPLOYEE_TO_EMPLOYER (@Header("Authorization") String token, @Query("id") String id);
-
         @DELETE("/api/Employees")
         Call<Void> DELETE_EMPLOYER(@Header("Authorization") String token);
+
+        @GET("/api/Employees/getlocationfromaddressfromtoken")
+        Call<com.dytstudio.signup.Models.Location> GET_LOCATION_FROM_ADDRESS_EMPLOYER(@Header("Authorization") String token);
 
 
 
@@ -55,8 +61,23 @@ public interface APIInterface {
         @GET("/api/Issues/issuesfromuser")
         Call<List<Issue>> GET_ISSUES(@Header("Authorization") String token);
 
-        @POST("/api/Issues/changestatus")
-        Call<Void> CHANGE_ISSUESTATUS(@Header("Authorization") String token, @Query("id") int id);
+        @GET("api/Employees/getopenissue")
+        Call<Issue> GET_OPEN_ISSUE(@Header("Authorization") String token);
+
+        @PUT("api/Employees/closeissue")
+        Call<Void> close_issue(@Header("Authorization") String token, @Query("id") int id);
+
+        @PUT("/api/Employees/timestamparrival")
+        Call<Void> TIME_STAMP_ARRIVAL(@Header("Authorization") String token, @Query("id") int id);
+
+        @DELETE("/api/Employees/closeopenissue")
+        Call<Void> DELETE_OPEN_ISSUE(@Header("Authorization") String token);
+
+
+
+
+
+
 
 
 }

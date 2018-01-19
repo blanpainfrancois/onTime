@@ -1,4 +1,5 @@
 
+<simple-notifications [options]="options"></simple-notifications>
 
 <div class="container mat-elevation-z8 filterl">
   <div class="header">
@@ -13,27 +14,20 @@
    <div>
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-      <mat-cell *matCellDef="let employee" #givenname (click)="linkEmployees('test')"> {{employee.givenname}} </mat-cell>
+      <mat-cell *matCellDef="let employee" #givenname [ngClass]="color"  (click)="linkEmployees(employee.employeeID)"> {{employee.givenname}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Lastname">
       <mat-header-cell *matHeaderCellDef> Lastname </mat-header-cell>
-      <mat-cell *matCellDef="let employee" #familyname (click)="linkEmployees(employee.givenname)"> {{employee.familyname}}  </mat-cell>
-    </ng-container>
-
-    <!-- Name Column -->
-    <ng-container matColumnDef="isChecked" >
-      <mat-header-cell *matHeaderCellDef > IsChecked </mat-header-cell>
-      <mat-cell *matCellDef="let employee" > {{employee.username}} </mat-cell>
+      <mat-cell *matCellDef="let employee" #familyname [ngClass]="color"  (click)="linkEmployees(employee.employeeID)"> {{employee.familyname}}  </mat-cell>
     </ng-container>
    </div>
-
-
     <!-- Name Column -->
-
-
     <mat-header-row *matHeaderRowDef="displayedColumns" ></mat-header-row>
-    <mat-row  *matRowDef="let data; columns: displayedColumns;" >{{this.data}}</mat-row>
+    <mat-row  *matRowDef="let data; columns: displayedColumns;"  >{{this.data}}</mat-row>
   </mat-table>
+  <button *ngIf="!user" routerLink="/dashboard/ownemployees" mat-button>Confirm</button>
 </div>
+
+
 
