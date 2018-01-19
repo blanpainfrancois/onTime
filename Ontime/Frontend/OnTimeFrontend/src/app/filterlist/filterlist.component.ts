@@ -6,6 +6,7 @@ import { Router } from '@angular/router'
 import { routerTransition } from '../router.transitions';
 import { Constants } from '../Constants'
 import {Http, HttpModule} from '@angular/http';
+import { NotificationsService } from 'angular2-notifications';
 
 /**
  * @title Table with filtering
@@ -32,7 +33,15 @@ export class TableFilter implements OnInit {
   employeeID : number;
   id;
 
-  constructor(public getservice : GetemployeesService ) {
+  public options = {
+    position: ["bottom", "left"],
+    timeOut: 5000,
+    lastOnBottom: true
+    
+}
+
+
+  constructor(public getservice : GetemployeesService, private _service: NotificationsService  ) {
     getservice.getAllEmployees().subscribe(data => {
       this.employees = data;
       this.dataSource = new MatTableDataSource(this.employees);
@@ -43,6 +52,7 @@ export class TableFilter implements OnInit {
 
     this.getservice.getAllEmployers().subscribe(data =>{
 
+      this._service.success("data is loaded");
       this.logdata = data;
       console.log(data);
 
