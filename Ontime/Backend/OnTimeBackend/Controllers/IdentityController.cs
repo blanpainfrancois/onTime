@@ -171,47 +171,6 @@ namespace OnTimeBackend.Controllers
 
         }
 
-        [AllowAnonymous]
-        [HttpPost("CreateEmployee")]
-        public async Task<IActionResult> CreateEmployer([FromBody]CreateEmployeeModel model)
-        {
-
-            var user = new ApplicationUser
-            {
-                UserName = model.username,
-                GivenName = model.givenname,
-                FamilyName = model.familyname,
-                Email = model.email
-            };
-
-            
-
-            var result = await usermanager.CreateAsync(user, model.password);
-            var roleresult = await usermanager.AddToRoleAsync(user, "employer");
-            
-            if(result.Succeeded && roleresult.Succeeded)
-            {
-                await addClaims(model.username);
-
-                context.employees.Add(new Employee
-                {
-                    IdentityID = user.Id,
-                    Givenname = model.givenname,
-                    Familyname = model.familyname
-                });
-
-                await context.SaveChangesAsync();
-
-                return Ok();
-            }
-            
-           
-            return BadRequest();
-
-
-        }
-
-
 
         /// <summary>
         /// Deletes a user.

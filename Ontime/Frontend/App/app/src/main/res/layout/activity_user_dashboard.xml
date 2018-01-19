@@ -5,11 +5,11 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
     <include
         layout="@layout/app_bar_user_dashboard"
+        android:id="@+id/topbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -20,6 +20,21 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_user_dashboard"
-        app:menu="@menu/activity_user_dashboard_drawer" />
+        app:menu="@menu/activity_user_dashboard_drawer" >
+
+    </android.support.design.widget.NavigationView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/ll_userdashboard"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:orientation="vertical">
+
+
+    </LinearLayout>
+
+
+
 
 </android.support.v4.widget.DrawerLayout>
