@@ -34,12 +34,7 @@ export class TableFilter implements OnInit {
   id;
 
 
-  public options = {
-    position: ["bottom", "right"],
-    timeOut: 5000,
-    lastOnBottom: true
-    
-}
+  
 
 
   constructor(public getservice : GetemployeesService, private _service: NotificationsService  ) {
