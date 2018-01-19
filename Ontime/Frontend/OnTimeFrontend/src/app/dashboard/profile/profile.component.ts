@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-profile',
@@ -16,7 +17,7 @@ export class ProfileComponent implements OnInit {
   
 
 
-  constructor(private userService : UserService, private fb: FormBuilder ){
+  constructor(private userService : UserService, private fb: FormBuilder, private _service: NotificationsService ){
 
     this.userService.getuser().subscribe(user => {
       this.user = new User();
@@ -45,7 +46,9 @@ export class ProfileComponent implements OnInit {
 
   postaddress(){
 
-    this.userService.postAddress(this.addressform.value).subscribe(data => alert("address updatet, " + data));
+    this.userService.postAddress(this.addressform.value).subscribe(data => {
+      this._service.success("Address succesfull updatet.")
+    });
 
   }
 
