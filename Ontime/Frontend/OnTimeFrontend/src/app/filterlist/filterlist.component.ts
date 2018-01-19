@@ -32,6 +32,7 @@ export class TableFilter implements OnInit {
   employeeID : number;
   id;
 
+
   constructor(public getservice : GetemployeesService ) {
     getservice.getAllEmployees().subscribe(data => {
       this.employees = data;
@@ -54,25 +55,16 @@ export class TableFilter implements OnInit {
   }
 
 
-  linkEmployees(){
+  linkEmployees(id: number){
+    console.log(id);
 
-    this.wasClicked= !this.wasClicked
-    if(this.wasClicked == true){
-      this.getservice.employeeToEmployer(2).subscribe(data =>{
-
+      this.getservice.employeeToEmployer(id).subscribe(data =>{
         this.logdata = data;
-      });
+        console.log("werknemer toegevoegd");
 
       this.buttonColor = '#8BC34A';
-    }
-    else{
-      this.buttonColor = '#fff';
-    }
-
-    console.log(this.wasClicked);
-    console.log(this.dataSource.employee.employerID);
-    console.log(this.dataSource.employees.employeeID);
     console.log(this.id);
+  });
   }
 
   displayIssues(id: number){
@@ -83,7 +75,8 @@ export class TableFilter implements OnInit {
     }
   }
 
-  displayedColumns = ['employeeID','name','Lastname'];
+
+  displayedColumns = ['name','Lastname'];
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -92,7 +85,6 @@ export class TableFilter implements OnInit {
   }
   ngOnInit() {
   }
-
 }
 
 
