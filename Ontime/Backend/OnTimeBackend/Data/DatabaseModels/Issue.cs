@@ -15,5 +15,6 @@ namespace Uber4Cream.Data.DatabaseModels
         public DateTime dateclosed { get; set; }
         public Location location { get; set; }
         public Employee employee { get; set; }
+        public TimeSpan timespan { get; set; }
     }
 }

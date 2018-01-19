@@ -272,6 +272,8 @@ namespace OnTimeBackend.Migrations
 
                     b.Property<DateTime>("dateclosed");
 
+                    b.Property<TimeSpan>("timespan");
+
                     b.Property<DateTime>("timestamp");
 
                     b.HasKey("IssueID");

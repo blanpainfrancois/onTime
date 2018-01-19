@@ -55,5 +55,39 @@ namespace OnTimeBackend.Controllers
             return BadRequest();
         }
 
+        [HttpGet("GetCostofHoursToLate")]
+        public async Task<IActionResult> GetCostofHoursToLate()
+        {
+            var tokenuser = await usermanager.GetUserAsync(User);
+            var employer = await context.employers.Where(e => e.IdentityID == tokenuser.Id).Include(e => e.employees).ThenInclude(i => i.issues).FirstOrDefaultAsync();
+
+            TimeSpan total = new TimeSpan();
+
+            if(employer != null)
+            {
+                foreach (var employee in employer.employees)    
+                {
+
+                    foreach (var issue in employee.issues)
+                    {
+                        
+                        total = total.Add(issue.timespan);
+                    }
+                }
+
+
+
+                var mul = Math.Round(((float)1/(float)3600)*(employer.HourCost * total.TotalSeconds), 2);
+                return Ok(mul);
+
+            }
+            
+            
+
+            return BadRequest();
+        }
+
+
+
     }
 }
