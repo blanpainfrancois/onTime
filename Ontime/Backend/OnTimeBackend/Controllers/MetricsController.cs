@@ -10,6 +10,7 @@ using OnTimeBackend.Data;
 using Microsoft.AspNetCore.Identity;
 using OnTimeBackend.Models;
 using Microsoft.EntityFrameworkCore;
+using Uber4Cream.Data.DatabaseModels;
 
 namespace OnTimeBackend.Controllers
 {
@@ -41,16 +42,42 @@ namespace OnTimeBackend.Controllers
 
             return BadRequest();
         }
-        [HttpGet("getTopReasons")]
+        [HttpGet("GetTopReason")]
         public async Task<IActionResult> getTopReasons()
         {
             var tokenuser = await usermanager.GetUserAsync(User);
+            var employer = await context.employers.Where(e => e.IdentityID == tokenuser.Id).Include(e => e.employees).ThenInclude(i => i.issues).ThenInclude(r => r.reason).FirstOrDefaultAsync();
 
-            var top = await context.issues.GroupBy(i => i.reason.ReasonID).ToListAsync();
-            if (top != null)
+            List<Reason> reasons = new List<Reason>();
+
+            if (employer != null)
             {
-                Ok(top);
+                foreach (var employee in employer.employees)
+                {
+                    foreach (var issue in employee.issues)
+                    {
+                        reasons.Add(issue.reason);
+                    }
+                }
+
+
+                var group = reasons.GroupBy(tempreason => tempreason.reason);
+                var sorted = group.OrderByDescending(g => g.Count());
+
+                var reason = sorted.First().First();
+
+                if(reason != null)
+                {
+                    return Ok(reason);
+
+                }
+
+
             }
+
+
+
+
 
             return BadRequest();
         }

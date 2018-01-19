@@ -22,12 +22,12 @@
                   <h1> {{countemployees}} </h1>
                 </div>
               </div>
-            <div class="col-sm-3">
-              <div class="well">
-                <h4>Sessions</h4>
-                <p>10 Million</p> 
+              <div class="col-sm-3">
+                <div *ngIf="countemployees" class="well">
+                  <h4>Top reason</h4>
+                  <h1> {{topreason?.reason}} </h1>
+                </div>
               </div>
-            </div>
             <div class="col-sm-3">
               <div class="well">
                 <h4>Bounce</h4>
