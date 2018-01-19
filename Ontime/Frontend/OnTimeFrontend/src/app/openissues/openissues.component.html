@@ -1,0 +1,30 @@
+<div class="container mat-elevation-z8 filterl">
+  <div class="header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+
+  <mat-table #table [dataSource]="dataSource" class="filtert">
+
+    <!-- Position Column -->
+    <div>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let issue" #givenname > {{issue.employee.givenname}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Lastname">
+        <mat-header-cell *matHeaderCellDef> Lastname </mat-header-cell>
+        <mat-cell *matCellDef="let issue" #familyname > {{issue.employee.familyname}}  </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Reden">
+        <mat-header-cell *matHeaderCellDef> Reden </mat-header-cell>
+        <mat-cell *matCellDef="let issue" #reason > {{issue.reason.reason}}  </mat-cell>
+      </ng-container>
+    </div>
+    <!-- Name Column -->
+    <mat-header-row *matHeaderRowDef="displayedColumns" ></mat-header-row>
+    <mat-row  *matRowDef="let data; columns: displayedColumns;">{{this.data}}</mat-row>
+  </mat-table>
+</div>
