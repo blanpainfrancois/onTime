@@ -11,8 +11,8 @@ using System;
 namespace OnTimeBackend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20171204184249_changedcolumnnamelocation")]
-    partial class changedcolumnnamelocation
+    [Migration("20171222171847_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -191,6 +191,8 @@ namespace OnTimeBackend.Migrations
 
                     b.Property<string>("Country");
 
+                    b.Property<int?>("EmployerID");
+
                     b.Property<string>("city");
 
                     b.Property<string>("housenumber");
@@ -200,6 +202,10 @@ namespace OnTimeBackend.Migrations
                     b.Property<string>("zipcode");
 
                     b.HasKey("AddressID");
+
+                    b.HasIndex("EmployerID")
+                        .IsUnique()
+                        .HasFilter("[EmployerID] IS NOT NULL");
 
                     b.ToTable("addresses");
                 });
@@ -257,13 +263,13 @@ namespace OnTimeBackend.Migrations
 
                     b.Property<bool>("IssueClosed");
 
-                    b.Property<DateTime>("IssueClosedDate");
-
                     b.Property<DateTime>("IssueCreated");
 
                     b.Property<int?>("LocationID");
 
                     b.Property<int?>("ReasonID");
+
+                    b.Property<DateTime>("dateclosed");
 
                     b.Property<DateTime>("timestamp");
 
@@ -353,6 +359,13 @@ namespace OnTimeBackend.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.Address", b =>
+                {
+                    b.HasOne("Uber4Cream.Data.DatabaseModels.Employer", "employer")
+                        .WithOne("address")
+                        .HasForeignKey("Uber4Cream.Data.DatabaseModels.Address", "EmployerID");
                 });
 
             modelBuilder.Entity("Uber4Cream.Data.DatabaseModels.Employee", b =>

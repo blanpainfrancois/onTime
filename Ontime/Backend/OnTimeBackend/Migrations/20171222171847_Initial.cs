@@ -5,27 +5,10 @@ using System.Collections.Generic;
 
 namespace OnTimeBackend.Migrations
 {
-    public partial class init : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "addresses",
-                columns: table => new
-                {
-                    AddressID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    city = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    housenumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    streetname = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    zipcode = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_addresses", x => x.AddressID);
-                });
-
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -90,7 +73,7 @@ namespace OnTimeBackend.Migrations
                     LocationID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     latitude = table.Column<double>(type: "float", nullable: false),
-                    longtitude = table.Column<double>(type: "float", nullable: false)
+                    longitude = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -103,7 +86,8 @@ namespace OnTimeBackend.Migrations
                 {
                     ReasonID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    reason = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    reason = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    reasontitle = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -217,6 +201,30 @@ namespace OnTimeBackend.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "addresses",
+                columns: table => new
+                {
+                    AddressID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EmployerID = table.Column<int>(type: "int", nullable: true),
+                    city = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    housenumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    streetname = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    zipcode = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_addresses", x => x.AddressID);
+                    table.ForeignKey(
+                        name: "FK_addresses_employers_EmployerID",
+                        column: x => x.EmployerID,
+                        principalTable: "employers",
+                        principalColumn: "EmployerID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "employees",
                 columns: table => new
                 {
@@ -253,8 +261,11 @@ namespace OnTimeBackend.Migrations
                     IssueID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     EmployeeID = table.Column<int>(type: "int", nullable: true),
+                    IssueClosed = table.Column<bool>(type: "bit", nullable: false),
+                    IssueCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LocationID = table.Column<int>(type: "int", nullable: true),
                     ReasonID = table.Column<int>(type: "int", nullable: true),
+                    dateclosed = table.Column<DateTime>(type: "datetime2", nullable: false),
                     timestamp = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -279,6 +290,13 @@ namespace OnTimeBackend.Migrations
                         principalColumn: "ReasonID",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_addresses_EmployerID",
+                table: "addresses",
+                column: "EmployerID",
+                unique: true,
+                filter: "[EmployerID] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
