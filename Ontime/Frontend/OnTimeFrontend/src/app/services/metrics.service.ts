@@ -22,4 +22,10 @@ public getcountofemployees(){
 
 }
 
+public gettopreason(){
+  const headers = new HttpHeaders().set('Authorization', "Bearer " + this.authService.getToken()["access_token"]);
+  return this.http.get<number>(Constants.GET_TOP_REASON, {headers: headers});
+
+}
+
 }

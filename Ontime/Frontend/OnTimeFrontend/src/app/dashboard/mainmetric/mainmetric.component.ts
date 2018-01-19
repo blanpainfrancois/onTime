@@ -20,6 +20,7 @@ export class MainmetricComponent implements OnInit {
 
   losthours;
   countemployees;
+  topreason;
 
   constructor(private userService : UserService, private metricsService: MetricsService) {
 
@@ -43,14 +44,21 @@ export class MainmetricComponent implements OnInit {
 
   });
 
-  this.gethours();
-  this.getcountemployees();
+  this.getmetrics();
 
   
 
 
   }
   ngOnInit() {
+  }
+
+  getmetrics(){
+
+    this.gethours();
+    this.getcountemployees();
+    this.gettopreason();
+  
   }
 
   gethours(){
@@ -64,6 +72,14 @@ export class MainmetricComponent implements OnInit {
     this.metricsService.getcountofemployees().subscribe(data => {
       
       this.countemployees = data+"";
+
+    });
+  }
+
+  gettopreason(){
+    this.metricsService.gettopreason().subscribe(data => {
+      
+      this.topreason = data;
 
     });
   }
