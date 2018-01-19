@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
-import {ToastModule} from 'ng2-toastr/ng2-toastr';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AgmCoreModule } from '@agm/core';
 
@@ -54,7 +54,7 @@ import { TocapitalPipe } from './pipes/tocapital.pipe';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    ToastModule.forRoot(),
+    SimpleNotificationsModule.forRoot(),
     MatToolbarModule,
     MatButtonModule,
     MatInputModule,
