@@ -6,6 +6,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
+<<<<<<< HEAD
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA8fJ32KNXjEWFQfEdqdkVJAAAAAACAAAAAAAQZgAAAAEAACAAAADi5uuER57tOijo68zi7A+FoKaFQT3cq6Q1eP/eW2JoIgAAAAAOgAAAAAIAACAAAACF16Q/VhWCJ23LkSxs1lQ/7ymWifS6qBFYaVCt6ZJmk4AAAAD/CVWyaquVaweQ5LSbecrtkF6JIv0FgZ/eIROTKdBmamJEfSXpSfqy8kdd2DH4C/TR3GJVG+WwAv58BeAvurnNM6zyawRjjhzmo76kgYDrTBaHxAcb+ed3cUZJOAVj9CnbSf+7Wo9UZIaRU0PEfLceU/m5mihQY1CweEdDC6px/kAAAADbsBpREJUlqizDs594hztUFc+d6+1bfc/0DQGuYp2eTos9YGaMSJg080V3Bj8UfLJ1U+UUlPJ37xYgyteMmCLw</EncryptedPassword>
+=======
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA8fJ32KNXjEWFQfEdqdkVJAAAAAACAAAAAAAQZgAAAAEAACAAAADM6MffJAbn59ysvNw+3MLVwqZ7Zcg/QjBLegT/l/jX0AAAAAAOgAAAAAIAACAAAACoqcqg61fcvj/jrS5UWPA3JTJ7SxzLCAn+mwqTNHbfEoAAAABDVcNFgD3DAZw7ifVlGeJqbm2UawDrL2DHS3uA9BPHsdkXWP30F4gaXfxtVDbPX690Wr2VbrQPeTq+1xLiCkjc3PqJC9zAWKjMQFjGL4xsRA3qbs6/TPygVOHGCRPfJOy4MfaRxKrCSkzZzei7Yp9Bnq/geWXUBYHf5Cwz70uVgEAAAAA4j+O7Dbl2YcnQ72J7dg6ioBAcpxF+C3uNnwHSVjFXI+bAMQJu6W7oPYgqHiN1JYMjR69Kg8XG2MxyK3aSPJB3</EncryptedPassword>
+>>>>>>> LiveDeployment
   </PropertyGroup>
 </Project>

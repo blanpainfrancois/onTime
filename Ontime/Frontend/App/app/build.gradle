@@ -28,8 +28,10 @@ android {
             targetCompatibility JavaVersion.VERSION_1_8
 
         }
+
     }
 }
+
 
 
 
@@ -40,6 +42,7 @@ android {
 dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     compile fileTree(include: ['*.jar'], dir: 'libs')
+
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -68,4 +71,5 @@ dependencies {
 
 
     implementation 'com.google.android.gms:play-services-maps:11.4.2'
+
 }

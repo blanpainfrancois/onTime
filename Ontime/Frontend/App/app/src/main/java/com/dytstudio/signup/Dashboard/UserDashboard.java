@@ -29,6 +29,7 @@ import com.dytstudio.signup.Models.Issue;
 import com.dytstudio.signup.Login.Login;
 import com.dytstudio.signup.MainActivity;
 import com.dytstudio.signup.Models.AccessToken;
+import com.dytstudio.signup.Models.Employee;
 import com.dytstudio.signup.R;
 import com.dytstudio.signup.Util.APIClient;
 import com.dytstudio.signup.Util.APIInterface;
@@ -55,13 +56,17 @@ public class UserDashboard extends AppCompatActivity
 
     TextView tv_name, tv_extrainfo;
 
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         apiInterface = APIClient.getClient().create(APIInterface.class);
+
         Gson gson = new Gson();
         json = mPrefs.getString("token", "");
         accessToken = gson.fromJson(json, AccessToken.class);
@@ -70,6 +75,7 @@ public class UserDashboard extends AppCompatActivity
 
 
         checkSubscribedtoEmployer();
+
 
 
     }
@@ -203,10 +209,12 @@ public class UserDashboard extends AppCompatActivity
 
 
 
+
   private void checkSubscribedtoEmployer(){
 
-      Call<Employee> getemployeecall = apiInterface.GET_EMPLOYEE_FROM_TOKEN(accessToken.getAccess_token());
 
+
+      Call<Employee> getemployeecall = apiInterface.GET_EMPLOYEE_FROM_TOKEN(accessToken.getAccess_token());
       getemployeecall.enqueue(new Callback<Employee>() {
           @Override
           public void onResponse(Call<Employee> call, Response<Employee> response) {
@@ -322,4 +330,5 @@ public class UserDashboard extends AppCompatActivity
 
 
     }
+
 }

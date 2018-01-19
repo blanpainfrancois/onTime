@@ -4,6 +4,7 @@ package com.dytstudio.signup.Util;
 import com.dytstudio.signup.Models.Employee;
 import com.dytstudio.signup.Models.Issue;
 import com.dytstudio.signup.Models.AccessToken;
+import com.dytstudio.signup.Models.Employee;
 import com.dytstudio.signup.Models.Employer;
 import com.dytstudio.signup.Models.Location;
 import com.dytstudio.signup.Models.PostEmployer;
@@ -34,9 +35,6 @@ public interface APIInterface {
         @FormUrlEncoded
         @POST("/connect/token")
         Call<AccessToken> POST_TOKEN_CALL (@Field("username") String username, @Field("password") String password, @Field("client_id") String client_id, @Field("grant_type") String grant_type, @Field("scope") String scope);
-
-
-        //Employees
 
         @GET("/api/Employees/employeefromtoken")
         Call<Employee> GET_EMPLOYEE_FROM_TOKEN(@Header("Authorization") String token);

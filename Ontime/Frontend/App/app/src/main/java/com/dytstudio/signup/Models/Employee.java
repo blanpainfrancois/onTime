@@ -3,12 +3,8 @@ package com.dytstudio.signup.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by mo on 23/12/2017.
- */
 
 public class Employee {
-
 
 
     @SerializedName("employeeID")
@@ -36,6 +32,7 @@ public class Employee {
     @Expose
     public String identityID;
 
+
     public Employee(int employeeID, String givenname, String username, String familyname, Address address, Issue issues, Employer employer, String identityID) {
         this.employeeID = employeeID;
         this.givenname = givenname;
@@ -46,4 +43,5 @@ public class Employee {
         this.employer = employer;
         this.identityID = identityID;
     }
+
 }

@@ -12,7 +12,7 @@ namespace Uber4Cream.Data.DatabaseModels
         public Reason reason { get; set; }
         public DateTime timestamp { get; set; }
         public DateTime IssueCreated { get; set; }
-        public DateTime IssueClosedDate { get; set; }
+        public DateTime dateclosed { get; set; }
         public Location location { get; set; }
         public Employee employee { get; set; }
     }
