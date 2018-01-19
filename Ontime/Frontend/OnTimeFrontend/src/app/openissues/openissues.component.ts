@@ -28,7 +28,7 @@ export class OpenissuesComponent implements OnInit {
   issuetrue:any;
   issueopen : boolean = false;
   index : number = 0;
-
+  Reason;
 
   constructor(public getservice : GetemployeesService, public dialog: MatDialog, public router : Router ) {
     this.issue = [];
