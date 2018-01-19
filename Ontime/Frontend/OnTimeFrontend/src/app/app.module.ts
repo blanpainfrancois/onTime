@@ -25,7 +25,6 @@ import { AuthService } from './services/auth.service';
 import { RegisterService } from './services/register.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { UserService } from './services/user.service'
-import { SimpleNotificationsModule } from 'angular2-notifications';
 import {MatToolbarModule, MatButtonModule,MatInputModule, MatRadioModule , MatIconModule , MatMenuModule, MatTableModule} from '@angular/material';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MainmetricComponent } from './dashboard/mainmetric/mainmetric.component';
@@ -64,7 +63,6 @@ import { OpenissuesComponent } from './openissues/openissues.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    SimpleNotificationsModule.forRoot(),
     MatToolbarModule,
     MatButtonModule,
     MatInputModule,
