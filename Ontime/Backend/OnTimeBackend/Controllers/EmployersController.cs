@@ -2,44 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OnTimeBackend.Data;
 using Uber4Cream.Data.DatabaseModels;
 using Microsoft.AspNetCore.Authorization;
 using IdentityServer4.AccessTokenValidation;
-using Microsoft.EntityFrameworkCore;
 using OnTimeBackend.Models.AccountViewModels;
 using OnTimeBackend.Models;
 using Microsoft.AspNetCore.Identity;
-using Uber4Cream.Data.DatabaseModels;
-using System.Collections.ObjectModel;
-
+using System.Net.Http;
+using Newtonsoft.Json.Linq;
+using System.Runtime.Serialization;
+using OnTimeBackend.Data.DatabaseModels;
+using QuickType;
 
 namespace OnTimeBackend.Controllers
 {
     [Produces("application/json")]
     [Route("api/Employers")]
+    [Authorize(AuthenticationSchemes = IdentityServerAuthenticationDefaults.AuthenticationScheme, Policy = "Access Resources")]
 
     public class EmployersController : Controller
-    {
-        private readonly ApplicationDbContext _context;
-
-        public EmployersController(ApplicationDbContext context)
-        {
-            _context = context;
-        }
-
-<<<<<<< HEAD
-
-        [HttpGet]
-        public async Task<IActionResult> Getemployers()
-=======
-        [Authorize(AuthenticationSchemes = IdentityServerAuthenticationDefaults.AuthenticationScheme,
-            Policy = "Access Resources")]
-        public class EmployersController : Controller
->>>>>>> 648d18378b841166df235b94017d16e725b8534e
         {
             private readonly ApplicationDbContext context;
             private readonly UserManager<ApplicationUser> usermanager;
@@ -49,68 +33,26 @@ namespace OnTimeBackend.Controllers
                 this.context = context;
                 this.usermanager = usermanager;
 
-<<<<<<< HEAD
-            var employers = context.employers;
-
-            if(employers != null)
-            {
-                return new JsonResult(employers);
-            }
-                   
-
-            return BadRequest();
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> employer()
-        {
-
-            var tokenuser = await usermanager.GetUserAsync(User);
-            var employer = await context.employers.Where(e => e.IdentityID == tokenuser.Id).FirstOrDefaultAsync();
-
-
-
-            if (employer != null)
-            {
-                return new JsonResult(employer);
             }
 
 
-            return BadRequest();
-        }
-
-
-        [HttpPost("subscribe employee to employer")]
-        public async Task<IActionResult> employeetoemployer(int id)
-        {
-            var tokenuser = await usermanager.GetUserAsync(User);
-
-            var employer = await context.employers.Where(e => e.IdentityID == tokenuser.Id).FirstOrDefaultAsync();
-            var employee = await context.employees.Where(em => em.EmployeeID == id).FirstOrDefaultAsync();
-            
-            if(employee != null && employer != null)
-            {
-                employer.employees.Add(employee);
-                await context.SaveChangesAsync();
-
-                return Ok();
-            }
-            
-
-            return BadRequest();
-            
-        }
-=======
-            }
-
-            // GET: api/Employers
             [HttpGet]
+            public async Task<IActionResult> GetEmployer()
+        {
+            var tokenuser = await usermanager.GetUserAsync(User);
+            var employer = await context.employers.Where(em => em.IdentityID == tokenuser.Id).FirstOrDefaultAsync();
 
-            public IEnumerable<Employer> Getemployers()
+            if(employer != null)
             {
-                return _context.employers;
+                return Ok(employer);
+            }
+            return BadRequest();
+            
+        }
 
-                Public async Task<IActionResult> Getemployers()
+      
+            [HttpGet("getemployers")]
+            public async Task<IActionResult> Getemployers()
                 {
 
                     var employers = await context.employers.ToListAsync();
@@ -132,126 +74,61 @@ namespace OnTimeBackend.Controllers
                     return new JsonResult(returnemployers);
                 }
 
-            }
+            
 
             [HttpPost("employeetoemployer")]
-
-            public async Task<IActionResult> employeetoemployer(string id)
+            public async Task<IActionResult> employeetoemployer(int employeeid)
             {
-                var employeeIdentity = await usermanager.GetUserAsync(User);
-                var employee = context.employees.Where(e => e.IdentityID == employeeIdentity.Id).FirstOrDefault();
-                var employer = context.employers.Where(e => e.IdentityID == id).FirstOrDefault();
+            var employerIdentity = await usermanager.GetUserAsync(User);
+            var employer = await context.employers.Where(e => e.IdentityID == employerIdentity.Id).FirstOrDefaultAsync();
+            var employee = await context.employees.Where(i => i.EmployeeID == employeeid).FirstOrDefaultAsync();
 
-
-                if (employee != null)
-                {
-
-                    employer.employees = new List<Employee>();
-
-                    employer.employees.Add(employee);
-                    await context.SaveChangesAsync();
-                    return Ok();
-                }
-
->>>>>>> 648d18378b841166df235b94017d16e725b8534e
-
-                return BadRequest();
-
-
-
-
-<<<<<<< HEAD
-       
-        
-=======
-            }
-
-            // GET: api/Employers/5
-            [HttpGet("{id}")]
-            public async Task<IActionResult> GetEmployer([FromRoute] int id)
+            if(employee != null && employer != null)
             {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
 
-
-                var employer = await _context.employers.SingleOrDefaultAsync(m => m.EmployerID == id);
-                var employer = await context.employers.SingleOrDefaultAsync(m => m.EmployerID == id);
-
-
-                if (employer == null)
-                {
-                    return NotFound();
-                }
-
-                return Ok(employer);
-            }
-
-            // PUT: api/Employers/5
-            [HttpPut("{id}")]
-            public async Task<IActionResult> PutEmployer([FromRoute] int id, [FromBody] Employer employer)
-            {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
-
-                if (id != employer.EmployerID)
-                {
-                    return BadRequest();
-                }
-
-
-                _context.Entry(employer).State = EntityState.Modified;
-
-                try
-                {
-                    await _context.SaveChangesAsync();
-                    context.Entry(employer).State = EntityState.Modified;
-
-                    try
-                    {
-                        await context.SaveChangesAsync();
-
-                    }
-                    catch (DbUpdateConcurrencyException)
-                    {
-                        if (!EmployerExists(id))
-                        {
-                            return NotFound();
-                        }
-                        else
-                        {
-                            throw;
-                        }
-                    }
-
-                    return NoContent();
-                }
-            }
-
-            // POST: api/Employers
-            [HttpPost]
-            public async Task<IActionResult> PostEmployer([FromBody] Employer employer)
-            {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
-
-                _context.employers.Add(employer);
-                await _context.SaveChangesAsync();
-
-                context.employers.Add(employer);
+                employee.employer = employer;
                 await context.SaveChangesAsync();
 
+                return Ok();
+            }
+            
+            return BadRequest();
 
-                return CreatedAtAction("GetEmployer", new {id = employer.EmployerID}, employer);
             }
 
+        [HttpDelete("employeetoemployer")]
+        public async Task<IActionResult> deleteemployeetoemployer(int employeeid)
+        {
+            var employerIdentity = await usermanager.GetUserAsync(User);
+            var employer = await context.employers.Where(e => e.IdentityID == employerIdentity.Id).Include(em => em.employees).FirstOrDefaultAsync();
+
+            if (employer != null)
+            {
+                var employee = employer.employees.Where(i => i.EmployeeID == employeeid).FirstOrDefault();
+                if(employee != null)
+                {
+                    employer.employees.Remove(employee);
+                    await context.SaveChangesAsync();
+                    return Ok("employee removed from employers subscribtionlist");
+                }
+                if(employee == null)
+                {
+                    
+                    return Ok("employee has not been subscribed too employer");
+                }
+            }
+
+
+                return BadRequest();
+        }
+
+
+
+
+
+
             // DELETE: api/Employers/5
-            [HttpDelete("{id}")]
+        [HttpDelete("{id}")]
             public async Task<IActionResult> DeleteEmployer([FromRoute] int id)
             {
                 if (!ModelState.IsValid)
@@ -260,7 +137,6 @@ namespace OnTimeBackend.Controllers
                 }
 
 
-                var employer = await _context.employers.SingleOrDefaultAsync(m => m.EmployerID == id);
 
                 var employer = await context.employers.SingleOrDefaultAsync(m => m.EmployerID == id);
 
@@ -270,33 +146,102 @@ namespace OnTimeBackend.Controllers
                 }
 
 
-                _context.employers.Remove(employer);
-                await _context.SaveChangesAsync();
+           
 
                 context.employers.Remove(employer);
                 await context.SaveChangesAsync();
 
->>>>>>> 648d18378b841166df235b94017d16e725b8534e
 
                 return Ok(employer);
             }
 
-            private bool EmployerExists(int id)
+          
+
+            [HttpPost("postaddress")]
+            public async Task<IActionResult> postaddress( [FromBody] Address address)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var employerIdentity = await usermanager.GetUserAsync(User);
+            var employer = await context.employers.Where(e => e.IdentityID == employerIdentity.Id).FirstOrDefaultAsync();
+
+            if(employer != null)
             {
 
-                return _context.employers.Any(e => e.EmployerID == id);
+                employer.address = address;
 
-                return context.employers.Any(e => e.EmployerID == id);
+                await context.SaveChangesAsync();
 
-<<<<<<< HEAD
-        
+                return Ok();
+
+            }
+
+            return BadRequest();
+        }
+
+            
+        [HttpGet("getsubcribedemployees")]
+        public async Task<IActionResult> getsubcribedemployees()
+        {
+
+            var tokenuser = await usermanager.GetUserAsync(User);
+            var employer = await context.employers.Where(em => em.IdentityID == tokenuser.Id).Include(em => em.employees).ThenInclude(ee => ee.issues).ThenInclude(i => i.reason).FirstOrDefaultAsync();
+
+            if(employer.employees != null)
+            {
+                return Ok(employer.employees);
+            }
+            if(employer.employees == null)
+            {
+                return Ok("no employees assigned");
+            }
+            return BadRequest();
+        }
+
+        [HttpGet("GetissuesFromEmployee")]
+        public async Task<IActionResult> GetissuesFromEmployee(int employeeid)
+        {
+
+          //  var tokenuser = await usermanager.GetUserAsync(User);
+          //  var employer = await context.employers.Where(em => em.IdentityID == tokenuser.Id).Include(em => em.employees).ThenInclude(ee => ee.issues).ThenInclude(i => i.reason).FirstOrDefaultAsync();
+            var employee = await context.employees.Where(e => e.EmployeeID == employeeid).Include(i => i.issues).ThenInclude(i => i.reason).FirstOrDefaultAsync();
+
+
+            if(employee != null)
+            {
+                return Ok(employee);
+            }
+            
+            return BadRequest("no employee with such ID");
+        }
+
+
+        [HttpGet("GetAllOpenIssues")]
+        public async Task<IActionResult> GetAllOpenIssues()
+        {
+
+            var tokenuser = await usermanager.GetUserAsync(User);
+            var issues = await context.issues.Where(i => i.IssueClosed == false).Include(i => i.reason).Include(i => i.employee).ThenInclude(e => e.employer).ToListAsync();
+            
+
+            if (issues != null)
+            {
+                return Ok(issues);
+            }
+
+            return BadRequest("no employee with such ID");
+        }
+
 
         private bool EmployerExists(int id)
-        {
-            return context.employers.Any(e => e.EmployerID == id);
-=======
+            {
+                return context.employers.Any(e => e.EmployerID == id);
+
             }
->>>>>>> 648d18378b841166df235b94017d16e725b8534e
+
+
         }
     }
-}
