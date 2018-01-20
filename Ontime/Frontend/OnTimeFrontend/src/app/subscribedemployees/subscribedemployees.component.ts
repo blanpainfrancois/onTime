@@ -31,6 +31,7 @@ export class SubscribedemployeesComponent implements OnInit {
   employee : any;
   issueClosed;
   username;
+  displayedColumns = ['name','Lastname', 'Issues'];
 
 
   constructor(public getservice : GetemployeesService, public dialog: MatDialog, public router : Router ) {
@@ -59,7 +60,7 @@ export class SubscribedemployeesComponent implements OnInit {
   }
 
 
-  displayedColumns = ['name','Lastname', 'Issues'];
+
   goToIssues(id:number)
     {
       console.log(id);
