@@ -28,8 +28,10 @@
     "angular2-jwt": "^0.2.3",
     "angular2-notifications": "^0.9.7",
     "bootstrap": "^3.3.7",
+    "chart.js": "^2.7.1",
     "core-js": "^2.4.1",
     "materialize-css": "^0.100.2",
+    "ng2-charts": "^1.6.0",
     "ng2-toastr": "^4.1.2",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.18"

@@ -22,9 +22,8 @@ export class SubscribedemployeesComponent implements OnInit {
   public options = {
     position: ["bottom", "right"],
     timeOut: 5000,
-    lastOnBottom: true};
+    lastOnBottom: true}
 
-  aantalissueclosed : any = 0;
   myEmployees;
   issue :any;
   dataSource;
@@ -49,13 +48,10 @@ export class SubscribedemployeesComponent implements OnInit {
            console.log('dit issue is open');
          }
          else{
-           this.aantalissueclosed++;
            console.log('dit issue is gesloten');
          }
       });
-    console.log(this.aantalissueclosed);
     });
-
   }
 
 
@@ -69,7 +65,7 @@ export class SubscribedemployeesComponent implements OnInit {
   showIssues(id : number) {
 
 
-
+    
 
 /*
     openDialog(id:number)

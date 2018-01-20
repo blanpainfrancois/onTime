@@ -13,6 +13,7 @@ import { AuthGuardService } from '../services/auth-guard.service';
 import { SubscribedemployeesComponent } from '../subscribedemployees/subscribedemployees.component';
 import { IssuesComponent } from '../issues/issues.component';
 import { OpenissuesComponent } from '../openissues/openissues.component';
+import { GraphsComponent } from '../graphs/graphs.component';
 
 
 
@@ -27,9 +28,8 @@ const appRoutes: Routes = [
       {path: 'filterlist', component: TableFilter },
       {path: 'ownemployees', component: SubscribedemployeesComponent}, 
       {path: 'issues/:id', component: IssuesComponent},
-      {path: 'openissues', component: OpenissuesComponent}
-      
-
+      {path: 'openissues', component: OpenissuesComponent},
+      {path: 'graphs', component: GraphsComponent}
     ]},
     { path: 'register', component: RegisterComponent},
     { path: '**', component: NotfoundComponent }

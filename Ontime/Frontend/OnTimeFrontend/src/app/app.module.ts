@@ -5,6 +5,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
+import {ChartsModule} from "ng2-charts/ng2-charts"
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AgmCoreModule } from '@agm/core';
 
@@ -34,6 +35,7 @@ import { TocapitalPipe } from './pipes/tocapital.pipe';
 import { SubscribedemployeesComponent } from './subscribedemployees/subscribedemployees.component';
 import { IssuesComponent } from './issues/issues.component';
 import { OpenissuesComponent } from './openissues/openissues.component';
+import { GraphsComponent } from './graphs/graphs.component';
 
 
 
@@ -54,6 +56,7 @@ import { OpenissuesComponent } from './openissues/openissues.component';
     SubscribedemployeesComponent,
     IssuesComponent,
     OpenissuesComponent,
+    GraphsComponent
 
   ],
   imports: [
@@ -70,6 +73,7 @@ import { OpenissuesComponent } from './openissues/openissues.component';
     MatInputModule,
     MatRadioModule,
     MatIconModule,
+    ChartsModule,
     MatMenuModule,
     MatTableModule,
     MatDialogModule,
