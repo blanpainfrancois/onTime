@@ -58,4 +58,20 @@ export class GetemployeesService {
     const headers = new HttpHeaders().set('Authorization', "Bearer " + this.authService.getToken()["access_token"]);
     return this.client.get("http://ontimeapi.azurewebsites.net/api/Metrics/GetTopReason", {headers:headers});
   }
+  public getNumberofEmployeesFromEmployer(){
+    const headers = new HttpHeaders().set('Authorization', "Bearer " + this.authService.getToken()["access_token"]);
+    return this.client.get("http://ontimeapi.azurewebsites.net/api/Metrics/getNumberofEmployeesFromEmployer", {headers:headers});
+  }
+  public getCost(){
+    const headers = new HttpHeaders().set('Authorization', "Bearer " + this.authService.getToken()["access_token"]);
+    return this.client.get("http://ontimeapi.azurewebsites.net/api/Metrics/getCostofHoursToLate", {headers:headers});
+  }
+  public getOpenIssues(){
+    const headers = new HttpHeaders().set('Authorization', "Bearer " + this.authService.getToken()["access_token"]);
+    return this.client.get("http://ontimeapi.azurewebsites.net/api/Metrics/getOpenIssues", {headers:headers});
+  }
+  public getTopWeekday(){
+    const headers = new HttpHeaders().set('Authorization', "Bearer " + this.authService.getToken()["access_token"]);
+    return this.client.get("http://ontimeapi.azurewebsites.net/api/Metrics/getTopWeekday", {headers:headers});
+  }
 }

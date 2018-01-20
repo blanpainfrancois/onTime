@@ -1,11 +1,21 @@
-<p>
-  graphs works!
-</p>
-<canvas baseChart width="800" height="400">
- [chartType] = "line"
- [datasets] = "chartData"
- [labels] = "chartLabels"
- [options] = "chartoptions"
- [legend] = "true"
-</canvas>
-{{topReasons | json}}
+<h1>
+  Day with the most tardiness: {{ weekDay }}
+</h1>
+<h1>
+  Cost of lost workhours: {{ costLost }}
+</h1>
+<ngx-charts-area-chart
+  [view]="view"
+  [scheme]="colorScheme"
+  [results]="multi"
+  [gradient]="gradient"
+  [xAxis]="showXAxis"
+  [yAxis]="showYAxis"
+  [legend]="showLegend"
+  [showXAxisLabel]="showXAxisLabel"
+  [showYAxisLabel]="showYAxisLabel"
+  [xAxisLabel]="xAxisLabel"
+  [yAxisLabel]="yAxisLabel"
+  [autoScale]="autoScale"
+  (select)="onSelect($event)">
+</ngx-charts-area-chart>
