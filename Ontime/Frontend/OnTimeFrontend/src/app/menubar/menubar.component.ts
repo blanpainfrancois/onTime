@@ -9,20 +9,20 @@ import * as _ from "lodash";
   selector: 'app-menubar',
   templateUrl: './menubar.component.html',
   styleUrls: ['./menubar.component.css'],
-  
+
 })
 export class MenubarComponent {
 
   user: User;
-  
+
 
   constructor(private authService : AuthService, private userService : UserService) {
     this.userService.user.subscribe(data => {
 
       if(!_.isEmpty(data)){
         this.user = data;
-      } 
-      
+      }
+
 
     });
    }
@@ -32,6 +32,10 @@ export class MenubarComponent {
     this.authService.logout();
   }
 
+  private change(){
+    location.href="/concept";
+  }
+
   private deleteUser(){
     this.userService.deleteUser().subscribe(data => {
       if(data["succeeded"]){
@@ -39,8 +43,8 @@ export class MenubarComponent {
         this.signOut()
               }
     }
-    
-      
+
+
     )
   }
 

@@ -34,6 +34,7 @@ import { TocapitalPipe } from './pipes/tocapital.pipe';
 import { SubscribedemployeesComponent } from './subscribedemployees/subscribedemployees.component';
 import { IssuesComponent } from './issues/issues.component';
 import { OpenissuesComponent } from './openissues/openissues.component';
+import { ConceptComponent } from './dashboard/concept/concept.component';
 
 
 
@@ -54,6 +55,7 @@ import { OpenissuesComponent } from './openissues/openissues.component';
     SubscribedemployeesComponent,
     IssuesComponent,
     OpenissuesComponent,
+    ConceptComponent,
 
   ],
   imports: [

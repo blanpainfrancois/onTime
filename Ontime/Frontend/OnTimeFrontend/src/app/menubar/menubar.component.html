@@ -1,13 +1,13 @@
 <mat-toolbar color="primary">
 
   <button mat-button routerLink="/">Home</button>
-  <button mat-button>Concept</button>
+  <button mat-button (click)="change()">Concept</button>
   <button class="swaggerbutton" mat-button><a href="http://ontimeapi.azurewebsites.net/swagger">Swagger API</a></button>
   <button *ngIf="!user" routerLink="/register" mat-button>Register</button>
   <span class="fill-space"></span>
   <button *ngIf="!user" routerLink="/login" mat-button>Login</button>
   <div *ngIf="user">
-      
+
 
   <button  mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>more_vert</mat-icon>
