@@ -127,7 +127,7 @@ public class OpenIssue extends AppCompatActivity {
                                         public void onResponse(Call<Void> call, Response<Void> response) {
                                             if(response.isSuccessful()){
                                                 new SuperToast(OpenIssue.this)
-                                                        .setText("Issue deleted")
+                                                        .setText("Report deleted")
                                                         .setDuration(Style.DURATION_SHORT)
                                                         .setColor(PaletteUtils.getTransparentColor(PaletteUtils.MATERIAL_GREEN))
                                                         .setAnimations(Style.ANIMATIONS_POP)
@@ -141,7 +141,7 @@ public class OpenIssue extends AppCompatActivity {
                                             }
                                             else{
                                                 new SuperToast(OpenIssue.this)
-                                                        .setText("Issue not deleted")
+                                                        .setText("Report not deleted")
                                                         .setDuration(Style.DURATION_SHORT)
                                                         .setColor(PaletteUtils.getTransparentColor(PaletteUtils.MATERIAL_RED))
                                                         .setAnimations(Style.ANIMATIONS_POP)
@@ -155,7 +155,7 @@ public class OpenIssue extends AppCompatActivity {
                                         @Override
                                         public void onFailure(Call<Void> call, Throwable t) {
                                             new SuperToast(OpenIssue.this)
-                                                    .setText("Issue not deleted")
+                                                    .setText("Report not deleted")
                                                     .setDuration(Style.DURATION_SHORT)
                                                     .setColor(PaletteUtils.getTransparentColor(PaletteUtils.MATERIAL_RED))
                                                     .setAnimations(Style.ANIMATIONS_POP)
@@ -168,7 +168,7 @@ public class OpenIssue extends AppCompatActivity {
 
                                 case DialogInterface.BUTTON_NEGATIVE:
                                     new SuperToast(OpenIssue.this)
-                                            .setText("Issue not deleted")
+                                            .setText("Report not deleted")
                                             .setDuration(Style.DURATION_SHORT)
                                             .setColor(PaletteUtils.getTransparentColor(PaletteUtils.MATERIAL_RED))
                                             .setAnimations(Style.ANIMATIONS_POP)
@@ -182,7 +182,7 @@ public class OpenIssue extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(OpenIssue.this, R.style.DialogTheme);
-                            builder.setMessage("Are you sure to delete this issue?").setPositiveButton("Yes", dialogClickListener)
+                            builder.setMessage("Are you sure to delete this report?").setPositiveButton("Yes", dialogClickListener)
                                     .setNegativeButton("No", dialogClickListener).show();
                         }
                     });
@@ -413,7 +413,7 @@ public class OpenIssue extends AppCompatActivity {
                 if(response.isSuccessful()){
 
                     new SuperToast(OpenIssue.this)
-                            .setText("Issue closed")
+                            .setText("Report closed")
                             .setDuration(Style.DURATION_SHORT)
                             .setColor(PaletteUtils.getTransparentColor(PaletteUtils.MATERIAL_GREEN))
                             .setAnimations(Style.ANIMATIONS_POP)
@@ -428,7 +428,7 @@ public class OpenIssue extends AppCompatActivity {
 
                else {
                     new SuperToast(OpenIssue.this)
-                            .setText("Issue not closed")
+                            .setText("Report not closed")
                             .setDuration(Style.DURATION_SHORT)
                             .setColor(PaletteUtils.getTransparentColor(PaletteUtils.MATERIAL_RED))
                             .setAnimations(Style.ANIMATIONS_POP)

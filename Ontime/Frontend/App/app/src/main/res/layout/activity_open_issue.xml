@@ -8,7 +8,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,6 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -30,71 +33,71 @@
                         android:name="com.google.android.gms.maps.SupportMapFragment"
                         android:layout_width="match_parent"
                         android:layout_height="400dp"
-                        android:scaleType="centerCrop"
-                        />
+                        android:scaleType="centerCrop" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:padding="16dp">
+
                         <TextView
+                            android:id="@+id/title_open_issue"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
                             android:text="ABCDEFG"
-                            android:id="@+id/title_open_issue"
                             android:textColor="#000"
                             android:textSize="32sp" />
 
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="ABCDEFG"
                             android:id="@+id/tv_issue_open"
-                            android:textSize="22sp"
-                            android:textColor="#555" />
-                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="ABCDEFG"
-                            android:textSize="15sp"
+                            android:textColor="#555"
+                            android:textSize="22sp" />
+
+                        <TextView
                             android:id="@+id/close_issue_text"
-                            android:textColor="#555" />
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="ABCDEFG"
+                            android:textColor="#555"
+                            android:textSize="15sp" />
 
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_height="wrap_content">
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/btn_close_issue"
-                            android:text="Close issue"/>
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal">
 
                         <Button
+                            android:id="@+id/btn_close_issue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#ff0000"
-                            android:id="@+id/btn_deleteissue"
-                            android:text="Delete issue"
-                            />
+                            android:text="Arrived" />
+
                         <Button
+                            android:id="@+id/btn_deleteissue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="Delete report"
+                            android:textColor="#ff0000" />
+
+                        <Button
                             android:id="@+id/btn_openinwaze"
-                            android:text="Open in Waze"
-                            />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Open in Waze" />
 
                     </LinearLayout>
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
         </LinearLayout>
-
-
 
 
     </ScrollView>
