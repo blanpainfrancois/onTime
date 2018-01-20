@@ -4,5 +4,6 @@ export class User{
     public username: string;
     public createdAt: string;
     public identityID : string ;
+    public hourofcost: number;
     
 }

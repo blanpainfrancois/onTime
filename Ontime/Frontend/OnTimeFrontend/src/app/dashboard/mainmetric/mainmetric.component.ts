@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
+import { MetricsService } from '../../services/metrics.service';
 
 @Component({
   selector: 'app-mainmetric',
@@ -16,9 +17,12 @@ export class MainmetricComponent implements OnInit {
   allOptions: boolean = false;
 
   user : User;
-  
 
-  constructor(private userService : UserService) {
+  losthours;
+  countemployees;
+  topreason;
+
+  constructor(private userService : UserService, private metricsService: MetricsService) {
 
     if(navigator.geolocation){
       navigator.geolocation.getCurrentPosition(position => {
@@ -40,8 +44,43 @@ export class MainmetricComponent implements OnInit {
 
   });
 
+  this.getmetrics();
+
+  
+
 
   }
   ngOnInit() {
+  }
+
+  getmetrics(){
+
+    this.gethours();
+    this.getcountemployees();
+    this.gettopreason();
+  
+  }
+
+  gethours(){
+    this.metricsService.getlosthoursofemployer().subscribe(data => {
+      
+      this.losthours = data+"";
+
+    });
+  }
+  getcountemployees(){
+    this.metricsService.getcountofemployees().subscribe(data => {
+      
+      this.countemployees = data+"";
+
+    });
+  }
+
+  gettopreason(){
+    this.metricsService.gettopreason().subscribe(data => {
+      
+      this.topreason = data;
+
+    });
   }
 }

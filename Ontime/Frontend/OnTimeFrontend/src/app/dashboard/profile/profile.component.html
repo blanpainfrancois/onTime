@@ -34,9 +34,30 @@
                       <td>Created at</td>
                       <td> {{user?.createdAt}} </td>
                     </tr>
+
+
                     
                   </tbody>
                 </table>
+          
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title"> Cost of employee in hour</h3>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class=" col-md-9 col-lg-9 "> 
+                <form  [formGroup]="costofhourgroup" class="form-signin" novalidate>
+                  
+
+                  <input matInput formControlName="costofhour" placeholder="Cost of hour" id="costofhour" type="text">
+                  <button (click)="setHourWeight()"  class="btn btn-lg btn-primary btn-block btn-signin"  mat-button>Update cost hour</button>
+  
+                  </form>
           
               </div>
             </div>

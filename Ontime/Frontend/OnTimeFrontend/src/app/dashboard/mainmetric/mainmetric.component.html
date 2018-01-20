@@ -1,12 +1,80 @@
 
+
 <div class="container-fluid">
     <div class="row content">
 
+
+        <div class="well">
+            <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [streetViewControl]="allOptions" >
+                <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+              </agm-map>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div *ngIf="losthours" class="well">
+                <h4>Cost for lost hours</h4>
+                <h1> € {{losthours}} </h1>
+              </div>
+            </div>
+            <div class="col-sm-3">
+                <div *ngIf="countemployees" class="well">
+                  <h4>Count of your employees</h4>
+                  <h1> {{countemployees}} </h1>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div *ngIf="countemployees" class="well">
+                  <h4>Top reason</h4>
+                  <h1> {{topreason?.reason}} </h1>
+                </div>
+              </div>
+            <div class="col-sm-3">
+              <div class="well">
+                <h4>Bounce</h4>
+                <p>30%</p> 
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="well">
+                <p>Text</p> 
+                <p>Text</p> 
+                <p>Text</p> 
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="well">
+                <p>Text</p> 
+                <p>Text</p> 
+                <p>Text</p> 
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="well">
+                <p>Text</p> 
+                <p>Text</p> 
+                <p>Text</p> 
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="well">
+                <p>Text</p> 
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="well">
+                <p>Text</p> 
+              </div>
+            </div>
+          </div>
+        
+        
       <div class="row">
 
-          <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [streetViewControl]="allOptions" >
-              <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-            </agm-map>
+         
 
       </div>
 

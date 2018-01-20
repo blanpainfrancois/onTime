@@ -9,6 +9,8 @@ namespace Uber4Cream.Data.DatabaseModels
     {
         public int EmployerID { get; set; }
         public string Name { get; set; }
+        public float HourCost { get; set; }
+
         public string Username { get; set; }
         public DateTime CreatedAt { get; set; }
         public  ICollection<Employee> employees { get; set; }

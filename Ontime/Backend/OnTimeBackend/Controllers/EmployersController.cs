@@ -218,6 +218,54 @@ namespace OnTimeBackend.Controllers
             return BadRequest("no employee with such ID");
         }
 
+        [HttpGet("getaddressofemployer")]
+        public async Task<IActionResult> Getaddressofemployer()
+        {
+            var tokenuser = await usermanager.GetUserAsync(User);
+            var employer = await context.employers.Where(i => i.IdentityID == tokenuser.Id).Include(e => e.address).FirstOrDefaultAsync();
+
+            if(employer.address != null)
+            {
+                return Ok(employer.address);
+            }
+
+
+            return BadRequest();
+        }
+
+        [HttpPost("posthourcostemployer")]
+        public async Task<IActionResult> Posthourcostemployer(float hourcost)
+        {
+            var tokenuser = await usermanager.GetUserAsync(User);
+            var employer = await context.employers.Where(i => i.IdentityID == tokenuser.Id).Include(e => e.address).FirstOrDefaultAsync();
+
+            if (employer != null)
+            {
+                employer.HourCost = hourcost;
+                await context.SaveChangesAsync();
+                return Ok();
+            }
+
+
+            return BadRequest();
+        }
+
+        [HttpGet("getcostofhour")]
+        public async Task<IActionResult> getcostofhour(float hourcost)
+        {
+            var tokenuser = await usermanager.GetUserAsync(User);
+            var employer = await context.employers.Where(i => i.IdentityID == tokenuser.Id).FirstOrDefaultAsync();
+
+            if (employer.HourCost != null)
+            {
+                return Ok(employer.HourCost);
+            }
+
+
+            return BadRequest();
+        }
+
+
 
         [HttpGet("GetAllOpenIssues")]
         public async Task<IActionResult> GetAllOpenIssues()

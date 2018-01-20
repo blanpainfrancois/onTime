@@ -28,6 +28,14 @@ export class Constants {
         public static readonly GET_EMPLOYER: string = "http://ontimeapi.azurewebsites.net/api/Employers";
 
         public static readonly POST_ADDRESS_TO_EMPLOYER : string = "http://ontimeapi.azurewebsites.net/api/Employers/postaddress";
+        public static readonly POST_HOUR_COST : string = "http://ontimeapi.azurewebsites.net/api/Employers/posthourcostemployer";
+        public static readonly GET_ADDRESS_OF_EMPLOYER : string = "http://ontimeapi.azurewebsites.net/api/Employers/getaddressofemployer";
+        public static readonly GET_COST_HOUR : string = "http://ontimeapi.azurewebsites.net/api/Employers/getcostofhour";
 
+
+        //METRICS
+        public static readonly GET_HOURSCOST_OF_EMPLOYER : string = "http://ontimeapi.azurewebsites.net/api/Metrics/GetCostofHoursToLate";
+        public static readonly GET_COUNT_OF_EMPLOYEES : string = "http://ontimeapi.azurewebsites.net/api/Metrics/getNumberofEmployeesFromEmployer";
+        public static readonly GET_TOP_REASON : string = "http://ontimeapi.azurewebsites.net/api/Metrics/GetTopReason";
 
     }
