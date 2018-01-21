@@ -44,9 +44,10 @@ export class ProfileComponent implements OnInit {
 
     this.userService.getuser().subscribe(user => {
       this.user = new User();
+      //console.log(user["createdAt"].toString().String.substring(0,user["createdAt"].toString().String.indexOf("T")));
       this.user.employerID = user["employerID"];
       this.user.username = user["username"];
-      this.user.createdAt = user["createdAt"];
+      this.user.createdAt = user["createdAt"].toString().substring(0,user["createdAt"].indexOf("T"));
       this.user.identityID = user["identityID"];
       this.user.name = user["name"];
       this.user.hourofcost = user["HourCost"];

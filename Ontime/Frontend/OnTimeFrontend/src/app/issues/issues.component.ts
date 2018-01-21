@@ -16,6 +16,7 @@ import {Http, HttpModule} from '@angular/http';
 export class IssuesComponent implements OnInit, OnDestroy {
   myId : number;
   myName : string;
+  myIssueTemp;
   myIssue;
   private sub : any;
   private subissue : any;
@@ -29,10 +30,21 @@ export class IssuesComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params =>
       this.myId = +params["id"]);
-      console.log("Dit zijn de issues");
-      console.log("werknemer met id: " + this.myId);
+      //console.log("Dit zijn de issues");
+      //console.log("werknemer met id: " + this.myId);
     this.client.getIssuesFromEmployee(this.myId).subscribe(data => {
-        this.myIssue = data['issues'];
+        this.myIssueTemp = data['issues'];
+
+        for (let i in this.myIssueTemp){
+          if(this.myIssueTemp[i].issueClosed){
+            this.myIssueTemp[i].issueClosed = "Arrived";
+          }else{
+            this.myIssueTemp[i].issueClosed = "Underway";
+          }
+        }
+        console.log(this.myIssueTemp);
+
+        this.myIssue = this.myIssueTemp;
         this.myName = data['givenname'] + " " + data['familyname'];
         this.dataSource = new MatTableDataSource(this.myIssue);
       })
