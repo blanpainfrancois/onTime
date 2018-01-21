@@ -91,7 +91,7 @@
                             android:id="@+id/btn_openinwaze"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Open in Waze" />
+                            android:text="Open Waze" />
 
                     </LinearLayout>
                 </LinearLayout>

@@ -15,8 +15,14 @@ import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 export class MainmetricComponent implements OnInit {
   lat: number;
   lng: number;
+<<<<<<< HEAD
   zoom = 12;
   allOptions = false;
+=======
+  zoom = 13;
+  allOptions = false;
+  myPosition;
+>>>>>>> 5bc113f407361ad5475316ea07a02e6909770206
 
   user: User;
   startdate: Date;
@@ -81,10 +87,34 @@ export class MainmetricComponent implements OnInit {
     this.getmetrics();
   }
   ngOnInit() {
+<<<<<<< HEAD
     navigator.geolocation.getCurrentPosition(function(location) {
       this.lat = location.coords.latitude;
       this.lng = location.coords.longitude;
     });
+=======
+    if (window.navigator && window.navigator.geolocation){
+      window.navigator.geolocation.getCurrentPosition(
+        position => {
+          this.myPosition = position,
+          this.lat = position.coords.latitude,
+          this.lng = position.coords.longitude
+        }
+      )
+    }
+    else {
+      console.log("Locatie niet beschikbaar");
+    }
+
+    navigator.geolocation.getCurrentPosition(function(location) {
+      this.lat = location.coords.latitude;
+      this.lng = location.coords.longitude;
+    
+    });
+
+    console.log("Dit is lat: " + this.lat);
+    console.log("Dits is long: " + this.lng);
+>>>>>>> 5bc113f407361ad5475316ea07a02e6909770206
   }
 
   getmetrics() {
@@ -162,6 +192,7 @@ export class MainmetricComponent implements OnInit {
 
 
 
+<<<<<<< HEAD
   updateGraph(startDate: Date, endDate: Date) {
     if (startDate !== null && endDate !== null) {
       this.metricsService
@@ -177,5 +208,20 @@ export class MainmetricComponent implements OnInit {
 
 
     }
+=======
+updateGraph(startDate: Date, endDate: Date) {
+  if (startDate !== null && endDate !== null) {
+    this.metricsService
+      .getDataperiod(
+        startDate.toLocaleDateString(),
+        endDate.toLocaleDateString())
+        .subscribe(data => {
+          data.forEach(element => {
+            this.data.push(element.value);this.labels.push(element.key);
+          }
+        );
+      })
+    }  
+>>>>>>> 5bc113f407361ad5475316ea07a02e6909770206
   }
 }

@@ -263,12 +263,30 @@ namespace OnTimeBackend.Controllers
             }
 
 
-            var group = issuelist.GroupBy(i => i.employee);
+            var group = issuelist.GroupBy(i => i.employee).ToList();
 
             return Ok(group);
             
 
+        }
+
+        [HttpGet("GetTopEmployees")]
+        public async Task<IActionResult> GetTopEmployees()
+        {
+            var tokenuser = await usermanager.GetUserAsync(User);
+            var employer = await context.employers.Where(e => e.IdentityID == tokenuser.Id)
+                .Include(e => e.employees).FirstOrDefaultAsync();
+
+            if(employer.employees != null)
+            {
+                var group = employer.employees.GroupBy(e => e.EmployeeID);
+                return Ok(employer.employees);
+            }
+
+
             return BadRequest();
         }
+
+
     }
 }

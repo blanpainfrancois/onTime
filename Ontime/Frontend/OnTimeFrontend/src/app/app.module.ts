@@ -26,8 +26,8 @@ import { RegisterService } from './services/register.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { MetricsService} from './services/metrics.service'
 import { UserService } from './services/user.service'
-import {MatToolbarModule, MatButtonModule,MatInputModule, MatRadioModule , MatIconModule , MatMenuModule, MatTableModule, MatDatepickerModule, MatNativeDateModule} from '@angular/material';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatToolbarModule, MatButtonModule,MatInputModule, MatRadioModule , MatIconModule , MatMenuModule, MatTableModule, MatDatepickerModule, MatNativeDateModule} from '@angular/material';
+import { MatDialogModule} from '@angular/material/dialog';
 import { MainmetricComponent } from './dashboard/mainmetric/mainmetric.component';
 import { ProfileComponent } from './dashboard/profile/profile.component';
 import { TocapitalPipe } from './pipes/tocapital.pipe';
@@ -35,6 +35,7 @@ import { SubscribedemployeesComponent } from './subscribedemployees/subscribedem
 import { IssuesComponent } from './issues/issues.component';
 import { OpenissuesComponent } from './openissues/openissues.component';
 import { ChartsModule } from 'ng2-charts';
+import { ConceptComponent } from './concept/concept.component';
 
 
 
@@ -55,6 +56,10 @@ import { ChartsModule } from 'ng2-charts';
     SubscribedemployeesComponent,
     IssuesComponent,
     OpenissuesComponent,
+<<<<<<< HEAD
+=======
+    ConceptComponent,
+>>>>>>> 5bc113f407361ad5475316ea07a02e6909770206
 
   ],
   imports: [

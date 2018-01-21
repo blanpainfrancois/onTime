@@ -15,6 +15,7 @@ import {Http, HttpModule} from '@angular/http';
 })
 export class IssuesComponent implements OnInit, OnDestroy {
   myId : number;
+  myName : string;
   myIssue;
   private sub : any;
   private subissue : any;
@@ -32,6 +33,7 @@ export class IssuesComponent implements OnInit, OnDestroy {
       console.log("werknemer met id: " + this.myId);
     this.client.getIssuesFromEmployee(this.myId).subscribe(data => {
         this.myIssue = data['issues'];
+        this.myName = data['givenname'] + " " + data['familyname'];
         this.dataSource = new MatTableDataSource(this.myIssue);
       })
   }
