@@ -32,8 +32,8 @@ const appRoutes: Routes = [
       
 
     ]},
-    {path: 'concept', component: ConceptComponent}
-    { path: 'register', component: RegisterComponent},
+    { path: 'concept', component: ConceptComponent },
+    { path: 'register', component: RegisterComponent },
     { path: '**', component: NotfoundComponent }
   ];
 

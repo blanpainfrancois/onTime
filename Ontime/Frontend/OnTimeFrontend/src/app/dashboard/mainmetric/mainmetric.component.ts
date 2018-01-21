@@ -180,21 +180,18 @@ export class MainmetricComponent implements OnInit {
 
 
 
-  updateGraph(startDate: Date, endDate: Date) {
-    if (startDate !== null && endDate !== null) {
-      this.metricsService
-        .getDataperiod(
-          startDate.toLocaleDateString(),
-          endDate.toLocaleDateString()
-        )
+updateGraph(startDate: Date, endDate: Date) {
+  if (startDate !== null && endDate !== null) {
+    this.metricsService
+      .getDataperiod(
+        startDate.toLocaleDateString(),
+        endDate.toLocaleDateString())
         .subscribe(data => {
           data.forEach(element => {
-            this.data.push(element.value);
-            this.labels.push(element.key);
-          });
-
-
-    }
-  }
+            this.data.push(element.value);this.labels.push(element.key);
+          }
+        );
+      })
+    }  
   }
 }
