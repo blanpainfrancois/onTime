@@ -37,5 +37,8 @@ export class Constants {
         public static readonly GET_HOURSCOST_OF_EMPLOYER : string = "http://ontimeapi.azurewebsites.net/api/Metrics/GetCostofHoursToLate";
         public static readonly GET_COUNT_OF_EMPLOYEES : string = "http://ontimeapi.azurewebsites.net/api/Metrics/getNumberofEmployeesFromEmployer";
         public static readonly GET_TOP_REASON : string = "http://ontimeapi.azurewebsites.net/api/Metrics/GetTopReason";
+        public static readonly GET_TOP_WEEKDAY: string = "http://ontimeapi.azurewebsites.net/api/Metrics/gettopweekday";
+        public static readonly GET_OPEN_ISSUES: string = "http://ontimeapi.azurewebsites.net/api/Metrics/Getopenissues";
+        public static readonly GET_START_END: string = "http://ontimeapi.azurewebsites.net/api/Metrics/Getfromdatafromperiod?startdate=1%2F01%2F2017&enddate=1%2F01%2F2018";
 
     }

@@ -30,7 +30,7 @@ namespace OnTimeBackend.Controllers
     public class IdentityController : Controller
     {
         private readonly UserManager<ApplicationUser> usermanager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly RoleManager<IdentityRole> rolemanager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
@@ -45,7 +45,7 @@ namespace OnTimeBackend.Controllers
             ILogger<IdentityController> logger, ApplicationDbContext context)
         {
             usermanager = userManager;
-            _roleManager = roleManager;
+            rolemanager = roleManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
@@ -64,7 +64,7 @@ namespace OnTimeBackend.Controllers
         public async Task<IActionResult> GetAllUsersFromRole(string role)
         {
 
-            var rolefound = await _roleManager.FindByNameAsync(role);
+            var rolefound = await rolemanager.FindByNameAsync(role);
             var users = await usermanager.GetUsersInRoleAsync(rolefound.Name);
 
             foreach (var user in users)
@@ -83,7 +83,7 @@ namespace OnTimeBackend.Controllers
         public async Task<IActionResult> CreateRole([FromBody] CreateRoleModel model)
         {
 
-            var result = await _roleManager.CreateAsync(new IdentityRole(model.Role));
+            var result = await rolemanager.CreateAsync(new IdentityRole(model.Role));
 
             return new JsonResult(result);
 

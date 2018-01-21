@@ -1,87 +1,125 @@
-
-
-<div class="container-fluid">
+<div class="container">
     <div class="row content">
 
+        <div class="row row-offcanvas row-offcanvas-right">
+            <div class="col-xs-12 col-sm-9">
 
-        <div class="well">
-            <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [streetViewControl]="allOptions" >
-                <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-              </agm-map>
-          </div>
-          <div class="row">
-            <div class="col-sm-3">
-              <div *ngIf="losthours" class="well">
-                <h4>Cost for lost hours</h4>
-                <h1> € {{losthours}} </h1>
-              </div>
-            </div>
-            <div class="col-sm-3">
-                <div *ngIf="countemployees" class="well">
-                  <h4>Count of your employees</h4>
-                  <h1> {{countemployees}} </h1>
+                <div class="well">
+                    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [streetViewControl]="allOptions">
+                        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                    </agm-map>
                 </div>
-              </div>
-              <div class="col-sm-3">
-                <div *ngIf="countemployees" class="well">
-                  <h4>Top reason</h4>
-                  <h1> {{topreason?.reason}} </h1>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div *ngIf="losthours" class="well">
+                            <h4>Cost for lost hours</h4>
+                            <h1> € {{losthours}} </h1>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div *ngIf="countemployees" class="well">
+                            <h4>Count of your employees</h4>
+                            <h1> {{countemployees}} </h1>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div *ngIf="topreason" class="well">
+                            <h4>Top reason</h4>
+                            <h1> {{topreason?.reason}} </h1>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div *ngIf="weekday" class="well">
+                            <h4>Top weekday</h4>
+                            <h1> {{weekday[0]}} </h1>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            <div class="col-sm-3">
-              <div class="well">
-                <h4>Bounce</h4>
-                <p>30%</p> 
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-4">
-              <div class="well">
-                <p>Text</p> 
-                <p>Text</p> 
-                <p>Text</p> 
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="well">
-                <p>Text</p> 
-                <p>Text</p> 
-                <p>Text</p> 
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="well">
-                <p>Text</p> 
-                <p>Text</p> 
-                <p>Text</p> 
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-8">
-              <div class="well">
-                <p>Text</p> 
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="well">
-                <p>Text</p> 
-              </div>
-            </div>
-          </div>
-        
-        
-      <div class="row">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="well">
+                            <p>Text</p>
+                            <p>Text</p>
+                            <p>Text</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="well">
+                            <p>Text</p>
+                            <p>Text</p>
+                            <p>Text</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="well">
+                            <p>Text</p>
+                            <p>Text</p>
+                            <p>Text</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="well">
+                          <div style="display: block;">
+                            <canvas baseChart width="400" height="200"
+                                        [datasets]="barChartData"
+                                        [labels]="labels"
+                                        [options]="barChartOptions"
+                                        [legend]="barChartLegend"
+                                        [chartType]="barChartType"
+                                        (chartHover)="chartHovered($event)"
+                                        (chartClick)="chartClicked($event)"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div  style="height: 2000px;" class="col-sm-4">
+                        <div class="well">
+                          <mat-form-field>
+                            <input matInput  (dateInput)="addstart('input', $event)"  [matDatepicker]="start" placeholder="Choose a startdate">
+                            <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+                            <mat-datepicker #start></mat-datepicker>
+                          </mat-form-field>
 
-         
+                          <div style="margin-top:5px"></div>
 
-      </div>
+                          <mat-form-field>
+                            <input matInput (dateInput)="addend('input', $event)" [matDatepicker]="picker" placeholder="Choose a enddate">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                          </mat-form-field>
+                        </div>
+                    </div>
+                </div>
 
-         
-        
-       
-      </div>
-    
-  </div>
 
+            </div>
+
+            <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+                <div class="list-group">
+                    <a href="#" class="list-group-item active">
+                        <h4 class="list-group-item-heading">Open absences </h4>
+                    </a>
+
+                    <a *ngFor="let issue of openissues" href="#" class="list-group-item ">
+                      <h4 class="list-group-item-heading">{{issue?.employee.givenname}} {{issue?.employee.familyname}}</h4>
+                      <p class="list-group-item-text"> {{issue?.reason.reason}} </p>
+                      <p class="list-group-item-text"> {{issue?.timespan | slice:0:8}} </p>
+                      <p class="list-group-item-text"> <strong>ETA: {{issue?.eta}} </strong></p>
+
+                  </a>
+                  <a *ngIf="noopenissues" href="#" class="list-group-item ">
+                    <h4 class="list-group-item-heading"> No open absences </h4>
+
+                </a>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+</div>

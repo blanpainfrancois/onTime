@@ -34,8 +34,11 @@ public class Issue {
     @SerializedName("location")
     @Expose
     public Location location;
+    @SerializedName("eta")
+    @Expose
+    public String eta;
 
-    public Issue(Integer issueID, Boolean issueClosed, Reason reason, String timestamp, String issueCreated, String issueClosedDate, Location location, Object employee) {
+    public Issue(Integer issueID, Boolean issueClosed, Reason reason, String timestamp, String issueCreated, String issueClosedDate, Location location, Object employee, String eta) {
         super();
         this.issueID = issueID;
         this.issueClosed = issueClosed;
@@ -44,6 +47,7 @@ public class Issue {
         this.issueCreated = issueCreated;
         this.issueClosedDate = issueClosedDate;
         this.location = location;
+        this.eta = eta;
     }
 
     public Issue(){

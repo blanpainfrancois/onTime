@@ -140,6 +140,27 @@ namespace OnTimeBackend.Controllers
         }
 
 
+        [HttpPut("puteta")]
+        public async Task<IActionResult> puteta(int issueid, string etastring)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var issue = await context.issues.SingleOrDefaultAsync(m => m.IssueID == issueid);
+            if (issue == null)
+            {
+                return NotFound();
+            }
+
+
+            issue.ETA = etastring;
+            await context.SaveChangesAsync();
+            return Ok();
+        }
+
+
         private bool IssueExists(int id)
         {
             return context.issues.Any(e => e.IssueID == id);

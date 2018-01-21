@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {GetemployeesService} from '../services/getemployees.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 import { routerTransition } from '../router.transitions';
-import { Constants } from '../Constants'
+import { Constants } from '../Constants';
 import {Http, HttpModule} from '@angular/http';
 import { NotificationsService } from 'angular2-notifications';
 
@@ -34,7 +34,7 @@ export class TableFilter implements OnInit {
   id;
 
 
-  
+
 
 
   constructor(public getservice : GetemployeesService, private _service: NotificationsService  ) {
