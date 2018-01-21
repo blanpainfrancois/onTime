@@ -15,8 +15,9 @@ import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 export class MainmetricComponent implements OnInit {
   lat: number;
   lng: number;
-  zoom = 12;
+  zoom = 15;
   allOptions = false;
+  myPosition;
 
   user: User;
   startdate: Date;
@@ -81,10 +82,27 @@ export class MainmetricComponent implements OnInit {
     this.getmetrics();
   }
   ngOnInit() {
+    if (window.navigator && window.navigator.geolocation){
+      window.navigator.geolocation.getCurrentPosition(
+        position => {
+          this.myPosition = position,
+          this.lat = position.coords.latitude,
+          this.lng = position.coords.longitude
+        }
+      )
+    }
+    else {
+      console.log("Locatie niet beschikbaar");
+    }
+
     navigator.geolocation.getCurrentPosition(function(location) {
       this.lat = location.coords.latitude;
       this.lng = location.coords.longitude;
+    
     });
+
+    console.log("Dit is lat: " + this.lat);
+    console.log("Dits is long: " + this.lng);
   }
 
   getmetrics() {
