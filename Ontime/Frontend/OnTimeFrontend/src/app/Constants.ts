@@ -40,5 +40,7 @@ export class Constants {
         public static readonly GET_TOP_WEEKDAY: string = "http://ontimeapi.azurewebsites.net/api/Metrics/gettopweekday";
         public static readonly GET_OPEN_ISSUES: string = "http://ontimeapi.azurewebsites.net/api/Metrics/Getopenissues";
         public static readonly GET_START_END: string = "http://ontimeapi.azurewebsites.net/api/Metrics/Getfromdatafromperiod?startdate=1%2F01%2F2017&enddate=1%2F01%2F2018";
+        public static readonly GET_SHARE_EMPLOYEE: string = "http://ontimeapi.azurewebsites.net/api/Metrics/Getshareemployer";
+        public static readonly GET_COUNT_ISSUE: string = "http://ontimeapi.azurewebsites.net/api/Metrics/GetCountOfIssues";
 
     }

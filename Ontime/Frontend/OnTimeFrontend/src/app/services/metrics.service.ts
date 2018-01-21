@@ -33,13 +33,19 @@ public getopenissues() {
   return this.http.get<any[]>(Constants.GET_OPEN_ISSUES, {headers: headers});
 }
 
-public getDataperiod(startdate: string, enddate: string) {
+public getDataperiod() {
   const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.getToken()['access_token']);
-    const httpParams = new HttpParams();
-    httpParams.set('startdate', startdate);
-    httpParams.set('enddate', enddate);
+  return this.http.get<Array<{key: string, value: number}>>(Constants.GET_START_END, {headers: headers });
+}
 
-  return this.http.get<Array<{key: string, value: number}>>(Constants.GET_START_END, {headers: headers, params : httpParams });
+public getShareEmployee() {
+  const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.getToken()['access_token']);
+  return this.http.get<Array<{key: string, value: number}>>(Constants.GET_SHARE_EMPLOYEE, {headers: headers });
+}
+
+public getCountIssues() {
+  const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.authService.getToken()['access_token']);
+  return this.http.get<Array<{key: string, value: number}>>(Constants.GET_COUNT_ISSUE, {headers: headers });
 }
 
 }

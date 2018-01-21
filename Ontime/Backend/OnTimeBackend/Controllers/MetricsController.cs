@@ -197,7 +197,7 @@ namespace OnTimeBackend.Controllers
 
 
         [HttpGet("Getfromdatafromperiod")]
-        public async Task<IActionResult> getdatafromperiod(DateTime startdate, DateTime enddate)
+        public async Task<IActionResult> getdatafromperiod()
         {
             Dictionary<string, int> data = new Dictionary<string, int>();
 
@@ -212,14 +212,15 @@ namespace OnTimeBackend.Controllers
                 {
                     foreach (var issue in employee.issues)
                     {
-                        //bezien of een datum in de range ligt.
-                        if (issue.IssueCreated.Ticks > startdate.Ticks && issue.IssueCreated.Ticks < enddate.Ticks)
-                        {
+                       
                             dateslist.Add(issue.IssueCreated);
-                        }
+                        
                         
                     }
                 }
+
+                dateslist.Sort();
+                dateslist.Reverse();
 
                 foreach (var date in dateslist)
                 {
@@ -240,10 +241,7 @@ namespace OnTimeBackend.Controllers
                 
                 return Ok(tosort);
             }
-
-
-
-
+            
             return BadRequest();
         }
 
@@ -253,39 +251,51 @@ namespace OnTimeBackend.Controllers
         {
             var tokenuser = await usermanager.GetUserAsync(User);
             var employer = await context.employers.Where(e => e.IdentityID == tokenuser.Id)
-                .Include(e => e.employees).FirstOrDefaultAsync();
+                .Include(e => e.employees).ThenInclude(i => i.issues).FirstOrDefaultAsync();
 
-            List<Issue> issuelist = new List<Issue>();
+            Dictionary<string, int> list = new Dictionary<string, int>();
 
             foreach (var employee in employer.employees)
             {
-                issuelist.Add(await context.issues.Where(i => i.employee == employee).FirstOrDefaultAsync());
+                list.Add(employee.EmployeeID + " | " +employee.Givenname, employee.issues.Count);
             }
-
-
-            var group = issuelist.GroupBy(i => i.employee).ToList();
-
-            return Ok(group);
+           
+            return Ok(list.ToList());
             
 
         }
 
-        [HttpGet("GetTopEmployees")]
-        public async Task<IActionResult> GetTopEmployees()
+        [HttpGet("GetCountOfIssues")]
+        public async Task<IActionResult> GetCountOfIssues()
         {
             var tokenuser = await usermanager.GetUserAsync(User);
             var employer = await context.employers.Where(e => e.IdentityID == tokenuser.Id)
-                .Include(e => e.employees).FirstOrDefaultAsync();
+                .Include(e => e.employees).ThenInclude(i => i.issues).ThenInclude(r => r.reason).FirstOrDefaultAsync();
 
-            if(employer.employees != null)
+            Dictionary<string, int> list = new Dictionary<string, int>();
+
+            foreach (var employee in employer.employees)
             {
-                var group = employer.employees.GroupBy(e => e.EmployeeID);
-                return Ok(employer.employees);
+                foreach (var issue in employee.issues)
+                {
+                    if (list.ContainsKey(issue.reason.reason))
+                    {
+                        list[issue.reason.reason] += 1;
+            
+                    }
+                    else
+                    {
+                        list.Add(issue.reason.reason, 1);
+                    }
+                }
             }
 
+            return Ok(list.ToList());
 
-            return BadRequest();
+
         }
+
+
 
 
     }

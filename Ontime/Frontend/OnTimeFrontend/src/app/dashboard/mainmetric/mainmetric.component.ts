@@ -15,14 +15,9 @@ import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 export class MainmetricComponent implements OnInit {
   lat: number;
   lng: number;
-<<<<<<< HEAD
-  zoom = 12;
-  allOptions = false;
-=======
   zoom = 13;
   allOptions = false;
   myPosition;
->>>>>>> 5bc113f407361ad5475316ea07a02e6909770206
 
   user: User;
   startdate: Date;
@@ -36,6 +31,15 @@ export class MainmetricComponent implements OnInit {
   openissues;
   openissuescounter;
   noopenissues = true;
+  datareceived;
+  doughnutloaded;
+  doughnutloaded2;
+
+  public doughnutChartLabels:string[] = [];
+  public doughnutChartData:number[] = [];
+  public doughnutChartLabels2:string[] = [];
+  public doughnutChartData2:number[] = [];
+  public doughnutChartType:string = 'doughnut';
 
   public data: Array<any> = [];
   public labels: Array<any> = [];
@@ -59,14 +63,7 @@ export class MainmetricComponent implements OnInit {
   public barChartLegend = false;
   public barChartType = 'bar';
 
-  // events
-  public chartClicked(e: any): void {
-    console.log(e);
-  }
 
-  public chartHovered(e: any): void {
-    console.log(e);
-  }
 
   constructor(
     private userService: UserService,
@@ -87,12 +84,6 @@ export class MainmetricComponent implements OnInit {
     this.getmetrics();
   }
   ngOnInit() {
-<<<<<<< HEAD
-    navigator.geolocation.getCurrentPosition(function(location) {
-      this.lat = location.coords.latitude;
-      this.lng = location.coords.longitude;
-    });
-=======
     if (window.navigator && window.navigator.geolocation){
       window.navigator.geolocation.getCurrentPosition(
         position => {
@@ -112,9 +103,10 @@ export class MainmetricComponent implements OnInit {
     
     });
 
-    console.log("Dit is lat: " + this.lat);
-    console.log("Dits is long: " + this.lng);
->>>>>>> 5bc113f407361ad5475316ea07a02e6909770206
+    this.updateGraph();
+    this.getsharesofemployees();
+    this.countissues();
+
   }
 
   getmetrics() {
@@ -176,52 +168,49 @@ export class MainmetricComponent implements OnInit {
 
   events: string[] = [];
 
-  addstart(type: string, event: MatDatepickerInputEvent<Date>) {
-    this.events.push(`${type}: ${event.value}`);
-
-    this.startdate = new Date(this.events[0]);
-
-    this.updateGraph(this.startdate, this.enddate);
-  }
-
-  addend(type: string, event: MatDatepickerInputEvent<Date>) {
-    this.events.push(`${type}: ${event.value}`);
-    this.enddate = new Date(`${type}: ${event.value}`);
-    this.updateGraph(this.startdate, this.enddate);
-  }
+ 
 
 
 
-<<<<<<< HEAD
-  updateGraph(startDate: Date, endDate: Date) {
-    if (startDate !== null && endDate !== null) {
-      this.metricsService
-        .getDataperiod(
-          startDate.toLocaleDateString(),
-          endDate.toLocaleDateString()
-        )
+updateGraph() {
+
+    this.metricsService
+      .getDataperiod()
         .subscribe(data => {
           data.forEach(element => {
             this.data.push(element.value);
             this.labels.push(element.key);
-          });
-
-
-    }
-=======
-updateGraph(startDate: Date, endDate: Date) {
-  if (startDate !== null && endDate !== null) {
-    this.metricsService
-      .getDataperiod(
-        startDate.toLocaleDateString(),
-        endDate.toLocaleDateString())
-        .subscribe(data => {
-          data.forEach(element => {
-            this.data.push(element.value);this.labels.push(element.key);
           }
         );
+
+        this.datareceived = true;
+
       })
-    }  
->>>>>>> 5bc113f407361ad5475316ea07a02e6909770206
-  }
+    } 
+    
+getsharesofemployees(){
+  this.metricsService.getShareEmployee().subscribe( data => {
+
+    data.forEach(element => {
+      this.doughnutChartLabels.push(element.key);
+      this.doughnutChartData.push(element.value);
+    });
+
+    this.doughnutloaded = true;
+
+  })
+}  
+
+countissues(){
+  this.metricsService.getCountIssues().subscribe(data => {
+    data.forEach(element => {
+      this.doughnutChartLabels2.push(element.key);
+      this.doughnutChartData2.push(element.value);
+    });
+
+    this.doughnutloaded2 = true;
+
+  } )
+}
+  
 }
