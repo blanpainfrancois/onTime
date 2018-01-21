@@ -35,6 +35,7 @@ import { SubscribedemployeesComponent } from './subscribedemployees/subscribedem
 import { IssuesComponent } from './issues/issues.component';
 import { OpenissuesComponent } from './openissues/openissues.component';
 import { ChartsModule } from 'ng2-charts';
+import { ConceptComponent } from './concept/concept.component';
 
 
 
@@ -55,6 +56,7 @@ import { ChartsModule } from 'ng2-charts';
     SubscribedemployeesComponent,
     IssuesComponent,
     OpenissuesComponent,
+    ConceptComponent,
 
   ],
   imports: [

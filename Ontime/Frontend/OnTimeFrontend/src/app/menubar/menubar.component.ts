@@ -26,7 +26,9 @@ export class MenubarComponent {
 
     });
    }
-
+change(){
+  location.href = ("/concept");
+}
    private signOut() {
     this.user = null;
     this.authService.logout();

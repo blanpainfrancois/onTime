@@ -178,4 +178,5 @@ export class MainmetricComponent implements OnInit {
 
     }
   }
+  }
 }

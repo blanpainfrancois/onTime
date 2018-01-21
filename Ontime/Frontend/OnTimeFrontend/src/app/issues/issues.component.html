@@ -1,5 +1,4 @@
-<h1>Issues van werknemer met id {{myId}}</h1>
-
+<h1>Latencies of worker: {{myName}}</h1>
 
 <div class="column">
     <mat-table #table [dataSource]="dataSource" class="filtert">
@@ -16,7 +15,7 @@
         </ng-container>
         <ng-container matColumnDef="Time">
           <mat-header-cell *matHeaderCellDef> Time</mat-header-cell>
-          <mat-cell *matCellDef="let Issue" #Time>{{Issue.issueCreated}}</mat-cell>
+          <mat-cell *matCellDef="let Issue" #Time>{{Issue.timespan}}</mat-cell>
         </ng-container>
 
         <!-- Name Column -->
