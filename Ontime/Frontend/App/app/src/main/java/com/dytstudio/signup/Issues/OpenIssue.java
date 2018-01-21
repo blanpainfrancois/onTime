@@ -18,6 +18,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.dytstudio.signup.Dashboard.UserDashboard;
 import com.dytstudio.signup.Issues.Geofencing.GeofencerService;
 import com.dytstudio.signup.Models.AccessToken;
@@ -49,6 +54,12 @@ import org.joda.time.DateTime;
 import org.joda.time.Period;
 import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import io.nlopez.smartlocation.OnLocationUpdatedListener;
 import io.nlopez.smartlocation.SmartLocation;
@@ -65,6 +76,7 @@ public class OpenIssue extends AppCompatActivity {
     String json;
     Issue issue;
     Thread t;
+    RequestQueue queue;
 
     com.dytstudio.signup.Models.Location locationEmployer;
 
@@ -75,6 +87,10 @@ public class OpenIssue extends AppCompatActivity {
 
     Button btn_closeissue, btn_delete_issue, btn_open_in_waze;
     TextView tv_title, tv_reason_body, tv_open_time;
+
+    final String GOOGLEDIRECTIONMATRIXAPI = "AIzaSyBaaaCvAoDIrm3_Ah14-yLhN0E3ko1F_MM";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +104,7 @@ public class OpenIssue extends AppCompatActivity {
 
         apiInterface = APIClient.getClient().create(APIInterface.class);
         mGeofencingClient = LocationServices.getGeofencingClient(this);
+        queue = Volley.newRequestQueue(OpenIssue.this);
 
          t = gettimer();
          t.start();
@@ -251,6 +268,7 @@ public class OpenIssue extends AppCompatActivity {
 
 
                                         startService(intent);
+                                        postETA(accessToken, issue);
 
                                         try{
                                             googlemap.setMyLocationEnabled(true);
@@ -465,14 +483,91 @@ public class OpenIssue extends AppCompatActivity {
                 googlemap.addCircle(new CircleOptions().center(employerlocation).strokeWidth(0).fillColor(Color.RED).radius(75));
                 currentlocation = location;
 
-
-
-
             }
         });
+    }
+
+    private void postETA(AccessToken accessToken, Issue issue){
+
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if(currentlocation != null && employerlocation != null){
+                    setEta(accessToken, issue, new LatLng(employerlocation.latitude, employerlocation.longitude), new LatLng(currentlocation.getLatitude(), currentlocation.getLongitude()));
+
+                }
+            }
+        }, 0 , 10000);
+
+    }
+
+
+
+    private void setEta(AccessToken accessToken, Issue issue , LatLng workplace, LatLng mylocation ){
+
+        if(workplace != null && mylocation != null){
+
+            String url = "https://maps.googleapis.com/maps/api/directions/json?origin=" + workplace.latitude +"," + workplace.longitude+
+                    "&destination="+mylocation.latitude+","+mylocation.longitude+"&key="+GOOGLEDIRECTIONMATRIXAPI;
+
+
+            JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                    (Request.Method.GET, url, null, new com.android.volley.Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            if(response.has("routes")){
+                                try{
+                                    JSONArray temp1 = response.getJSONArray("routes");
+                                    JSONObject temp2 = temp1.getJSONObject(0);
+                                    JSONArray temp3 = temp2.getJSONArray("legs");
+                                    JSONObject temp4 = temp3.getJSONObject(0);
+                                    String ETA = temp4.getJSONObject("duration").getString("text");
+
+                                    Call<Void> postetacall = apiInterface.PUT_TIMESTAMP(accessToken.getAccess_token(), issue.issueID, ETA );
+                                    postetacall.enqueue(new Callback<Void>() {
+                                        @Override
+                                        public void onResponse(Call<Void> call, Response<Void> response) {
+                                            if(response.isSuccessful()){
+
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<Void> call, Throwable t) {
+
+                                        }
+                                    });
+
+
+
+
+                                }catch (JSONException e){
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                    }, new com.android.volley.Response.ErrorListener() {
+
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+
+                        }
+                    });
+
+            queue.add(jsObjRequest);
+
+        }
+
+
+
+
 
 
     }
+
+
 
     private Thread gettimer(){
 

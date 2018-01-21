@@ -15,7 +15,7 @@ export class ProfileComponent implements OnInit {
   user : User;
   addressform: FormGroup;
   costofhourgroup: FormGroup;
-  
+
   constructor(private userService : UserService, private fb: FormBuilder, private _service: NotificationsService ){
 
 
@@ -32,13 +32,13 @@ export class ProfileComponent implements OnInit {
        });
 
 
-   
 
-    
-    
+
+
+
    }
 
- 
+
 
   ngOnInit() {
 
@@ -52,16 +52,11 @@ export class ProfileComponent implements OnInit {
       this.user.hourofcost = user["HourCost"];
       });
 
-  
-
-
-      
-
 
     this.userService.getAddressofemployer().subscribe(data => {
 
       this.addressform.setValue({
-        streetname: data["streetname"], 
+        streetname: data["streetname"],
         housenumber:  data["housenumber"],
         city: data["city"],
         zipcode: data["zipcode"],
@@ -97,6 +92,6 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  
+
 
 }

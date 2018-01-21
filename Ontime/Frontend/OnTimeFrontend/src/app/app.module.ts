@@ -26,7 +26,7 @@ import { RegisterService } from './services/register.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { MetricsService} from './services/metrics.service'
 import { UserService } from './services/user.service'
-import {MatToolbarModule, MatButtonModule,MatInputModule, MatRadioModule , MatIconModule , MatMenuModule, MatTableModule} from '@angular/material';
+import {MatToolbarModule, MatButtonModule,MatInputModule, MatRadioModule , MatIconModule , MatMenuModule, MatTableModule, MatDatepickerModule, MatNativeDateModule} from '@angular/material';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MainmetricComponent } from './dashboard/mainmetric/mainmetric.component';
 import { ProfileComponent } from './dashboard/profile/profile.component';
@@ -34,6 +34,7 @@ import { TocapitalPipe } from './pipes/tocapital.pipe';
 import { SubscribedemployeesComponent } from './subscribedemployees/subscribedemployees.component';
 import { IssuesComponent } from './issues/issues.component';
 import { OpenissuesComponent } from './openissues/openissues.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 
@@ -60,6 +61,7 @@ import { OpenissuesComponent } from './openissues/openissues.component';
     BrowserModule,
     BrowserAnimationsModule,
     routing,
+    ChartsModule,
     SimpleNotificationsModule.forRoot(),
     HttpClientModule,
     ReactiveFormsModule,
@@ -72,6 +74,8 @@ import { OpenissuesComponent } from './openissues/openissues.component';
     MatMenuModule,
     MatTableModule,
     MatDialogModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCMBIzGWubc2qVa2vrjYcxlttDC4BxVJC4'
     })

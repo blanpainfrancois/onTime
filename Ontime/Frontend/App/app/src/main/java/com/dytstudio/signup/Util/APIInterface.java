@@ -74,7 +74,8 @@ public interface APIInterface {
         Call<Void> DELETE_OPEN_ISSUE(@Header("Authorization") String token);
 
 
-
+        @PUT("/api/Issues/puteta")
+        Call<Void> PUT_TIMESTAMP(@Header("Authorization") String token, @Query("issueid") int id, @Query("etastring") String eta);
 
 
 
