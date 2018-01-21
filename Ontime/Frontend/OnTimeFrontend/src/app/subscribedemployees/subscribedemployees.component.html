@@ -18,12 +18,12 @@
 
     <ng-container matColumnDef="Lastname">
       <mat-header-cell *matHeaderCellDef> Lastname </mat-header-cell>
-      <mat-cell *matCellDef="let employee" #familyname (click)="showIssues(employee.employeeID)"> {{employee.familyname}}  </mat-cell>
+      <mat-cell *matCellDef="let employee" #familyname (click)="goToIssues(employee.employeeID)"> {{employee.familyname}}  </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="Issues">
       <mat-header-cell *mathHeaderCellDef>Issues</mat-header-cell>
-      <mat-cell *matCellDef="let employee" #issues (click)="showIssues(employee.employeeID)"> {{employee.issues.length}} </mat-cell>
+      <mat-cell *matCellDef="let employee" #issues (click)="goToIssues(employee.employeeID)"> {{employee.issues.length}} </mat-cell>
     </ng-container>
    </div>
     <!-- Name Column -->
