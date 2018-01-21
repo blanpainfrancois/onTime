@@ -85,7 +85,7 @@ public class Login extends AppCompatActivity {
 
                         Intent i = new Intent(Login.this, LocationDenied.class);
                         new SuperToast(Login.this)
-                                .setText("This app needs your location to work properlly")
+                                .setText("This app needs your location to work properly")
                                 .setDuration(Style.DURATION_SHORT)
                                 .setColor(PaletteUtils.getTransparentColor(PaletteUtils.MATERIAL_RED))
                                 .setAnimations(Style.ANIMATIONS_POP)
@@ -160,7 +160,7 @@ public class Login extends AppCompatActivity {
 
                         }
                         else{
-                            Toast.makeText(Login.this, "Login not succeeded", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login.this, "Login unsuccessful", Toast.LENGTH_SHORT).show();
                             pd.hide();
                         }
 
@@ -170,7 +170,7 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<AccessToken> call, Throwable t) {
 
-                        Toast.makeText(Login.this, "Login not succeeded", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Login.this, "Login unsuccessful", Toast.LENGTH_SHORT).show();
                         pd.hide();
                     }
                 });
