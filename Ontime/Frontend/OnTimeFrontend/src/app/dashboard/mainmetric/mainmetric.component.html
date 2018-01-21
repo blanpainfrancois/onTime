@@ -38,7 +38,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div *ngIf="doughnutloaded" class="well">
-                                <h2> Employees with the most absences </h2>
+                                <h4> Employees with the most absences </h4>
 
                             <div style="display: block">
                                 <canvas baseChart width="200" height="200"
@@ -51,6 +51,7 @@
                     </div>
                     <div class="col-sm-6">
                         <div *ngIf="doughnutloaded2" class="well">
+                                <h4> Most occuring reasons for absences </h4>
                             <div style="display: block">
                                 <canvas baseChart width="200" height="200"
                                             [data]="doughnutChartData2"
@@ -64,7 +65,10 @@
                 </div>
                 <div class="row">
                     <div *ngIf="datareceived" class="col-sm-12">
+
                         <div class="well">
+                                <h4> Total absences each month </h4>
+
                           <div style="display: block;">
                             <canvas baseChart width="400" height="200"
                                         [datasets]="barChartData"
