@@ -30,7 +30,7 @@ export class DashboardComponent  {
         this.user = new User();
         this.user.employerID = data["employerID"];
         this.user.username = data["username"];
-        this.user.createdAt = data["createdAt"];
+        this.user.createdAt = data["createdAt"].toString().substring(0,data["createdAt"].indexOf("T"));
         this.user.identityID = data["identityID"];
         this.user.username = data["userName"];
         this.userService.setUser(this.user);
