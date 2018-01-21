@@ -147,7 +147,7 @@ public class AddIssue extends AppCompatActivity {
                             if(response.isSuccessful()){
                                 pd.hide();
                                 new SuperToast(AddIssue.this)
-                                        .setText("Issue added")
+                                        .setText("Report added")
                                         .setDuration(Style.DURATION_SHORT)
                                         .setColor(PaletteUtils.getTransparentColor(PaletteUtils.MATERIAL_GREEN))
                                         .setAnimations(Style.ANIMATIONS_POP)
@@ -159,7 +159,7 @@ public class AddIssue extends AppCompatActivity {
                                 btn_save_issue.setEnabled(true);
                                 pd.hide();
                                 new SuperToast(AddIssue.this)
-                                        .setText("Issue not added")
+                                        .setText("Report not added")
                                         .setDuration(Style.DURATION_SHORT)
                                         .setColor(PaletteUtils.getTransparentColor(PaletteUtils.MATERIAL_RED))
                                         .setAnimations(Style.ANIMATIONS_POP)
@@ -172,7 +172,7 @@ public class AddIssue extends AppCompatActivity {
                             btn_save_issue.setEnabled(true);
                             pd.hide();
                             new SuperToast(AddIssue.this)
-                                    .setText("Issue not added")
+                                    .setText("Report not added")
                                     .setDuration(Style.DURATION_SHORT)
                                     .setColor(PaletteUtils.getTransparentColor(PaletteUtils.MATERIAL_RED))
                                     .setAnimations(Style.ANIMATIONS_POP)
