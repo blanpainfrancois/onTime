@@ -15,7 +15,7 @@ import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 export class MainmetricComponent implements OnInit {
   lat: number;
   lng: number;
-  zoom = 15;
+  zoom = 13;
   allOptions = false;
   myPosition;
 
