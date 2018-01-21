@@ -1,5 +1,10 @@
-<div class="container">
+<div class="container center">
     <div class="row content">
+
+            <div class="jumbotron">
+                    <h1>Dashboard</h1>      
+                  </div>
+                      
 
         <div class="row row-offcanvas row-offcanvas-right">
             <div class="col-xs-12 col-sm-9">
@@ -9,27 +14,35 @@
                         <agm-marker [latitude]="lat" [longitude]="lng" iconUrl="/assets/BuildingTower.png"></agm-marker>
                     </agm-map>
                 </div>
+
+                        
+                        <div class="jumbotron">
+                          <h3>Metrics</h3>      
+                        </div>
+                            
+                 
+
                 <div class="row">
                     <div class="col-sm-3">
-                        <div *ngIf="losthours" class="well">
+                        <div *ngIf="losthours" class="well smallmetrics">
                             <h4>Cost for lost hours</h4>
                             <h1> € {{losthours}} </h1>
                         </div>
                     </div>
                     <div class="col-sm-3">
-                        <div *ngIf="countemployees" class="well">
+                        <div *ngIf="countemployees" class="well smallmetrics">
                             <h4>Count of your employees</h4>
                             <h1> {{countemployees}} </h1>
                         </div>
                     </div>
                     <div class="col-sm-3">
-                        <div *ngIf="topreason" class="well">
+                        <div *ngIf="topreason" class="well smallmetrics">
                             <h4>Top reason</h4>
                             <h1> {{topreason?.reason}} </h1>
                         </div>
                     </div>
                     <div class="col-sm-3">
-                        <div *ngIf="weekday" class="well">
+                        <div *ngIf="weekday" class="well smallmetrics">
                             <h4>Top weekday</h4>
                             <h1> {{weekday[0]}} </h1>
                         </div>

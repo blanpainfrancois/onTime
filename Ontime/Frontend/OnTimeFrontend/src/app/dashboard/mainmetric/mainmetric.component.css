@@ -2,3 +2,14 @@ agm-map {
     height: 25vh;
     width: 100%;  }
 
+
+center{
+    text-align: center;
+}
+
+smallmetrics{
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
