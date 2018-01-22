@@ -13,10 +13,8 @@ import { AuthGuardService } from '../services/auth-guard.service';
 import { SubscribedemployeesComponent } from '../subscribedemployees/subscribedemployees.component';
 import { IssuesComponent } from '../issues/issues.component';
 import { OpenissuesComponent } from '../openissues/openissues.component';
-<<<<<<< HEAD
-=======
 import { ConceptComponent } from '../concept/concept.component';
->>>>>>> 5bc113f407361ad5475316ea07a02e6909770206
+
 
 
 
@@ -29,22 +27,14 @@ const appRoutes: Routes = [
       { path: '', component :MainmetricComponent },
       { path: 'profile', component: ProfileComponent},
       {path: 'filterlist', component: TableFilter },
-      {path: 'ownemployees', component: SubscribedemployeesComponent}, 
+      {path: 'ownemployees', component: SubscribedemployeesComponent},
       {path: 'issues/:id', component: IssuesComponent},
-<<<<<<< HEAD
       {path: 'openissues', component: OpenissuesComponent}
-      
-
     ]},
-    { path: 'register', component: RegisterComponent},
-=======
-      {path: 'openissues', component: OpenissuesComponent},
-      
-
-    ]},
+    { path: 'openissues', component: OpenissuesComponent},
     { path: 'concept', component: ConceptComponent },
     { path: 'register', component: RegisterComponent },
->>>>>>> 5bc113f407361ad5475316ea07a02e6909770206
+
     { path: '**', component: NotfoundComponent }
   ];
 
