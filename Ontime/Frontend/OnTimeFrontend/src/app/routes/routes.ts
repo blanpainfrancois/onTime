@@ -34,7 +34,6 @@ const appRoutes: Routes = [
     { path: 'openissues', component: OpenissuesComponent},
     { path: 'concept', component: ConceptComponent },
     { path: 'register', component: RegisterComponent },
-
     { path: '**', component: NotfoundComponent }
   ];
 
