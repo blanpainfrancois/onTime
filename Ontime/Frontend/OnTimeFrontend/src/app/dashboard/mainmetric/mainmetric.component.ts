@@ -247,8 +247,9 @@ export class MainmetricComponent implements OnInit, OnDestroy {
     })
   }
 
-  ngOnDestroy() { }
+  ngOnDestroy() { 
   if(this.interval) {
     clearInterval(this.interval);
   }
+}
 }
