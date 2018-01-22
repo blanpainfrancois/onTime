@@ -58,6 +58,7 @@ import { ConceptComponent } from './concept/concept.component';
     OpenissuesComponent,
     ConceptComponent,
 
+
   ],
   imports: [
     BrowserModule,
