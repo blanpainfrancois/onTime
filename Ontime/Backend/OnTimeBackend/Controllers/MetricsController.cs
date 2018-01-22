@@ -296,7 +296,36 @@ namespace OnTimeBackend.Controllers
         }
 
 
+        [HttpGet("GetIssuesofToday")]
+        public async Task<IActionResult> GetIssuesofToday()
+        {
+            var token = await usermanager.GetUserAsync(User);
+            var employer = await context.employers.Where(e => e.IdentityID == token.Id).Include(e => e.employees).ThenInclude(e => e.issues).FirstOrDefaultAsync();
 
+            List<Issue> issuestoday = new List<Issue>();
+
+            if(employer != null)
+            {
+                foreach (var employee in employer.employees)
+                {
+                    foreach (var issue in employee.issues)
+                    {
+
+                        if(issue.IssueCreated == DateTime.Today)
+                        {
+                            issuestoday.Add(issue);
+                        }
+                       
+                    }
+                }
+
+                return Ok(DateTime.Now);
+
+            }
+
+
+            return BadRequest();
+        }
 
     }
 }

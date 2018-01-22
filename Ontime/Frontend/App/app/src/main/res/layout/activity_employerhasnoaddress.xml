@@ -10,6 +10,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:paddingTop="75dp"
+        android:gravity="center"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
@@ -17,15 +19,17 @@
             android:id="@+id/tv_noaddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="Your employer has no address "
             android:paddingTop="@dimen/space10"
             android:paddingBottom="@dimen/space10"
-            android:textSize="35dp"
+            android:textSize="25dp"
             android:gravity="center_horizontal"
             />
 
         <Button
             android:id="@+id/logout_noaddress"
+            android:background="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Logout" />

@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import org.joda.time.DateTime;
+import org.joda.time.Period;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
@@ -37,8 +38,11 @@ public class Issue {
     @SerializedName("eta")
     @Expose
     public String eta;
+    @SerializedName("timespan")
+    @Expose
+    public String timespan;
 
-    public Issue(Integer issueID, Boolean issueClosed, Reason reason, String timestamp, String issueCreated, String issueClosedDate, Location location, Object employee, String eta) {
+    public Issue(Integer issueID, Boolean issueClosed, Reason reason, String timestamp, String issueCreated, String issueClosedDate, Location location, Object employee, String eta, String timespan) {
         super();
         this.issueID = issueID;
         this.issueClosed = issueClosed;
@@ -48,6 +52,7 @@ public class Issue {
         this.issueClosedDate = issueClosedDate;
         this.location = location;
         this.eta = eta;
+        this.timespan = timespan;
     }
 
     public Issue(){
@@ -57,6 +62,14 @@ public class Issue {
 
         DateTime dt = DateTime.parse(issueCreated);
         return dt;
+    }
+
+    public String getPeriod(){
+
+
+       return timespan;
+
+
     }
 
 

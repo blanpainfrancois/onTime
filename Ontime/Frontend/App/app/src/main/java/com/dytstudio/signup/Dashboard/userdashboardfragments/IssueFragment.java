@@ -26,8 +26,13 @@ import com.github.johnpersano.supertoasts.library.SuperToast;
 import com.github.johnpersano.supertoasts.library.utils.PaletteUtils;
 import com.google.gson.Gson;
 
+import java.util.Comparator;
 import java.util.List;
 
+import de.codecrafters.tableview.SortableTableView;
+import de.codecrafters.tableview.TableView;
+import de.codecrafters.tableview.model.TableColumnWeightModel;
+import de.codecrafters.tableview.toolkit.SimpleTableHeaderAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -45,6 +50,9 @@ public class IssueFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+
+    private static final String[] TABLE_HEADERS = { "ID", "Reason", "Duration"};
+
 
     private List<Issue> issues;
 
@@ -86,17 +94,10 @@ public class IssueFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_issue_list, container, false);
-        RecyclerView rview = (RecyclerView) view.findViewById(R.id.list);
+        SortableTableView tableView = (SortableTableView) view.findViewById(R.id.tableView);
+        tableView.setColumnCount(4);
 
 
-        // Set the adapter
-        if (rview instanceof RecyclerView) {
-            Context context = view.getContext();
-            if (mColumnCount <= 1) {
-                rview.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                rview.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-            }
 
             mPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
             apiInterface = APIClient.getClient().create(APIInterface.class);
@@ -111,7 +112,9 @@ public class IssueFragment extends Fragment {
                 @Override
                 public void onResponse(Call<List<Issue>> call, Response<List<Issue>> response) {
                     if(response.isSuccessful()){
-                        rview.setAdapter(new MyIssueRecyclerViewAdapter(response.body(), mListener));
+                        tableView.setHeaderAdapter(new SimpleTableHeaderAdapter(getContext(), TABLE_HEADERS));
+                        tableView.setDataAdapter(new IssueTableAdapter(getContext(), response.body()));
+                        tableView.setColumnComparator(0, new IssueIDComparator());
 
                     }
                     else{
@@ -136,8 +139,6 @@ public class IssueFragment extends Fragment {
                 }
             });
 
-        }
-
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
         fab.bringToFront();
 
@@ -149,7 +150,10 @@ public class IssueFragment extends Fragment {
             }
         });
         return view;
-    }
+
+        }
+
+
 
 
     @Override
@@ -182,5 +186,13 @@ public class IssueFragment extends Fragment {
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
         void onListFragmentInteraction(Issue item);
+    }
+
+
+    private static class IssueIDComparator implements Comparator<Issue> {
+        @Override
+        public int compare(Issue issue1, Issue issue2) {
+            return issue1.issueID.compareTo(issue2.issueID);
+        }
     }
 }

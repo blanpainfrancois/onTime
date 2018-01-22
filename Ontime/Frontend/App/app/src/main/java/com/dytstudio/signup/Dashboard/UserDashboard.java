@@ -170,8 +170,7 @@ public class UserDashboard extends AppCompatActivity
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+
         return true;
     }
 
@@ -284,7 +283,6 @@ public class UserDashboard extends AppCompatActivity
                       tv_name = (TextView) findViewById(R.id.name);
                       tv_extrainfo = (TextView) findViewById(R.id.extrainfo);
 
-                      DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                       Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
                       setSupportActionBar(toolbar);
 
@@ -296,18 +294,6 @@ public class UserDashboard extends AppCompatActivity
                       IssueFragment issueFragment = new IssueFragment();
                       fragmentTransaction.add(R.id.ll_userdashboard, issueFragment);
                       fragmentTransaction.commit();
-
-
-                      ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                              UserDashboard.this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-                      drawer.addDrawerListener(toggle);
-                      toggle.syncState();
-
-                      NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-                      navigationView.setNavigationItemSelectedListener(UserDashboard.this);
-
-
-
 
                   }
               }

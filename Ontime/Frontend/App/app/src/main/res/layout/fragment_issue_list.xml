@@ -8,17 +8,14 @@
     android:name="com.dytstudio.signup.Dashboard.userdashboardfragments.IssueFragment"
     tools:context="com.dytstudio.signup.Dashboard.userdashboardfragments.IssueFragment">
 
-    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-
-        android:id="@+id/list"
+    <de.codecrafters.tableview.SortableTableView
+        xmlns:table="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/tableView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        app:layoutManager="LinearLayoutManager"
-        tools:listitem="@layout/fragment_issue">
-
-    </android.support.v7.widget.RecyclerView>
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        table:tableView_columnCount="3" />
 
 
     <android.support.design.widget.FloatingActionButton

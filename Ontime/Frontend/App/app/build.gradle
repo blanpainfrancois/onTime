@@ -63,6 +63,7 @@ dependencies {
     compile 'io.nlopez.smartlocation:library:3.3.3'
     compile 'com.karumi:dexter:4.2.0'
     compile 'com.github.johnpersano:supertoasts:2.0'
+    compile 'de.codecrafters.tableview:tableview:2.8.0'
 
 
     implementation 'com.google.android.gms:play-services-maps:11.4.2'
