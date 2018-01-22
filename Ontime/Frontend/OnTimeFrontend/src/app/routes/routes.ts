@@ -18,6 +18,7 @@ import { ConceptComponent } from '../concept/concept.component';
 
 
 
+
 const appRoutes: Routes = [
     { path: '', component: LandingComponent },
     { path: 'login', component: LoginComponent },
@@ -26,12 +27,11 @@ const appRoutes: Routes = [
       { path: '', component :MainmetricComponent },
       { path: 'profile', component: ProfileComponent},
       {path: 'filterlist', component: TableFilter },
-      {path: 'ownemployees', component: SubscribedemployeesComponent}, 
+      {path: 'ownemployees', component: SubscribedemployeesComponent},
       {path: 'issues/:id', component: IssuesComponent},
-      {path: 'openissues', component: OpenissuesComponent},
-      
-
+      {path: 'openissues', component: OpenissuesComponent}
     ]},
+    { path: 'openissues', component: OpenissuesComponent},
     { path: 'concept', component: ConceptComponent },
     { path: 'register', component: RegisterComponent },
     { path: '**', component: NotfoundComponent }

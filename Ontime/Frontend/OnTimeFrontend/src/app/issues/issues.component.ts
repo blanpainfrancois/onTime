@@ -36,6 +36,8 @@ export class IssuesComponent implements OnInit, OnDestroy {
         this.myIssueTemp = data['issues'];
 
         for (let i in this.myIssueTemp){
+          this.myIssue[i].timespan = data["createdAt"].toString().substring(0,data["createdAt"].indexOf("T"));
+
           if(this.myIssueTemp[i].issueClosed){
             this.myIssueTemp[i].issueClosed = "Arrived";
           }else{
