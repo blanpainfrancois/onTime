@@ -101,19 +101,30 @@
             </div>
 
             <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+
+                    <div class="list-group">
+                            <a  class="list-group-item active">Todays absencies </h4>
+                            </a>
+        
+                            <a *ngFor="let issue of openissues" class="list-group-item ">
+                              <h4 class="list-group-item-heading">{{issue?.employee.givenname}} {{issue?.employee.familyname}}</h4>
+                                      
+                          </a>
+                         
+
                 <div class="list-group">
-                    <a href="#" class="list-group-item active">
+                    <a  class="list-group-item active">
                         <h4 class="list-group-item-heading">Open absences </h4>
                     </a>
 
-                    <a *ngFor="let issue of openissues" href="#" class="list-group-item ">
+                    <a *ngFor="let issue of openissues" class="list-group-item ">
                       <h4 class="list-group-item-heading">{{issue?.employee.givenname}} {{issue?.employee.familyname}}</h4>
                       <p class="list-group-item-text"> {{issue?.reason.reason}} </p>
                       <p class="list-group-item-text"> {{issue?.timespan | slice:0:8}} </p>
                       <p class="list-group-item-text"> <strong>ETA: {{issue?.eta}} </strong></p>
 
                   </a>
-                  <a *ngIf="noopenissues" href="#" class="list-group-item ">
+                  <a *ngIf="noopenissues"  class="list-group-item ">
                     <h4 class="list-group-item-heading"> No open absences </h4>
 
                 </a>

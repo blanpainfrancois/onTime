@@ -194,8 +194,7 @@ export class MainmetricComponent implements OnInit {
 updateGraph() {
 
   this.datareceived = false;
-  this.data = [];
-  this.labels = [];
+ 
 
     this.metricsService
       .getDataperiod()
