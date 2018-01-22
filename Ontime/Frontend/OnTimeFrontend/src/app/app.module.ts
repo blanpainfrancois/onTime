@@ -56,10 +56,7 @@ import { ConceptComponent } from './concept/concept.component';
     SubscribedemployeesComponent,
     IssuesComponent,
     OpenissuesComponent,
-<<<<<<< HEAD
-=======
     ConceptComponent,
->>>>>>> 5bc113f407361ad5475316ea07a02e6909770206
 
   ],
   imports: [

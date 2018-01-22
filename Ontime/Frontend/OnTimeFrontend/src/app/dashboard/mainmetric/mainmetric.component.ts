@@ -82,6 +82,7 @@ export class MainmetricComponent implements OnInit {
     });
 
     this.getmetrics();
+    this.metricsinterval();
   }
   ngOnInit() {
     if (window.navigator && window.navigator.geolocation){
@@ -103,9 +104,7 @@ export class MainmetricComponent implements OnInit {
     
     });
 
-    this.updateGraph();
-    this.getsharesofemployees();
-    this.countissues();
+  
 
   }
 
@@ -114,9 +113,26 @@ export class MainmetricComponent implements OnInit {
     this.getcountemployees();
     this.gettopreason();
     this.gettopweekday();
+    this.updateGraph();
+    this.getsharesofemployees();
+    this.countissues();
+
 
     setInterval(() => {
       this.getopenissues();
+      
+    }, 5000);
+  }
+
+  metricsinterval(){
+
+    setInterval(() => {
+      this.gethours();
+      this.getcountemployees();
+      this.gettopreason();
+      this.gettopweekday();
+      
+      
     }, 5000);
   }
 
@@ -144,6 +160,9 @@ export class MainmetricComponent implements OnInit {
   }
 
   getopenissues() {
+
+  
+
     this.metricsService.getopenissues().subscribe(
       data => {
         if (data === undefined) {
@@ -174,6 +193,10 @@ export class MainmetricComponent implements OnInit {
 
 updateGraph() {
 
+  this.datareceived = false;
+  this.data = [];
+  this.labels = [];
+
     this.metricsService
       .getDataperiod()
         .subscribe(data => {
@@ -189,6 +212,11 @@ updateGraph() {
     } 
     
 getsharesofemployees(){
+
+  this.doughnutloaded = false;
+  this.doughnutChartLabels = [];
+  this.doughnutChartData = [];
+
   this.metricsService.getShareEmployee().subscribe( data => {
 
     data.forEach(element => {
@@ -202,6 +230,11 @@ getsharesofemployees(){
 }  
 
 countissues(){
+
+  this.doughnutloaded2 = false;
+  this.doughnutChartLabels2 = [];
+  this.doughnutChartData2 = [];
+  
   this.metricsService.getCountIssues().subscribe(data => {
     data.forEach(element => {
       this.doughnutChartLabels2.push(element.key);
